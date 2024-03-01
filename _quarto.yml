@@ -1,0 +1,119 @@
+# Kopier/indsæt for offentliggørelse af hjemmeside via Terminal (Alt+Shift+M) =>
+# quarto publish quarto-pub --no-prompt --no-browser
+
+project:
+  type: website
+  resources:
+    - "googlebfa7a423a7b87736.html"
+  render:
+    - "*.qmd"
+    - "index.qmd" # "!index.qmd"
+    - "indbydelse-tilmelding-2023.qmd" # "!indbydelse-tilmelding-2023.qmd"
+    - "indbydelse-tilmelding-2024.qmd" # "!indbydelse-tilmelding-2024.qmd"
+    - "praemier-deltagere.qmd" # "!praemier-deltagere.qmd"
+    - "regler.qmd" # "!regler.qmd"
+    - "wcpp.qmd" # "!wcpp.qmd"
+    - "koncept.qmd" # "!koncept.qmd"
+    - "bi.qmd" # "!bi.qmd"
+
+website:
+  site-url: "https://pingpong.quarto.pub/dm"
+  favicon: "filer/generelt/ping-pong-dk.png"
+  title: "Ping Pong DM - Officiel hjemmeside"
+  google-analytics: "G-6903XX1GX6"
+  page-navigation: true
+  back-to-top-navigation: false
+  sidebar:
+    style: docked
+    background: light
+    logo: "filer/generelt/ping-pong-dk.png"
+    title: false
+    search: true
+    border: true
+    contents:
+      - href: "index.qmd"
+      - text: "---"
+      - section: "<b>Ping Pong DM 2023</b>"
+        contents:
+        - href: "indbydelse-tilmelding-2023.qmd"
+        - href: "praemier-deltagere.qmd"
+      - text: "---"
+      - section: "<b>Generelt om Ping Pong</b>"
+        contents:
+        - href: "regler.qmd"
+        - href: "wcpp.qmd"
+        - href: "koncept.qmd"
+      - text: "---"
+      - section: "<b>Eksterne links</b>"
+        contents:
+        - text: "<a href=https://www.btex.dk/sanwei-wcpp-sandpapirsbat.html target=_blank><iconify-icon icon=mdi:open-in-new></iconify-icon> <u>Køb bat hos BTEX</u></a>"
+        - text: "<a href=https://icttf.co target=_blank><iconify-icon icon=mdi:open-in-new></iconify-icon> <u>ICTTF</u></a>"
+  page-footer:
+    background: light
+    border: true
+    center:
+      - text: |
+          <a style=font-weight:bold;font-size:18px;text-decoration:none href=index.qmd><img src=filer/generelt/ping-pong-dk.png style=height:18px>&nbsp;Ping Pong DM</a>
+          <br><br>
+          <a href=https://bordtennisdanmark.dk/kalender/dm-i-ping-pong target=_blank><img src=filer/generelt/btdk.png style=height:24px></a>
+          &nbsp;<a href=https://www./dgi.dk/bordtennis target=_blank><img src=filer/generelt//dgi.png style=height:24px></a>
+          &nbsp;<a href=http://hoerningbtk.dk target=_blank><img src=filer/event/ping-pong-dm-2023/arrangoer.png style=height:24px></a>
+          &nbsp;<a href=https://www.facebook.com/groups/505063570605808 target=_blank><img src=filer/generelt/icttf.png style=height:24px></a>
+          &nbsp;<a href=https://www.sport-live.dk target=_blank><img src=filer/event/ping-pong-dm-2023/tv.png style=height:24px></a>
+          &nbsp;<a href=https://rema1000.dk target=_blank><img src=filer/event/ping-pong-dm-2023/sponsor-1.png style=height:24px></a>
+          &nbsp;<a href=https://www.gfforsikring.dk/gfaarhus target=_blank><img src=filer/event/ping-pong-dm-2023/sponsor-2.png style=height:24px></a>
+          &nbsp;<a href=https://supervisionalarm.dk/ target=_blank><img src=filer/event/ping-pong-dm-2023/sponsor-3.png style=height:24px></a>
+          &nbsp;<a href=https://installsound.dk target=_blank><img src=filer/event/ping-pong-dm-2023/sponsor-4.png style=height:24px></a>
+          &nbsp;<a href=https://www.dsv.com/da-dk target=_blank><img src=filer/event/ping-pong-dm-2023/sponsor-5.png style=height:24px></a>
+          &nbsp;<a href={{< var var.facebook_event_url >}} target=_blank><span class=bi-facebook style=color:#1877F2;font-size:18px></span></a>
+          &nbsp;<a href=https://m.me/{{< var var.facebook_side_id >}} target=_blank><span class=bi-messenger style=color:#0695FF;font-size:18px></span></a>
+          &nbsp;<a href=https://github.com/bsbenja/ping-pong-dm target=_blank><span class=bi-github style=color:#9F7BE1;font-size:18px></span></a>
+
+format:
+  html:
+    theme:
+      light: united
+    mermaid:
+      theme: default
+    grid:
+      content-mode:  auto
+      sidebar-width: 300px # standard: 250px
+      body-width:    800px # standard: 800px
+      margin-width:  300px # standard: 250px
+      gutter-width:  1.5em # standard: 1.5em
+    html-table-processing: none
+    fig-cap-location: top
+    mainfont: verdana
+    css: styles.css
+    df-print: default
+    fig-align: left
+    fontsize: "11pt"
+    linkcolor: "#398FCC"
+    section-title-footnotes: "Fodnoter"
+    toc-title: "Indhold på side"
+    toc-location: right
+    toc-depth: 3
+    toc-expand: true
+    toc: true
+    smooth-scroll: true
+    code-tools: false
+    fig-dpi: 300
+    white-space: pre-wap
+    code-overflow: wrap
+    header-includes: |
+      <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+      <meta name="google-site-verification" content="izkomDopuYjTHjF7B1NJSGr0ea8hNGw968SgEtk8n8g">
+
+editor: visual
+
+knitr:
+  opts_chunk:
+    comment: ""
+
+execute:
+  eval: true
+  output: true
+  freeze: false
+  echo: false
+  warning: false
+  error: false

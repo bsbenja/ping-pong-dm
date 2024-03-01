@@ -1,0 +1,657 @@
+```{r}
+source(file = "ping-pong-dm-input.R")
+```
+
+```{ojs}
+//| results: asis
+import {html} from 'https://cdn.skypack.dev/lit-html'
+```
+
+---
+title: "<iconify-icon icon=mdi:chart-box></iconify-icon> <u>BI</u>"
+subtitle: "Business Intelligence"
+editor_options: 
+  chunk_output_type: console
+---
+
+# Observable JS
+
+`r "<https://github.com/observablehq/plot>{target=_blank}"`
+
+`r "<https://observablehq.com/@d3/horizontal-bar-chart>{target=_blank}"`
+
+```{r}
+ojs_define(Data_T)
+```
+
+```{ojs}
+Data_BI = transpose(Data_T)
+```
+
+```{ojs}
+data_filter = Data_BI.filter(function(Data_BI) {
+  return EventAar_RD.includes(Data_BI.EventAar_RD)
+})
+```
+
+```{ojs}
+//| panel: input
+viewof EventAar_RD = Inputs.checkbox(
+  Data_BI.map(d => d.EventAar_RD), {sort: true, unique: true,
+  label: ["🎫 Event & år"], value: ["Ping Pong DM 2023"]}
+)
+```
+
+::: {.grid style="text-align:center"}
+::: {.g-col-12 .g-col-md-6}
+::: panel-tabset
+## Tilmeldinger pr. år
+
+```{ojs}
+Plot.plot({
+  x: {
+    label: "Eventår"
+  },
+  y: {
+    grid: false,
+    label: "Antal",
+    transform: d => d
+  },
+  color: {
+    legend: true
+  },
+  marks: [
+    Plot.line(Data_BI,
+    {x: "EventAarStartDato_DW_Aar_DW", y: "count"}
+    )
+  ]
+})
+```
+
+## Data
+
+```{ojs}
+Inputs.table(data_filter, {
+  columns: [
+    "KlubLogo_DW",
+    "DeltNavnBilletKat_DW",
+    "EventAar_RD"
+  ],
+  header: {
+    KlubLogo_DW: " ",
+    DeltNavnBilletKat_DW: "Navn",
+    EventAar_RD: "EventAar"
+  }
+})
+```
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: panel-tabset
+## Deltagere
+
+```{ojs}
+Plot.plot({
+  marginLeft: 100,
+  x: {
+    label: "Antal",
+    transform: d => d
+  },
+  y: {
+    grid: false,
+    label: ""
+  },
+  color: {
+    legend: true
+  },
+  marks: [
+    Plot.barX(data_filter,
+    Plot.groupY({x: "count"},
+    {y: "OrdreKat_DW", fill: "BilletKat_DW"}
+    )
+    )
+  ]
+})
+```
+
+## Data
+
+```{ojs}
+Inputs.table(data_filter, {
+  columns: [
+    "KlubLogo_DW",
+    "DeltNavnBilletKat_DW",
+    "Klub_RD"
+  ],
+  header: {
+    KlubLogo_DW: " ",
+    DeltNavnBilletKat_DW: "Navn",
+    Klub_RD: "Klub"
+  }
+})
+```
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: panel-tabset
+## Gentilmeldinger
+
+```{ojs}
+Plot.plot({
+  marginLeft: 100,
+  x: {
+    label: "Antal",
+    transform: d => d
+  },
+  y: {
+    grid: false,
+    label: ""
+  },
+  color: {
+    legend: true
+  },
+  marks: [
+    Plot.barX(data_filter,
+    Plot.groupY({x: "count"},
+    {y: "DeltGen_DW", fill: "BilletKat_DW"}
+    )
+    )
+  ]
+})
+```
+
+## Data
+
+```{ojs}
+Inputs.table(data_filter, {
+  columns: [
+    "KlubLogo_DW",
+    "DeltNavnBilletKat_DW",
+    "DeltGen_DW"
+  ],
+  header: {
+    KlubLogo_DW: " ",
+    DeltNavnBilletKat_DW: "Navn",
+    DeltGen_DW: "Klub"
+  }
+})
+```
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: panel-tabset
+## Klubber
+
+```{ojs}
+Plot.plot({
+  marginLeft: 100,
+  x: {
+    label: "Antal",
+    transform: d => d
+  },
+  y: {
+    grid: false,
+    label: ""
+  },
+  color: {
+    legend: true
+  },
+  marks: [
+    Plot.barX(data_filter,
+    Plot.groupY({x: "count"},
+    {y: "Klub_RD", fill: "BilletKat_DW", sort: {y: "x", reverse: true}}
+    )
+    )
+  ]
+})
+```
+
+## Data
+
+```{ojs}
+Inputs.table(data_filter, {
+  columns: [
+    "KlubLogo_DW",
+    "DeltNavnBilletKat_DW",
+    "Klub_RD"
+  ],
+  header: {
+    KlubLogo_DW: " ",
+    DeltNavnBilletKat_DW: "Navn",
+    Klub_RD: "Klub"
+  }
+})
+```
+:::
+:::
+:::
+
+# R-kode
+
+```{r}
+BilletDisciplinAkt_V  <- "Sandpapir"
+BilletSpilFormatAkt_V <- "Single"
+BilletRaekkeAkt_V     <- "Åben"
+
+DataAkt_T <- Data_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+DataEventAarAkt_T <- DataEventAar_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+DataBilletAkt_T <- DataBillet_T %>% filter(
+  EventAar_RD == InputEventAarAkt_V
+  & BilletDisciplin_RD == BilletDisciplinAkt_V
+  & BilletRaekke_RD == BilletRaekkeAkt_V
+  & BilletSpilFormat_RD ==  BilletSpilFormatAkt_V)
+```
+
+```{r}
+#| output: asis
+cat(paste0(
+"<i style=font-size:80%>", DataBilletAkt_T$StatDeltRatingKatAntal_DW, "<br>", DataBilletAkt_T$StatDeltRatingAntal_DW, "<br>", DataBilletAkt_T$StatForskudtTilAntal_DW, "<br>", DataBilletAkt_T$StatOekonomiAntal_DW, "</i>", "<br>", DataEventAarAkt_T$EventAarAabningDatoTid_RD))
+```
+
+`r DataEventAarAkt_T$EventAarAabningDatoTid_RD`
+
+```{r}
+#| output: asis
+
+cat(paste0("<h5 style=font-weight:bold>Køn</h5>"))
+
+data.frame(
+  "År" = c(
+    "2020",
+    "2019",
+    "2018",
+    "2017",
+    "2016",
+    "2015",
+    "2014",
+    "2013",
+    "2011"),
+  "Land" = c(
+    "ENG <img src=https://www.countryflags.com/wp-content/uploads/england-flag-jpg-xl.jpg height=11>",
+    "ENG <img src=https://www.countryflags.com/wp-content/uploads/england-flag-jpg-xl.jpg height=11>",
+    "CHN <img src=https://www.countryflags.com/wp-content/uploads/china-flag-png-large.png height=11>",
+    "CHN <img src=https://www.countryflags.com/wp-content/uploads/china-flag-png-large.png height=11>",
+    "ENG <img src=https://www.countryflags.com/wp-content/uploads/england-flag-jpg-xl.jpg height=11>",
+    "ENG <img src=https://www.countryflags.com/wp-content/uploads/england-flag-jpg-xl.jpg height=11>",
+    "RUS <img src=https://www.countryflags.com/wp-content/uploads/russia-flag-png-large.png height=11>",
+    "RUS <img src=https://www.countryflags.com/wp-content/uploads/russia-flag-png-large.png height=11>",
+    "RUS <img src=https://www.countryflags.com/wp-content/uploads/russia-flag-png-large.png height=11>"),
+  "Spiller" = c(
+    "Andrew Baggaley",
+    "Andrew Baggaley",
+    "Wang Shibo",
+    "Yan Weihao",
+    "Andrew Baggaley",
+    "Andrew Baggaley",
+    "Maxim Shmyrev",
+    "Maxim Shmyrev",
+    "Maxim Shmyrev"),
+  check.names = F) %>%
+datatable(
+    escape = F,
+    rownames = F,
+    options = list(
+      searching = F,
+      scrollX = F))
+```
+
+```{r}
+DataPraemiePenge_T %>%
+  filter(EventAar_RD == InputEventAarAkt_V) %>%
+  select(` `, Præmiepenge, Pct.) %>%
+  datatable(
+    style = "bulma",
+    escape = F,
+    rownames = F,
+    options = list(
+      searching = F))
+```
+
+```{r}
+DataPraemiePenge_T %>%
+  filter(EventAar_RD == InputEventAarAkt_V) %>%
+  select(` `, Præmiepenge, Pct.) %>%
+  datatable(
+    style = "bulma",
+    escape = F,
+    rownames = F,
+    options = list(
+      searching = F))
+```
+
+```{r}
+DataKlubMangel_T <- Data_T %>%
+	anti_join(y = DataAkt_T, by = "Klub_RD") %>%
+	group_by(EventAar_RD, Klub_RD) %>%
+	slice(which.max(OrdreDatoTid_RD)) %>%
+	group_by(EventAar_RD) %>%
+	arrange(
+	  OrdreStatusSimpel_RD,
+	  desc(EventAar_RD),
+	  desc(EventAarStartDato_DW_Aar_DW),
+	  KlubRegion_RD,
+	  Klub_RD) %>%
+	group_by(EventAar_RD, OrdreStatusSimpel_RD) %>%
+	mutate(Nr. = row_number()) %>%
+  ungroup() %>%
+	select(
+		Nr.,
+		" "      = KlubLogo_DW,
+		"Klub"   = Klub_RD,
+		"Region" = KlubRegion_RD,
+		"Sidst"  = EventAarStartDato_DW_Aar_DW,
+		OrdreStatusSimpel_RD,
+		EventAar_RD)
+
+if(nrow(DataKlubMangel_T) == 0) {
+	data.frame() %>% kbl()
+} else {
+	DataKlubMangel_T %>%
+		kbl(table.attr = "data-quarto-disable-processing=true",
+		    col.names = NA, align = "l", escape = F,
+		    caption = paste0(
+					IkonPerson_V, " <b>Manglende klubber</b>",
+					"<br>",
+					"<i style=font-size:80%>Sorteret efter år, region og klub</i>")) %>%
+		kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+		row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
+		row_spec(which(grepl("Afbud", DataKlubMangel_T$OrdreStatusSimpel_RD)),
+						 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
+		column_spec(1, width_min = "2em") %>%
+		column_spec(1:5, extra_css = "border-top:0.7px solid #999999") %>%
+		remove_column(6:7)
+}
+
+DataDeltMangel_T <- Data_T %>%
+	anti_join(y = DataAkt_T, by = "DeltID_RD") %>%
+	group_by(EventAar_RD, DeltID_RD) %>%
+	slice(which.max(OrdreDatoTid_RD)) %>%
+	group_by(EventAar_RD) %>%
+	add_count(Klub_RD) %>%
+	arrange(
+	  OrdreStatusSimpel_RD,
+	  desc(EventAar_RD),
+	  desc(n),
+	  ifelse(grepl("Ingen klub|Udlandet", Klub_RD), 2, 1),
+	  Klub_RD, desc(EventAarStartDato_DW_Aar_DW),
+		desc(DeltBilletSalgNr_DW), BilletKat_DW, DeltNavn_RD) %>%
+	group_by(OrdreStatusSimpel_RD) %>%
+	mutate(Nr. = row_number()) %>%
+	select(
+		Nr.,
+		" "     = KlubLogo_DW,
+		"Navn"  = DeltNavnBilletKat_DW,
+		"Sidst" = EventAarStartDato_DW_Aar_DW,
+		OrdreStatusSimpel_RD,
+		EventAar_RD) %>%
+  ungroup()
+
+if(nrow(DataDeltMangel_T) == 0) {
+	data.frame() %>% kbl()
+} else {
+  DataDeltMangel_T %>%
+	kbl(table.attr = "data-quarto-disable-processing=true",
+	    col.names = NA, align = "l", escape = F,
+			caption = paste0(
+				IkonPerson_V, " <b>Manglende deltagere</b>",
+				"<br>",
+				"<i style=font-size:80%>Sorteret efter klubantal og år</i>")) %>%
+	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+	row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
+	row_spec(which(grepl("Afbud", DataDeltMangel_T$OrdreStatusSimpel_RD)),
+					 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
+	column_spec(1, width_min = "2em") %>%
+	column_spec(1:4, extra_css = "border-top:0.7px solid #999999") %>%
+	remove_column(5:6)
+}
+```
+
+# Hørning 2023
+
+[**Åbning af tilmelding**]{.underline}:\
+*Onsdag 15.03.2022 kl. 18:00: Facebook-opslag*
+
+🏓🥳 DM I PING PONG 2023 bliver lørdag 17. juni i Hørning ved Aarhus 🥳🏓
+
+Eventet er før sommerferien og som noget af det sidste af indeværende bordtennissæson, da det ligger i uge 24 🙌
+
+Ved 64 deltagere eller flere til turneringen vil der være præmiesum på kr. 10.000, og derudover vil bl.a. Sport Live 'komme på besøg' - Eventet afsluttes med et brag af en fest 🥳
+
+ALLE kan deltage (uanset alder, køn, niveau eller licens) 🎫
+
+Del budskabet ved at trykke deltager eller interesseret i denne begivenhed 💪
+
+NY HJEMMESIDE FOR DM I PING PONG: <https://pingpong.quarto.pub/dm/>
+
+# Sisu/MBK 2022
+
+[**Sisu/MBK**]{.underline}:**\
+**✅ Puljespil: 6-mandspuljer på maksimalt 18 borde. 2 puljer spilles på 3 borde. 30 kampe spilles på 3 borde = 10 kampe pr. bord (4 timer). Efterfølgende tages bordene gradvist ned.\
+✅ Fest: Pizza = 70 kr. og 16 øl\*5 kr. = 80 kr. pr. mand (fri bar i 3 timer).\
+✅ BilletFix: Sisu/MBK's kontonr. indsættes på BilletFix.
+
+------------------------------------------------------------------------
+
+[**Offentliggørelse**]{.underline}:\
+✅ BTDK: BTDK's hjemmeside med info under "Aktivitetskalender".\
+✅ Facebook: Facebook-begivenhed med coverbillede, tekst, arrangører og tilmeldingslink. "Ping Pong DK" med coverbillede og tilmeldingslink.\
+✅ BilletFix: BilletFix med coverbillede, al info, kontonr. og offentliggørelse.
+
+------------------------------------------------------------------------
+
+[**Offentliggørelse af tid og sted**]{.underline}:\
+*Søndag 09.01.2022 kl. 12:00: Facebook-begivenhed info/-opslag*
+
+🏓🎉 DM I PING PONG 2022 bliver lørdag 18. juni i Sisu/MBK 🎉🏓
+
+Eventet er før sommerferien og som noget af det sidste af indeværende bordtennissæson, da det ligger i uge 24 🙌
+
+I kan godt glæde jer, da der er lagt op til et brag af en turnering og fest! 🏓🎉
+
+🗣️ Del budskabet ved at trykke deltager/interesseret og inviter folk til denne begivenhed. Like og følg også gerne den officielle Facebook-side "Ping Pong DK" (medarrangør), hvis du ikke allerede gør det, hvor bl.a. finalen fra sidste års DM kan ses i kort form.
+
+Nærmere info følger 👀
+
+------------------------------------------------------------------------
+
+[**Sandpapirsbat af BTDK**]{.underline}:\
+*Søndag 03.04.2022 kl. 12:00: Facebook-opslag*
+
+Et STORT TAK skal lyde til Bordtennis Danmark, da de støtter med 50 splinternye sandpapirsbat til DM i Ping Pong 2022 lørdag 18. juni i Sisu/MBK 🙏💪🏓
+
+Bordtennis Danmarks støtte er medvirkende til, at det igen kun kommer til at koste kr. 125 at stille op til DM i Ping Pong, hvilket faktisk er billigere end prisen på et sandpapirsbat 🏓
+
+Det er formentligt ikke alment kendt, men Ping Pong entusiaster vil kunne nikke genkendende til, at der er stor forskel på et nyt- og brugt sandpapirsbat, da et nyt sandpapirsbat qua sin ruhed kan genere mere skrue, hvilket er gavnligt i specielt det offensive spil 🏓
+
+Der spilles med "Sanwei WCPP Sandpapirsbat", som også blev benyttet ved sidste World Championship of Ping Pong (WCPP). Alle får udleveret bat af stævnearrangøren til opvarmning og kampe, og battet kan også købes hos Bordtennisexperterne til eget brug her:
+
+https://www.btex.dk/sanwei-wcpp-sandpapirsbat.html
+
+👀 Nærmere info om DM i Ping Pong 2022 offentliggøres om en uge, og tilmelding åbnes op om 2 uger.
+
+🎉 I kan godt glæde jer, da der er lagt op til et brag af en turnering og fest!
+
+🗣️ Hvis du kunne tænke dig at være med eller blot overvejer at deltage, kan du dele budskabet via Facebook-begivenheden ved at trykke deltager/interesseret, ligesom 75 personer allerede har gjort, og invitere folk her:
+
+https://www.facebook.com/events/452302656395308
+
+------------------------------------------------------------------------
+
+[**Før åbning af tilmelding**]{.underline}:\
+*Søndag 10.04.2022 kl. 12:00: Facebook-opslag*
+
+🎫🔓 SØNDAG 17. APRIL 2022 KL. 12 åbnes op for tilmelding til DM i Ping Pong 2022, som arrangeres af Sisu/MBK lørdag 18. juni (før sommerferien i uge 24)🏓🎉
+
+🙌 Se indbydelsesplakat herunder opslaget 👇
+
+🎯 Derudover kan du blive klogere på hele eventet/konceptet på BilletFix, hvor tilmelding også kommer til at foregå, her:
+
+👉 https://billetfix.dk/da/e/dm-i-ping-pong-2022
+
+`r "<br>"`
+
+*Søndag 10.04.2022 kl. 12:00: Facebook-begivenhed info*
+
+🏓🎉 DM I PING PONG 2022 afholdes lørdag 18. juni i Sisu/MBK 🎉🏓
+
+Eventet er før sommerferien og som noget af det sidste af indeværende bordtennissæson, da det ligger i uge 24 🙌
+
+Gå ikke glip af en masse kampe på lige vilkår i sandpapirsdisciplinen med stemningsmusik og/eller et brag af en fest om aftenen, som alt sammen fås til en overkommelig pris 🙌 Se indbydelsesplakat i coverbilledet 👀
+
+🗣️ Del budskabet ved at trykke deltager/interesseret og inviter folk til denne begivenhed. Like og følg også gerne den officielle Facebook-side "Ping Pong DK" (medarrangør), hvis du ikke allerede gør det, hvor bl.a. finalen fra sidste års DM kan ses i kort form.
+
+❗ Da en del af Ping Pong konceptet er, at ALLE kan stille op (uanset alder, køn, niveau eller licens), foregår tilmelding og betaling på BilletFix (se link nederst) og derfor udenom BordtennisPortalen. Al relevant information vil også være samlet på BilletFix, hvor foreløbige præmier og -tilmeldinger løbende vil blive opdateret 🔃
+
+🏃 Meld dig gerne til først som sidst så andre kan se, at DU skal med (først til mølle-princip) 🙌
+
+🎫ℹ️ Let tilmelding/betaling med MobilePay eller kort samt al info her:
+
+👉 https://billetfix.dk/da/e/dm-i-ping-pong-2022
+
+------------------------------------------------------------------------
+
+[**Efter åbning af tilmelding**]{.underline}:\
+*Søndag 17.04.2022 kl. 12:00: Facebook-opslag*
+
+‼️ OPSLAGET MÅ GERNE DELES ‼️
+
+🎫 SÅ ER DER ÅBNET OP FOR TILMELDING TIL DM I PING PONG 2022, som arrangeres af Sisu/MBK lørdag 18. juni (før sommerferien i uge 24)🏓🎉
+
+Gå ikke glip af en masse kampe på lige vilkår i sandpapirsdisciplinen med stemningsmusik og/eller et brag af en fest om aftenen, som alt sammen fås til en overkommelig pris 🙌
+
+❗ Da en del af Ping Pong konceptet er, at ALLE kan stille op (uanset alder, køn, niveau eller licens), foregår tilmelding og betaling på BilletFix og derfor udenom BordtennisPortalen. Her vil foreløbige præmier og -tilmeldinger også løbende blive opdateret 🔃
+
+🏃 Meld dig gerne til først som sidst så andre kan se, at DU skal med (først til mølle-princip) 🙌
+
+🎫ℹ️ Let tilmelding/betaling med MobilePay eller kort samt al info her:
+
+👉 https://billetfix.dk/da/e/dm-i-ping-pong-2022
+
+------------------------------------------------------------------------
+
+[**Yderligere promovering 1**]{.underline}:\
+*Fredag 20.05.2022 kl. 17:30: Facebook-opslag*
+
+🏓🏓 DM i Ping Pong 2022 for alle 🏓🏓
+
+(bordtennis med sandpapirsbat) samt fest om aftenen bliver afholdt i Sisu/MBK's lokaler lørdag d. 18. juni 🏓🎉
+
+Måske har du ikke prøvet Ping Pong før, men det gør heller ikke noget, da alle har mulighed for at deltage - Ung som gammel, dreng som pige, nybegynder som rutineret, uanset licens osv. - ALLE kan deltage 👥
+
+Det særlige ved Ping Pong er, at der er lige vilkår for alle, og at sandpapirsbattene giver nogle anderledes, sjove og typisk længere dueller end almindelig bordtennis 🏓
+
+Prisen for deltagelse er overkommelig, dvs. kr. 125 for Ping Pong inkl. udleveret bat, og kr. 150 for fest om aftenen med bl.a. pizza og fri bar 🙌
+
+Ungdomsspillere er også mere end velkomne til at stille op til DM. Der spilles i 6-mandspuljer, så alle er sikret en masse kampe, med stemningsmusik i baggrunden, og derudover er der en gave til både den yngste- og ældste deltager for at hylde mangfoldigheden 🎁
+
+Vi håber på mange tilmeldinger, så tag endelig fat i jeres venner og klubkammerater, så der kan blive skabt en god turnering og fest fra nær og fjern 🏓🎉
+
+Tilmeldingsfristen er d. 5. juni.
+
+Der er let tilmelding/betaling med MobilePay eller kort på BilletFix, hvor også al info om eventet kan ses, ved at klikke herunder 👇
+
+https://billetfix.dk/da/e/dm-i-ping-pong-2022
+
+------------------------------------------------------------------------
+
+[**Yderligere promovering 2**]{.underline}:\
+*Søndag 22.05.2022 kl. 12:00: Facebook-opslag*
+
+Emne: Invitation til DM i Ping Pong 2022 samt fest om aftenen, lørdag 18. juni i Sisu/MBK
+
+Hej med jer 🏓
+
+Hermed invitation til DM i Ping Pong 2022 (bordtennis med sandpapirsbat) samt fest om aftenen, som afholdes lørdag d. 18. juni i Aarhus midtby i Sisu/MBK's lokaler.
+
+• Det særlige ved Ping Pong er, at der er lige vilkår for alle, og at sandpapirsbattene qua mindre skrue giver nogle anderledes, sjove og typisk længere dueller end almindelig bordtennis. Der tages det bedste fra fortidens- og nutidens bordtennis, hvor der bl.a. spilles til 15 point i hvert sæt (14-14 er afgørende bold), der byttes bat mellem hvert sæt, og der kan tages "dobbeltpoint".
+
+• Ping Pong appellerer til alle - Ung som gammel, dreng som pige, nybegynder som rutineret, uanset licens osv. - ALLE kan deltage. Stævnet afvikles som én åben singlerække og på fair vis efter snake-system uden klubhensyn.
+
+• Prisen for deltagelse er overkommelig, dvs. kr. 125 for Ping Pong inkl. udleveret sandpapirsbat, og kr. 150 for fest om aftenen, som indkluderer bl.a. pizza og fri bar samt mulighed for efterfølgende at tage ind til det aarhusianske byliv.
+
+• Ungdomsspillere er også mere end velkomne til at stille op til DM. Alle er sikret mange kampe, da der spilles i 6-mandspuljer. Derudover er der stemningsmusik under hele stævnet, A-/B-slutspil, samt gave til både den yngste- og ældste deltager for at hylde mangfoldigheden.
+
+Jeg tror på, at langt de fleste vil finde Ping Pong konceptet underholdende, uanset om man kun har prøvet det i et begrænset omfang eller endnu ikke har prøvet det, da det er en sportsgren, hvor alle kan være med, og som har fællesskabet og mangfoldigheden for øje. Man kan selv vælge, hvad man ønsker at deltage i 😊
+
+Håber I vil være med til at videresende denne mail til jeres medlemmer, så der forhåbentlig kan blive skabt en god turnering og fest fra nær og fjern 🏓🎉 
+
+Indbydelsesplakat kan ses både som billed/PDF.
+
+Tilmeldingsfristen er d. 5. juni og er efter første til mølle-princip.
+
+🎫ℹ️ Der er let tilmelding/betaling med MobilePay eller kort samt al info her:👉 https://billetfix.dk/da/e/dm-i-ping-pong-2022
+
+\[BILLED AF INDBYDELSESPLAKAT\]
+
+Venlig hilsen
+
+Benjamin Sørensen
+
+------------------------------------------------------------------------
+
+[**Foreløbige præmier og -tilmeldinger**]{.underline}:\
+*Søndag 02.06.2022 kl. 12:00: Facebook-opslag*
+
+‼️ KUN 3 DAGE TIL TILMELDINGSFRIST TIL DM I PING PONG 2022 ‼️
+
+DM i Ping Pong afholdes lørdag den 18. juni 2022 i Sisu/MBK's lokaler i Aarhus Midtby.
+
+Der begynder at tjekke en del tilmeldinger ind, men der er stadig ledige pladser. Indtil videre ser det ud som følger:
+
+🏓 DM i Ping pong: 29 deltagere\
+🎉 Fest om aftenen: 19 deltagere\
+👤 4 Ungdom (13%) ∙ 👤 20 Senior (63%) ∙ 👤 8 Veteran (25%)\
+📜 Diplomer uddeles til alle gave-/præmietagere.
+
+💸 Af spillergebyret på kr. 125 går kr. 100 til præmiepenge og kr. 25 til stævnearrangøren. Foreløbig præmiesum på kr. 2.900 fordeles på seks placeringer som følger:
+
+🥇 A-slutspil - 1. plads: Kr. 1.087,50 (37,5%)\
+🥈 A-slutspil - 2. plads: Kr. 725,00 (25%)\
+🥉 A-slutspil - 3. plads: Kr. 435,00 (15%)\
+🏅 A-slutspil - 4. plads: Kr. 290,00 (10%)\
+🥇 B-slutspil - 1. plads: Kr. 217,50 (7,5%)\
+🥈 B-slutspil - 2. plads: Kr. 145,00 (5%)\
+🎁 Gave til den yngste- og ældste Ping Pong deltager.\
+👤 Yngst Ping Pong: Frederik Kjeldgaard, Hørning BTK \[12 år, 10-05-2010\] 🏓\
+👤 Ældst Ping Pong: Bent O. Jakobsen, Sisu/MBK \[71 år, 08-09-1950\] 🏓
+
+👀 Se hvem der har tilmeldt sig på BilletFix (opdateres løbende), hvor du også selv kan tilmelde dig (først til mølle-princip), her 👇
+
+https://billetfix.dk/da/e/dm-i-ping-pong-2022
+
+------------------------------------------------------------------------
+
+[**Foreløbige præmier og -tilmeldinger**]{.underline}:\
+*Søndag 05.06.2022 kl. 12:00: Facebook-opslag*
+
+‼️ TILMELDINGSFRISTEN ER I DAG TIL DM I PING PONG 2022 (bordtennis med sandpapirsbat) ‼️
+
+DM i Ping Pong afholdes om kun 13 dage i Sisu/MBK's lokaler i Aarhus Midtby lørdag den 18. juni.
+
+Der tangerer snart rekordmange deltagere med pt. 41 i alt, hvor 34 er med til Ping Pong og 27 er med til fest om aftenen. Nogen deltager kun til Ping Pong og andre kun til festen, men der er også mange, der deltager i det hele.
+
+Gå ikke glip af en masse kampe på lige vilkår i sandpapirsdisciplinen med stemningsmusik under hele stævnet og/eller fest om aftenen, som alt sammen fås til en overkommelig pris. Alle kan deltage uanset alder, køn, niveau eller licens, og til Ping Pong får alle udleveret et sandpapirsbat til opvarmning og kampe, som er med i prisen.
+
+👀 Se hvem der har tilmeldt sig på BilletFix (opdateres løbende), hvor du også selv kan tilmelde dig, her 👇
+
+https://billetfix.dk/da/e/dm-i-ping-pong-2022
+
+------------------------------------------------------------------------
+
+[**Endeligt program**]{.underline}:\
+*Søndag 12.06.2022 kl. 12:00: Facebook-opslag*
+
+Så er det endelige program klar til DM I PING PONG 2022 på lørdag 18. juni i Sisu/MBK 🏓🎉
+
+Der er i år rekordmange tilmeldinger med 57 i alt, hvor 47 er med til Ping Pong og 40 er med til fest om aftenen fordelt på 17 forskellige klubber.
+
+Se tidsplan, præmier, tilmeldinger/seedninger, Ping Pong regler og al eventinfo på BilletFix, her 👇
+
+https://billetfix.dk/da/e/dm-i-ping-pong-2022
+
+Deltagerliste og præmier vil blive opdateret løbende i tilfælde af drive-in/afbud. Der er mulighed for at tage drive-in helt frem til check-in-tidspunktet på stævnedagen, som er kl. 10:00, op til max 72 deltagere, via BilletFix 🕙
+
+Bemærk der er kommet et afbud fra Anders Lind grundet en skade, hvorfor Simon Nykjær-Fisher overtager Anders' 4. seedning.

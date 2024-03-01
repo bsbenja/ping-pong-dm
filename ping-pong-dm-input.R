@@ -1,0 +1,25 @@
+#' ---
+#' title: Input for Ping Pong DM
+#' output: html_document
+#' ---
+
+#+ eval=F, warning=F, message=F
+# Kopier/indsæt for offentliggørelse af hjemmeside via Terminal (Alt+Shift+M) =>
+# quarto publish quarto-pub --no-prompt --no-browser
+
+# Navngivning af variable er baseret på Pascal Case efterfulgt af underscore og variabeltype.
+### PascalCase_T  = Table of Pascal Case.
+### PascalCase_V  = Variable of Pascal Case.
+### PascalCase_RD = Raw Data of Pascal Case.
+### PascalCase_DW = Data Wrangling of Pascal Case.
+
+#> setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+InputInfo1234_V    <- 4 # 1/2/3/4 for tilmelding hhv. lukket, teaser, åben og endelig
+InputWebOrdreTF_V  <- F # T/F for hentning af eventordre
+InputWebRatingTF_V <- F # T/F for webscraping af rating
+InputPNGPlakatTF_V <- F # T/F for plakater fra PDF til PNG
+InputDataTXT_V     <- F # T/F for DataAkt_T og DataEventAarAkt_T exporteret til TXT-fil
+InputEventAarAkt_V <- "Ping Pong DM 2023" # Event og år
+InputData_V <- "filer/generelt/ping-pong-dm-tilmelding.xlsx" # Sti til data
+source(file = "_variables.R")
+source(file = "bagvedliggende-kode.R")

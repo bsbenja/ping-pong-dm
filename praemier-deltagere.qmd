@@ -1,0 +1,588 @@
+```{r}
+source(file = "ping-pong-dm-input.R")
+
+BilletDisciplinAkt_V  <- "Sandpapir"
+BilletRaekkeAkt_V     <- "Åben"
+BilletSpilFormatAkt_V <- "Single"
+
+DataAkt_T <- Data_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+DataEventAarAkt_T <- DataEventAar_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+DataBilletAkt_T <- DataBillet_T %>% filter(
+  EventAar_RD == InputEventAarAkt_V
+  & BilletDisciplin_RD == BilletDisciplinAkt_V
+  & BilletRaekke_RD == BilletRaekkeAkt_V
+  & BilletSpilFormat_RD ==  BilletSpilFormatAkt_V)
+DataPraemiePengeAkt_T <- DataPraemiePenge_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+DataPraemieYngstAeldstAkt_T <- DataPraemieYngstAeldst_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+DataDeltForAkt_T <- DataDeltFor_T %>% filter(
+  EventAar_RD == InputEventAarAkt_V
+  & BilletDisciplin_RD == BilletDisciplinAkt_V
+  & BilletRaekke_RD == BilletRaekkeAkt_V
+  & BilletSpilFormat_RD ==  BilletSpilFormatAkt_V)
+DataDeltPuljerAkt_T <- DataDeltPuljer_T %>% filter(
+  EventAar_RD == InputEventAarAkt_V
+  & BilletDisciplin_RD == BilletDisciplinAkt_V
+  & BilletRaekke_RD == BilletRaekkeAkt_V
+  & BilletSpilFormat_RD ==  BilletSpilFormatAkt_V)
+DataDeltAndetAkt_T <- DataDeltAndet_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+DataResultSidsteEventAkt_T <- DataResultSidsteEvent_T %>%
+  filter(
+    EventAarSidst_DW == InputEventAarAkt_V
+    & grepl("A-slutspil", DeltSlutspil_RD)
+    & grepl("1|2|3|4", `Placering`))
+```
+
+---
+title: "<iconify-icon icon=mdi:autorenew></iconify-icon> <u>Præmier & deltagere</u>"
+subtitle: |
+  `r paste0(
+  "<b style=font-size:140%>", DataEventAarAkt_T$EventAar_RD, "</b>",
+  "<br>",
+  "<i style=font-size:110%>",
+  "<b>Afholdes ", DataEventAarAkt_T$EventAarDato_DW, " i ", DataEventAarAkt_T$EventAarStedURL_DW,
+  "</b></i>",
+  "<br>",
+  "<i style=font-size:80%>Først til mølle-princip ∙ Tilmeldingsfrist ",
+  DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW, "</i>")`
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| output: asis
+cat(knitr::raw_html(DataEventAarAkt_T$InfoNedtælling_DW))
+cat(DataEventAarAkt_T$InfoPlakatCTA_DW)
+```
+
+::: {.callout-note style="font-style:italic"}
+## Sideinfo
+
+```{r}
+#| output: asis
+cat(paste(IkonGentagelse_V, "Præmier og deltagere opdateres løbende for", DataEventAarAkt_T$EventAar_RD, "og er sidst opdateret", format(floor_date(Sys.time(), "30 minutes"), "%d.%m.%Y kl. %H:%M.")))
+```
+:::
+
+::: {.callout-tip style="font-style:italic"}
+## Tip
+
+```{r}
+#| output: asis
+cat(DataEventAarAkt_T$InfoTipIndbydelse_DW)
+```
+:::
+
+## `r paste(IkonPokal_V, "Præmier")`
+
+```{r}
+#| layout="[[32, -2, 66]]"
+
+# Præmiepenge
+if(nrow(DataPraemiePengeAkt_T) == 0) {
+  data.frame() %>% kbl()
+} else {
+  DataPraemiePengeAkt_T %>%
+    kbl(table.attr = "data-quarto-disable-processing=true",
+        col.names = NA, align = "lrr", escape = F,
+        caption = paste(
+          "<i style=font-size:90%>", IkonPenge_V, "<b>Præmiepenge</b></i>")) %>%
+    kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+    row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
+    row_spec(which(DataPraemiePengeAkt_T$PraemieRank_DW == "1"),
+             bold = T, background = DataEventAarAkt_T$EventAarFarve2_RD) %>%
+    row_spec(which(DataPraemiePengeAkt_T$PraemieRank_DW == "2"),
+             background = DataEventAarAkt_T$EventAarFarve2_RD) %>%
+    row_spec(which(DataPraemiePengeAkt_T$PraemieRank_DW == "3"),
+             background = DataEventAarAkt_T$EventAarFarve2_RD) %>%
+    add_indent(which(DataPraemiePengeAkt_T$PraemieRank_DW == "4")) %>%
+    column_spec(3, italic = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
+    footnote(paste(
+      "<i style=font-size:80%>Præmiesum på", distinct(filter(DataPraemiePengeAkt_T, PraemieRank_DW == 1), Præmiepenge), "er under<br>forudsætning af minimum 64 Ping Pong<br>deltagere.</i>"),
+      general_title = "", escape = F) %>%
+    remove_column(4:8)
+}
+
+# Gave til yngste- og ældste Ping Pong deltager
+if(nrow(DataPraemieYngstAeldstAkt_T) == 0) {
+  data.frame() %>% kbl()
+} else {
+  DataPraemieYngstAeldstAkt_T %>%
+    kbl(table.attr = "data-quarto-disable-processing=true",
+        col.names = NA, align = "lclc", escape = F,
+      caption = paste0(
+      "<i style=font-size:90%> ", IkonGave_V, " ",
+      "Gave til <b>yngste</b>- og <b>ældste</b> Ping Pong deltager<br>",
+      "for at hylde mangfoldigheden</i>")) %>%
+    kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+    row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
+    column_spec(1, bold = T) %>%
+    column_spec(1:4, extra_css = "border-top:0.7px solid #999999") %>%
+    footnote(ifelse(
+      DataBilletAkt_T$StatAlderForskelAntal_DW == 0, "<i style=font-size:80%>Ingen aldersforskel.</i>",
+      paste("<i style=font-size:80%>Aldersforskel", DataBilletAkt_T$StatAlderForskelAntal_DW, "år.</i>")),
+      general_title = "", escape = F) %>%
+    remove_column(5) %>%
+    gsub("\\{\\{&lt;|&lt;", "{{<", .) %>% gsub("&gt;}}", ">}}", .)
+}
+```
+
+## `r paste(IkonPerson_V, "Deltagere")`
+
+::: {.callout-note icon="false"}
+## `r paste0(IkonBillet_V, "&nbsp;Tilmeldinger", "^[<i><b>Tilmeldinger</b>: Tilmeldinger opgøres efter antal tilmeldinger til eventet fordelt på billettype.</i>]")`
+
+```{r}
+#| output: asis
+cat(paste0(DataBilletAkt_T$StatOrdreAntal_DW))
+```
+:::
+
+```{r}
+
+# DataDeltForAkt_T
+if(InputInfo1234_V %in% c(3)) {
+  if(nrow(DataDeltForAkt_T) == 0) {
+  data.frame() %>% kbl()
+} else {
+DataDeltForAkt_T %>%
+  kbl(table.attr = "data-quarto-disable-processing=true",
+      col.names = NA, align = "ccl", escape = F,
+      caption = paste0(
+        IkonPerson_V, " <b>Foreløbige deltagere</b>",
+        "<br>",
+        "<i style=font-size:80%>", DataBilletAkt_T$BilletPuljeDelt_RD, "-mandspuljer ",
+        "inddelt efter snake-system vises efter tilmeldingsfrist ",
+        DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW, ".</i>")) %>%
+  kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+  add_header_above(
+    c("Sorteret efter billettype og fødselsdato" = 8),
+    italic = T, align = "c", font_size = "small", escape = F,
+    extra_css = "border:hidden;border-bottom:1.5px solid #111111") %>%
+  row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
+	column_spec(1:4, extra_css = "border-top:0.7px solid #999999") %>%
+  remove_column(4:8) %>%
+  gsub("\\{\\{&lt;|&lt;", "{{<", .) %>% gsub("&gt;}}", ">}}", .)
+}
+}
+
+if(InputInfo1234_V %in% c(1, 2, 4)) {
+  if(nrow(DataDeltPuljerAkt_T) == 0) {
+  data.frame() %>% kbl()
+} else {
+DataDeltPuljerAkt_T %>%
+  kbl(table.attr = "data-quarto-disable-processing=true",
+      col.names = NA, align = "cclr", escape = F,
+      caption = paste0(
+        "<b>", IkonPingPong_V, " ",
+        DataBilletAkt_T$BilletPuljeDelt_RD, "-mandspuljer til ", DataEventAarAkt_T$EventAar_RD, "</b>",
+        "<br>",
+        "<i style=font-size:80%>", DataBilletAkt_T$BilletDelt_DW, " ",
+        ifelse(DataBilletAkt_T$BilletDelt_DW == 1, "tilmelding", "tilmeldinger"),
+        " fordelt over ", DataBilletAkt_T$BilletPulje_DW, " ",
+        ifelse(DataBilletAkt_T$BilletPulje_DW == 1, "pulje", "puljer"), " efter snake-system.",
+        "<br>",
+        "Seedet 1-4 efter sidste <q>Final 4</q>.",
+        "<br>",
+        "Rating er opdateret pr. ",
+        DataEventAarAkt_T$EventAarRatingDato_DW_DMAA_DW, ".</i>")) %>%
+  kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+  add_header_above(
+    c("Bemærk: Puljerne kan ændre sig ved drive-in/afbud" = 10),
+    italic = T, align = "c", font_size = "small", escape = F,
+    extra_css = "border:hidden;border-bottom:1.5px solid #111111") %>%
+  row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
+  row_spec(which(DataDeltPuljerAkt_T$DeltSnakeSeedLagNr_DW == "1"), bold = T,
+           extra_css = "border:hidden;border-top:0.7px solid #111111") %>%
+  remove_column(5:10) %>%
+  gsub("\\{\\{&lt;|&lt;", "{{<", .) %>% gsub("&gt;}}", ">}}", .)
+  }
+}
+
+# DataDeltAndetAkt_T
+if(InputInfo1234_V %in% c(1, 2, 3, 4)) {
+  if(nrow(DataDeltAndetAkt_T) == 0) {
+  data.frame() %>% kbl()
+} else {
+DataDeltAndetAkt_T %>%
+  kbl(table.attr = "data-quarto-disable-processing=true",
+      col.names = NA, align = "ccl", escape = F,
+  		caption = "Andet end Ping Pong + evt. afbud") %>%
+  kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+  add_header_above(
+    c("Sorteret efter fødselsdato" = 5),
+    italic = T, align = "c", font_size = "small", escape = F,
+    extra_css = "border:hidden;border-bottom:1.5px solid #111111") %>%
+  row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
+  row_spec(which(grepl("Afbud", DataDeltAndetAkt_T$OrdreStatusSimpel_RD)),
+           strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
+  row_spec(which(DataDeltAndetAkt_T$Nr. == "1"),
+           extra_css = "border:hidden;border-top:0.7px solid #111111") %>%
+  remove_column(4:5) %>%
+  gsub("\\{\\{&lt;|&lt;", "{{<", .) %>% gsub("&gt;}}", ">}}", .)
+}
+  }
+```
+
+## `r paste(IkonGraf_V, "Dashboards")`
+
+::: {.grid style="text-align:center"}
+::: {.g-col-12 .g-col-md-6}
+::: panel-tabset
+## Graf
+
+```{r}
+#| output: asis
+cat(paste0("<h5 style=font-weight:bold>Klubber</h5>"))
+```
+
+```{r}
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpel_RD)) %>% summarise(length(unique(Klub_RD))))+1.5)/3.3
+
+DataAkt_T %>% filter(EventAar_RD == InputEventAarAkt_V) %>%
+	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpel_RD)) %>%
+	mutate(Klub_RD = paste0(Klub_RD, "&emsp;", KlubLogo_DW)) %>%
+	ggplot(mapping = aes(y = fct_rev(fct_infreq(Klub_RD)), fill = BilletKat_DW)) +
+	geom_bar(width = 0.9, position = position_stack(reverse = T)) +
+	geom_text(aes(label = after_stat(count)), stat = "count", position = position_stack(reverse = T),
+						vjust = 0.4, hjust = 1, size = 5, color = "#FFFFFF", fontface = "bold") +
+	scale_fill_manual(values = levels(DataAkt_T$BilletKatFarve_DW)) +
+  theme(axis.text.y = element_markdown(size = 15, face = "bold"))
+```
+
+```{r}
+#| output: asis
+cat(paste0(
+"<i style=font-size:70%>",
+"<b>", DataBilletAkt_T$StatDeltKlubAntal_DW, "</b>",
+"&nbsp;^[<i><b>Deltagere klub</b>: Deltagere klub opgøres efter antal tilmeldte deltagere til eventet fordelt på <q>klub</q>, <q>ingen klub</q> og <q>udlandet</q>. Procentsatserne viser fordelingen heraf.</i>]",
+"</i>",
+
+" <br>",
+
+"<i style=font-size:70%>",
+"<b>", DataBilletAkt_T$StatKlubAntal_DW, "</b>",
+"&nbsp;^[<i><b>Forskellige klubber</b>: Forskellige klubber opgøres efter antal tilmeldte bordtennisklubber eksklusiv <q>ingen klub</q> og <q>udlandet</q> til eventet.</i>]",
+"</i>"))
+```
+
+## Tabel
+
+```{r}
+DataDeltKlub_T %>%
+	kbl(table.attr = "data-quarto-disable-processing=true",
+	    col.names = NA, align = "l", escape = F,
+			caption = "<i style=font-size:80%>Sorteret efter klubantal</i>") %>%
+	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+	row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
+	row_spec(which(grepl("Afbud", DataDeltKlub_T$OrdreStatusSimpel_RD)),
+					 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
+	column_spec(1, width_min = "2em") %>%
+	column_spec(1:3, extra_css = "border-top:0.7px solid #999999") %>%
+	remove_column(4:5) %>%
+	scroll_box(height = "400px")
+```
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: panel-tabset
+## Graf
+
+```{r}
+#| output: asis
+cat(paste0("<h5 style=font-weight:bold>Danmarkskort</h5>"))
+```
+
+```{r}
+#| fig-height: 5
+if(nrow(DataAkt_T) == 0) {
+	data.frame() %>% kbl()
+} else {
+	DataAkt_T %>%
+		filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpel_RD) & !grepl("Ingen klub|Udlandet", Klub_RD)) %>%
+		mutate(across("KlubPostnr_RD", \(x) as.integer(x))) %>%
+		distinct(DeltID_RD, .keep_all = T) %>%
+		mutate(KlubRegion_RD = case_when(
+			KlubRegion_RD == "Nordjylland" ~ "nordjylland",
+			KlubRegion_RD == "Midtjylland" ~ "midtjylland",
+			KlubRegion_RD == "Syddanmark"  ~ "syddanmark",
+			KlubRegion_RD == "Sjælland"    ~ "sjaelland",
+			KlubRegion_RD == "Hovedstaden" ~ "hovedstaden")) %>%
+		count(KlubPostnr_RD, name = "Deltagerantal", .drop = FALSE) %>%
+		plotDK::plotDK(
+			value        = "Deltagerantal",
+			id           = "KlubPostnr_RD",
+			plotlevel    = "zipcode",
+			show_missing = T,
+			show_borders = F,
+			interactive  = F)
+}
+```
+
+```{r}
+#| output: asis
+cat(paste0(
+"<i style=font-size:70%>",
+"<b>Deltagere landsdel</b>:&nbsp;", DataBilletAkt_T$StatDeltLandsdelAntal_DW,
+" ^[<i><b>Deltagere landsdel</b>: Deltagere landsdel opgøres efter antal tilmeldte deltagere til eventet fordelt på Jylland, Fyn, Sjælland og Bornholm eksklusiv <q>ingen klub</q> og <q>udlandet</q>. Procentsatserne viser fordelingen heraf. Landsdel tager udgangspunkt i bordtennisklubbens belligenhed.</i>]",
+"</i>",
+
+" <br>",
+
+"<i style=font-size:70%>",
+"<b>Deltagere region</b>:&nbsp;", DataBilletAkt_T$StatDeltRegionAntal_DW,
+" ^[<i><b>Deltagere region</b>: Deltagere region opgøres efter antal tilmeldte deltagere til eventet fordelt på Nordjylland, Midtjylland, Syddanmark, Sjælland og Hovedstaden eksklusiv <q>ingen klub</q> og <q>udlandet</q>. Procentsatserne viser fordelingen heraf. Region tager udgangspunkt i bordtennisklubbens belligenhed.</i>]",
+"</i>"))
+```
+
+## Tabel
+
+```{r}
+DataDeltBy_T %>%
+	kbl(table.attr = "data-quarto-disable-processing=true",
+	    col.names = NA, align = "l", escape = F,
+			caption = "<i style=font-size:80%>Sorteret efter region og postnr.</i>") %>%
+	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+	row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
+	row_spec(which(grepl("Afbud", DataDeltBy_T$OrdreStatusSimpel_RD)),
+					 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
+	column_spec(1, width_min = "2em") %>%
+	column_spec(1:3, extra_css = "border-top:0.7px solid #999999") %>%
+	remove_column(4:5) %>%
+	scroll_box(height = "400px")
+```
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: panel-tabset
+## Graf
+
+```{r}
+#| output: asis
+cat(paste0("<h5 style=font-weight:bold>Aldersgrupper</h5>"))
+```
+
+```{r}
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpel_RD)) %>% summarise(length(unique(DeltAlderKat_RD))))+1.5)/3.3
+DataAkt_T %>%
+	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpel_RD)) %>%
+	ggplot(mapping = aes(y = fct_rev(DeltAlderKat_RD), fill = BilletKat_DW)) +
+	geom_bar(width = 0.9, position = position_stack(reverse = T)) +
+	geom_text(aes(label = after_stat(count)), stat = "count", position = position_stack(reverse = T),
+						vjust = 0.4, hjust = 1, size = 5, color = "#FFFFFF", fontface = "bold") +
+	scale_fill_manual(values = levels(DataAkt_T$BilletKatFarve_DW))
+```
+
+```{r}
+#| output: asis
+cat(paste0(
+"<i style=font-size:70%>",
+"<b>", DataBilletAkt_T$StatDeltAlderKatAntal_DW, "</b>",
+"&nbsp;^[<i><b>Deltagere aldersgruppe</b>: Deltagere aldersgruppe opgøres efter antal tilmeldte deltagere til eventet fordelt på ungdom (≤ 17 år), senior (≤ 39 år) og veteran (≥ 40 år). Procentsatserne viser fordelingen heraf. Alder tager udgangspunkt i fødselsdato og eventdatoen ", DataBilletAkt_T$BilletStartDato_DW_DMAA_DW, " (ikke dags dato).</i>]",
+"</i>",
+
+" <br>",
+
+"<i style=font-size:70%>",
+"<b>", DataBilletAkt_T$StatDeltAlderAntal_DW, "</b>",
+"&nbsp;^[<i><b>Alder</b>: Alder opgøres efter hhv. yngst, gennemsnitlig alder og ældst i forhold til tilmeldte deltagere til eventet. Alder tager udgangspunkt i fødselsdato og eventdatoen ", DataBilletAkt_T$BilletStartDato_DW_DMAA_DW, " (ikke dags dato).</i>]",
+"</i>"))
+```
+
+## Tabel
+
+```{r}
+DataDeltAlderKat_T %>%
+	kbl(table.attr = "data-quarto-disable-processing=true",
+	    col.names = NA, align = "l", escape = F,
+			caption = "<i style=font-size:80%>Sorteret efter fødselsdato</i>") %>%
+	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+	row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
+	row_spec(which(grepl("Afbud", DataDeltAlderKat_T$OrdreStatusSimpel_RD)),
+					 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
+	column_spec(1, width_min = "2em") %>%
+	column_spec(1:3, extra_css = "border-top:0.7px solid #999999") %>%
+	remove_column(4:5) %>%
+	scroll_box(height = "400px")
+```
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: panel-tabset
+## Graf
+
+```{r}
+#| output: asis
+cat(paste0("<h5 style=font-weight:bold>Køn</h5>"))
+```
+
+```{r}
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpel_RD)) %>% summarise(length(unique(DeltKoen_RD))))+1.5)/3.3
+
+DataAkt_T %>%
+	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpel_RD)) %>%
+	ggplot(mapping = aes(y = fct_rev(fct_infreq(DeltKoen_RD)), fill = BilletKat_DW)) +
+	geom_bar(width = 0.9, position = position_stack(reverse = T)) +
+	geom_text(aes(label = after_stat(count)), stat = "count", position = position_stack(reverse = T),
+						vjust = 0.4, hjust = 1, size = 5, color = "#FFFFFF", fontface = "bold") +
+	scale_fill_manual(values = levels(DataAkt_T$BilletKatFarve_DW))
+```
+
+```{r}
+#| output: asis
+cat(paste0(
+"<i style=font-size:70%>",
+"<b>", DataBilletAkt_T$StatDeltKoenAntal_DW, "</b>",
+"&nbsp;^[<i><b>Deltagere køn</b>: Deltagere køn opgøres efter antal tilmeldte deltagere til eventet fordelt på herre og dame. Procentsatserne viser fordelingen heraf.</i>]",
+"</i>"))
+```
+
+## Tabel
+
+```{r}
+DataDeltKoen_T %>%
+	kbl(table.attr = "data-quarto-disable-processing=true",
+	    col.names = NA, align = "l", escape = F,
+			caption = "<i style=font-size:80%>Sorteret efter køn</i>") %>%
+	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+	row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
+	row_spec(which(grepl("Afbud", DataDeltKoen_T$OrdreStatusSimpel_RD)),
+					 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
+	column_spec(1, width_min = "2em") %>%
+	column_spec(3, width_min = "5em") %>%
+	column_spec(1:3, extra_css = "border-top:0.7px solid #999999") %>%
+	remove_column(4:5) %>%
+	scroll_box(height = "400px")
+```
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: panel-tabset
+## Graf
+
+```{r}
+#| output: asis
+cat(paste0("<h5 style=font-weight:bold>Gentilmeldinger</h5>"))
+```
+
+```{r}
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpel_RD)) %>% summarise(length(unique(DeltGenKat_DW))))+1.5)/3.3
+DataAkt_T %>%
+	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpel_RD)) %>%
+	ggplot(mapping = aes(y = fct_rev(DeltGen_DW), fill = BilletKat_DW)) +
+	geom_bar(width = 0.9, position = position_stack(reverse = T)) +
+	geom_text(aes(label = after_stat(count)), stat = "count", position = position_stack(reverse = T),
+						vjust = 0.4, hjust = 1, size = 5, color = "#FFFFFF", fontface = "bold") +
+	scale_fill_manual(values = levels(DataAkt_T$BilletKatFarve_DW))
+```
+
+```{r}
+#| output: asis
+cat(paste0(
+"<i style=font-size:70%>",
+"<b>", DataBilletAkt_T$StatDeltGenAntal_DW, "</b>",
+"&nbsp;^[<i><b>Deltagere gentilmelding</b>: Deltagere gentilmelding opgøres efter antal tilmeldte deltagere til eventet fordelt på <q>gentilmelding</q> og <q>debutant</q>. Procentsatserne viser fordelingen heraf. Gentilmelding defineres som en, der tidligere har valgt samme billetype, og debutant defineres som en, der har valgt en billettype for første gang. Ved både gentilmelding og debutant tælles dette kun som gentilmelding. Opgørelsen gælder fra og med ", distinct(filter(DataAkt_T, EventAarFra2021_DW == DataEventAarAkt_T$EventAarFra2021_DW), min(EventAarStartDato_DW_Aar_DW)), ".</i>]",
+"</i>"))
+```
+
+## Tabel
+
+```{r}
+DataDeltGenTil_T %>%
+	kbl(table.attr = "data-quarto-disable-processing=true",
+	    col.names = NA, align = "l", escape = F,
+			caption = "<i style=font-size:80%>Sorteret efter antal gentilmeldinger</i>") %>%
+	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+	row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
+	row_spec(which(grepl("Afbud", DataDeltGenTil_T$OrdreStatusSimpel_RD)),
+					 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
+	column_spec(1, width_min = "2em") %>%
+	column_spec(1:3, extra_css = "border-top:0.7px solid #999999") %>%
+	remove_column(4:5) %>%
+	scroll_box(height = "400px")
+```
+:::
+:::
+
+::: {.g-col-12 .g-col-md-6}
+::: panel-tabset
+## Graf
+
+```{r}
+#| output: asis
+cat(paste0("<h5 style=font-weight:bold>Deltagere</h5>"))
+```
+
+```{r}
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD)) %>% summarise(length(unique(OrdreKat_DW))))+1.5)/3.3
+DataAkt_T %>%
+  filter(!is.na(DeltID_RD)) %>%
+  ggplot(mapping = aes(y = fct_rev(OrdreKat_DW), fill = BilletKat_DW)) +
+  geom_bar(width = 0.9, position = position_stack(reverse = TRUE)) +
+  geom_text(aes(label = after_stat(count)), stat = "count", position = position_stack(reverse = TRUE),
+            vjust = 0.4, hjust = 1, size = 5, color = "#FFFFFF", fontface = "bold") +
+  scale_fill_manual(values = levels(DataAkt_T$BilletKatFarve_DW))
+```
+
+```{r}
+#| output: asis
+cat(paste0(
+"<i style=font-size:70%>",
+"<b>", DataBilletAkt_T$StatDeltAntal_DW, "</b>",
+"&nbsp;^[<i><b>Deltagere total</b>: Deltagere total opgøres efter antal tilmeldte deltagere og <q>totalafbud</q> til eventet. Procentsatserne viser fordelingen heraf. Ved <q>totalafbud</q> forstås deltagere, der har meldt afbud til hele eventet.</i>]",
+"</i>",
+
+" <br>",
+
+"<i style=font-size:70%>",
+"<b>", DataBilletAkt_T$StatBilletGnsAntal_DW, "</b>",
+"&nbsp;^[<i><b>Billetter pr. deltager</b>: Billetter pr. deltager er et gennemsnit, som opgøres efter antal tilmeldinger (billetantal) divideret med tilmeldte deltagere til eventet.</i>]",
+"</i>"))
+```
+
+## Tabel
+
+```{r}
+DataDeltOrdreKat_T %>%
+	kbl(table.attr = "data-quarto-disable-processing=true",
+	    col.names = NA, align = "l", escape = F,
+			caption = "<i style=font-size:80%>Sorteret efter ældste <q>første ordredato</q></i>") %>%
+	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+	row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
+	row_spec(which(grepl("Afbud", DataDeltOrdreKat_T$OrdreStatusSimpel_RD)),
+					 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
+	column_spec(1, width_min = "2em") %>%
+	column_spec(3, width_min = "7em") %>%
+	column_spec(1:3, extra_css = "border-top:0.7px solid #999999") %>%
+	remove_column(4:5) %>%
+	scroll_box(height = "400px")
+```
+:::
+:::
+:::
+
+```{r}
+if(nrow(DataResultSidsteEventAkt_T) == 0) {
+  data.frame() %>% kbl()
+} else {
+  DataResultSidsteEventAkt_T %>%
+  kbl(table.attr = "data-quarto-disable-processing=true",
+      col.names = NA, align = "lcl", escape = F,
+      caption = paste(
+        IkonPokal_V, "<b>DM-resultater sidste <q>Final 4</q></b>",
+        "<br>",
+        "<i style=font-size:80%>Afholdt",
+        unique(DataResultSidsteEventAkt_T$EventAarDato_DW),
+        "i", unique(DataResultSidsteEventAkt_T$EventAarSted_RD), "</i>")) %>%
+  kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+  row_spec(0, background = unique(DataResultSidsteEventAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
+	remove_column(4:10) %>%
+	footnote(
+		paste0(""),
+		general_title = "", escape = F) %>%
+  gsub("\\{\\{&lt;|&lt;", "{{<", .) %>% gsub("&gt;}}", ">}}", .)
+}
+```

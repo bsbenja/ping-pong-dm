@@ -1,0 +1,74 @@
+```{r}
+source(file = "ping-pong-dm-input.R")
+DataEventAarAkt_T <- DataEventAar_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+```
+
+---
+title: "<iconify-icon icon=mdi:home></iconify-icon> <u>Forside</u>"
+subtitle: |
+  <b style=font-size:140%>Ping Pong DM - Officiel hjemmeside</b><br><i style=font-size:80>Velkommen til den officielle hjemmeside for Danske Mesterskaber i Ping Pong. Ping Pong er bordtennis på <b><u>lige vilkår</u></b> med sandpapirsbat, som er <b><u>åben for ALLE</u></b> til en <b><u>overkommelig pris</u></b>. Se mere ved at navigere rundt her på hjemmesiden. Fra mobil gøres dette via topmenuen.</i>
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| output: asis
+cat(knitr::raw_html(DataEventAarAkt_T$InfoNedtælling_DW))
+cat(DataEventAarAkt_T$InfoPlakatCTA_DW)
+```
+
+::: callout-tip
+## Sider
+
+::: grid
+::: {.g-col-12 .g-col-md-4}
+#### **`r DataEventAarAkt_T$EventAar_RD`**
+
+`r DataEventAarAkt_T$InfoForside_DW`
+:::
+
+::: {.g-col-12 .g-col-md-4}
+#### `r "<b>Generelt om Ping Pong</b>"`
+
+-   `r paste(IkonRegler_V, "[<b>Ping Pong regler</b>](regler.qmd)<br><i>I Ping Pong tages det bedste fra fortidens- og nutidens bordtennis og kan sammenlignes med ordsproget <q>gammel vin på nye flasker</q>. Der er nogle få regler, der adskiller Ping Pong fra bordtennis, bl.a. spilles der til 15 point (14-14 er afgørende bold), alle spiller på lige vilkår med sandpapirsbat, hvor der byttes bat mellem hvert sæt, og der kan tages <q>dobbeltpoint</q>.</i>")`
+
+-   `r paste(IkonGlobus_V, "[<b>WCPP</b>](wcpp.qmd)<br><i>World Championship of Ping Pong (WCPP) afholdes sædvanligvis i London med en præmiesum på $100.000 og eksponeres på bl.a. Viaplay Sport og Sky Sports.</i>")`
+
+-   `r paste(IkonKoncept_V, "[<b>DM-koncept</b>](koncept.qmd)<br><i>DM-konceptet er en heldagsbegivenhed, der hylder fællesskabet og mangfoldigheden, hvor ALLE har mulighed for at deltage på lige vilkår i sandpapirsdisciplinen. Der er musik under hele turneringen samt socialt arrangement om aften/natten.</i>")`
+:::
+
+::: {.g-col-12 .g-col-md-4}
+#### `r "<b>Eksterne links</b>"`
+
+`r "<i>Er du en Ping Pong entusiast eller bare nysgerrig på konceptet? Så tjek én eller flere af nedenstående links ud.</i>"`
+
+-   `r paste0(IkonLinkNy_V, " [<b>Køb bat hos BTEX</b>](https://www.btex.dk/sanwei-wcpp-sandpapirsbat.html){target=_blank}<br><i>De officielle Sanwei WCPP Sandpapirsbat kan købes hos Bordtennisexperterne (BTEX) til eget brug for ", DataWebBTEX_T$pris, ".</i><p>![](filer/generelt/sandpapirsbat-sanwei.png){width=4em}</p>")`
+
+-   `r paste(IkonLinkNy_V, "[<b>ICTTF</b>](https://icttf.co){target=_blank}<br><i>International Classic Table Tennis Federation (ICTTF) er det styrende organ for alle nationale Ping Pong medlemmer, hvis mission er at genintroducere det underholdende og gavnlige spil Ping Pong, også kendt som klassisk bordtennis, til det globale fællesskab.</i><p>![](filer/generelt/icttf.png){width=4em}</p>")`
+:::
+:::
+:::
+
+::: {.callout-note style="font-style:italic" icon="false"}
+## `r paste(IkonFacebook_V, "Facebook")`
+
+```{r}
+#| output: asis
+cat(DataEventAarAkt_T$InfoFacebook_DW)
+```
+:::
+
+```{=html}
+<iframe src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/{{< var var.facebook_side_id >}}&tabs=timeline,events,messages&width=320&" width="100%" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay;clipboard-write;encrypted-media;picture-in-picture;web-share"></iframe>
+```
+::: {.callout-tip style="font-style:italic"}
+## Tip
+
+```{r}
+#| output: asis
+
+cat(paste(
+IkonBogmærke_V, "<b>Bogmærk</b> [denne side](index.qmd) for nem og hurtig adgang.",
+"<br>Genvejstast: {{< kbd Ctrl&nbsp;+&nbsp;d >}} PC", IkonWindows_V, "∙ {{< kbd ⌘&nbsp;+&nbsp;d >}} Mac", IkonMac_V))
+```
+:::

@@ -1,0 +1,17 @@
+```{r}
+source(file = "ping-pong-dm-input.R")
+DataAkt_T <- Data_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+```
+
+---
+title: "<iconify-icon icon=mdi:chart-box></iconify-icon> <u>BI</u>"
+subtitle: "Business Intelligence"
+format: dashboard
+  # orientation: columns
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+1+1
+```

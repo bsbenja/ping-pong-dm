@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: 2e56b907-68f5-45ca-bf23-67c85dffbeb0
+      url: 'https://pingpong.quarto.pub/dm'
