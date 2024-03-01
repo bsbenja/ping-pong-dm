@@ -20,6 +20,6 @@ InputWebRatingTF_V <- F # T/F for webscraping af rating
 InputPNGPlakatTF_V <- F # T/F for plakater fra PDF til PNG
 InputDataTXT_V     <- F # T/F for DataAkt_T og DataEventAarAkt_T exporteret til TXT-fil
 InputEventAarAkt_V <- "Ping Pong DM 2023" # Event og år
-InputData_V <- "filer/generelt/ping-pong-dm-tilmelding.xlsx" # Sti til data
+InputData_V        <- "filer/generelt/ping-pong-dm-tilmelding.xlsx" # Sti til Excel-fil
 source(file = "_variables.R")
 source(file = "bagvedliggende-kode.R")

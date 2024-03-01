@@ -139,7 +139,7 @@ DataKal_T <- tibble(Dato_DW = seq(
 # Data --------------------------------------------------------------------
 #+ eval=F, warning=F, message=F
 
-# Importer og manipuler data fra Excel
+# Import Fact
 Data_T <- read_excel(
 	InputData_V,
 	col_names = c(
@@ -147,8 +147,11 @@ Data_T <- read_excel(
 	  "Billet_RD", "OrdreStatus_RD", "DeltRang1_RD", "DeltRating2_RD",
 	  "DeltRang3_RD", "DeltSlutspil_RD", "DeltPlac_RD", "DeltPraemie_RD"),
 	range = cell_cols("A:M")) %>%
-	slice_tail(n = -5) %>%
+	slice_tail(n = -5)
   
+# Left join Dim
+Data_T <- Data_T %>%
+
   # Left join OrdreStatus_Dim1
   left_join(
     y = read_excel(
@@ -1123,6 +1126,18 @@ Data_T <- Data_T %>%
   arrange(DeltKatNr_RD) %>%
   mutate(across("DeltKat_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
   select(-DeltKat_RD, everything()) %>%
+
+  # DeltStatusSimpel_RD
+  add_count(
+    EventAar_RD,
+    OrdreStatusSimpel_RD,
+    DeltID_RD,
+    BilletDisciplin_RD,
+    BilletRaekke_RD,
+    BilletSpilFormat_RD,
+    name = "DeltStatusSimpel_RD") %>%
+  mutate(across("DeltStatusSimpel_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
+  select(-DeltStatusSimpel_RD, everything()) %>%
   
   # DeltSnakeSeedNr_DW
   group_by(EventAar_RD, Billet_RD, OrdreStatusSimpel_RD) %>%
@@ -1155,6 +1170,7 @@ Data_T <- Data_T %>%
   mutate(across("DeltSnakePuljeNr_DW", \(x) as.integer(x))) %>%
   select(-DeltSnakePuljeNr_DW, everything())
 
+# Stat MANGLER ----
 # Stat
 Data_T <- Data_T %>%
   
