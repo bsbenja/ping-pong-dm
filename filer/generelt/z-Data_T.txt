@@ -279,12 +279,13 @@ DeltKatNr_RD                            : int 1
 DeltKatMin_RD                           : chr "AAAA"
 DeltKatMaks_RD                          : chr "ÅÅÅÅ"
 DeltKat_RD                              : Ord.factor w/ 2 levels "Bordtennisspiller"<..: 1
+DeltStatusSimpel_RD                     : Ord.factor w/ 2 levels "Tilmeldt"<"Totalafbud": 1
 DeltSnakeSeedNr_DW                      : int 4
 DeltSnakeSeedLagNr_DW                   : int NA
 DeltSnakePuljeNr_DW                     : int NA
 StatOrdreKatAntal_DW                    : chr "14 Ordinær (100%) <iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon>"
 StatOrdreAntal_DW                       : chr "<b> 4 tilmeldinger til Sandpapir Åben <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon> <"| __truncated__
-StatDeltAntal_DW                        : chr ""
+StatDeltAntal_DW                        : chr "4 Tilmeldt (100%) <iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon>"
 StatDeltKoenAntal_DW                    : chr ""
 StatDeltGenAntal_DW                     : chr ""
 StatDeltAlderKatAntal_DW                : chr ""

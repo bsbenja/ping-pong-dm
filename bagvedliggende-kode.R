@@ -11,7 +11,7 @@
 #'        smooth_scroll: yes
 #' ---
 
-# Opsætning ---------------------------------------------------------------TEST
+# Opsætning ---------------------------------------------------------------
 #+ eval=F, warning=F, message=F
 
 for (Packages_V in c(
@@ -1128,14 +1128,12 @@ Data_T <- Data_T %>%
   select(-DeltKat_RD, everything()) %>%
 
   # DeltStatusSimpel_RD
-  add_count(
+  arrange(EventAar_RD, OrdreStatusSimpel_RD, BilletKat_RD) %>%
+  group_by(
     EventAar_RD,
-    OrdreStatusSimpel_RD,
-    DeltID_RD,
-    BilletDisciplin_RD,
-    BilletRaekke_RD,
-    BilletSpilFormat_RD,
-    name = "DeltStatusSimpel_RD") %>%
+    DeltID_RD) %>%
+  mutate(DeltStatusSimpel_RD = ifelse(any(OrdreStatusSimpel_RD == "Tilmeldt"), "Tilmeldt", "<q>Totalafbud</q>")) %>%
+  ungroup() %>%
   mutate(across("DeltStatusSimpel_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
   select(-DeltStatusSimpel_RD, everything()) %>%
   
@@ -1184,7 +1182,7 @@ Data_T <- Data_T %>%
   mutate(StatOrdreKatAntal_DW = paste0(
     StatOrdreKatAntal_DW, " ", OrdreKat_DW , " (", 
     percent(StatOrdreKatAntal_DW/sum(unique(StatOrdreKatAntal_DW)), digits = 0), ") ", OrdreKatIkon_RD)) %>%
-  mutate(StatOrdreKatAntal_DW = str_c(unique(na.omit(StatOrdreKatAntal_DW)), collapse = "<br>")) %>%
+  mutate(StatOrdreKatAntal_DW = str_c(unique(na.omit(StatOrdreKatAntal_DW)), collapse = " ∙ ")) %>%
   ungroup() %>%
   
   # StatOrdreAntal_DW - SLETTES
@@ -1205,7 +1203,25 @@ Data_T <- Data_T %>%
   ungroup() %>%
   
   # StatDeltAntal_DW - SLETTES
-  mutate(StatDeltAntal_DW = "") %>%
+  group_by(
+    EventAar_RD,
+    DeltStatusSimpel_RD,
+    DeltID_RD) %>%
+  mutate(StatDeltAntal_DW = row_number()) %>%
+  mutate(StatDeltAntal_DW = ifelse(StatDeltAntal_DW == 1, 1, 0)) %>%
+  group_by(
+    EventAar_RD,
+    DeltStatusSimpel_RD,
+    StatDeltAntal_DW) %>%
+  mutate(StatDeltAntal_DW = sum(na.omit((StatDeltAntal_DW)))) %>%
+  mutate(StatDeltAntal_DW = ifelse(StatDeltAntal_DW != 0, StatDeltAntal_DW, NA)) %>%
+  group_by(EventAar_RD) %>%
+  mutate(StatDeltAntal_DW = ifelse(is.na(StatDeltAntal_DW), NA, paste0(
+    StatDeltAntal_DW, " ", DeltStatusSimpel_RD , " (", 
+    percent(StatDeltAntal_DW/sum(na.omit(unique(StatDeltAntal_DW))), digits = 0), ") ", OrdreStatusSimpelIkon_RD))) %>%
+  arrange(EventAar_RD, DeltStatusSimpel_RD) %>%
+  mutate(StatDeltAntal_DW = str_c(unique(na.omit(StatDeltAntal_DW)), collapse = " ∙ ")) %>%
+  ungroup() %>%
   
   # StatDeltKoenAntal_DW - SLETTES
   mutate(StatDeltKoenAntal_DW = "") %>%

@@ -1,5 +1,8 @@
 ```{r}
 source(file = "ping-pong-dm-input.R")
+```
+
+```{r}
 DataAkt_T <- Data_T %>% filter(EventAar_RD == InputEventAarAkt_V)
 ```
 

@@ -1,5 +1,8 @@
 ```{r}
 source(file = "ping-pong-dm-input.R")
+```
+
+```{r}
 InputEventAarAkt_V <- "Ping Pong DM 2024"
 DataAkt_T <- Data_T %>% filter(EventAar_RD == InputEventAarAkt_V)
 DataEventAarAkt_T <- DataEventAar_T %>% filter(EventAar_RD == InputEventAarAkt_V)

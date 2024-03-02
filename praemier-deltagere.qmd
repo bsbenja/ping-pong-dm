@@ -1,6 +1,8 @@
 ```{r}
 source(file = "ping-pong-dm-input.R")
+```
 
+```{r}
 BilletDisciplinAkt_V  <- "Sandpapir"
 BilletRaekkeAkt_V     <- "Åben"
 BilletSpilFormatAkt_V <- "Single"
@@ -532,7 +534,7 @@ DataAkt_T %>%
 cat(paste0(
 "<i style=font-size:70%>",
 "<b>", DataBilletAkt_T$StatDeltAntal_DW, "</b>",
-"&nbsp;^[<i><b>Deltagere total</b>: Deltagere total opgøres efter antal tilmeldte deltagere og <q>totalafbud</q> til eventet. Procentsatserne viser fordelingen heraf. Ved <q>totalafbud</q> forstås deltagere, der har meldt afbud til hele eventet.</i>]",
+"&nbsp;^[<i><b>Deltagere total</b>: Deltagere total opgøres efter antal unikke tilmeldte deltagere og <q>totalafbud</q> til eventet. Procentsatserne viser fordelingen heraf. Ved <q>totalafbud</q> forstås deltagere, der har meldt afbud til hele eventet.</i>]",
 "</i>",
 
 " <br>",
