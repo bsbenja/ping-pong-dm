@@ -485,7 +485,7 @@ DataAkt_T %>%
 #| output: asis
 cat(paste0(
 "<i style=font-size:70%>",
-"<b>", DataBilletAkt_T$StatDeltGenAntal_DW, "</b>",
+"<b>", DataBilletAkt_T$StatDeltGenKatAntal_DW, "</b>",
 "&nbsp;^[<i><b>Deltagere gentilmelding</b>: Deltagere gentilmelding opgøres efter antal tilmeldte deltagere til eventet fordelt på <q>gentilmelding</q> og <q>debutant</q>. Procentsatserne viser fordelingen heraf. Gentilmelding defineres som en, der tidligere har valgt samme billetype, og debutant defineres som en, der har valgt en billettype for første gang. Ved både gentilmelding og debutant tælles dette kun som gentilmelding. Opgørelsen gælder fra og med ", distinct(filter(DataAkt_T, EventAarFra2021_DW == DataEventAarAkt_T$EventAarFra2021_DW), min(EventAarStartDato_DW_Aar_DW)), ".</i>]",
 "</i>"))
 ```

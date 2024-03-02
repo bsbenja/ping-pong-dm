@@ -2,7 +2,7 @@ DataStatGl_T$StatOrdreKatAntal_DW          : chr "77 Ordinær (81%) <iconify-ico
 DataStatGl_T$StatOrdreAntal_DW             : chr "<b>62 tilmeldinger til Pong 2023 <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon></b><br"| __truncated__
 DataStatGl_T$StatDeltAntal_DW              : chr "67 Tilmeldt (93%) <iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon> ∙ 5 \"Totalafbud\" ("| __truncated__
 DataStatGl_T$StatDeltKoenAntal_DW          : chr "65 Herre (97%) <iconify-icon icon=mdi:gender-male style=color:#009FB7></iconify-icon> ∙ 2 Dame (3%) <iconify-ic"| __truncated__
-DataStatGl_T$StatDeltGenAntal_DW           : chr "45 Debutant (67%) <iconify-icon icon=mdi:numeric-1-circle></iconify-icon> ∙ 22 Gentilmelding (33%) <iconify-ico"| __truncated__
+DataStatGl_T$StatDeltGenKatAntal_DW        : chr "45 Debutant (67%) <iconify-icon icon=mdi:numeric-1-circle></iconify-icon> ∙ 22 Gentilmelding (33%) <iconify-ico"| __truncated__
 DataStatGl_T$StatDeltAlderKatAntal_DW      : chr "17 Ungdom (25%) <iconify-icon icon=mdi:cake-variant></iconify-icon> ∙ 27 Senior (40%) <iconify-icon icon=mdi:ca"| __truncated__
 DataStatGl_T$StatDeltAlderAntal_DW         : chr "Yngst 8 år <iconify-icon icon=mdi:cake-variant></iconify-icon> ∙ Gns. 31 år <iconify-icon icon=mdi:cake-variant"| __truncated__
 DataStatGl_T$StatDeltLandsdelAntal_DW      : chr "63 Jylland (98%) <iconify-icon icon=mdi:home></iconify-icon> ∙ 1 Sjælland (2%) <iconify-icon icon=mdi:home></iconify-icon>"

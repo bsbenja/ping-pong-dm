@@ -61,7 +61,7 @@ DataBillet_T$StatOrdreKatAntal_DW                : chr "14 Ordinær (100%) <icon
 DataBillet_T$StatOrdreAntal_DW                   : chr "<b> 4 tilmeldinger til Sandpapir Åben <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon> <"| __truncated__
 DataBillet_T$StatDeltAntal_DW                    : chr "4 Tilmeldt (100%) <iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon>"
 DataBillet_T$StatDeltKoenAntal_DW                : chr "4 Herre (100%) <iconify-icon icon=mdi:gender-male style=color:#009FB7></iconify-icon>"
-DataBillet_T$StatDeltGenAntal_DW                 : chr ""
+DataBillet_T$StatDeltGenKatAntal_DW              : chr "4 Gentilmelding (100%) <iconify-icon icon=mdi:autorenew></iconify-icon>"
 DataBillet_T$StatDeltAlderKatAntal_DW            : chr ""
 DataBillet_T$StatDeltAlderAntal_DW               : chr ""
 DataBillet_T$StatDeltLandsdelAntal_DW            : chr ""

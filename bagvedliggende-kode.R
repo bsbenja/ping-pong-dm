@@ -1247,10 +1247,23 @@ Data_T <- Data_T %>%
   mutate(across("StatDeltKoenAntal_DW", \(x) as.character(x))) %>%
   select(-StatDeltKoenAntal_DW, everything()) %>%
   
-  # StatDeltGenAntal_DW
-  mutate(StatDeltGenAntal_DW = "") %>%
-  mutate(across("StatDeltGenAntal_DW", \(x) as.character(x))) %>%
-  select(-StatDeltGenAntal_DW, everything()) %>%
+  # StatDeltGenKatAntal_DW
+  group_by(EventAar_RD, DeltStatusSimpel_RD, DeltID_RD) %>%
+  mutate(StatDeltGenKatAntal_DW = row_number()) %>%
+  mutate(StatDeltGenKatAntal_DW = ifelse(
+    StatDeltGenKatAntal_DW == 1 & grepl("Tilmeldt", OrdreStatusSimpel_RD), 1, 0)) %>%
+  group_by(EventAar_RD, DeltStatusSimpel_RD, StatDeltGenKatAntal_DW, DeltGenKatNr_RD) %>%
+  mutate(StatDeltGenKatAntal_DW = sum(StatDeltGenKatAntal_DW)) %>%
+  mutate(StatDeltGenKatAntal_DW = ifelse(StatDeltGenKatAntal_DW != 0, StatDeltGenKatAntal_DW, NA)) %>%
+  group_by(EventAar_RD) %>%
+  mutate(StatDeltGenKatAntal_DW = ifelse(is.na(StatDeltGenKatAntal_DW), NA, paste0(
+    StatDeltGenKatAntal_DW, " ", DeltGenKat_DW , " (", 
+    percent(StatDeltGenKatAntal_DW/sum(na.omit(unique(StatDeltGenKatAntal_DW))), digits = 0), ") ", DeltGenKatIkon_RD))) %>%
+  arrange(EventAar_RD, DeltGenKatNr_RD) %>%
+  mutate(StatDeltGenKatAntal_DW = str_c(unique(na.omit(StatDeltGenKatAntal_DW)), collapse = " ∙ ")) %>%
+  ungroup() %>%
+  mutate(across("StatDeltGenKatAntal_DW", \(x) as.character(x))) %>%
+  select(-StatDeltGenKatAntal_DW, everything()) %>%
   
   # StatDeltAlderKatAntal_DW
   mutate(StatDeltAlderKatAntal_DW = "") %>%
@@ -2102,7 +2115,7 @@ if(InputDataTXT_V == T) {
         summarise(label = str_c(label, collapse = " ∙ "))),
     
     # Gentilmeldinger
-    StatDeltGenAntal_DW = paste0(
+    StatDeltGenKatAntal_DW = paste0(
       DataAkt_T %>%
         filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpel_RD)) %>%
         group_by(DeltID_RD) %>%
