@@ -1,6 +1,10 @@
 # Ping Pong DM
 
-[https://pingpong.quarto.pub/dm](https://pingpong.quarto.pub/dm){target="_blank"}
+**Hjemmesiden kan tilgås her**: https://pingpong.quarto.pub/dm
+
+Alle filer vedr. Ping Pong DM ligger i mappen "filer" fordelt i undermapperne "event", "generelt" og "klublogo".\
+Kildefilen er "ping-pong-dm-input.R", som primært stammer fra "bagvedliggende-kode.R".\
+De forskellige sider på hjemmesiden stammer fra ".qmd-filerne".
 
 ## Opsætning
 
