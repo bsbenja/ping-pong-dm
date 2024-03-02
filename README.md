@@ -1,2 +1,2 @@
 Ping Pong DM\
-https://pingpong.quarto.pub/dm
+<a href=https://pingpong.quarto.pub/dm target=_blank></a>
