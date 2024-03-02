@@ -1,6 +1,6 @@
 DataEventAar_T$EventAarNr_RD                           : int 10
 DataEventAar_T$EventAar_RD                             : chr "Ping Pong DM 2024"
-DataEventAar_T$EventAarSidst_DW                        : chr "Ping Pong DM 2025"
+DataEventAar_T$EventAarSidst_DW                        : chr NA
 DataEventAar_T$EventAarFristDatoTid_RD                 : POSIXct[1:1], format: "2024-06-09 23:59:59"
 DataEventAar_T$EventAarFristDato_DW                    : Date[1:1], format: "2024-06-09"
 DataEventAar_T$EventAarFristDato_DW_Aar_DW             : int 2024

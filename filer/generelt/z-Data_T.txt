@@ -62,7 +62,7 @@ EventSportsgren_RD                      : chr "Ping Pong"
 EventTurnering_RD                       : chr "DM"
 EventAarNr_RD                           : int 10
 EventAar_RD                             : Ord.factor w/ 10 levels "Ping Pong DM 2014"<..: 10
-EventAarSidst_DW                        : chr "Ping Pong DM 2025"
+EventAarSidst_DW                        : chr NA
 EventAarFristDatoTid_RD                 : POSIXct[1:1], format: "2024-06-09 23:59:59"
 EventAarFristDato_DW                    : Date[1:1], format: "2024-06-09"
 EventAarFristDato_DW_Aar_DW             : int 2024
@@ -279,7 +279,7 @@ DeltKatNr_RD                            : int 1
 DeltKatMin_RD                           : chr "AAAA"
 DeltKatMaks_RD                          : chr "ÅÅÅÅ"
 DeltKat_RD                              : Ord.factor w/ 2 levels "Bordtennisspiller"<..: 1
-DeltStatusSimpel_RD                     : Ord.factor w/ 2 levels "Tilmeldt"<"Totalafbud": 1
+DeltStatusSimpel_RD                     : Ord.factor w/ 2 levels "Tilmeldt"<"<q>Totalafbud</q>": 1
 DeltSnakeSeedNr_DW                      : int 4
 DeltSnakeSeedLagNr_DW                   : int NA
 DeltSnakePuljeNr_DW                     : int NA

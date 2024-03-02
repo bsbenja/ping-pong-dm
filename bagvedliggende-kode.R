@@ -436,7 +436,10 @@ Data_T <- Data_T %>%
   # BilletPuljeRest_DW
   mutate(BilletPuljeRest_DW = BilletPuljeStd_DW-BilletDelt_DW) %>%
   mutate(across("BilletPuljeRest_DW", \(x) as.integer(x))) %>%
-  select(-BilletPuljeRest_DW, everything()) %>%
+  select(-BilletPuljeRest_DW, everything())
+
+# Event
+Data_T <- Data_T %>%
   
   # EventNr_RD
   mutate(across("EventNr_RD", \(x) as.integer(x))) %>%
@@ -453,7 +456,10 @@ Data_T <- Data_T %>%
   
   # EventTurnering_RD
   mutate(across("EventTurnering_RD", \(x) as.character(x))) %>%
-  select(-EventTurnering_RD, everything()) %>%
+  select(-EventTurnering_RD, everything())
+
+# EventAar
+Data_T <- Data_T %>%
   
   # EventAarNr_RD
   mutate(across("EventAarNr_RD", \(x) as.integer(x))) %>%
@@ -465,9 +471,12 @@ Data_T <- Data_T %>%
   select(-EventAar_RD, everything()) %>%
   
   # EventAarSidst_DW
-  mutate(EventAarSidst_DW = paste(
-    str_sub(EventAar_RD, end = -6), as.integer(str_sub(EventAar_RD, -4, -1))+1)) %>%
+  mutate(EventAarSidst_DW = lead(EventAar_RD, order_by = EventAar_RD)) %>%
   mutate(across("EventAarSidst_DW", \(x) as.character(x))) %>%
+  group_by(EventAar_RD) %>%
+  mutate(EventAarSidst_DW = ifelse(EventAar_RD != EventAarSidst_DW, EventAarSidst_DW, NA)) %>%
+  fill(EventAarSidst_DW, .direction = "up") %>%
+  ungroup %>%
   select(-EventAarSidst_DW, everything()) %>%
   
   # EventAarFristDatoTid_RD
@@ -514,10 +523,7 @@ Data_T <- Data_T %>%
   left_join(
     y = DataKal_T %>% rename_with(~ paste0("EventAarRatingDato_DW_", .)),
     by = c("EventAarRatingDato_DW" = "EventAarRatingDato_DW_Dato_DW"),
-    na_matches = "never")
-
-# EventAar
-Data_T <- Data_T %>%
+    na_matches = "never") %>%
   
   # EventAarPraemieSpons_RD
   mutate(across("EventAarPraemieSpons_RD", \(x) as.logical(x))) %>%
@@ -1453,7 +1459,7 @@ Data_T <- Data_T %>%
   select(-InfoTipVM_DW, everything()) %>%
   
   # Sorter efter (1) OrdreFoersteDatoTid_DW, (2) BilletKat_RD
-  arrange(desc(OrdreFoersteDatoTid_DW), BilletKat_RD)
+  arrange(desc(EventAar_RD), desc(OrdreFoersteDatoTid_DW), BilletKat_RD)
 
 # DataEventAar_T
 DataEventAar_T <- Data_T %>%
