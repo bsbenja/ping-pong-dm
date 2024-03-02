@@ -1178,7 +1178,7 @@ Data_T <- Data_T %>%
 # Stat
 Data_T <- Data_T %>%
   
-  # StatOrdreKatAntal_DW - SLETTES
+  # StatOrdreKatAntal_DW
   add_count(
     EventAar_RD,
     OrdreStatusSimpel_RD,
@@ -1190,8 +1190,10 @@ Data_T <- Data_T %>%
     percent(StatOrdreKatAntal_DW/sum(unique(StatOrdreKatAntal_DW)), digits = 0), ") ", OrdreKatIkon_RD)) %>%
   mutate(StatOrdreKatAntal_DW = str_c(unique(na.omit(StatOrdreKatAntal_DW)), collapse = " ∙ ")) %>%
   ungroup() %>%
+  mutate(across("StatOrdreKatAntal_DW", \(x) as.character(x))) %>%
+  select(-StatOrdreKatAntal_DW, everything()) %>%
   
-  # StatOrdreAntal_DW - SLETTES
+  # StatOrdreAntal_DW
   add_count(
     EventAar_RD,
     OrdreStatusSimpel_RD,
@@ -1207,19 +1209,15 @@ Data_T <- Data_T %>%
   arrange(EventAar_RD, OrdreStatusSimpel_RD, BilletDisciplin_RD, BilletRaekke_RD, BilletSpilFormat_RD) %>%
   mutate(StatOrdreAntal_DW = str_c(unique(na.omit(StatOrdreAntal_DW)), collapse = "<br>")) %>%
   ungroup() %>%
+  mutate(across("StatOrdreAntal_DW", \(x) as.character(x))) %>%
+  select(-StatOrdreAntal_DW, everything()) %>%
   
-  # StatDeltAntal_DW - SLETTES
-  group_by(
-    EventAar_RD,
-    DeltStatusSimpel_RD,
-    DeltID_RD) %>%
+  # StatDeltAntal_DW
+  group_by(EventAar_RD, DeltStatusSimpel_RD, DeltID_RD) %>%
   mutate(StatDeltAntal_DW = row_number()) %>%
   mutate(StatDeltAntal_DW = ifelse(StatDeltAntal_DW == 1, 1, 0)) %>%
-  group_by(
-    EventAar_RD,
-    DeltStatusSimpel_RD,
-    StatDeltAntal_DW) %>%
-  mutate(StatDeltAntal_DW = sum(na.omit((StatDeltAntal_DW)))) %>%
+  group_by( EventAar_RD, DeltStatusSimpel_RD, StatDeltAntal_DW) %>%
+  mutate(StatDeltAntal_DW = sum((StatDeltAntal_DW))) %>%
   mutate(StatDeltAntal_DW = ifelse(StatDeltAntal_DW != 0, StatDeltAntal_DW, NA)) %>%
   group_by(EventAar_RD) %>%
   mutate(StatDeltAntal_DW = ifelse(is.na(StatDeltAntal_DW), NA, paste0(
@@ -1228,45 +1226,86 @@ Data_T <- Data_T %>%
   arrange(EventAar_RD, DeltStatusSimpel_RD) %>%
   mutate(StatDeltAntal_DW = str_c(unique(na.omit(StatDeltAntal_DW)), collapse = " ∙ ")) %>%
   ungroup() %>%
+  mutate(across("StatDeltAntal_DW", \(x) as.character(x))) %>%
+  select(-StatDeltAntal_DW, everything()) %>%
   
-  # StatDeltKoenAntal_DW - SLETTES
-  mutate(StatDeltKoenAntal_DW = "") %>%
+  # StatDeltKoenAntal_DW
+  group_by(EventAar_RD, DeltStatusSimpel_RD, DeltID_RD) %>%
+  mutate(StatDeltKoenAntal_DW = row_number()) %>%
+  mutate(StatDeltKoenAntal_DW = ifelse(
+    StatDeltKoenAntal_DW == 1 & grepl("Tilmeldt", OrdreStatusSimpel_RD), 1, 0)) %>%
+  group_by(EventAar_RD, DeltStatusSimpel_RD, StatDeltKoenAntal_DW, DeltKoen_RD) %>%
+  mutate(StatDeltKoenAntal_DW = sum(StatDeltKoenAntal_DW)) %>%
+  mutate(StatDeltKoenAntal_DW = ifelse(StatDeltKoenAntal_DW != 0, StatDeltKoenAntal_DW, NA)) %>%
+  group_by(EventAar_RD) %>%
+  mutate(StatDeltKoenAntal_DW = ifelse(is.na(StatDeltKoenAntal_DW), NA, paste0(
+    StatDeltKoenAntal_DW, " ", DeltKoen_RD , " (", 
+    percent(StatDeltKoenAntal_DW/sum(na.omit(unique(StatDeltKoenAntal_DW))), digits = 0), ") ", DeltKoenIkon_RD))) %>%
+  arrange(EventAar_RD, DeltKoen_RD) %>%
+  mutate(StatDeltKoenAntal_DW = str_c(unique(na.omit(StatDeltKoenAntal_DW)), collapse = " ∙ ")) %>%
+  ungroup() %>%
+  mutate(across("StatDeltKoenAntal_DW", \(x) as.character(x))) %>%
+  select(-StatDeltKoenAntal_DW, everything()) %>%
   
-  # StatDeltGenAntal_DW - SLETTES
+  # StatDeltGenAntal_DW
   mutate(StatDeltGenAntal_DW = "") %>%
+  mutate(across("StatDeltGenAntal_DW", \(x) as.character(x))) %>%
+  select(-StatDeltGenAntal_DW, everything()) %>%
   
-  # StatDeltAlderKatAntal_DW - SLETTES
+  # StatDeltAlderKatAntal_DW
   mutate(StatDeltAlderKatAntal_DW = "") %>%
+  mutate(across("StatDeltAlderKatAntal_DW", \(x) as.character(x))) %>%
+  select(-StatDeltAlderKatAntal_DW, everything()) %>%
   
-  # StatDeltAlderAntal_DW - SLETTES
+  # StatDeltAlderAntal_DW
   mutate(StatDeltAlderAntal_DW = "") %>%
+  mutate(across("StatDeltAlderAntal_DW", \(x) as.character(x))) %>%
+  select(-StatDeltAlderAntal_DW, everything()) %>%
   
-  # StatDeltLandsdelAntal_DW - SLETTES
+  # StatDeltLandsdelAntal_DW
   mutate(StatDeltLandsdelAntal_DW = "") %>%
+  mutate(across("StatDeltLandsdelAntal_DW", \(x) as.character(x))) %>%
+  select(-StatDeltLandsdelAntal_DW, everything()) %>%
   
-  # StatDeltRegionAntal_DW - SLETTES
+  # StatDeltRegionAntal_DW
   mutate(StatDeltRegionAntal_DW = "") %>%
+  mutate(across("StatDeltRegionAntal_DW", \(x) as.character(x))) %>%
+  select(-StatDeltRegionAntal_DW, everything()) %>%
   
-  # StatDeltKlubAntal_DW - SLETTES
+  # StatDeltKlubAntal_DW
   mutate(StatDeltKlubAntal_DW = "") %>%
+  mutate(across("StatDeltKlubAntal_DW", \(x) as.character(x))) %>%
+  select(-StatDeltKlubAntal_DW, everything()) %>%
   
-  # StatKlubAntal_DW - SLETTES
+  # StatKlubAntal_DW
   mutate(StatKlubAntal_DW = "") %>%
+  mutate(across("StatKlubAntal_DW", \(x) as.character(x))) %>%
+  select(-StatKlubAntal_DW, everything()) %>%
   
-  # StatDeltRatingKatAntal_DW - SLETTES
+  # StatDeltRatingKatAntal_DW
   mutate(StatDeltRatingKatAntal_DW = "") %>%
+  mutate(across("StatDeltRatingKatAntal_DW", \(x) as.character(x))) %>%
+  select(-StatDeltRatingKatAntal_DW, everything()) %>%
   
-  # StatDeltRatingAntal_DW - SLETTES
+  # StatDeltRatingAntal_DW
   mutate(StatDeltRatingAntal_DW = "") %>%
+  mutate(across("StatDeltRatingAntal_DW", \(x) as.character(x))) %>%
+  select(-StatDeltRatingAntal_DW, everything()) %>%
   
-  # StatForskudtTilAntal_DW - SLETTES
+  # StatForskudtTilAntal_DW
   mutate(StatForskudtTilAntal_DW = "") %>%
+  mutate(across("StatForskudtTilAntal_DW", \(x) as.character(x))) %>%
+  select(-StatForskudtTilAntal_DW, everything()) %>%
   
-  # StatBilletGnsAntal_DW - SLETTES
+  # StatBilletGnsAntal_DW
   mutate(StatBilletGnsAntal_DW = "") %>%
+  mutate(across("StatBilletGnsAntal_DW", \(x) as.character(x))) %>%
+  select(-StatBilletGnsAntal_DW, everything()) %>%
   
-  # StatOekonomiAntal_DW - SLETTES
+  # StatOekonomiAntal_DW
   mutate(StatOekonomiAntal_DW = "") %>%
+  mutate(across("StatOekonomiAntal_DW", \(x) as.character(x))) %>%
+  select(-StatOekonomiAntal_DW, everything()) %>%
   
   # StatAlderForskelAntal_DW
   group_by(
