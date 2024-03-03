@@ -1216,13 +1216,12 @@ Data_T <- Data_T %>%
   group_by(EventAar_RD, DeltStatusSimpel_RD, DeltID_RD) %>%
   mutate(StatDeltAntal_DW = row_number()) %>%
   mutate(StatDeltAntal_DW = ifelse(StatDeltAntal_DW == 1, 1, 0)) %>%
-  group_by(EventAar_RD, DeltStatusSimpel_RD, StatDeltAntal_DW) %>%
-  mutate(StatDeltAntal_DW = sum(StatDeltAntal_DW)) %>%
-  mutate(StatDeltAntal_DW = ifelse(StatDeltAntal_DW != 0, StatDeltAntal_DW, NA)) %>%
+  group_by(EventAar_RD, DeltStatusSimpel_RD) %>%
+  mutate(StatDeltAntal_DW = ifelse(StatDeltAntal_DW == 0, 0, sum(StatDeltAntal_DW))) %>%
   group_by(EventAar_RD) %>%
-  mutate(StatDeltAntal_DW = ifelse(is.na(StatDeltAntal_DW), NA, paste0(
-    StatDeltAntal_DW, " ", DeltStatusSimpel_RD , " (", 
-    percent(StatDeltAntal_DW/sum(unique(na.omit(StatDeltAntal_DW))), digits = 0), ") ", OrdreStatusSimpelIkon_RD))) %>%
+  mutate(StatDeltAntal_DW = ifelse(StatDeltAntal_DW == 0, NA, paste0(
+    StatDeltAntal_DW, " ", DeltStatusSimpel_RD , " (",
+    percent(StatDeltAntal_DW/sum(ifelse(StatDeltAntal_DW == 0, 0, 1)), digits = 0), ") ", OrdreStatusSimpelIkon_RD))) %>%
   arrange(EventAar_RD, DeltStatusSimpel_RD) %>%
   mutate(StatDeltAntal_DW = str_c(unique(na.omit(StatDeltAntal_DW)), collapse = " ∙ ")) %>%
   ungroup() %>%
@@ -1235,12 +1234,11 @@ Data_T <- Data_T %>%
   mutate(StatDeltKoenAntal_DW = ifelse(
     StatDeltKoenAntal_DW == 1 & grepl("Tilmeldt", OrdreStatusSimpel_RD), 1, 0)) %>%
   group_by(EventAar_RD, DeltStatusSimpel_RD, DeltKoen_RD) %>%
-  mutate(StatDeltKoenAntal_DW = sum(StatDeltKoenAntal_DW)) %>%
-  mutate(StatDeltKoenAntal_DW = ifelse(StatDeltKoenAntal_DW != 0, StatDeltKoenAntal_DW, NA)) %>%
+  mutate(StatDeltKoenAntal_DW = ifelse(StatDeltKoenAntal_DW == 0, 0, sum(StatDeltKoenAntal_DW))) %>%
   group_by(EventAar_RD) %>%
-  mutate(StatDeltKoenAntal_DW = ifelse(is.na(StatDeltKoenAntal_DW), NA, paste0(
-    StatDeltKoenAntal_DW, " ", DeltKoen_RD , " (", 
-    percent(StatDeltKoenAntal_DW/sum(unique(na.omit(StatDeltKoenAntal_DW))), digits = 0), ") ", DeltKoenIkon_RD))) %>%
+  mutate(StatDeltKoenAntal_DW = ifelse(StatDeltKoenAntal_DW == 0, NA, paste0(
+    StatDeltKoenAntal_DW, " ", DeltKoen_RD , " (",
+    percent(StatDeltKoenAntal_DW/sum(ifelse(StatDeltKoenAntal_DW == 0, 0, 1)), digits = 0), ") ", DeltKoenIkon_RD))) %>%
   arrange(EventAar_RD, DeltKoen_RD) %>%
   mutate(StatDeltKoenAntal_DW = str_c(unique(na.omit(StatDeltKoenAntal_DW)), collapse = " ∙ ")) %>%
   ungroup() %>%
