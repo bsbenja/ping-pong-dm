@@ -1186,9 +1186,7 @@ Data_T <- Data_T %>%
   
   # StatOrdreKatAntal_DW
   add_count(
-    EventAar_RD,
-    OrdreStatusSimpel_RD,
-    OrdreKat_DW,
+    EventAar_RD, OrdreStatusSimpel_RD, OrdreKat_DW,
     name = "StatOrdreKatAntal_DW") %>%
   group_by(EventAar_RD) %>%
   mutate(StatOrdreKatAntal_DW = paste0(
@@ -1201,11 +1199,7 @@ Data_T <- Data_T %>%
   
   # StatOrdreAntal_DW
   add_count(
-    EventAar_RD,
-    OrdreStatusSimpel_RD,
-    BilletDisciplin_RD,
-    BilletRaekke_RD,
-    BilletSpilFormat_RD,
+    EventAar_RD, OrdreStatusSimpel_RD, Billet_RD,
     name = "StatOrdreAntal_DW") %>%
   group_by(EventAar_RD) %>%
   mutate(StatOrdreAntal_DW = paste(
