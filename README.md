@@ -10,7 +10,7 @@ De forskellige sider på hjemmesiden stammer fra ".qmd-filerne".
 
 ### Navngivning
 
-Navngivning af variable er baseret på Pascal Case efterfulgt af underscore og variabeltype
+Navngivning af variable er baseret på Pascal Case efterfulgt af underscore og variabeltype. Eksempler på navngivning ses herunder:
 
 -   PascalCase_T = Table of Pascal Case.
 -   PascalCase_V = Variable of Pascal Case.
