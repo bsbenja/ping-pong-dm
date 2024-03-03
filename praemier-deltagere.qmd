@@ -260,7 +260,7 @@ DataAkt_T %>% filter(EventAar_RD == InputEventAarAkt_V) %>%
 #| output: asis
 cat(paste0(
 "<i style=font-size:70%>",
-"<b>", DataBilletAkt_T$StatDeltKlubAntal_DW, "</b>",
+"<b>", DataBilletAkt_T$StatDeltKlubKatAntal_DW, "</b>",
 "&nbsp;^[<i><b>Deltagere klub</b>: Deltagere klub opgøres efter antal tilmeldte deltagere til eventet fordelt på <q>klub</q>, <q>ingen klub</q> og <q>udlandet</q>. Procentsatserne viser fordelingen heraf.</i>]",
 "</i>",
 

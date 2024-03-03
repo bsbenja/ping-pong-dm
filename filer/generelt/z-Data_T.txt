@@ -1,3 +1,4 @@
+DeltRating2Join_RD                      : chr "2500"
 BilletNr_RD                             : int 25
 Billet_RD                               : Ord.factor w/ 22 levels "Ping Pong DM 2014 - Ping Pong - Single - Sandpapir - Åben"<..: 22
 BilletStartDatoTid_RD                   : POSIXct[1:1], format: "2024-06-22 10:30:00"
@@ -190,9 +191,9 @@ OrdreFoersteDato_DW_UgeDag_DW           : int 1
 OrdreFoersteDato_DW_UgeDagNavnLang_DW   : Ord.factor w/ 7 levels "mandag"<"tirsdag"<..: 1
 OrdreFoersteDato_DW_UgeDagNavnKort_DW   : Ord.factor w/ 7 levels "man"<"tir"<"ons"<..: 1
 OrdreFoersteDato_DW_DMAA_DW             : chr "01.01.2024"
-OrdreFoersteTidJoin_DW                      : chr "000003"
+OrdreFoersteTidJoin_DW                  : chr "000003"
 OrdreFoersteTidKatNr_RD                 : int 2
-OrdreFoersteTidKatMin_RD                : chr "0"
+OrdreFoersteTidKatMin_RD                : chr "000000"
 OrdreFoersteTidKatMaks_RD               : chr "175959"
 OrdreFoersteTidKat_RD                   : Ord.factor w/ 2 levels "Aften"<"Øvrig": 2
 OrdreStatusNr_RD                        : int 1
@@ -238,6 +239,7 @@ DeltFoedtDato_DW_UgeDagNavnLang_DW      : Ord.factor w/ 7 levels "mandag"<"tirsd
 DeltFoedtDato_DW_UgeDagNavnKort_DW      : Ord.factor w/ 7 levels "man"<"tir"<"ons"<..: 7
 DeltFoedtDato_DW_DMAA_DW                : chr "05.09.1993"
 DeltAlder_DW                            : int 30
+DeltAlderJoin_DW                        : chr "30"
 DeltAlderKatNr_RD                       : int 2
 DeltAlderKatMin_RD                      : chr "18"
 DeltAlderKatMaks_RD                     : chr "39"
@@ -274,7 +276,7 @@ DeltGenKatNr_RD                         : int 2
 DeltGenKat_DW                           : Ord.factor w/ 3 levels "Debutant"<"Gentilmelding"<..: 2
 DeltGenKatEmoji_RD                      : Ord.factor w/ 2 levels "🆕"<"🔃": 2
 DeltGenKatIkon_RD                       : Ord.factor w/ 2 levels "<iconify-icon icon=mdi:numeric-1-circle></iconify-icon>"<..: 2
-DeltKode_RD                             : chr "MALA"
+DeltKodeJoin_RD                         : chr "MALA"
 DeltKatNr_RD                            : int 1
 DeltKatMin_RD                           : chr "AAAA"
 DeltKatMaks_RD                          : chr "ÅÅÅÅ"
@@ -290,16 +292,16 @@ StatDeltKoenAntal_DW                    : chr "4 Herre (100%) <iconify-icon icon
 StatDeltGenKatAntal_DW                  : chr "4 Gentilmelding (100%) <iconify-icon icon=mdi:autorenew></iconify-icon>"
 StatDeltAlderKatAntal_DW                : chr "4 Senior (100%) <iconify-icon icon=mdi:cake-variant></iconify-icon>"
 StatDeltAlderAntal_DW                   : chr ""
-StatDeltLandsdelAntal_DW                : chr ""
-StatDeltRegionAntal_DW                  : chr ""
-StatDeltKlubAntal_DW                    : chr ""
+StatDeltLandsdelAntal_DW                : chr "4 Jylland (100%) <iconify-icon icon=mdi:home></iconify-icon>"
+StatDeltRegionAntal_DW                  : chr "1 Region Nordjylland (25%) <iconify-icon icon=mdi:home></iconify-icon> ∙ 3 Region Midtjylland (75%) <iconify-ic"| __truncated__
+StatDeltKlubKatAntal_DW                 : chr "4 Klub (100%) <iconify-icon icon=mdi:home></iconify-icon>"
 StatKlubAntal_DW                        : chr ""
 StatDeltRatingKatAntal_DW               : chr ""
 StatDeltRatingAntal_DW                  : chr ""
 StatForskudtTilAntal_DW                 : chr ""
 StatBilletGnsAntal_DW                   : chr ""
 StatOekonomiAntal_DW                    : chr ""
-StatAlderForskelAntal_DW                : int 9
+StatAlderForskelAntal_DW                : chr "9"
 InfoNedtælling_DW                       : chr "<p style=\"text-align:center;width:50em;max-width:100%\">\n      <b style=font-size:120%;text-transform:upperca"| __truncated__
 InfoPlakatCTA_DW                        : chr "<br><br><a style=display:inline-block;background:#FF4A6E;color:#FFFFFF;border-radius:40px;padding-left:50px;pad"| __truncated__
 InfoForside_DW                          : chr "<i style=font-size:100%><b>Afholdes 21.06.2024 til 22.06.2024 i <a href=https://www.google.dk/maps/place/Sports"| __truncated__
