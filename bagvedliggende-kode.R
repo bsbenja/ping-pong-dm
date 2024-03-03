@@ -1207,7 +1207,7 @@ Data_T <- Data_T %>%
     "<b>", StatOrdreAntal_DW, ifelse(StatOrdreAntal_DW == 1, "tilmelding", "tilmeldinger"),
     "til", BilletKat_DW, BilletKatIkon_RD, "</b>")) %>%
   mutate(StatOrdreAntal_DW = ifelse(grepl("Tilmeldt", OrdreStatusSimpel_RD), StatOrdreAntal_DW, NA)) %>%
-  arrange(EventAar_RD, Billet_RD) %>%
+  arrange(EventAar_RD, OrdreStatusSimpel_RD, BilletDisciplin_RD, BilletRaekke_RD, BilletSpilFormat_RD) %>%
   mutate(StatOrdreAntal_DW = str_c(unique(na.omit(StatOrdreAntal_DW)), collapse = "<br>")) %>%
   ungroup() %>%
   mutate(across("StatOrdreAntal_DW", \(x) as.character(x))) %>%
