@@ -1217,7 +1217,7 @@ Data_T <- Data_T %>%
   mutate(StatDeltAntal_DW = row_number()) %>%
   mutate(StatDeltAntal_DW = ifelse(StatDeltAntal_DW == 1, 1, 0)) %>%
   group_by(EventAar_RD, DeltStatusSimpel_RD, StatDeltAntal_DW) %>%
-  mutate(StatDeltAntal_DW = sum((StatDeltAntal_DW))) %>%
+  mutate(StatDeltAntal_DW = sum(StatDeltAntal_DW)) %>%
   mutate(StatDeltAntal_DW = ifelse(StatDeltAntal_DW != 0, StatDeltAntal_DW, NA)) %>%
   group_by(EventAar_RD) %>%
   mutate(StatDeltAntal_DW = ifelse(is.na(StatDeltAntal_DW), NA, paste0(
@@ -1272,11 +1272,10 @@ Data_T <- Data_T %>%
     StatDeltAlderKatAntal_DW == 1 & grepl("Tilmeldt", OrdreStatusSimpel_RD), 1, 0)) %>%
   group_by(EventAar_RD, DeltStatusSimpel_RD, DeltAlderKat_RD) %>%
   mutate(StatDeltAlderKatAntal_DW = sum(StatDeltAlderKatAntal_DW)) %>%
-  mutate(StatDeltAlderKatAntal_DW = ifelse(StatDeltAlderKatAntal_DW != 0, StatDeltAlderKatAntal_DW, NA)) %>%
-  group_by(EventAar_RD, DeltStatusSimpel_RD, StatDeltAlderKatAntal_DW, DeltAlderKat_RD) %>%
-  mutate(StatDeltAlderKatAntal_DW = ifelse(is.na(StatDeltAlderKatAntal_DW), NA, paste0(
-    StatDeltAlderKatAntal_DW, " ", DeltAlderKat_RD , " (", 
-    percent(StatDeltAlderKatAntal_DW/sum(unique(na.omit(StatDeltAlderKatAntal_DW))), digits = 0), ") ", IkonFødt_V))) %>%
+  group_by(EventAar_RD) %>%
+  mutate(StatDeltAlderKatAntal_DW = ifelse(StatDeltAlderKatAntal_DW == 0, NA, paste0(
+    StatDeltAlderKatAntal_DW, " ", DeltAlderKat_RD , " (",
+    percent(StatDeltAlderKatAntal_DW/sum(ifelse(StatDeltAlderKatAntal_DW == 0, 0, 1)), digits = 0), ") ", IkonFødt_V))) %>%
   group_by(EventAar_RD) %>%
   arrange(EventAar_RD, DeltAlderKat_RD) %>%
   mutate(StatDeltAlderKatAntal_DW = str_c(unique(na.omit(StatDeltAlderKatAntal_DW)), collapse = " ∙ ")) %>%
@@ -1345,6 +1344,15 @@ Data_T <- Data_T %>%
   ungroup() %>%
   mutate(across("StatAlderForskelAntal_DW", \(x) as.character(x))) %>%
   select(-StatAlderForskelAntal_DW, everything())
+
+# SLETTES
+test <- Data_T %>%
+group_by(EventAar_RD) %>%
+mutate(kolonne1 = StatDeltAlderKatAntal_DW) %>%
+ mutate(StatDeltAlderKatAntal_DW = sum(ifelse(StatDeltAlderKatAntal_DW == 0, 0, 1))) %>%
+ungroup() %>%
+distinct(EventAar_RD, DeltAlderKat_RD, kolonne1, StatDeltAlderKatAntal_DW)
+View(test)
 
 # Info
 Data_T <- Data_T %>%
