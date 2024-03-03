@@ -1191,7 +1191,7 @@ Data_T <- Data_T %>%
   group_by(EventAar_RD) %>%
   mutate(StatOrdreKatAntal_DW = paste0(
     StatOrdreKatAntal_DW, " ", OrdreKat_DW , " (", 
-    percent(StatOrdreKatAntal_DW/sum(unique(StatOrdreKatAntal_DW)), digits = 0), ") ", OrdreKatIkon_RD)) %>%
+    percent(StatOrdreKatAntal_DW/sum(ifelse(StatOrdreKatAntal_DW == 0, 0, 1)), digits = 0), ") ", OrdreKatIkon_RD)) %>%
   mutate(StatOrdreKatAntal_DW = str_c(unique(na.omit(StatOrdreKatAntal_DW)), collapse = " ∙ ")) %>%
   ungroup() %>%
   mutate(across("StatOrdreKatAntal_DW", \(x) as.character(x))) %>%
