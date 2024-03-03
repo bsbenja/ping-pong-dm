@@ -27,9 +27,14 @@ DataDeltPuljerAkt_T <- DataDeltPuljer_T %>% filter(
   & BilletRaekke_RD == BilletRaekkeAkt_V
   & BilletSpilFormat_RD ==  BilletSpilFormatAkt_V)
 DataDeltAndetAkt_T <- DataDeltAndet_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+DataDeltKlubAkt_T <- DataDeltKlub_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+DataDeltByAkt_T <- DataDeltBy_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+DataDeltAlderKatAkt_T <- DataDeltAlderKat_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+DataDeltKoenAkt_T <- DataDeltKoen_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+DataDeltGenTilAkt_T <- DataDeltGenTil_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+DataDeltOrdreKatAkt_T <- DataDeltOrdreKat_T %>% filter(EventAar_RD == InputEventAarAkt_V)
 DataResultSidsteEventAkt_T <- DataResultSidsteEvent_T %>%
-  filter(
-    EventAarSidst_DW == InputEventAarAkt_V
+  filter(EventAarSidst_DW == InputEventAarAkt_V
     & grepl("A-slutspil", DeltSlutspil_RD)
     & grepl("1|2|3|4", `Placering`))
 ```
@@ -270,13 +275,13 @@ cat(paste0(
 ## Tabel
 
 ```{r}
-DataDeltKlub_T %>%
+DataDeltKlubAkt_T %>%
 	kbl(table.attr = "data-quarto-disable-processing=true",
 	    col.names = NA, align = "l", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter klubantal</i>") %>%
 	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
 	row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
-	row_spec(which(grepl("Afbud", DataDeltKlub_T$OrdreStatusSimpel_RD)),
+	row_spec(which(grepl("Afbud", DataDeltKlubAkt_T$OrdreStatusSimpel_RD)),
 					 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
 	column_spec(1, width_min = "2em") %>%
 	column_spec(1:3, extra_css = "border-top:0.7px solid #999999") %>%
@@ -340,13 +345,13 @@ cat(paste0(
 ## Tabel
 
 ```{r}
-DataDeltBy_T %>%
+DataDeltByAkt_T %>%
 	kbl(table.attr = "data-quarto-disable-processing=true",
 	    col.names = NA, align = "l", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter region og postnr.</i>") %>%
 	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
 	row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
-	row_spec(which(grepl("Afbud", DataDeltBy_T$OrdreStatusSimpel_RD)),
+	row_spec(which(grepl("Afbud", DataDeltByAkt_T$OrdreStatusSimpel_RD)),
 					 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
 	column_spec(1, width_min = "2em") %>%
 	column_spec(1:3, extra_css = "border-top:0.7px solid #999999") %>%
@@ -395,13 +400,13 @@ cat(paste0(
 ## Tabel
 
 ```{r}
-DataDeltAlderKat_T %>%
+DataDeltAlderKatAkt_T %>%
 	kbl(table.attr = "data-quarto-disable-processing=true",
 	    col.names = NA, align = "l", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter fødselsdato</i>") %>%
 	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
 	row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
-	row_spec(which(grepl("Afbud", DataDeltAlderKat_T$OrdreStatusSimpel_RD)),
+	row_spec(which(grepl("Afbud", DataDeltAlderKatAkt_T$OrdreStatusSimpel_RD)),
 					 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
 	column_spec(1, width_min = "2em") %>%
 	column_spec(1:3, extra_css = "border-top:0.7px solid #999999") %>%
@@ -444,13 +449,13 @@ cat(paste0(
 ## Tabel
 
 ```{r}
-DataDeltKoen_T %>%
+DataDeltKoenAkt_T %>%
 	kbl(table.attr = "data-quarto-disable-processing=true",
 	    col.names = NA, align = "l", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter køn</i>") %>%
 	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
 	row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
-	row_spec(which(grepl("Afbud", DataDeltKoen_T$OrdreStatusSimpel_RD)),
+	row_spec(which(grepl("Afbud", DataDeltKoenAkt_T$OrdreStatusSimpel_RD)),
 					 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
 	column_spec(1, width_min = "2em") %>%
 	column_spec(3, width_min = "5em") %>%
@@ -493,13 +498,13 @@ cat(paste0(
 ## Tabel
 
 ```{r}
-DataDeltGenTil_T %>%
+DataDeltGenTilAkt_T %>%
 	kbl(table.attr = "data-quarto-disable-processing=true",
 	    col.names = NA, align = "l", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter antal gentilmeldinger</i>") %>%
 	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
 	row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
-	row_spec(which(grepl("Afbud", DataDeltGenTil_T$OrdreStatusSimpel_RD)),
+	row_spec(which(grepl("Afbud", DataDeltGenTilAkt_T$OrdreStatusSimpel_RD)),
 					 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
 	column_spec(1, width_min = "2em") %>%
 	column_spec(1:3, extra_css = "border-top:0.7px solid #999999") %>%
@@ -548,13 +553,13 @@ cat(paste0(
 ## Tabel
 
 ```{r}
-DataDeltOrdreKat_T %>%
+DataDeltOrdreKatAkt_T %>%
 	kbl(table.attr = "data-quarto-disable-processing=true",
 	    col.names = NA, align = "l", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter ældste <q>første ordredato</q></i>") %>%
 	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
 	row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
-	row_spec(which(grepl("Afbud", DataDeltOrdreKat_T$OrdreStatusSimpel_RD)),
+	row_spec(which(grepl("Afbud", DataDeltOrdreKatAkt_T$OrdreStatusSimpel_RD)),
 					 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
 	column_spec(1, width_min = "2em") %>%
 	column_spec(3, width_min = "7em") %>%

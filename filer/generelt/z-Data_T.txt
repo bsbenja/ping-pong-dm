@@ -190,7 +190,7 @@ OrdreFoersteDato_DW_UgeDag_DW           : int 1
 OrdreFoersteDato_DW_UgeDagNavnLang_DW   : Ord.factor w/ 7 levels "mandag"<"tirsdag"<..: 1
 OrdreFoersteDato_DW_UgeDagNavnKort_DW   : Ord.factor w/ 7 levels "man"<"tir"<"ons"<..: 1
 OrdreFoersteDato_DW_DMAA_DW             : chr "01.01.2024"
-OrdreFoersteTid_DW                      : chr "000003"
+OrdreFoersteTidJoin_DW                      : chr "000003"
 OrdreFoersteTidKatNr_RD                 : int 2
 OrdreFoersteTidKatMin_RD                : chr "0"
 OrdreFoersteTidKatMaks_RD               : chr "175959"
@@ -288,7 +288,7 @@ StatOrdreAntal_DW                       : chr "<b> 4 tilmeldinger til Sandpapir 
 StatDeltAntal_DW                        : chr "4 Tilmeldt (100%) <iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon>"
 StatDeltKoenAntal_DW                    : chr "4 Herre (100%) <iconify-icon icon=mdi:gender-male style=color:#009FB7></iconify-icon>"
 StatDeltGenKatAntal_DW                  : chr "4 Gentilmelding (100%) <iconify-icon icon=mdi:autorenew></iconify-icon>"
-StatDeltAlderKatAntal_DW                : chr ""
+StatDeltAlderKatAntal_DW                : chr "4 Senior (100%) <iconify-icon icon=mdi:cake-variant></iconify-icon>"
 StatDeltAlderAntal_DW                   : chr ""
 StatDeltLandsdelAntal_DW                : chr ""
 StatDeltRegionAntal_DW                  : chr ""
