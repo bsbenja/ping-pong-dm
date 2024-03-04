@@ -438,7 +438,30 @@ Data_T <- Data_T %>%
   # BilletPuljeRest_DW
   mutate(BilletPuljeRest_DW = BilletPuljeStd_DW-BilletDelt_DW) %>%
   mutate(across("BilletPuljeRest_DW", \(x) as.integer(x))) %>%
-  select(-BilletPuljeRest_DW, everything())
+  select(-BilletPuljeRest_DW, everything()) %>%
+
+  # BilletPrisSum_DW
+  mutate(BilletPrisSum_DW = ifelse(grepl("Tilmeldt", OrdreStatusSimpel_RD), BilletPris_RD, NA)) %>%
+  group_by(EventAar_RD) %>%
+  mutate(BilletPrisSum_DW = sum(BilletPrisSum_DW, na.rm = TRUE)) %>%
+  mutate(BilletPrisSum_DW = unique(na.omit(BilletPrisSum_DW))) %>%
+  ungroup() %>%
+  mutate(across("BilletPrisSum_DW", \(x) as.integer(x))) %>%
+  select(-BilletPrisSum_DW, everything()) %>%
+
+  # BilletPrisArrSum_DW
+  mutate(BilletPrisArrSum_DW = ifelse(grepl("Tilmeldt", OrdreStatusSimpel_RD), BilletPrisArr_RD, NA)) %>%
+  group_by(EventAar_RD) %>%
+  mutate(BilletPrisArrSum_DW = sum(BilletPrisArrSum_DW, na.rm = TRUE)) %>%
+  mutate(BilletPrisArrSum_DW = unique(na.omit(BilletPrisArrSum_DW))) %>%
+  ungroup() %>%
+  mutate(across("BilletPrisArrSum_DW", \(x) as.integer(x))) %>%
+  select(-BilletPrisArrSum_DW, everything()) %>%
+
+  # BilletPrisRes_DW
+  mutate(BilletPrisRes_DW = BilletPrisSum_DW-BilletPrisArrSum_DW) %>%
+  mutate(across("BilletPrisRes_DW", \(x) as.integer(x))) %>%
+  select(-BilletPrisRes_DW, everything())
 
 # Event
 Data_T <- Data_T %>%
@@ -1180,7 +1203,6 @@ Data_T <- Data_T %>%
   mutate(across("DeltSnakePuljeNr_DW", \(x) as.integer(x))) %>%
   select(-DeltSnakePuljeNr_DW, everything())
 
-# Stat MANGLER ----
 # Stat
 Data_T <- Data_T %>%
   
@@ -1272,10 +1294,10 @@ Data_T <- Data_T %>%
   mutate(StatDeltAlderAntal_DW = ifelse(
     StatDeltAlderAntal_DW == 1 & grepl("Tilmeldt", OrdreStatusSimpel_RD), DeltAlder_DW, NA)) %>%
   group_by(EventAar_RD) %>%
-  mutate(StatDeltAlderAntal_DW = paste0(
-    "Yngst ", min(StatDeltAlderAntal_DW, na.rm = TRUE), " år ", IkonFødt_V,
-    " ∙ Gns. ", round(mean(StatDeltAlderAntal_DW, na.rm = TRUE), 0), " år ", IkonFødt_V,
-    " ∙ Ældst ", max(StatDeltAlderAntal_DW, na.rm = TRUE), " år ", IkonFødt_V)) %>%
+  mutate(StatDeltAlderAntal_DW = paste(
+    "Yngst", min(StatDeltAlderAntal_DW, na.rm = TRUE), "år", IkonFødt_V,
+    "∙ Gns.", round(mean(StatDeltAlderAntal_DW, na.rm = TRUE), 0), "år", IkonFødt_V,
+    "∙ Ældst", max(StatDeltAlderAntal_DW, na.rm = TRUE), "år", IkonFødt_V)) %>%
   ungroup() %>%
   mutate(across("StatDeltAlderAntal_DW", \(x) as.character(x))) %>%
   select(-StatDeltAlderAntal_DW, everything()) %>%
@@ -1415,19 +1437,35 @@ Data_T <- Data_T %>%
   select(-StatDeltRatingKatAntal_DW, everything()) %>%
   
   # StatDeltRatingAntal_DW
-  mutate(StatDeltRatingAntal_DW = "") %>%
+  group_by(EventAar_RD, DeltStatusSimpel_RD, DeltID_RD) %>%
+  mutate(StatDeltRatingAntal_DW = row_number()) %>%
+  mutate(StatDeltRatingAntal_DW = ifelse(
+    StatDeltRatingAntal_DW == 1 & grepl("Tilmeldt", OrdreStatusSimpel_RD) &
+    grepl("Ping Pong", BilletKat_RD), DeltRating2_RD, NA)) %>%
+  group_by(EventAar_RD) %>%
+  mutate(StatDeltRatingAntal_DW = paste(
+    "Min.", min(StatDeltRatingAntal_DW, na.rm = TRUE), "rating", IkonPingPong_V,
+    "∙ Gns.", round(mean(StatDeltRatingAntal_DW, na.rm = TRUE), 0), "rating", IkonPingPong_V,
+    "∙ Maks", max(StatDeltRatingAntal_DW, na.rm = TRUE), "rating", IkonPingPong_V)) %>%
+  ungroup() %>%
   mutate(across("StatDeltRatingAntal_DW", \(x) as.character(x))) %>%
   select(-StatDeltRatingAntal_DW, everything()) %>%
+
+  # StatOekonomiAntal_DW
+  group_by(EventAar_RD) %>%
+  mutate(StatOekonomiAntal_DW = paste(
+    "Omsætning kr.", BilletPrisSum_DW, IkonPenge_V,
+    "∙ Arrangørpris kr.", BilletPrisArrSum_DW, IkonPenge_V,
+    "∙ Over-/underskud arrangør kr.", BilletPrisRes_DW, IkonPenge_V)) %>%
+  mutate(StatOekonomiAntal_DW = unique(na.omit(StatOekonomiAntal_DW))) %>%
+  mutate(across("StatOekonomiAntal_DW", \(x) as.character(x))) %>%
+  select(-StatOekonomiAntal_DW, everything()) %>%
   
+  # Stat MANGLER ----
   # StatForskudtTilAntal_DW
   mutate(StatForskudtTilAntal_DW = "") %>%
   mutate(across("StatForskudtTilAntal_DW", \(x) as.character(x))) %>%
-  select(-StatForskudtTilAntal_DW, everything()) %>%
-  
-  # StatOekonomiAntal_DW
-  mutate(StatOekonomiAntal_DW = "") %>%
-  mutate(across("StatOekonomiAntal_DW", \(x) as.character(x))) %>%
-  select(-StatOekonomiAntal_DW, everything())
+  select(-StatForskudtTilAntal_DW, everything())
 
 # Info
 Data_T <- Data_T %>%
