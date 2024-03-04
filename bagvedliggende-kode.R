@@ -1368,7 +1368,9 @@ Data_T <- Data_T %>%
 
   # StatBilletGnsAntal_DW
   group_by(EventAar_RD) %>%
-  mutate(StatBilletGnsAntal_DW = round(StatBilletAntal_DW/StatDeltagerAntal_DW, 1)) %>%
+  mutate(StatBilletGnsAntal_DW = paste(
+    round(StatBilletAntal_DW/StatDeltagerAntal_DW, 1), ifelse(round(StatBilletAntal_DW/StatDeltagerAntal_DW, 1) == 1,
+    "billet pr. deltager", "billetter pr. deltager"), IkonBillet_V)) %>%
   ungroup() %>%
   mutate(across("StatBilletGnsAntal_DW", \(x) as.character(x))) %>%
   select(-StatBilletGnsAntal_DW, everything()) %>%
@@ -1866,7 +1868,7 @@ DataDeltKlub_T <- Data_T %>%
 	add_count(Klub_RD) %>%
 	distinct(DeltID_RD, .keep_all = T) %>%
 	arrange(
-	  EventAar_RD, OrdreStatusSimpel_RD, desc(n), ifelse(grepl("Ingen klub|Udlandet", Klub_RD), 2, 1),
+	  EventAar_RD, OrdreStatusSimpel_RD, desc(n), KlubKat_DW,
 	  Klub_RD, desc(DeltBilletSalgNr_DW), BilletKat_RD, DeltNavn_RD) %>%
   ungroup() %>%
 	select(
