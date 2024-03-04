@@ -41,7 +41,7 @@ theme_set(theme(
   plot.title       = element_text(hjust = 0.5),
   plot.subtitle    = element_text(hjust = 0.5),
   legend.text      = element_text(size = 15),
-  axis.text.y      = element_text(size = 15, face = "bold"),
+  axis.text.y      = element_text(hjust = 1, size = 15, face = "bold"),
   axis.ticks.y     = element_blank(),
   axis.text.x      = element_blank(),
   axis.ticks.x     = element_blank(),
@@ -1057,7 +1057,7 @@ Data_T <- Data_T %>%
   select(-DeltNavnBilletKat_DW, everything()) %>%
   
   # DeltBilletSalgNr_DW
-  add_count(EventAar_RD, DeltID_RD, OrdreStatusSimpel_RD, name = "DeltBilletSalgNr_DW") %>%
+  add_count(EventAar_RD, OrdreStatusSimpel_RD, DeltID_RD, name = "DeltBilletSalgNr_DW") %>%
   mutate(across("DeltBilletSalgNr_DW", \(x) as.integer(x))) %>%
   select(-DeltBilletSalgNr_DW, everything()) %>%
   
@@ -1369,7 +1369,7 @@ Data_T <- Data_T %>%
   # StatBilletGnsAntal_DW
   group_by(EventAar_RD) %>%
   mutate(StatBilletGnsAntal_DW = paste(
-    round(StatBilletAntal_DW/StatDeltagerAntal_DW, 1), ifelse(round(StatBilletAntal_DW/StatDeltagerAntal_DW, 1) == 1,
+    "Gns.", round(StatBilletAntal_DW/StatDeltagerAntal_DW, 1), ifelse(round(StatBilletAntal_DW/StatDeltagerAntal_DW, 1) == 1,
     "billet pr. deltager", "billetter pr. deltager"), IkonBillet_V)) %>%
   ungroup() %>%
   mutate(across("StatBilletGnsAntal_DW", \(x) as.character(x))) %>%
@@ -1868,7 +1868,7 @@ DataDeltKlub_T <- Data_T %>%
 	add_count(Klub_RD) %>%
 	distinct(DeltID_RD, .keep_all = T) %>%
 	arrange(
-	  EventAar_RD, OrdreStatusSimpel_RD, desc(n), KlubKat_DW,
+	  EventAar_RD, OrdreStatusSimpel_RD, KlubKat_DW, desc(n),
 	  Klub_RD, desc(DeltBilletSalgNr_DW), BilletKat_RD, DeltNavn_RD) %>%
   ungroup() %>%
 	select(
