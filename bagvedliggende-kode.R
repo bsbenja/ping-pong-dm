@@ -1281,7 +1281,16 @@ Data_T <- Data_T %>%
   select(-StatDeltAlderKatAntal_DW, everything()) %>%
   
   # StatDeltAlderAntal_DW
-  mutate(StatDeltAlderAntal_DW = "") %>%
+  group_by(EventAar_RD, DeltStatusSimpel_RD, DeltID_RD) %>%
+  mutate(StatDeltAlderAntal_DW = row_number()) %>%
+  mutate(StatDeltAlderAntal_DW = ifelse(
+    StatDeltAlderAntal_DW == 1 & grepl("Tilmeldt", OrdreStatusSimpel_RD), DeltAlder_DW, NA)) %>%
+  group_by(EventAar_RD) %>%
+  mutate(StatDeltAlderAntal_DW = paste0(
+    "Yngst ", min(StatDeltAlderAntal_DW, na.rm = TRUE), " år ", IkonFødt_V,
+    " ∙ Gns. ", round(mean(StatDeltAlderAntal_DW, na.rm = TRUE), 0), " år ", IkonFødt_V,
+    " ∙ Ældst ", max(StatDeltAlderAntal_DW, na.rm = TRUE), " år ", IkonFødt_V)) %>%
+  ungroup() %>%
   mutate(across("StatDeltAlderAntal_DW", \(x) as.character(x))) %>%
   select(-StatDeltAlderAntal_DW, everything()) %>%
   
