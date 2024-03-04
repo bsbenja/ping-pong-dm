@@ -1346,7 +1346,16 @@ Data_T <- Data_T %>%
   select(-StatDeltKlubKatAntal_DW, everything()) %>%
   
   # StatKlubAntal_DW
-  mutate(StatKlubAntal_DW = "") %>%
+  group_by(EventAar_RD, DeltStatusSimpel_RD, Klub_RD) %>%
+  mutate(StatKlubAntal_DW = row_number()) %>%
+  mutate(StatKlubAntal_DW = ifelse(
+    StatKlubAntal_DW == 1 & grepl("Tilmeldt", OrdreStatusSimpel_RD) & !grepl("Ingen klub|Udlandet", Klub_RD), 1, 0)) %>%
+  group_by(EventAar_RD) %>%
+  mutate(StatKlubAntal_DW = ifelse(StatKlubAntal_DW == 0, 0, sum(StatKlubAntal_DW))) %>%
+  mutate(StatKlubAntal_DW = ifelse(StatKlubAntal_DW == 0, NA, paste(
+    StatKlubAntal_DW, ifelse(StatKlubAntal_DW == 1, "klub", "forskellige klubber"), KlubIkon_RD))) %>%
+  mutate(StatKlubAntal_DW = unique(na.omit(StatKlubAntal_DW))) %>%
+  ungroup() %>%
   mutate(across("StatKlubAntal_DW", \(x) as.character(x))) %>%
   select(-StatKlubAntal_DW, everything()) %>%
   
@@ -1376,12 +1385,7 @@ Data_T <- Data_T %>%
   select(-StatOekonomiAntal_DW, everything()) %>%
   
   # StatAlderForskelAntal_DW
-  group_by(
-    EventAar_RD,
-    OrdreStatusSimpel_RD,
-    BilletDisciplin_RD,
-    BilletRaekke_RD,
-    BilletSpilFormat_RD) %>%
+  group_by(EventAar_RD, OrdreStatusSimpel_RD, Billet_RD) %>%
   mutate(StatAlderForskelAntal_DW = max(DeltAlder_DW)-min(DeltAlder_DW)) %>%
   ungroup() %>%
   mutate(across("StatAlderForskelAntal_DW", \(x) as.character(x))) %>%
