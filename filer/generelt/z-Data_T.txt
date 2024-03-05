@@ -1,4 +1,40 @@
-DeltRating2Join_RD                      : chr "2500"
+OrdreDatoTid_RD                         : POSIXct[1:1], format: "2024-01-01 00:00:03"
+OrdreDato_DW                            : Date[1:1], format: "2024-01-01"
+OrdreDato_DW_Aar_DW                     : int 2024
+OrdreDato_DW_AarDag_DW                  : int 1
+OrdreDato_DW_KvartalNr_DW               : int 1
+OrdreDato_DW_KvartalNavn_DW             : Ord.factor w/ 4 levels "1. kvartal"<"2. kvartal"<..: 1
+OrdreDato_DW_MaanedNr_DW                : int 1
+OrdreDato_DW_MaanedNavnLang_DW          : Ord.factor w/ 12 levels "januar"<"februar"<..: 1
+OrdreDato_DW_MaanedNavnKort_DW          : Ord.factor w/ 12 levels "jan"<"feb"<"mar"<..: 1
+OrdreDato_DW_MaanedDag_DW               : int 1
+OrdreDato_DW_MaanedDagNavn_DW           : chr "1. januar"
+OrdreDato_DW_Uge_DW                     : int 1
+OrdreDato_DW_UgeDag_DW                  : int 1
+OrdreDato_DW_UgeDagNavnLang_DW          : Ord.factor w/ 7 levels "mandag"<"tirsdag"<..: 1
+OrdreDato_DW_UgeDagNavnKort_DW          : Ord.factor w/ 7 levels "man"<"tir"<"ons"<..: 1
+OrdreDato_DW_DMAA_DW                    : chr "01.01.2024"
+OrdreFoersteDatoTid_DW                  : POSIXct[1:1], format: "2024-01-01 00:00:03"
+OrdreFoersteDato_DW                     : Date[1:1], format: "2024-01-01"
+OrdreFoersteDato_DW_Aar_DW              : int 2024
+OrdreFoersteDato_DW_AarDag_DW           : int 1
+OrdreFoersteDato_DW_KvartalNr_DW        : int 1
+OrdreFoersteDato_DW_KvartalNavn_DW      : Ord.factor w/ 4 levels "1. kvartal"<"2. kvartal"<..: 1
+OrdreFoersteDato_DW_MaanedNr_DW         : int 1
+OrdreFoersteDato_DW_MaanedNavnLang_DW   : Ord.factor w/ 12 levels "januar"<"februar"<..: 1
+OrdreFoersteDato_DW_MaanedNavnKort_DW   : Ord.factor w/ 12 levels "jan"<"feb"<"mar"<..: 1
+OrdreFoersteDato_DW_MaanedDag_DW        : int 1
+OrdreFoersteDato_DW_MaanedDagNavn_DW    : chr "1. januar"
+OrdreFoersteDato_DW_Uge_DW              : int 1
+OrdreFoersteDato_DW_UgeDag_DW           : int 1
+OrdreFoersteDato_DW_UgeDagNavnLang_DW   : Ord.factor w/ 7 levels "mandag"<"tirsdag"<..: 1
+OrdreFoersteDato_DW_UgeDagNavnKort_DW   : Ord.factor w/ 7 levels "man"<"tir"<"ons"<..: 1
+OrdreFoersteDato_DW_DMAA_DW             : chr "01.01.2024"
+OrdreFoersteTidJoin_DW                  : chr "000003"
+OrdreFoersteTidKatNr_RD                 : int 2
+OrdreFoersteTidKatMin_RD                : chr "000000"
+OrdreFoersteTidKatMaks_RD               : chr "175959"
+OrdreFoersteTidKat_RD                   : Ord.factor w/ 2 levels "Aften"<"Øvrig": 2
 BilletNr_RD                             : int 25
 Billet_RD                               : Ord.factor w/ 22 levels "Ping Pong DM 2014 - Ping Pong - Single - Sandpapir - Åben"<..: 22
 BilletStartDatoTid_RD                   : POSIXct[1:1], format: "2024-06-22 10:30:00"
@@ -33,6 +69,15 @@ BilletSlutDato_DW_UgeDag_DW             : int 6
 BilletSlutDato_DW_UgeDagNavnLang_DW     : Ord.factor w/ 7 levels "mandag"<"tirsdag"<..: 6
 BilletSlutDato_DW_UgeDagNavnKort_DW     : Ord.factor w/ 7 levels "man"<"tir"<"ons"<..: 6
 BilletSlutDato_DW_DMAA_DW               : chr "22.06.2024"
+BilletStatusNr_RD                       : int 1
+BilletStatus_RD                         : Ord.factor w/ 2 levels "Tilmeldt inkl. betaling"<..: 1
+BilletStatusEmoji_RD                    : Ord.factor w/ 2 levels "✔️💲👍"<"❌💸👍": 1
+BilletStatusSimpel_RD                   : Ord.factor w/ 2 levels "Tilmeldt"<"Afbud": 1
+BilletStatusSimpelIkon_RD               : Ord.factor w/ 2 levels "<iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon>"<..: 1
+BilletTilKatNr_DW                       : int 1
+BilletTilKat_DW                         : Ord.factor w/ 3 levels "Ordinær"<"Drive-in"<..: 1
+BilletTilKatEmoji_DW                    : Ord.factor w/ 3 levels "✔️"<"🏃"<"❌": 1
+BilletTilKatIkon_RD                     : Ord.factor w/ 3 levels "<iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon>"<..: 1
 BilletKatNr_RD                          : int 1
 BilletKat_RD                            : Ord.factor w/ 3 levels "Ping Pong"<"Fest om aftenen"<..: 1
 BilletKatEmoji_RD                       : Ord.factor w/ 3 levels "🏓"<"🥳"<"🥪": 1
@@ -57,6 +102,9 @@ BilletPulje_DW                          : int 1
 BilletPuljeStd_DW                       : int 6
 BilletDelt_DW                           : int 4
 BilletPuljeRest_DW                      : int 2
+BilletPrisSum_DW                        : int 2000
+BilletPrisArrSum_DW                     : int 2000
+BilletPrisRes_DW                        : int 0
 EventNr_RD                              : int 1
 Event_RD                                : Ord.factor w/ 1 level "Ping Pong DM": 1
 EventSportsgren_RD                      : chr "Ping Pong"
@@ -159,52 +207,6 @@ EventAarDato_DW                         : chr "21.06.2024 til 22.06.2024"
 EventAarStedURL_DW                      : chr "<a href=https://www.google.dk/maps/place/Sportscenter+Herning/@56.157455,8.9619456,17z/data=!3m1!4b1!4m6!3m5!1s"| __truncated__
 EventAarStedAdrPostnrURL_DW             : chr "<a href=https://www.google.dk/maps/place/Sportscenter+Herning/@56.157455,8.9619456,17z/data=!3m1!4b1!4m6!3m5!1s"| __truncated__
 EventAarFra2021_DW                      : logi TRUE
-OrdreDatoTid_RD                         : POSIXct[1:1], format: "2024-01-01 00:00:03"
-OrdreDato_DW                            : Date[1:1], format: "2024-01-01"
-OrdreDato_DW_Aar_DW                     : int 2024
-OrdreDato_DW_AarDag_DW                  : int 1
-OrdreDato_DW_KvartalNr_DW               : int 1
-OrdreDato_DW_KvartalNavn_DW             : Ord.factor w/ 4 levels "1. kvartal"<"2. kvartal"<..: 1
-OrdreDato_DW_MaanedNr_DW                : int 1
-OrdreDato_DW_MaanedNavnLang_DW          : Ord.factor w/ 12 levels "januar"<"februar"<..: 1
-OrdreDato_DW_MaanedNavnKort_DW          : Ord.factor w/ 12 levels "jan"<"feb"<"mar"<..: 1
-OrdreDato_DW_MaanedDag_DW               : int 1
-OrdreDato_DW_MaanedDagNavn_DW           : chr "1. januar"
-OrdreDato_DW_Uge_DW                     : int 1
-OrdreDato_DW_UgeDag_DW                  : int 1
-OrdreDato_DW_UgeDagNavnLang_DW          : Ord.factor w/ 7 levels "mandag"<"tirsdag"<..: 1
-OrdreDato_DW_UgeDagNavnKort_DW          : Ord.factor w/ 7 levels "man"<"tir"<"ons"<..: 1
-OrdreDato_DW_DMAA_DW                    : chr "01.01.2024"
-OrdreFoersteDatoTid_DW                  : POSIXct[1:1], format: "2024-01-01 00:00:03"
-OrdreFoersteDato_DW                     : Date[1:1], format: "2024-01-01"
-OrdreFoersteDato_DW_Aar_DW              : int 2024
-OrdreFoersteDato_DW_AarDag_DW           : int 1
-OrdreFoersteDato_DW_KvartalNr_DW        : int 1
-OrdreFoersteDato_DW_KvartalNavn_DW      : Ord.factor w/ 4 levels "1. kvartal"<"2. kvartal"<..: 1
-OrdreFoersteDato_DW_MaanedNr_DW         : int 1
-OrdreFoersteDato_DW_MaanedNavnLang_DW   : Ord.factor w/ 12 levels "januar"<"februar"<..: 1
-OrdreFoersteDato_DW_MaanedNavnKort_DW   : Ord.factor w/ 12 levels "jan"<"feb"<"mar"<..: 1
-OrdreFoersteDato_DW_MaanedDag_DW        : int 1
-OrdreFoersteDato_DW_MaanedDagNavn_DW    : chr "1. januar"
-OrdreFoersteDato_DW_Uge_DW              : int 1
-OrdreFoersteDato_DW_UgeDag_DW           : int 1
-OrdreFoersteDato_DW_UgeDagNavnLang_DW   : Ord.factor w/ 7 levels "mandag"<"tirsdag"<..: 1
-OrdreFoersteDato_DW_UgeDagNavnKort_DW   : Ord.factor w/ 7 levels "man"<"tir"<"ons"<..: 1
-OrdreFoersteDato_DW_DMAA_DW             : chr "01.01.2024"
-OrdreFoersteTidJoin_DW                  : chr "000003"
-OrdreFoersteTidKatNr_RD                 : int 2
-OrdreFoersteTidKatMin_RD                : chr "000000"
-OrdreFoersteTidKatMaks_RD               : chr "175959"
-OrdreFoersteTidKat_RD                   : Ord.factor w/ 2 levels "Aften"<"Øvrig": 2
-OrdreStatusNr_RD                        : int 1
-OrdreStatus_RD                          : Ord.factor w/ 2 levels "Tilmeldt inkl. betaling"<..: 1
-OrdreStatusEmoji_RD                     : Ord.factor w/ 2 levels "✔️💲👍"<"❌💸👍": 1
-OrdreStatusSimpel_RD                    : Ord.factor w/ 2 levels "Tilmeldt"<"Afbud": 1
-OrdreStatusSimpelIkon_RD                : Ord.factor w/ 2 levels "<iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon>"<..: 1
-OrdreKatNr_DW                           : int 1
-OrdreKat_DW                             : Ord.factor w/ 3 levels "Ordinær"<"Drive-in"<..: 1
-OrdreKatEmoji_DW                        : Ord.factor w/ 3 levels "✔️"<"🏃"<"❌": 1
-OrdreKatIkon_RD                         : Ord.factor w/ 3 levels "<iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon>"<..: 1
 KlubNr_RD                               : int 27
 Klub_RD                                 : Ord.factor w/ 30 levels "Amager BTK"<"B75"<..: 19
 KlubPostnr_RD                           : chr "8600"
@@ -253,6 +255,7 @@ DeltRang1_RD                            : int 4
 DeltRating2_RD                          : int 2500
 DeltRang3_RD                            : int NA
 DeltRating_DW                           : chr "[4] 2500"
+DeltRating2Join_DW                      : int 2500
 DeltRatingKatNr_RD                      : int 1
 DeltRatingKatMin_RD                     : chr "2000"
 DeltRatingKatMaks_RD                    : chr "9999"
@@ -285,23 +288,25 @@ DeltStatusSimpel_RD                     : Ord.factor w/ 2 levels "Tilmeldt"<"<q>
 DeltSnakeSeedNr_DW                      : int 4
 DeltSnakeSeedLagNr_DW                   : int NA
 DeltSnakePuljeNr_DW                     : int NA
-StatOrdreKatAntal_DW                    : chr "14 Ordinær (100%) <iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon>"
 StatOrdreAntal_DW                       : chr "<b> 4 tilmeldinger til Sandpapir Åben <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon> <"| __truncated__
 StatDeltAntal_DW                        : chr "4 Tilmeldt (100%) <iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon>"
 StatDeltKoenAntal_DW                    : chr "4 Herre (100%) <iconify-icon icon=mdi:gender-male style=color:#009FB7></iconify-icon>"
 StatDeltGenKatAntal_DW                  : chr "4 Gentilmelding (100%) <iconify-icon icon=mdi:autorenew></iconify-icon>"
 StatDeltAlderKatAntal_DW                : chr "4 Senior (100%) <iconify-icon icon=mdi:cake-variant></iconify-icon>"
-StatDeltAlderAntal_DW                   : chr ""
+StatDeltAlderAntal_DW                   : chr "Yngst 22 år <iconify-icon icon=mdi:cake-variant></iconify-icon> ∙ Gns. 28 år <iconify-icon icon=mdi:cake-varian"| __truncated__
 StatDeltLandsdelAntal_DW                : chr "4 Jylland (100%) <iconify-icon icon=mdi:home></iconify-icon>"
 StatDeltRegionAntal_DW                  : chr "1 Region Nordjylland (25%) <iconify-icon icon=mdi:home></iconify-icon> ∙ 3 Region Midtjylland (75%) <iconify-ic"| __truncated__
 StatDeltKlubKatAntal_DW                 : chr "4 Klub (100%) <iconify-icon icon=mdi:home></iconify-icon>"
-StatKlubAntal_DW                        : chr ""
-StatDeltRatingKatAntal_DW               : chr ""
-StatDeltRatingAntal_DW                  : chr ""
-StatForskudtTilAntal_DW                 : chr ""
-StatBilletGnsAntal_DW                   : chr ""
-StatOekonomiAntal_DW                    : chr ""
+StatKlubAntal_DW                        : chr "3 forskellige klubber <iconify-icon icon=mdi:home></iconify-icon>"
+StatBilletAntal_DW                      : int 14
+StatDeltagerAntal_DW                    : int 4
+StatBilletGnsAntal_DW                   : chr "Gns. 3,5 billetter pr. deltager <span class=bi-tags-fill></span>"
 StatAlderForskelAntal_DW                : chr "9"
+StatOrdreKatAntal_DW                    : chr "14 Ordinær (100%) <iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon>"
+StatDeltRatingKatAntal_DW               : chr "4 Elite (100%) <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon>"
+StatDeltRatingAntal_DW                  : chr "Min. 2400 rating <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon> ∙ Gns. 2500 rating <ic"| __truncated__
+StatOekonomiAntal_DW                    : chr "Omsætning kr. 2000 <iconify-icon icon=mdi:cash></iconify-icon> ∙ Arrangørpris kr. 2000 <iconify-icon icon=mdi:c"| __truncated__
+StatForskudtTilAntal_DW                 : chr "1 forskudt tilmelding <span class=bi-tags-fill></span>"
 InfoNedtælling_DW                       : chr "<p style=\"text-align:center;width:50em;max-width:100%\">\n      <b style=font-size:120%;text-transform:upperca"| __truncated__
 InfoPlakatCTA_DW                        : chr "<br><br><a style=display:inline-block;background:#FF4A6E;color:#FFFFFF;border-radius:40px;padding-left:50px;pad"| __truncated__
 InfoForside_DW                          : chr "<i style=font-size:100%><b>Afholdes 21.06.2024 til 22.06.2024 i <a href=https://www.google.dk/maps/place/Sports"| __truncated__

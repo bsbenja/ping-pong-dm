@@ -108,7 +108,7 @@ Plot.plot({
   marks: [
     Plot.barX(data_filter,
     Plot.groupY({x: "count"},
-    {y: "OrdreKat_DW", fill: "BilletKat_DW"}
+    {y: "BilletTilKat_DW", fill: "BilletKat_DW"}
     )
     )
   ]
@@ -329,12 +329,12 @@ DataKlubMangel_T <- Data_T %>%
 	slice(which.max(OrdreDatoTid_RD)) %>%
 	group_by(EventAar_RD) %>%
 	arrange(
-	  OrdreStatusSimpel_RD,
+	  BilletStatusSimpel_RD,
 	  desc(EventAar_RD),
 	  desc(EventAarStartDato_DW_Aar_DW),
 	  KlubRegion_RD,
 	  Klub_RD) %>%
-	group_by(EventAar_RD, OrdreStatusSimpel_RD) %>%
+	group_by(EventAar_RD, BilletStatusSimpel_RD) %>%
 	mutate(Nr. = row_number()) %>%
   ungroup() %>%
 	select(
@@ -343,7 +343,7 @@ DataKlubMangel_T <- Data_T %>%
 		"Klub"   = Klub_RD,
 		"Region" = KlubRegion_RD,
 		"Sidst"  = EventAarStartDato_DW_Aar_DW,
-		OrdreStatusSimpel_RD,
+		BilletStatusSimpel_RD,
 		EventAar_RD)
 
 if(nrow(DataKlubMangel_T) == 0) {
@@ -358,7 +358,7 @@ if(nrow(DataKlubMangel_T) == 0) {
 					"<i style=font-size:80%>Sorteret efter år, region og klub</i>")) %>%
 		kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
 		row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
-		row_spec(which(grepl("Afbud", DataKlubMangel_T$OrdreStatusSimpel_RD)),
+		row_spec(which(grepl("Afbud", DataKlubMangel_T$BilletStatusSimpel_RD)),
 						 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
 		column_spec(1, width_min = "2em") %>%
 		column_spec(1:5, extra_css = "border-top:0.7px solid #999999") %>%
@@ -372,20 +372,20 @@ DataDeltMangel_T <- Data_T %>%
 	group_by(EventAar_RD) %>%
 	add_count(Klub_RD) %>%
 	arrange(
-	  OrdreStatusSimpel_RD,
+	  BilletStatusSimpel_RD,
 	  desc(EventAar_RD),
 	  desc(n),
 	  ifelse(grepl("Ingen klub|Udlandet", Klub_RD), 2, 1),
 	  Klub_RD, desc(EventAarStartDato_DW_Aar_DW),
 		desc(DeltBilletSalgNr_DW), BilletKat_DW, DeltNavn_RD) %>%
-	group_by(OrdreStatusSimpel_RD) %>%
+	group_by(BilletStatusSimpel_RD) %>%
 	mutate(Nr. = row_number()) %>%
 	select(
 		Nr.,
 		" "     = KlubLogo_DW,
 		"Navn"  = DeltNavnBilletKat_DW,
 		"Sidst" = EventAarStartDato_DW_Aar_DW,
-		OrdreStatusSimpel_RD,
+		BilletStatusSimpel_RD,
 		EventAar_RD) %>%
   ungroup()
 
@@ -401,7 +401,7 @@ if(nrow(DataDeltMangel_T) == 0) {
 				"<i style=font-size:80%>Sorteret efter klubantal og år</i>")) %>%
 	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
 	row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
-	row_spec(which(grepl("Afbud", DataDeltMangel_T$OrdreStatusSimpel_RD)),
+	row_spec(which(grepl("Afbud", DataDeltMangel_T$BilletStatusSimpel_RD)),
 					 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
 	column_spec(1, width_min = "2em") %>%
 	column_spec(1:4, extra_css = "border-top:0.7px solid #999999") %>%
