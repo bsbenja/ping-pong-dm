@@ -1205,7 +1205,16 @@ Data_T <- Data_T %>%
     DeltSnakePuljeNr_DW + BilletPuljeRest_DW, DeltSnakePuljeNr_DW)) %>%
   ungroup() %>%
   mutate(across("DeltSnakePuljeNr_DW", \(x) as.integer(x))) %>%
-  select(-DeltSnakePuljeNr_DW, everything())
+  select(-DeltSnakePuljeNr_DW, everything()) %>%
+
+  # DeltForskudt_DW
+  group_by(EventAar_RD, DeltStatusSimpel_RD, DeltID_RD, OrdreDatoTid_RD) %>%
+  mutate(DeltForskudt_DW = ifelse(OrdreDatoTid_RD != OrdreFoersteDatoTid_DW, 1, 0)) %>%
+  group_by(EventAar_RD, DeltStatusSimpel_RD) %>%
+  mutate(DeltForskudt_DW = sum(DeltForskudt_DW)) %>%
+  ungroup() %>%
+  mutate(across("DeltForskudt_DW", \(x) as.character(x))) %>%
+  select(-DeltForskudt_DW, everything())
 
 # Stat
 Data_T <- Data_T %>%
@@ -1453,17 +1462,12 @@ Data_T <- Data_T %>%
   mutate(across("StatOekonomiAntal_DW", \(x) as.character(x))) %>%
   select(-StatOekonomiAntal_DW, everything()) %>%
   
-  # Stat
-  # StatForskudtTilAntal_DW -- FEJL
-  group_by(EventAar_RD, DeltStatusSimpel_RD, OrdreDatoTid_RD) %>%
-  mutate(StatForskudtTilAntal_DW = ifelse(
-    OrdreDatoTid_RD != OrdreFoersteDatoTid_DW & grepl("Tilmeldt", BilletStatusSimpel_RD), 1, NA)) %>%
+  # StatForskudtTilAntal_DW
   group_by(EventAar_RD) %>%
-  mutate(StatForskudtTilAntal_DW = ifelse(is.na(StatForskudtTilAntal_DW), NA, sum(StatForskudtTilAntal_DW, na.rm = TRUE))) %>%
+  mutate(StatForskudtTilAntal_DW = ifelse(grepl("Tilmeldt", BilletStatusSimpel_RD), DeltForskudt_DW, NA)) %>%
   mutate(StatForskudtTilAntal_DW = ifelse(is.na(StatForskudtTilAntal_DW), NA, paste(
     StatForskudtTilAntal_DW, ifelse(
       StatForskudtTilAntal_DW == 1, "forskudt tilmelding", "forskudte tilmeldinger"), IkonBillet_V))) %>%
-  arrange(EventAar_RD, OrdreDatoTid_RD) %>%
   mutate(StatForskudtTilAntal_DW = ifelse(all(is.na(StatForskudtTilAntal_DW)), NA, unique(na.omit(StatForskudtTilAntal_DW)))) %>%
   ungroup() %>%
   mutate(across("StatForskudtTilAntal_DW", \(x) as.character(x))) %>%
