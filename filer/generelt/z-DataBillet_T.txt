@@ -87,4 +87,4 @@ DataBillet_T$StatOrdreKatAntal_DW                : chr "14 Ordinær (100%) <icon
 DataBillet_T$StatDeltRatingKatAntal_DW           : chr "4 Elite (100%) <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon>"
 DataBillet_T$StatDeltRatingAntal_DW              : chr "Min. 2400 rating <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon> ∙ Gns. 2500 rating <ic"| __truncated__
 DataBillet_T$StatOekonomiAntal_DW                : chr "Omsætning kr. 2000 <iconify-icon icon=mdi:cash></iconify-icon> ∙ Arrangørpris kr. 2000 <iconify-icon icon=mdi:c"| __truncated__
-DataBillet_T$StatForskudtTilAntal_DW             : chr "1 forskudt tilmelding <span class=bi-tags-fill></span>"
+DataBillet_T$StatForskudtTilAntal_DW             : chr NA

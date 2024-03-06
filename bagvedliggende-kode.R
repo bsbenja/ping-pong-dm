@@ -1449,21 +1449,22 @@ Data_T <- Data_T %>%
     "Omsætning kr.", BilletPrisSum_DW, IkonPenge_V,
     "∙ Arrangørpris kr.", BilletPrisArrSum_DW, IkonPenge_V,
     "∙ Over-/underskud arrangør kr.", BilletPrisRes_DW, IkonPenge_V)) %>%
-  mutate(StatOekonomiAntal_DW = unique(na.omit(StatOekonomiAntal_DW))) %>%
+  mutate(StatOekonomiAntal_DW = ifelse(all(is.na(StatOekonomiAntal_DW)), NA, unique(na.omit(StatOekonomiAntal_DW)))) %>%
   mutate(across("StatOekonomiAntal_DW", \(x) as.character(x))) %>%
   select(-StatOekonomiAntal_DW, everything()) %>%
   
-  # Stat MANGLER ----
-  # StatForskudtTilAntal_DW
-  arrange(EventAar_RD, OrdreDatoTid_RD) %>%
-  mutate(StatForskudtTilAntal_DW == ifelse(
-    OrdreDatoTid_RD != OrdreFoersteDatoTid_DW & grepl("Tilmeldt", BilletStatusSimpel_RD), 1, NA)) 
+  # Stat
+  # StatForskudtTilAntal_DW -- FEJL
+  group_by(EventAar_RD, DeltStatusSimpel_RD, OrdreDatoTid_RD) %>%
+  mutate(StatForskudtTilAntal_DW = ifelse(
+    OrdreDatoTid_RD != OrdreFoersteDatoTid_DW & grepl("Tilmeldt", BilletStatusSimpel_RD), 1, NA)) %>%
   group_by(EventAar_RD) %>%
   mutate(StatForskudtTilAntal_DW = ifelse(is.na(StatForskudtTilAntal_DW), NA, sum(StatForskudtTilAntal_DW, na.rm = TRUE))) %>%
   mutate(StatForskudtTilAntal_DW = ifelse(is.na(StatForskudtTilAntal_DW), NA, paste(
-    ifelse(StatForskudtTilAntal_DW == 1, "forskudt tilmelding", "forskudte tilmeldinger"), IkonBillet_V))) %>%
+    StatForskudtTilAntal_DW, ifelse(
+      StatForskudtTilAntal_DW == 1, "forskudt tilmelding", "forskudte tilmeldinger"), IkonBillet_V))) %>%
   arrange(EventAar_RD, OrdreDatoTid_RD) %>%
-  mutate(StatForskudtTilAntal_DW = unique(na.omit(StatForskudtTilAntal_DW), collapse = " ∙ ")) %>%
+  mutate(StatForskudtTilAntal_DW = ifelse(all(is.na(StatForskudtTilAntal_DW)), NA, unique(na.omit(StatForskudtTilAntal_DW)))) %>%
   ungroup() %>%
   mutate(across("StatForskudtTilAntal_DW", \(x) as.character(x))) %>%
   select(-StatForskudtTilAntal_DW, everything())
