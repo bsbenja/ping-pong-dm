@@ -38,10 +38,6 @@ DataBillet_T$BilletStatus_RD                     : chr "Tilmeldt inkl. betaling"
 DataBillet_T$BilletStatusEmoji_RD                : chr "✔️💲👍"
 DataBillet_T$BilletStatusSimpel_RD               : chr "Tilmeldt"
 DataBillet_T$BilletStatusSimpelIkon_RD           : chr "<iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon>"
-DataBillet_T$BilletTilKatNr_DW                   : int 1
-DataBillet_T$BilletTilKat_DW                     : chr "Ordinær"
-DataBillet_T$BilletTilKatEmoji_DW                : chr "✔️"
-DataBillet_T$BilletTilKatIkon_RD                 : chr "<iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon>"
 DataBillet_T$BilletKatNr_RD                      : int 1
 DataBillet_T$BilletKat_RD                        : chr "Ping Pong"
 DataBillet_T$BilletKatEmoji_RD                   : chr "🏓"
@@ -87,4 +83,4 @@ DataBillet_T$StatOrdreKatAntal_DW                : chr "14 Ordinær (100%) <icon
 DataBillet_T$StatDeltRatingKatAntal_DW           : chr "4 Elite (100%) <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon>"
 DataBillet_T$StatDeltRatingAntal_DW              : chr "Min. 2400 rating <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon> ∙ Gns. 2500 rating <ic"| __truncated__
 DataBillet_T$StatOekonomiAntal_DW                : chr "Omsætning kr. 2000 <iconify-icon icon=mdi:cash></iconify-icon> ∙ Arrangørpris kr. 2000 <iconify-icon icon=mdi:c"| __truncated__
-DataBillet_T$StatForskudtTilAntal_DW             : chr NA
+DataBillet_T$StatForskudtTilAntal_DW             : chr "10 forskudte tilmeldinger <span class=bi-tags-fill></span>"

@@ -227,7 +227,7 @@ DataDeltAndetAkt_T %>%
   remove_column(4:5) %>%
   gsub("\\{\\{&lt;|&lt;", "{{<", .) %>% gsub("&gt;}}", ">}}", .)
 }
-  }
+}
 ```
 
 ## `r paste(IkonGraf_V, "Dashboards")`
@@ -524,10 +524,10 @@ cat(paste0("<h5 style=font-weight:bold>Deltagere</h5>"))
 ```
 
 ```{r}
-#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD)) %>% summarise(length(unique(BilletTilKat_DW))))+1.5)/3.3
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD)) %>% summarise(length(unique(OrdreTilKat_DW))))+1.5)/3.3
 DataAkt_T %>%
   filter(!is.na(DeltID_RD)) %>%
-  ggplot(mapping = aes(y = fct_rev(BilletTilKat_DW), fill = BilletKat_DW)) +
+  ggplot(mapping = aes(y = fct_rev(OrdreTilKat_DW), fill = BilletKat_DW)) +
   geom_bar(width = 0.9, position = position_stack(reverse = TRUE)) +
   geom_text(aes(label = after_stat(count)), stat = "count", position = position_stack(reverse = TRUE),
             vjust = 0.4, hjust = 1, size = 5, color = "#FFFFFF", fontface = "bold") +

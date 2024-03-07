@@ -337,7 +337,35 @@ Data_T <- Data_T %>%
   # OrdreFoersteTidKat_RD
   arrange(OrdreFoersteTidKat_RD) %>%
   mutate(across("OrdreFoersteTidKat_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-OrdreFoersteTidKat_RD, everything())
+  select(-OrdreFoersteTidKat_RD, everything()) %>%
+
+  # OrdreTilKatNr_DW
+  mutate(OrdreTilKat_DW = case_when(
+    grepl("Tilmeldt", BilletStatusSimpel_RD) & OrdreFoersteDatoTid_DW <= convertToDateTime(EventAarFristDatoTid_RD) ~ "Ordinær",
+    grepl("Tilmeldt", BilletStatusSimpel_RD) & OrdreFoersteDatoTid_DW >  convertToDateTime(EventAarFristDatoTid_RD) ~ "Drive-in",
+    grepl("Afbud",    BilletStatusSimpel_RD) ~ "Afbud")) %>%
+  left_join(
+    y = read_excel(
+      InputData_V, col_names = c(
+        "OrdreTilKatNr_DW", "OrdreTilKat_DW", "OrdreTilKatEmoji_DW", "OrdreTilKatIkon_RD"),
+      range = cell_cols("AK:AN")), na_matches = "never", by = "OrdreTilKat_DW") %>%
+  mutate(across("OrdreTilKatNr_DW", \(x) as.integer(x))) %>%
+  select(-OrdreTilKatNr_DW, everything()) %>%
+  
+  # OrdreTilKat_DW
+  arrange(OrdreTilKatNr_DW) %>%
+  mutate(across("OrdreTilKat_DW", \(x) factor(x, levels = unique(x), ordered = T))) %>%
+  select(-OrdreTilKat_DW, everything()) %>%
+  
+  # OrdreTilKatEmoji_DW
+  arrange(OrdreTilKatNr_DW) %>%
+  mutate(across("OrdreTilKatEmoji_DW", \(x) factor(x, levels = unique(x), ordered = T))) %>%
+  select(-OrdreTilKatEmoji_DW, everything()) %>%
+  
+  # OrdreTilKatIkon_RD
+  arrange(OrdreTilKatNr_DW) %>%
+  mutate(across("OrdreTilKatIkon_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
+  select(-OrdreTilKatIkon_RD, everything())
 
 # Billet
 Data_T <- Data_T %>%
@@ -404,34 +432,6 @@ Data_T <- Data_T %>%
   arrange(BilletStatusNr_RD) %>%
   mutate(across("BilletStatusSimpelIkon_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
   select(-BilletStatusSimpelIkon_RD, everything()) %>%
-
-  # BilletTilKatNr_DW
-  mutate(BilletTilKat_DW = case_when(
-    grepl("Tilmeldt", BilletStatusSimpel_RD) & as_date(OrdreFoersteDatoTid_DW) <= convertToDateTime(EventAarFristDatoTid_RD) ~ "Ordinær",
-    grepl("Tilmeldt", BilletStatusSimpel_RD) & as_date(OrdreFoersteDatoTid_DW) >  convertToDateTime(EventAarFristDatoTid_RD) ~ "Drive-in",
-    grepl("Afbud",    BilletStatusSimpel_RD) ~ "Afbud")) %>%
-  left_join(
-    y = read_excel(
-      InputData_V, col_names = c(
-        "BilletTilKatNr_DW", "BilletTilKat_DW", "BilletTilKatEmoji_DW", "BilletTilKatIkon_RD"),
-      range = cell_cols("AK:AN")), na_matches = "never", by = "BilletTilKat_DW") %>%
-  mutate(across("BilletTilKatNr_DW", \(x) as.integer(x))) %>%
-  select(-BilletTilKatNr_DW, everything()) %>%
-  
-  # BilletTilKat_DW
-  arrange(BilletTilKatNr_DW) %>%
-  mutate(across("BilletTilKat_DW", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-BilletTilKat_DW, everything()) %>%
-  
-  # BilletTilKatEmoji_DW
-  arrange(BilletTilKatNr_DW) %>%
-  mutate(across("BilletTilKatEmoji_DW", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-BilletTilKatEmoji_DW, everything()) %>%
-  
-  # BilletTilKatIkon_RD
-  arrange(BilletTilKatNr_DW) %>%
-  mutate(across("BilletTilKatIkon_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-BilletTilKatIkon_RD, everything()) %>%
   
   # BilletKatNr_RD
   mutate(across("BilletKatNr_RD", \(x) as.integer(x))) %>%
@@ -1409,13 +1409,13 @@ Data_T <- Data_T %>%
 
   # StatOrdreKatAntal_DW
   add_count(
-    EventAar_RD, BilletStatusSimpel_RD, BilletTilKat_DW,
+    EventAar_RD, BilletStatusSimpel_RD, OrdreTilKat_DW,
     name = "StatOrdreKatAntal_DW") %>%
   group_by(EventAar_RD) %>%
   mutate(StatOrdreKatAntal_DW = paste0(
-    StatOrdreKatAntal_DW, " ", BilletTilKat_DW , " (", 
-    percent(StatOrdreKatAntal_DW/sum(ifelse(StatOrdreKatAntal_DW == 0, 0, 1)), digits = 0), ") ", BilletTilKatIkon_RD)) %>%
-  arrange(EventAar_RD, BilletTilKat_DW) %>%
+    StatOrdreKatAntal_DW, " ", OrdreTilKat_DW , " (", 
+    percent(StatOrdreKatAntal_DW/sum(ifelse(StatOrdreKatAntal_DW == 0, 0, 1)), digits = 0), ") ", OrdreTilKatIkon_RD)) %>%
+  arrange(EventAar_RD, OrdreTilKat_DW) %>%
   mutate(StatOrdreKatAntal_DW = str_c(unique(na.omit(StatOrdreKatAntal_DW)), collapse = " ∙ ")) %>%
   ungroup() %>%
   mutate(across("StatOrdreKatAntal_DW", \(x) as.character(x))) %>%
@@ -2008,15 +2008,15 @@ DataDeltOrdreKat_T <- Data_T %>%
   group_by(EventAar_RD) %>%
 	distinct(DeltID_RD, .keep_all = T) %>%
 	arrange(EventAar_RD, BilletStatusSimpel_RD, OrdreDatoTid_RD, DeltNavn_RD) %>%
-	mutate(BilletTilKat_DW = paste(
+	mutate(OrdreTilKat_DW = paste(
 	  OrdreFoersteDato_DW_DMAA_DW,
 		"<br>",
-		format(OrdreFoersteDatoTid_DW, "kl. %H:%M"), BilletTilKatIkon_RD)) %>%
+		format(OrdreFoersteDatoTid_DW, "kl. %H:%M"), OrdreTilKatIkon_RD)) %>%
   ungroup() %>%
 	select(
 		" "         = KlubLogo_DW,
 		"Navn"      = DeltNavnBilletKat_DW,
-		"Ordredato" = BilletTilKat_DW,
+		"Ordredato" = OrdreTilKat_DW,
 		BilletStatusSimpel_RD,
 		EventAar_RD)
 
@@ -2212,10 +2212,10 @@ if(InputDataTXT_V == T) {
     StatOrdreKatAntal_DW = paste0(
       DataAkt_T %>%
         filter(!is.na(DeltID_RD)) %>%
-        count(BilletTilKat_DW, BilletTilKatIkon_RD, sort = T) %>%
+        count(OrdreTilKat_DW, OrdreTilKatIkon_RD, sort = T) %>%
         mutate(pct = percent(n/sum(n), digits = 0)) %>%
         mutate(label = paste0(
-          n, " ", BilletTilKat_DW, " (", pct, ") ", BilletTilKatIkon_RD)) %>%
+          n, " ", OrdreTilKat_DW, " (", pct, ") ", OrdreTilKatIkon_RD)) %>%
         summarise(label = str_c(label, collapse = " ∙ "))),
     
     # TJEK - Billetantal billettype
