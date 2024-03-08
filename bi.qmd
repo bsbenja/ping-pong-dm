@@ -108,7 +108,7 @@ Plot.plot({
   marks: [
     Plot.barX(data_filter,
     Plot.groupY({x: "count"},
-    {y: "OrdreTilKat_DW", fill: "BilletKat_DW"}
+    {y: "OrdreKat_DW", fill: "BilletKat_DW"}
     )
     )
   ]
