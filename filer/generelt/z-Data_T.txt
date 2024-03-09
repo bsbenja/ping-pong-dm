@@ -103,8 +103,6 @@ BilletPulje_DW                          : int 1
 BilletPuljeStd_DW                       : int 6
 BilletDelt_DW                           : int 4
 BilletPuljeRest_DW                      : int 2
-BilletPrisSum_DW                        : int 2000
-BilletPrisArrSum_DW                     : int 2000
 BilletPrisRes_DW                        : int 0
 EventNr_RD                              : int 1
 Event_RD                                : Ord.factor w/ 1 level "Ping Pong DM": 1
@@ -269,13 +267,15 @@ DeltKatNr_RD                            : int 1
 DeltKatMin_RD                           : chr "AAAA"
 DeltKatMaks_RD                          : chr "ÅÅÅÅ"
 DeltKat_RD                              : Ord.factor w/ 2 levels "Bordtennisspiller"<..: 1
-DeltStatusSimpel_RD                     : Ord.factor w/ 2 levels "Tilmeldt"<"<q>Totalafbud</q>": 1
+DeltStatusSimpel_DW                     : Ord.factor w/ 2 levels "Tilmeldt"<"<q>Totalafbud</q>": 1
 DeltSnakeSeedNr_DW                      : int 4
 DeltSnakeSeedLagNr_DW                   : int NA
 DeltSnakePuljeNr_DW                     : int NA
-DeltForskudt_DW                         : chr "10"
 DeltAlderForskelAntal_DW                : int 9
 DeltUnik_DW                             : int 1
+DeltKlubUnik_DW                         : int 1
+DeltPingPongUnik_DW                     : int 1
+DeltForskudt_DW                         : int 0
 KlubNr_RD                               : int 27
 Klub_RD                                 : Ord.factor w/ 30 levels "Amager BTK"<"B75"<..: 19
 KlubPostnr_RD                           : chr "8600"
@@ -299,16 +299,16 @@ StatDeltKoenAntal_DW                    : chr "4 Herre (100%) <iconify-icon icon
 StatDeltGenKatAntal_DW                  : chr "4 Gentilmelding (100%) <iconify-icon icon=mdi:autorenew></iconify-icon>"
 StatDeltAlderKatAntal_DW                : chr "4 Senior (100%) <iconify-icon icon=mdi:cake-variant></iconify-icon>"
 StatDeltAlderAntal_DW                   : chr "Yngst 22 år <iconify-icon icon=mdi:cake-variant></iconify-icon> ∙ Gns. 28 år <iconify-icon icon=mdi:cake-varian"| __truncated__
-StatDeltLandsdelAntal_DW                : chr "4 Jylland (100%) <iconify-icon icon=mdi:home></iconify-icon>"
-StatDeltRegionAntal_DW                  : chr "1 Region Nordjylland (25%) <iconify-icon icon=mdi:home></iconify-icon> ∙ 3 Region Midtjylland (75%) <iconify-ic"| __truncated__
+StatDeltLandsdelAntal_DW                : chr "2 Jylland (50%) <iconify-icon icon=mdi:home></iconify-icon> ∙ 4 Jylland (100%) <iconify-icon icon=mdi:home></iconify-icon>"
+StatDeltRegionAntal_DW                  : chr "1 Region Nordjylland (25%) <iconify-icon icon=mdi:home></iconify-icon> ∙ 4 Region Midtjylland (100%) <iconify-i"| __truncated__
 StatDeltKlubKatAntal_DW                 : chr "4 Klub (100%) <iconify-icon icon=mdi:home></iconify-icon>"
 StatKlubAntal_DW                        : chr "3 forskellige klubber <iconify-icon icon=mdi:home></iconify-icon>"
 StatBilletGnsAntal_DW                   : chr "Gns. 3,5 billetter pr. deltager <span class=bi-tags-fill></span>"
 StatOrdreKatAntal_DW                    : chr "14 Ordinær (100%) <iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon>"
 StatDeltRatingKatAntal_DW               : chr "10 Elite (100%) <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon>"
-StatDeltRatingAntal_DW                  : chr "Min. 2400 rating <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon> ∙ Gns. 2500 rating <ic"| __truncated__
-StatOekonomiAntal_DW                    : chr "Omsætning kr. 2000 <iconify-icon icon=mdi:cash></iconify-icon> ∙ Arrangørpris kr. 2000 <iconify-icon icon=mdi:c"| __truncated__
-StatForskudtTilAntal_DW                 : chr "10 forskudte tilmeldinger <span class=bi-tags-fill></span>"
+StatDeltRatingAntal_DW                  : chr "Min. 2300 rating <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon> ∙ Gns. 2510 rating <ic"| __truncated__
+StatOekonomiAntal_DW                    : chr "Omsætning kr. 2.000 <iconify-icon icon=mdi:cash></iconify-icon> ∙ Arrangørpris kr. 2.000 <iconify-icon icon=mdi"| __truncated__
+StatForskudtTilAntal_DW                 : chr "10 forskudt Tilmeldt <span class=bi-tags-fill></span>"
 InfoNedtælling_DW                       : chr "<p style=\"text-align:center;width:50em;max-width:100%\">\n      <b style=font-size:120%;text-transform:upperca"| __truncated__
 InfoPlakatCTA_DW                        : chr "<br><br><a style=display:inline-block;background:#FF4A6E;color:#FFFFFF;border-radius:40px;padding-left:50px;pad"| __truncated__
 InfoForside_DW                          : chr "<i style=font-size:100%><b>Afholdes 21.06.2024 til 22.06.2024 i <a href=https://www.google.dk/maps/place/Sports"| __truncated__
