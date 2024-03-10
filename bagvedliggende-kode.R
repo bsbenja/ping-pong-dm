@@ -540,13 +540,7 @@ Data_T <- Data_T %>%
   select(-BilletPuljeDelt_RD, everything()) %>%
   
   # BilletPulje_DW
-  add_count(
-    EventAar_RD,
-    OrdreStatusSimpelKat_RD,
-    BilletDisciplin_RD,
-    BilletRaekke_RD,
-    BilletSpilFormat_RD,
-    name = "BilletPulje_DW") %>%
+  add_count(EventAar_RD, Billet_RD, OrdreStatusSimpelKat_RD, name = "BilletPulje_DW") %>%
   mutate(BilletPulje_DW = ceiling(BilletPulje_DW/BilletPuljeDelt_RD)) %>%
   mutate(across("BilletPulje_DW", \(x) as.integer(x))) %>%
   select(-BilletPulje_DW, everything()) %>%
@@ -557,13 +551,7 @@ Data_T <- Data_T %>%
   select(-BilletPuljeStd_DW, everything()) %>%
   
   # BilletDelt_DW
-  add_count(
-    EventAar_RD,
-    OrdreStatusSimpelKat_RD,
-    BilletDisciplin_RD,
-    BilletRaekke_RD,
-    BilletSpilFormat_RD,
-    name = "BilletDelt_DW") %>%
+  add_count(EventAar_RD, Billet_RD, OrdreStatusSimpelKat_RD, name = "BilletDelt_DW") %>%
   mutate(across("BilletDelt_DW", \(x) as.integer(x))) %>%
   select(-BilletDelt_DW, everything()) %>%
   
