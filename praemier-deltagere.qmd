@@ -217,7 +217,7 @@ if(InputInfo1234_V %in% c(1, 2, 3, 4)) {
     italic = T, align = "c", font_size = "small", escape = F,
     extra_css = "border:hidden;border-bottom:1.5px solid #111111") %>%
   row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
-  row_spec(which(grepl("Afbud", DataDeltAndetAkt_T$BilletStatusSimpel_RD)),
+  row_spec(which(grepl("Afbud", DataDeltAndetAkt_T$OrdreStatusSimpelKat_RD)),
            strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
   row_spec(which(DataDeltAndetAkt_T$Nr. == "1"),
            extra_css = "border:hidden;border-top:0.7px solid #111111") %>%
@@ -239,10 +239,10 @@ cat(paste0("<h5 style=font-weight:bold>Klubber</h5>"))
 ```
 
 ```{r}
-#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", BilletStatusSimpel_RD)) %>% summarise(length(unique(Klub_RD))))+1.5)/3.3
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(Klub_RD))))+1.5)/3.3
 
 DataAkt_T %>% filter(EventAar_RD == InputEventAarAkt_V) %>%
-	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", BilletStatusSimpel_RD)) %>%
+	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
 	mutate(Klub_RD = paste0(Klub_RD, "&emsp;", KlubLogo_DW)) %>%
 	ggplot(mapping = aes(y = fct_rev(fct_infreq(Klub_RD)), fill = BilletKat_DW)) +
 	geom_bar(width = 0.9, position = position_stack(reverse = T)) +
@@ -277,7 +277,7 @@ DataDeltKlubAkt_T %>%
 			caption = "<i style=font-size:80%>Sorteret efter klubantal</i>") %>%
 	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
 	row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
-	row_spec(which(grepl("Afbud", DataDeltKlubAkt_T$BilletStatusSimpel_RD)),
+	row_spec(which(grepl("Afbud", DataDeltKlubAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
 	column_spec(1, width_min = "2em") %>%
 	column_spec(1:3, extra_css = "border-top:0.7px solid #999999") %>%
@@ -302,7 +302,7 @@ if(nrow(DataAkt_T) == 0) {
 	data.frame() %>% kbl()
 } else {
 	DataAkt_T %>%
-		filter(!is.na(DeltID_RD) & grepl("Tilmeldt", BilletStatusSimpel_RD) & !grepl("Ingen klub|Udlandet", Klub_RD)) %>%
+		filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD) & !grepl("Ingen klub|Udlandet", Klub_RD)) %>%
 		mutate(across("KlubPostnr_RD", \(x) as.integer(x))) %>%
 		distinct(DeltID_RD, .keep_all = T) %>%
 		mutate(KlubRegion_RD = case_when(
@@ -347,7 +347,7 @@ DataDeltByAkt_T %>%
 			caption = "<i style=font-size:80%>Sorteret efter region og postnr.</i>") %>%
 	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
 	row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
-	row_spec(which(grepl("Afbud", DataDeltByAkt_T$BilletStatusSimpel_RD)),
+	row_spec(which(grepl("Afbud", DataDeltByAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
 	column_spec(1, width_min = "2em") %>%
 	column_spec(1:3, extra_css = "border-top:0.7px solid #999999") %>%
@@ -367,9 +367,9 @@ cat(paste0("<h5 style=font-weight:bold>Aldersgrupper</h5>"))
 ```
 
 ```{r}
-#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", BilletStatusSimpel_RD)) %>% summarise(length(unique(DeltAlderKat_RD))))+1.5)/3.3
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltAlderKat_RD))))+1.5)/3.3
 DataAkt_T %>%
-	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", BilletStatusSimpel_RD)) %>%
+	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
 	ggplot(mapping = aes(y = fct_rev(DeltAlderKat_RD), fill = BilletKat_DW)) +
 	geom_bar(width = 0.9, position = position_stack(reverse = T)) +
 	geom_text(aes(label = after_stat(count)), stat = "count", position = position_stack(reverse = T),
@@ -402,7 +402,7 @@ DataDeltAlderKatAkt_T %>%
 			caption = "<i style=font-size:80%>Sorteret efter fødselsdato</i>") %>%
 	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
 	row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
-	row_spec(which(grepl("Afbud", DataDeltAlderKatAkt_T$BilletStatusSimpel_RD)),
+	row_spec(which(grepl("Afbud", DataDeltAlderKatAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
 	column_spec(1, width_min = "2em") %>%
 	column_spec(1:3, extra_css = "border-top:0.7px solid #999999") %>%
@@ -422,10 +422,10 @@ cat(paste0("<h5 style=font-weight:bold>Køn</h5>"))
 ```
 
 ```{r}
-#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", BilletStatusSimpel_RD)) %>% summarise(length(unique(DeltKoen_RD))))+1.5)/3.3
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltKoen_RD))))+1.5)/3.3
 
 DataAkt_T %>%
-	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", BilletStatusSimpel_RD)) %>%
+	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
 	ggplot(mapping = aes(y = fct_rev(fct_infreq(DeltKoen_RD)), fill = BilletKat_DW)) +
 	geom_bar(width = 0.9, position = position_stack(reverse = T)) +
 	geom_text(aes(label = after_stat(count)), stat = "count", position = position_stack(reverse = T),
@@ -451,7 +451,7 @@ DataDeltKoenAkt_T %>%
 			caption = "<i style=font-size:80%>Sorteret efter køn</i>") %>%
 	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
 	row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
-	row_spec(which(grepl("Afbud", DataDeltKoenAkt_T$BilletStatusSimpel_RD)),
+	row_spec(which(grepl("Afbud", DataDeltKoenAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
 	column_spec(1, width_min = "2em") %>%
 	column_spec(3, width_min = "5em") %>%
@@ -472,9 +472,9 @@ cat(paste0("<h5 style=font-weight:bold>Gentilmeldinger</h5>"))
 ```
 
 ```{r}
-#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", BilletStatusSimpel_RD)) %>% summarise(length(unique(DeltGenKat_DW))))+1.5)/3.3
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltGenKat_DW))))+1.5)/3.3
 DataAkt_T %>%
-	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", BilletStatusSimpel_RD)) %>%
+	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
 	ggplot(mapping = aes(y = fct_rev(DeltGen_DW), fill = BilletKat_DW)) +
 	geom_bar(width = 0.9, position = position_stack(reverse = T)) +
 	geom_text(aes(label = after_stat(count)), stat = "count", position = position_stack(reverse = T),
@@ -500,7 +500,7 @@ DataDeltGenTilAkt_T %>%
 			caption = "<i style=font-size:80%>Sorteret efter antal gentilmeldinger</i>") %>%
 	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
 	row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
-	row_spec(which(grepl("Afbud", DataDeltGenTilAkt_T$BilletStatusSimpel_RD)),
+	row_spec(which(grepl("Afbud", DataDeltGenTilAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
 	column_spec(1, width_min = "2em") %>%
 	column_spec(1:3, extra_css = "border-top:0.7px solid #999999") %>%
@@ -555,7 +555,7 @@ DataDeltOrdreKatAkt_T %>%
 			caption = "<i style=font-size:80%>Sorteret efter ældste <q>første ordredato</q></i>") %>%
 	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
 	row_spec(0, background = unique(DataEventAarAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
-	row_spec(which(grepl("Afbud", DataDeltOrdreKatAkt_T$BilletStatusSimpel_RD)),
+	row_spec(which(grepl("Afbud", DataDeltOrdreKatAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = unique(DataEventAarAkt_T$EventAarFarve1_RD)) %>%
 	column_spec(1, width_min = "2em") %>%
 	column_spec(3, width_min = "7em") %>%
