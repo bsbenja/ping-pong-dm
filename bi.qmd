@@ -248,10 +248,10 @@ DataBilletAkt_T <- DataBillet_T %>% filter(
 ```{r}
 #| output: asis
 cat(paste0(
-"<i style=font-size:80%>", DataBilletAkt_T$StatDeltRatingKatAntal_DW, "<br>", DataBilletAkt_T$StatDeltRatingAntal_DW, "<br>", DataBilletAkt_T$StatForskudtTilAntal_DW, "<br>", DataBilletAkt_T$StatOekonomiAntal_DW, "</i>", "<br>", DataEventAarAkt_T$EventAarAabningDatoTid_RD))
+"<i style=font-size:80%>", DataBilletAkt_T$StatDeltRatingKatAntal_DW, "<br>", DataBilletAkt_T$StatDeltRatingAntal_DW, "<br>", DataBilletAkt_T$StatForskudtTilAntal_DW, "<br>", DataBilletAkt_T$StatOekonomiAntal_DW, "<br>", DataEventAarAkt_T$EventAarAabningDatoTid_RD, "</i>"))
 ```
 
-`r DataEventAarAkt_T$EventAarAabningDatoTid_RD`
+`{r} DataEventAarAkt_T$EventAarAabningDatoTid_RD`
 
 ```{r}
 #| output: asis
