@@ -144,7 +144,6 @@ cat(paste0(DataBilletAkt_T$StatOrdreAntal_DW))
 :::
 
 ```{r}
-
 # DataDeltForAkt_T
 if(InputInfo1234_V %in% c(3)) {
   if(nrow(DataDeltForAkt_T) == 0) {
@@ -170,6 +169,7 @@ if(InputInfo1234_V %in% c(3)) {
   }
 }
 
+# DataDeltPuljerAkt_T
 if(InputInfo1234_V %in% c(1, 2, 4)) {
   if(nrow(DataDeltPuljerAkt_T) == 0) {
   data.frame() %>% kbl()
@@ -298,28 +298,24 @@ cat(paste0("<h5 style=font-weight:bold>Danmarkskort</h5>"))
 
 ```{r}
 #| fig-height: 5
-if(nrow(DataAkt_T) == 0) {
-	data.frame() %>% kbl()
-} else {
-	DataAkt_T %>%
-		filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD) & !grepl("Ingen klub|Udlandet", Klub_RD)) %>%
-		mutate(across("KlubPostnr_RD", \(x) as.integer(x))) %>%
-		distinct(DeltID_RD, .keep_all = T) %>%
-		mutate(KlubRegion_RD = case_when(
-			KlubRegion_RD == "Nordjylland" ~ "nordjylland",
-			KlubRegion_RD == "Midtjylland" ~ "midtjylland",
-			KlubRegion_RD == "Syddanmark"  ~ "syddanmark",
-			KlubRegion_RD == "Sjælland"    ~ "sjaelland",
-			KlubRegion_RD == "Hovedstaden" ~ "hovedstaden")) %>%
-		count(KlubPostnr_RD, name = "Deltagerantal", .drop = FALSE) %>%
-		plotDK::plotDK(
-			value        = "Deltagerantal",
-			id           = "KlubPostnr_RD",
-			plotlevel    = "zipcode",
-			show_missing = T,
-			show_borders = F,
-			interactive  = F)
-}
+DataAkt_T %>%
+  filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD) & !grepl("Ingen klub|Udlandet", Klub_RD)) %>%
+	mutate(across("KlubPostnr_RD", \(x) as.integer(x))) %>%
+	distinct(DeltID_RD, .keep_all = T) %>%
+	mutate(KlubRegion_RD = case_when(
+		KlubRegion_RD == "Nordjylland" ~ "nordjylland",
+		KlubRegion_RD == "Midtjylland" ~ "midtjylland",
+		KlubRegion_RD == "Syddanmark"  ~ "syddanmark",
+		KlubRegion_RD == "Sjælland"    ~ "sjaelland",
+		KlubRegion_RD == "Hovedstaden" ~ "hovedstaden")) %>%
+	count(KlubPostnr_RD, name = "Deltagerantal", .drop = FALSE) %>%
+	plotDK::plotDK(
+		value        = "Deltagerantal",
+		id           = "KlubPostnr_RD",
+		plotlevel    = "zipcode",
+		show_missing = T,
+		show_borders = F,
+		interactive  = F)
 ```
 
 ```{r}
