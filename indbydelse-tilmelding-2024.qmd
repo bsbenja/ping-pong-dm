@@ -4,15 +4,14 @@ source(file = "ping-pong-dm-input.R")
 
 ```{r}
 InputEventAarAkt_V <- "Ping Pong DM 2024"
-DataAkt_T <- Data_T %>% filter(EventAar_RD == InputEventAarAkt_V)
-DataEventAarAkt_T <- DataEventAar_T %>% filter(EventAar_RD == InputEventAarAkt_V)
-DataBilletKatAkt_T <- DataBilletKat_T %>% filter(EventAar_RD == InputEventAarAkt_V)
-DataResultSidsteEventAkt_T <- DataResultSidsteEvent_T %>%
-  filter(
-    EventAarSidst_DW == InputEventAarAkt_V
-    & grepl("A-slutspil", DeltSlutspil_RD)
-    & grepl("1|2|3|4", `Placering`))
-DataPraemiePengeAkt_T <- DataPraemiePenge_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+DataAkt_T <- Data_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataBilletKatAkt_T <- DataBilletKat_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataPraemiePengeAkt_T <- DataPraemiePenge_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataResultSidsteEventAkt_T <- DataResultSidsteEvent_T %>% filter(
+  grepl(InputEventAarAkt_V, EventAar_RD) &
+  grepl("A-slutspil", DeltSlutspil_RD) &
+  grepl("[1-4]", Placering))
 ```
 
 ---

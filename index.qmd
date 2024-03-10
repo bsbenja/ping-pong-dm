@@ -3,7 +3,7 @@ source(file = "ping-pong-dm-input.R")
 ```
 
 ```{r}
-DataEventAarAkt_T <- DataEventAar_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 ```
 
 ---

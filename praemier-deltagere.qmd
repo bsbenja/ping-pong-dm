@@ -7,36 +7,36 @@ BilletDisciplinAkt_V  <- "Sandpapir"
 BilletRaekkeAkt_V     <- "Åben"
 BilletSpilFormatAkt_V <- "Single"
 
-DataAkt_T <- Data_T %>% filter(EventAar_RD == InputEventAarAkt_V)
-DataEventAarAkt_T <- DataEventAar_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+DataAkt_T <- Data_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataBilletAkt_T <- DataBillet_T %>% filter(
-  EventAar_RD == InputEventAarAkt_V
-  & BilletDisciplin_RD == BilletDisciplinAkt_V
-  & BilletRaekke_RD == BilletRaekkeAkt_V
-  & BilletSpilFormat_RD ==  BilletSpilFormatAkt_V)
-DataPraemiePengeAkt_T <- DataPraemiePenge_T %>% filter(EventAar_RD == InputEventAarAkt_V)
-DataPraemieYngstAeldstAkt_T <- DataPraemieYngstAeldst_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+  grepl(InputEventAarAkt_V, EventAar_RD) &
+  grepl(BilletDisciplinAkt_V, BilletDisciplin_RD) &
+  grepl(BilletRaekkeAkt_V, BilletRaekke_RD) &
+  grepl(BilletSpilFormatAkt_V, BilletSpilFormat_RD))
+DataPraemiePengeAkt_T <- DataPraemiePenge_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataPraemieYngstAeldstAkt_T <- DataPraemieYngstAeldst_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataDeltForAkt_T <- DataDeltFor_T %>% filter(
-  EventAar_RD == InputEventAarAkt_V
-  & BilletDisciplin_RD == BilletDisciplinAkt_V
-  & BilletRaekke_RD == BilletRaekkeAkt_V
-  & BilletSpilFormat_RD ==  BilletSpilFormatAkt_V)
+  grepl(InputEventAarAkt_V, EventAar_RD) &
+  grepl(BilletDisciplinAkt_V, BilletDisciplin_RD) &
+  grepl(BilletRaekkeAkt_V, BilletRaekke_RD) &
+  grepl(BilletSpilFormatAkt_V, BilletSpilFormat_RD))
 DataDeltPuljerAkt_T <- DataDeltPuljer_T %>% filter(
-  EventAar_RD == InputEventAarAkt_V
-  & BilletDisciplin_RD == BilletDisciplinAkt_V
-  & BilletRaekke_RD == BilletRaekkeAkt_V
-  & BilletSpilFormat_RD ==  BilletSpilFormatAkt_V)
-DataDeltAndetAkt_T <- DataDeltAndet_T %>% filter(EventAar_RD == InputEventAarAkt_V)
-DataDeltKlubAkt_T <- DataDeltKlub_T %>% filter(EventAar_RD == InputEventAarAkt_V)
-DataDeltByAkt_T <- DataDeltBy_T %>% filter(EventAar_RD == InputEventAarAkt_V)
-DataDeltAlderKatAkt_T <- DataDeltAlderKat_T %>% filter(EventAar_RD == InputEventAarAkt_V)
-DataDeltKoenAkt_T <- DataDeltKoen_T %>% filter(EventAar_RD == InputEventAarAkt_V)
-DataDeltGenTilAkt_T <- DataDeltGenTil_T %>% filter(EventAar_RD == InputEventAarAkt_V)
-DataDeltOrdreKatAkt_T <- DataDeltOrdreKat_T %>% filter(EventAar_RD == InputEventAarAkt_V)
-DataResultSidsteEventAkt_T <- DataResultSidsteEvent_T %>%
-  filter(EventAarSidst_DW == InputEventAarAkt_V
-    & grepl("A-slutspil", DeltSlutspil_RD)
-    & grepl("1|2|3|4", `Placering`))
+  grepl(InputEventAarAkt_V, EventAar_RD) &
+  grepl(BilletDisciplinAkt_V, BilletDisciplin_RD) &
+  grepl(BilletRaekkeAkt_V, BilletRaekke_RD) &
+  grepl(BilletSpilFormatAkt_V, BilletSpilFormat_RD))
+DataDeltAndetAkt_T <- DataDeltAndet_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataDeltKlubAkt_T <- DataDeltKlub_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataDeltByAkt_T <- DataDeltBy_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataDeltAlderKatAkt_T <- DataDeltAlderKat_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataDeltKoenAkt_T <- DataDeltKoen_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataDeltGenTilAkt_T <- DataDeltGenTil_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataDeltOrdreKatAkt_T <- DataDeltOrdreKat_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataResultSidsteEventAkt_T <- DataResultSidsteEvent_T %>% filter(
+  grepl(InputEventAarAkt_V, EventAarSidst_DW) &
+  grepl("A-slutspil", DeltSlutspil_RD) &
+  grepl("1|2|3|4", `Placering`))
 ```
 
 ---
@@ -125,10 +125,10 @@ if(nrow(DataPraemieYngstAeldstAkt_T) == 0) {
     column_spec(1, bold = T) %>%
     column_spec(1:4, extra_css = "border-top:0.7px solid #999999") %>%
     footnote(ifelse(
-      DataBilletAkt_T$StatAlderForskelAntal_DW == 0, "<i style=font-size:80%>Ingen aldersforskel.</i>",
-      paste("<i style=font-size:80%>Aldersforskel", DataBilletAkt_T$StatAlderForskelAntal_DW, "år.</i>")),
+      unique(DataPraemieYngstAeldstAkt_T$StatAlderForskelAntal_DW) == 0, "<i style=font-size:80%>Ingen aldersforskel.</i>",
+      paste("<i style=font-size:80%>Aldersforskel", unique(DataPraemieYngstAeldstAkt_T$StatAlderForskelAntal_DW), "år.</i>")),
       general_title = "", escape = F) %>%
-    remove_column(5)
+    remove_column(5:6)
 }
 ```
 

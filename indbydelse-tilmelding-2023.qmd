@@ -4,10 +4,10 @@ source(file = "ping-pong-dm-input.R")
 
 ```{r}
 InputEventAarAkt_V <- "Ping Pong DM 2023"
-DataAkt_T <- Data_T %>% filter(EventAar_RD == InputEventAarAkt_V)
-DataEventAarAkt_T <- DataEventAar_T %>% filter(EventAar_RD == InputEventAarAkt_V)
-DataBilletKatAkt_T <- DataBilletKat_T %>% filter(EventAar_RD == InputEventAarAkt_V)
-DataPraemiePengeAkt_T <- DataPraemiePenge_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+DataAkt_T <- Data_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataBilletKatAkt_T <- DataBilletKat_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataPraemiePengeAkt_T <- DataPraemiePenge_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 ```
 
 ---
@@ -74,35 +74,35 @@ data.frame(
 		IkonFest_V),
 	"Klokkeslæt" = c(
 		paste(
-    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(-90), "%H:%M"),"-",
-    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+465), "%H:%M")),
+    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(-90), "%H:%M"),"-",
+    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+465), "%H:%M")),
     paste(
-    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(-90), "%H:%M"),"-",
-    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(-15), "%H:%M")),
+    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(-90), "%H:%M"),"-",
+    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(-15), "%H:%M")),
     paste(
-    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(-15), "%H:%M"),"-",
-    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+0), "%H:%M")),
+    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(-15), "%H:%M"),"-",
+    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+0), "%H:%M")),
     paste(
-    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+0), "%H:%M"),"-",
-    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+180), "%H:%M")),
+    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+0), "%H:%M"),"-",
+    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+180), "%H:%M")),
     paste(
-    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+180), "%H:%M"),"-",
-    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+330), "%H:%M")),
+    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+180), "%H:%M"),"-",
+    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+330), "%H:%M")),
     paste(
-    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+330), "%H:%M"),"-",
-    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+450), "%H:%M")),
+    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+330), "%H:%M"),"-",
+    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+450), "%H:%M")),
     paste(
-    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+450), "%H:%M"),"-",
-    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+465), "%H:%M")),
+    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+450), "%H:%M"),"-",
+    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+465), "%H:%M")),
     paste(
-    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+465), "%H:%M"),"-",
-    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+510), "%H:%M")),
-    paste("Fra", format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+510), "%H:%M"))),
+    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+465), "%H:%M"),"-",
+    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+510), "%H:%M")),
+    paste("Fra", format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+510), "%H:%M"))),
 	"Type" = c(
 		paste0("<a style=color:#000000;text-decoration:none href=indbydelse-tilmelding-2023.qmd#ping-pong", ">DM i Ping Pong ", DataEventAarAkt_T$EventAarStartDato_DW_Aar_DW, "</a>"),
     paste(
     	"Mulighed for opvarmning.<br><b>Check-in senest",
-    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(-30), "%H:%M."), "</b>"),
+    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(-30), "%H:%M."), "</b>"),
     "Velkomst og gruppebillede.",
     "Puljespil.",
     "A-/B-slutspil.",

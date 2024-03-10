@@ -236,13 +236,13 @@ BilletDisciplinAkt_V  <- "Sandpapir"
 BilletSpilFormatAkt_V <- "Single"
 BilletRaekkeAkt_V     <- "Åben"
 
-DataAkt_T <- Data_T %>% filter(EventAar_RD == InputEventAarAkt_V)
-DataEventAarAkt_T <- DataEventAar_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+DataAkt_T <- Data_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataBilletAkt_T <- DataBillet_T %>% filter(
-  EventAar_RD == InputEventAarAkt_V
-  & BilletDisciplin_RD == BilletDisciplinAkt_V
-  & BilletRaekke_RD == BilletRaekkeAkt_V
-  & BilletSpilFormat_RD ==  BilletSpilFormatAkt_V)
+  grepl(InputEventAarAkt_V, EventAar_RD) &
+  grepl(BilletDisciplinAkt_V, BilletDisciplin_RD) &
+  grepl(BilletRaekkeAkt_V, BilletRaekke_RD) &
+  grepl(BilletSpilFormatAkt_V, BilletSpilFormat_RD))
 ```
 
 ```{r}
