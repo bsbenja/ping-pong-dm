@@ -1,106 +1,106 @@
-DataEventAar_T$EventAarNr_RD                           : chr "<code>9</code>"
-DataEventAar_T$EventAar_RD                             : chr "<code>Ping Pong DM 2023</code>"
-DataEventAar_T$EventAarSidst_DW                        : chr "<code>Ping Pong DM 2024</code>"
-DataEventAar_T$EventAarFristDatoTid_RD                 : chr "<code>2023-06-09 23:59:59</code>"
-DataEventAar_T$EventAarFristDato_DW                    : chr "<code>2023-06-09</code>"
-DataEventAar_T$EventAarFristDato_DW_Aar_DW             : chr "<code>2023</code>"
-DataEventAar_T$EventAarFristDato_DW_AarDag_DW          : chr "<code>160</code>"
-DataEventAar_T$EventAarFristDato_DW_KvartalNr_DW       : chr "<code>2</code>"
-DataEventAar_T$EventAarFristDato_DW_KvartalNavn_DW     : chr "<code>2. kvartal</code>"
-DataEventAar_T$EventAarFristDato_DW_MaanedNr_DW        : chr "<code>6</code>"
-DataEventAar_T$EventAarFristDato_DW_MaanedNavnLang_DW  : chr "<code>juni</code>"
-DataEventAar_T$EventAarFristDato_DW_MaanedNavnKort_DW  : chr "<code>jun</code>"
-DataEventAar_T$EventAarFristDato_DW_MaanedDag_DW       : chr "<code>9</code>"
-DataEventAar_T$EventAarFristDato_DW_MaanedDagNavn_DW   : chr "<code>9. juni</code>"
-DataEventAar_T$EventAarFristDato_DW_Uge_DW             : chr "<code>23</code>"
-DataEventAar_T$EventAarFristDato_DW_UgeDag_DW          : chr "<code>5</code>"
-DataEventAar_T$EventAarFristDato_DW_UgeDagNavnLang_DW  : chr "<code>fredag</code>"
-DataEventAar_T$EventAarFristDato_DW_UgeDagNavnKort_DW  : chr "<code>fre</code>"
-DataEventAar_T$EventAarFristDato_DW_DMAA_DW            : chr "<code>09.06.2023</code>"
-DataEventAar_T$EventAarAabningDatoTid_RD               : chr "<code>2023-03-15 18:30:00</code>"
-DataEventAar_T$EventAarAabningDato_DW                  : chr "<code>2023-03-15</code>"
-DataEventAar_T$EventAarAabningDato_DW_Aar_DW           : chr "<code>2023</code>"
-DataEventAar_T$EventAarAabningDato_DW_AarDag_DW        : chr "<code>74</code>"
-DataEventAar_T$EventAarAabningDato_DW_KvartalNr_DW     : chr "<code>1</code>"
-DataEventAar_T$EventAarAabningDato_DW_KvartalNavn_DW   : chr "<code>1. kvartal</code>"
-DataEventAar_T$EventAarAabningDato_DW_MaanedNr_DW      : chr "<code>3</code>"
-DataEventAar_T$EventAarAabningDato_DW_MaanedNavnLang_DW: chr "<code>marts</code>"
-DataEventAar_T$EventAarAabningDato_DW_MaanedNavnKort_DW: chr "<code>mar</code>"
-DataEventAar_T$EventAarAabningDato_DW_MaanedDag_DW     : chr "<code>15</code>"
-DataEventAar_T$EventAarAabningDato_DW_MaanedDagNavn_DW : chr "<code>15. marts</code>"
-DataEventAar_T$EventAarAabningDato_DW_Uge_DW           : chr "<code>11</code>"
-DataEventAar_T$EventAarAabningDato_DW_UgeDag_DW        : chr "<code>3</code>"
-DataEventAar_T$EventAarAabningDato_DW_UgeDagNavnLang_DW: chr "<code>onsdag</code>"
-DataEventAar_T$EventAarAabningDato_DW_UgeDagNavnKort_DW: chr "<code>ons</code>"
-DataEventAar_T$EventAarAabningDato_DW_DMAA_DW          : chr "<code>15.03.2023</code>"
-DataEventAar_T$EventAarRatingDatoTid_RD                : chr "<code>2023-06-09</code>"
-DataEventAar_T$EventAarRatingDato_DW                   : chr "<code>2023-06-09</code>"
-DataEventAar_T$EventAarRatingDato_DW_Aar_DW            : chr "<code>2023</code>"
-DataEventAar_T$EventAarRatingDato_DW_AarDag_DW         : chr "<code>160</code>"
-DataEventAar_T$EventAarRatingDato_DW_KvartalNr_DW      : chr "<code>2</code>"
-DataEventAar_T$EventAarRatingDato_DW_KvartalNavn_DW    : chr "<code>2. kvartal</code>"
-DataEventAar_T$EventAarRatingDato_DW_MaanedNr_DW       : chr "<code>6</code>"
-DataEventAar_T$EventAarRatingDato_DW_MaanedNavnLang_DW : chr "<code>juni</code>"
-DataEventAar_T$EventAarRatingDato_DW_MaanedNavnKort_DW : chr "<code>jun</code>"
-DataEventAar_T$EventAarRatingDato_DW_MaanedDag_DW      : chr "<code>9</code>"
-DataEventAar_T$EventAarRatingDato_DW_MaanedDagNavn_DW  : chr "<code>9. juni</code>"
-DataEventAar_T$EventAarRatingDato_DW_Uge_DW            : chr "<code>23</code>"
-DataEventAar_T$EventAarRatingDato_DW_UgeDag_DW         : chr "<code>5</code>"
-DataEventAar_T$EventAarRatingDato_DW_UgeDagNavnLang_DW : chr "<code>fredag</code>"
-DataEventAar_T$EventAarRatingDato_DW_UgeDagNavnKort_DW : chr "<code>fre</code>"
-DataEventAar_T$EventAarRatingDato_DW_DMAA_DW           : chr "<code>09.06.2023</code>"
-DataEventAar_T$EventAarPraemieSpons_RD                 : chr "<code>TRUE</code>"
-DataEventAar_T$EventAarSted_RD                         : chr "<code>Hørning Idrætscenter</code>"
-DataEventAar_T$EventAarAdr_RD                          : chr "<code>Toftevej 53</code>"
-DataEventAar_T$EventAarPostnr_RD                       : chr "<code>8362</code>"
-DataEventAar_T$EventAarBy_RD                           : chr "<code>Hørning</code>"
-DataEventAar_T$EventAarPostnrBy_RD                     : chr "<code>8362 Hørning</code>"
-DataEventAar_T$EventAarFarve1_RD                       : chr "<code>#3D88CB</code>"
-DataEventAar_T$EventAarFarve2_RD                       : chr "<code>#D6EAF8</code>"
-DataEventAar_T$EventAarStedURL_RD                      : chr "<code>https://www.google.dk/maps/place/H%C3%B8rning+Idr%C3%A6tscenter/@56.09091,10.0318113,17z/data=!3m1!4b1!4m"| __truncated__
-DataEventAar_T$EventAarUUID_RD                         : chr "<code>0ee63c56fed64db5a26e7c8a1f1a2c18</code>"
-DataEventAar_T$EventAarToken_RD                        : chr "<code>77df96dc37b92daa27c050b8f7f1aafa9b47b7b0</code>"
-DataEventAar_T$EventAarStartDatoTid_DW                 : chr "<code>2023-06-17 10:30:00</code>"
-DataEventAar_T$EventAarStartDato_DW                    : chr "<code>2023-06-17</code>"
-DataEventAar_T$EventAarStartDato_DW_Aar_DW             : chr "<code>2023</code>"
-DataEventAar_T$EventAarStartDato_DW_AarDag_DW          : chr "<code>168</code>"
-DataEventAar_T$EventAarStartDato_DW_KvartalNr_DW       : chr "<code>2</code>"
-DataEventAar_T$EventAarStartDato_DW_KvartalNavn_DW     : chr "<code>2. kvartal</code>"
-DataEventAar_T$EventAarStartDato_DW_MaanedNr_DW        : chr "<code>6</code>"
-DataEventAar_T$EventAarStartDato_DW_MaanedNavnLang_DW  : chr "<code>juni</code>"
-DataEventAar_T$EventAarStartDato_DW_MaanedNavnKort_DW  : chr "<code>jun</code>"
-DataEventAar_T$EventAarStartDato_DW_MaanedDag_DW       : chr "<code>17</code>"
-DataEventAar_T$EventAarStartDato_DW_MaanedDagNavn_DW   : chr "<code>17. juni</code>"
-DataEventAar_T$EventAarStartDato_DW_Uge_DW             : chr "<code>24</code>"
-DataEventAar_T$EventAarStartDato_DW_UgeDag_DW          : chr "<code>6</code>"
-DataEventAar_T$EventAarStartDato_DW_UgeDagNavnLang_DW  : chr "<code>lørdag</code>"
-DataEventAar_T$EventAarStartDato_DW_UgeDagNavnKort_DW  : chr "<code>lør</code>"
-DataEventAar_T$EventAarStartDato_DW_DMAA_DW            : chr "<code>17.06.2023</code>"
-DataEventAar_T$EventAarSlutDatoTid_DW                  : chr "<code>2023-06-17 23:59:59</code>"
-DataEventAar_T$EventAarSlutDato_DW                     : chr "<code>2023-06-17</code>"
-DataEventAar_T$EventAarSlutDato_DW_Aar_DW              : chr "<code>2023</code>"
-DataEventAar_T$EventAarSlutDato_DW_AarDag_DW           : chr "<code>168</code>"
-DataEventAar_T$EventAarSlutDato_DW_KvartalNr_DW        : chr "<code>2</code>"
-DataEventAar_T$EventAarSlutDato_DW_KvartalNavn_DW      : chr "<code>2. kvartal</code>"
-DataEventAar_T$EventAarSlutDato_DW_MaanedNr_DW         : chr "<code>6</code>"
-DataEventAar_T$EventAarSlutDato_DW_MaanedNavnLang_DW   : chr "<code>juni</code>"
-DataEventAar_T$EventAarSlutDato_DW_MaanedNavnKort_DW   : chr "<code>jun</code>"
-DataEventAar_T$EventAarSlutDato_DW_MaanedDag_DW        : chr "<code>17</code>"
-DataEventAar_T$EventAarSlutDato_DW_MaanedDagNavn_DW    : chr "<code>17. juni</code>"
-DataEventAar_T$EventAarSlutDato_DW_Uge_DW              : chr "<code>24</code>"
-DataEventAar_T$EventAarSlutDato_DW_UgeDag_DW           : chr "<code>6</code>"
-DataEventAar_T$EventAarSlutDato_DW_UgeDagNavnLang_DW   : chr "<code>lørdag</code>"
-DataEventAar_T$EventAarSlutDato_DW_UgeDagNavnKort_DW   : chr "<code>lør</code>"
-DataEventAar_T$EventAarSlutDato_DW_DMAA_DW             : chr "<code>17.06.2023</code>"
-DataEventAar_T$EventAarDato_DW                         : chr "<code>17.06.2023</code>"
-DataEventAar_T$EventAarStedURL_DW                      : chr "<code><a href=https://www.google.dk/maps/place/H%C3%B8rning+Idr%C3%A6tscenter/@56.09091,10.0318113,17z/data=!3m"| __truncated__
-DataEventAar_T$EventAarStedAdrPostnrURL_DW             : chr "<code><a href=https://www.google.dk/maps/place/H%C3%B8rning+Idr%C3%A6tscenter/@56.09091,10.0318113,17z/data=!3m"| __truncated__
-DataEventAar_T$EventAarFra2021_DW                      : chr "<code>TRUE</code>"
+DataEventAar_T$EventAarNr_RD                           : int 10
+DataEventAar_T$EventAar_RD                             : chr "Ping Pong DM 2024"
+DataEventAar_T$EventAarSidst_DW                        : chr NA
+DataEventAar_T$EventAarFristDatoTid_RD                 : POSIXct[1:1], format: "2024-06-09 23:59:59"
+DataEventAar_T$EventAarFristDato_DW                    : Date[1:1], format: "2024-06-09"
+DataEventAar_T$EventAarFristDato_DW_Aar_DW             : int 2024
+DataEventAar_T$EventAarFristDato_DW_AarDag_DW          : int 161
+DataEventAar_T$EventAarFristDato_DW_KvartalNr_DW       : int 2
+DataEventAar_T$EventAarFristDato_DW_KvartalNavn_DW     : chr "2. kvartal"
+DataEventAar_T$EventAarFristDato_DW_MaanedNr_DW        : int 6
+DataEventAar_T$EventAarFristDato_DW_MaanedNavnLang_DW  : chr "juni"
+DataEventAar_T$EventAarFristDato_DW_MaanedNavnKort_DW  : chr "jun"
+DataEventAar_T$EventAarFristDato_DW_MaanedDag_DW       : int 9
+DataEventAar_T$EventAarFristDato_DW_MaanedDagNavn_DW   : chr "9. juni"
+DataEventAar_T$EventAarFristDato_DW_Uge_DW             : int 23
+DataEventAar_T$EventAarFristDato_DW_UgeDag_DW          : int 7
+DataEventAar_T$EventAarFristDato_DW_UgeDagNavnLang_DW  : chr "søndag"
+DataEventAar_T$EventAarFristDato_DW_UgeDagNavnKort_DW  : chr "søn"
+DataEventAar_T$EventAarFristDato_DW_DMAA_DW            : chr "09.06.2024"
+DataEventAar_T$EventAarAabningDatoTid_RD               : POSIXct[1:1], format: "2024-03-13 18:30:00"
+DataEventAar_T$EventAarAabningDato_DW                  : Date[1:1], format: "2024-03-13"
+DataEventAar_T$EventAarAabningDato_DW_Aar_DW           : int 2024
+DataEventAar_T$EventAarAabningDato_DW_AarDag_DW        : int 73
+DataEventAar_T$EventAarAabningDato_DW_KvartalNr_DW     : int 1
+DataEventAar_T$EventAarAabningDato_DW_KvartalNavn_DW   : chr "1. kvartal"
+DataEventAar_T$EventAarAabningDato_DW_MaanedNr_DW      : int 3
+DataEventAar_T$EventAarAabningDato_DW_MaanedNavnLang_DW: chr "marts"
+DataEventAar_T$EventAarAabningDato_DW_MaanedNavnKort_DW: chr "mar"
+DataEventAar_T$EventAarAabningDato_DW_MaanedDag_DW     : int 13
+DataEventAar_T$EventAarAabningDato_DW_MaanedDagNavn_DW : chr "13. marts"
+DataEventAar_T$EventAarAabningDato_DW_Uge_DW           : int 11
+DataEventAar_T$EventAarAabningDato_DW_UgeDag_DW        : int 3
+DataEventAar_T$EventAarAabningDato_DW_UgeDagNavnLang_DW: chr "onsdag"
+DataEventAar_T$EventAarAabningDato_DW_UgeDagNavnKort_DW: chr "ons"
+DataEventAar_T$EventAarAabningDato_DW_DMAA_DW          : chr "13.03.2024"
+DataEventAar_T$EventAarRatingDatoTid_RD                : Date[1:1], format: "2024-06-07"
+DataEventAar_T$EventAarRatingDato_DW                   : Date[1:1], format: "2024-06-07"
+DataEventAar_T$EventAarRatingDato_DW_Aar_DW            : int 2024
+DataEventAar_T$EventAarRatingDato_DW_AarDag_DW         : int 159
+DataEventAar_T$EventAarRatingDato_DW_KvartalNr_DW      : int 2
+DataEventAar_T$EventAarRatingDato_DW_KvartalNavn_DW    : chr "2. kvartal"
+DataEventAar_T$EventAarRatingDato_DW_MaanedNr_DW       : int 6
+DataEventAar_T$EventAarRatingDato_DW_MaanedNavnLang_DW : chr "juni"
+DataEventAar_T$EventAarRatingDato_DW_MaanedNavnKort_DW : chr "jun"
+DataEventAar_T$EventAarRatingDato_DW_MaanedDag_DW      : int 7
+DataEventAar_T$EventAarRatingDato_DW_MaanedDagNavn_DW  : chr "7. juni"
+DataEventAar_T$EventAarRatingDato_DW_Uge_DW            : int 23
+DataEventAar_T$EventAarRatingDato_DW_UgeDag_DW         : int 5
+DataEventAar_T$EventAarRatingDato_DW_UgeDagNavnLang_DW : chr "fredag"
+DataEventAar_T$EventAarRatingDato_DW_UgeDagNavnKort_DW : chr "fre"
+DataEventAar_T$EventAarRatingDato_DW_DMAA_DW           : chr "07.06.2024"
+DataEventAar_T$EventAarPraemieSpons_RD                 : logi TRUE
+DataEventAar_T$EventAarSted_RD                         : chr "Sportscenter Herning"
+DataEventAar_T$EventAarAdr_RD                          : chr "Holingknuden 3"
+DataEventAar_T$EventAarPostnr_RD                       : int 7400
+DataEventAar_T$EventAarBy_RD                           : chr "Herning"
+DataEventAar_T$EventAarPostnrBy_RD                     : chr "7400 Herning"
+DataEventAar_T$EventAarFarve1_RD                       : chr "#1A5276"
+DataEventAar_T$EventAarFarve2_RD                       : chr "#D4E6F1"
+DataEventAar_T$EventAarStedURL_RD                      : chr "https://www.google.dk/maps/place/Sportscenter+Herning/@56.157455,8.9619456,17z/data=!3m1!4b1!4m6!3m5!1s0x464bb9"| __truncated__
+DataEventAar_T$EventAarUUID_RD                         : chr "0ee63c56fed64db5a26e7c8a1f1a2c18"
+DataEventAar_T$EventAarToken_RD                        : chr "77df96dc37b92daa27c050b8f7f1aafa9b47b7b0"
+DataEventAar_T$EventAarStartDatoTid_DW                 : POSIXct[1:1], format: "2024-06-21 16:00:00"
+DataEventAar_T$EventAarStartDato_DW                    : Date[1:1], format: "2024-06-21"
+DataEventAar_T$EventAarStartDato_DW_Aar_DW             : int 2024
+DataEventAar_T$EventAarStartDato_DW_AarDag_DW          : int 173
+DataEventAar_T$EventAarStartDato_DW_KvartalNr_DW       : int 2
+DataEventAar_T$EventAarStartDato_DW_KvartalNavn_DW     : chr "2. kvartal"
+DataEventAar_T$EventAarStartDato_DW_MaanedNr_DW        : int 6
+DataEventAar_T$EventAarStartDato_DW_MaanedNavnLang_DW  : chr "juni"
+DataEventAar_T$EventAarStartDato_DW_MaanedNavnKort_DW  : chr "jun"
+DataEventAar_T$EventAarStartDato_DW_MaanedDag_DW       : int 21
+DataEventAar_T$EventAarStartDato_DW_MaanedDagNavn_DW   : chr "21. juni"
+DataEventAar_T$EventAarStartDato_DW_Uge_DW             : int 25
+DataEventAar_T$EventAarStartDato_DW_UgeDag_DW          : int 5
+DataEventAar_T$EventAarStartDato_DW_UgeDagNavnLang_DW  : chr "fredag"
+DataEventAar_T$EventAarStartDato_DW_UgeDagNavnKort_DW  : chr "fre"
+DataEventAar_T$EventAarStartDato_DW_DMAA_DW            : chr "21.06.2024"
+DataEventAar_T$EventAarSlutDatoTid_DW                  : POSIXct[1:1], format: "2024-06-22 23:59:59"
+DataEventAar_T$EventAarSlutDato_DW                     : Date[1:1], format: "2024-06-22"
+DataEventAar_T$EventAarSlutDato_DW_Aar_DW              : int 2024
+DataEventAar_T$EventAarSlutDato_DW_AarDag_DW           : int 174
+DataEventAar_T$EventAarSlutDato_DW_KvartalNr_DW        : int 2
+DataEventAar_T$EventAarSlutDato_DW_KvartalNavn_DW      : chr "2. kvartal"
+DataEventAar_T$EventAarSlutDato_DW_MaanedNr_DW         : int 6
+DataEventAar_T$EventAarSlutDato_DW_MaanedNavnLang_DW   : chr "juni"
+DataEventAar_T$EventAarSlutDato_DW_MaanedNavnKort_DW   : chr "jun"
+DataEventAar_T$EventAarSlutDato_DW_MaanedDag_DW        : int 22
+DataEventAar_T$EventAarSlutDato_DW_MaanedDagNavn_DW    : chr "22. juni"
+DataEventAar_T$EventAarSlutDato_DW_Uge_DW              : int 25
+DataEventAar_T$EventAarSlutDato_DW_UgeDag_DW           : int 6
+DataEventAar_T$EventAarSlutDato_DW_UgeDagNavnLang_DW   : chr "lørdag"
+DataEventAar_T$EventAarSlutDato_DW_UgeDagNavnKort_DW   : chr "lør"
+DataEventAar_T$EventAarSlutDato_DW_DMAA_DW             : chr "22.06.2024"
+DataEventAar_T$EventAarDato_DW                         : chr "21.06.2024 til 22.06.2024"
+DataEventAar_T$EventAarStedURL_DW                      : chr "<a href=https://www.google.dk/maps/place/Sportscenter+Herning/@56.157455,8.9619456,17z/data=!3m1!4b1!4m6!3m5!1s"| __truncated__
+DataEventAar_T$EventAarStedAdrPostnrURL_DW             : chr "<a href=https://www.google.dk/maps/place/Sportscenter+Herning/@56.157455,8.9619456,17z/data=!3m1!4b1!4m6!3m5!1s"| __truncated__
+DataEventAar_T$EventAarFra2021_DW                      : logi TRUE
 DataEventAar_T$InfoNedtælling_DW                       : chr "<p style=\"text-align:center;width:50em;max-width:100%\">\n      <b style=font-size:120%;text-transform:upperca"| __truncated__
 DataEventAar_T$InfoPlakatCTA_DW                        : chr "<br><br><a style=display:inline-block;background:#FF4A6E;color:#FFFFFF;border-radius:40px;padding-left:50px;pad"| __truncated__
-DataEventAar_T$InfoForside_DW                          : chr "<i style=font-size:100%> <b>Afholdes  17.06.2023  i  <a href=https://www.google.dk/maps/place/H%C3%B8rning+Idr%"| __truncated__
-DataEventAar_T$InfoFacebook_DW                         : chr "<i><p>Del gerne budskabet via [<b>Facebook-begivenheden <q>PING PONG DM 2023</q></b>]({{< var var.facebook_even"| __truncated__
-DataEventAar_T$InfoTipIndbydelse_DW                    : chr "<span class=bi-tags-fill></span> Indbydelse, tidsplan og praktisk info til Ping Pong DM 2023 ses [<b>HER</b>](i"| __truncated__
+DataEventAar_T$InfoForside_DW                          : chr "<i style=font-size:100%> <b>Afholdes  21.06.2024 til 22.06.2024  i  <a href=https://www.google.dk/maps/place/Sp"| __truncated__
+DataEventAar_T$InfoFacebook_DW                         : chr "<i><p>Del gerne budskabet via [<b>Facebook-begivenheden <q>PING PONG DM 2024</q></b>]({{< var var.facebook_even"| __truncated__
+DataEventAar_T$InfoTipIndbydelse_DW                    : chr "<span class=bi-tags-fill></span> Indbydelse, tidsplan og praktisk info til Ping Pong DM 2024 ses [<b>HER</b>](i"| __truncated__
 DataEventAar_T$InfoTipPraemierDeltagere_DW             : chr "<p> <iconify-icon icon=mdi:autorenew></iconify-icon>  Præmier og deltagere opdateres løbende til  Ping Pong DM "| __truncated__
 DataEventAar_T$InfoTipRegler_DW                        : chr "<iconify-icon icon=mdi:scale-balance></iconify-icon> I Ping Pong tages det bedste fra fortidens- og nutidens bo"| __truncated__
 DataEventAar_T$InfoTipVM_DW                            : chr "<iconify-icon icon=mdi:earth></iconify-icon> World Championship of Ping Pong (WCPP) afholdes sædvanligvis i Lon"| __truncated__

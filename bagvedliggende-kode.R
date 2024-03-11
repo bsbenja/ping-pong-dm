@@ -1597,14 +1597,12 @@ Data_T <- Data_T %>%
 # DataEventAar_T
 DataEventAar_T <- Data_T %>%
   mutate(across(where(~ is.factor(.)), as.character)) %>%
-  mutate(across(starts_with(c("EventAar")), ~ paste0("<code>", ., "</code>"))) %>%
   arrange(desc(EventAarNr_RD)) %>%
   distinct(across(starts_with(c("EventAar", "Info"))))
 
 # DataBillet_T
 DataBillet_T <- Data_T %>% filter(grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
   mutate(across(where(~ is.factor(.)), as.character)) %>%
-  mutate(across(everything(), ~ paste0("<code>", ., "</code>"))) %>%
   arrange(desc(BilletNr_RD)) %>%
   distinct(across(starts_with(c("EventAar_RD", "Billet", "Stat"))))
 
@@ -1736,7 +1734,6 @@ DataPraemieYngstAeldst_T <- Data_T %>%
     "&emsp;" = KlubLogo_DW,
     "Navn"   = DeltNavnBilletKat_DW,
     "Født"   = Født,
-    StatAlderForskelAntal_DW,
     EventAar_RD)
 
 #' # Deltagere
@@ -1964,7 +1961,7 @@ DataDeltOrdreKat_T <- Data_T %>%
 #' # Aktuel T/F
 # Aktuel T/F --------------------------------------------------------------
 
-DataEventAarAkt_T <- DataEventAar_T %>% filter(EventAar_RD == InputEventAarAkt_V)
+DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 
 #' ## BilletFix eventordre
 #+ eval=F, warning=F, message=F

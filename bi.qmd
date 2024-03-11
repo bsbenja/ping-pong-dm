@@ -300,7 +300,7 @@ datatable(
 
 ```{r}
 DataPraemiePenge_T %>%
-  filter(EventAar_RD == InputEventAarAkt_V) %>%
+  filter(grepl(InputEventAarAkt_V, EventAar_RD)) %>%
   select(` `, Præmiepenge, Pct.) %>%
   datatable(
     style = "bulma",
@@ -312,7 +312,7 @@ DataPraemiePenge_T %>%
 
 ```{r}
 DataPraemiePenge_T %>%
-  filter(EventAar_RD == InputEventAarAkt_V) %>%
+  filter(grepl(InputEventAarAkt_V, EventAar_RD)) %>%
   select(` `, Præmiepenge, Pct.) %>%
   datatable(
     style = "bulma",

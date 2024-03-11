@@ -124,11 +124,10 @@ if(nrow(DataPraemieYngstAeldstAkt_T) == 0) {
     row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
     column_spec(1, bold = T) %>%
     column_spec(1:4, extra_css = "border-top:0.7px solid #999999") %>%
-    footnote(ifelse(
-      unique(DataPraemieYngstAeldstAkt_T$StatAlderForskelAntal_DW) == 0, "<i style=font-size:80%>Ingen aldersforskel.</i>",
-      paste("<i style=font-size:80%>Aldersforskel", unique(DataPraemieYngstAeldstAkt_T$StatAlderForskelAntal_DW), "år.</i>")),
+    footnote(paste(
+      "<i style=font-size:80%>Aldersforskel", DataBilletAkt_T$StatAlderForskelAntal_DW, "år.</i>"),
       general_title = "", escape = F) %>%
-    remove_column(5:6)
+    remove_column(5)
 }
 ```
 
@@ -241,7 +240,7 @@ cat(paste0("<h5 style=font-weight:bold>Klubber</h5>"))
 ```{r}
 #| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(Klub_RD))))+1.5)/3.3
 
-DataAkt_T %>% filter(EventAar_RD == InputEventAarAkt_V) %>%
+DataAkt_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD)) %>%
 	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
 	mutate(Klub_RD = paste0(Klub_RD, "&emsp;", KlubLogo_DW)) %>%
 	ggplot(mapping = aes(y = fct_rev(fct_infreq(Klub_RD)), fill = BilletKat_DW)) +

@@ -1,77 +1,77 @@
-DataBillet_T$EventAar_RD                         : chr "<code>Ping Pong DM 2021</code>"
-DataBillet_T$BilletNr_RD                         : chr "<code>9</code>"
-DataBillet_T$Billet_RD                           : chr "<code>Ping Pong DM 2021 - Frokost - Kyllingesalat</code>"
-DataBillet_T$BilletStartDatoTid_RD               : chr "<code>2021-12-11 13:00:00</code>"
-DataBillet_T$BilletStartDato_DW                  : chr "<code>2021-12-11</code>"
-DataBillet_T$BilletStartDato_DW_Aar_DW           : chr "<code>2021</code>"
-DataBillet_T$BilletStartDato_DW_AarDag_DW        : chr "<code>345</code>"
-DataBillet_T$BilletStartDato_DW_KvartalNr_DW     : chr "<code>4</code>"
-DataBillet_T$BilletStartDato_DW_KvartalNavn_DW   : chr "<code>4. kvartal</code>"
-DataBillet_T$BilletStartDato_DW_MaanedNr_DW      : chr "<code>12</code>"
-DataBillet_T$BilletStartDato_DW_MaanedNavnLang_DW: chr "<code>december</code>"
-DataBillet_T$BilletStartDato_DW_MaanedNavnKort_DW: chr "<code>dec</code>"
-DataBillet_T$BilletStartDato_DW_MaanedDag_DW     : chr "<code>11</code>"
-DataBillet_T$BilletStartDato_DW_MaanedDagNavn_DW : chr "<code>11. december</code>"
-DataBillet_T$BilletStartDato_DW_Uge_DW           : chr "<code>49</code>"
-DataBillet_T$BilletStartDato_DW_UgeDag_DW        : chr "<code>6</code>"
-DataBillet_T$BilletStartDato_DW_UgeDagNavnLang_DW: chr "<code>lørdag</code>"
-DataBillet_T$BilletStartDato_DW_UgeDagNavnKort_DW: chr "<code>lør</code>"
-DataBillet_T$BilletStartDato_DW_DMAA_DW          : chr "<code>11.12.2021</code>"
-DataBillet_T$BilletSlutDatoTid_RD                : chr "<code>2021-12-11 14:00:00</code>"
-DataBillet_T$BilletSlutDato_DW                   : chr "<code>2021-12-11</code>"
-DataBillet_T$BilletSlutDato_DW_Aar_DW            : chr "<code>2021</code>"
-DataBillet_T$BilletSlutDato_DW_AarDag_DW         : chr "<code>345</code>"
-DataBillet_T$BilletSlutDato_DW_KvartalNr_DW      : chr "<code>4</code>"
-DataBillet_T$BilletSlutDato_DW_KvartalNavn_DW    : chr "<code>4. kvartal</code>"
-DataBillet_T$BilletSlutDato_DW_MaanedNr_DW       : chr "<code>12</code>"
-DataBillet_T$BilletSlutDato_DW_MaanedNavnLang_DW : chr "<code>december</code>"
-DataBillet_T$BilletSlutDato_DW_MaanedNavnKort_DW : chr "<code>dec</code>"
-DataBillet_T$BilletSlutDato_DW_MaanedDag_DW      : chr "<code>11</code>"
-DataBillet_T$BilletSlutDato_DW_MaanedDagNavn_DW  : chr "<code>11. december</code>"
-DataBillet_T$BilletSlutDato_DW_Uge_DW            : chr "<code>49</code>"
-DataBillet_T$BilletSlutDato_DW_UgeDag_DW         : chr "<code>6</code>"
-DataBillet_T$BilletSlutDato_DW_UgeDagNavnLang_DW : chr "<code>lørdag</code>"
-DataBillet_T$BilletSlutDato_DW_UgeDagNavnKort_DW : chr "<code>lør</code>"
-DataBillet_T$BilletSlutDato_DW_DMAA_DW           : chr "<code>11.12.2021</code>"
-DataBillet_T$BilletKatNr_RD                      : chr "<code>3</code>"
-DataBillet_T$BilletKat_RD                        : chr "<code>Frokost</code>"
-DataBillet_T$BilletKatEmoji_RD                   : chr "<code>🥪</code>"
-DataBillet_T$BilletKatIkon_RD                    : chr "<code><iconify-icon icon=mdi:hamburger style=color:#1ABC9C></iconify-icon></code>"
-DataBillet_T$BilletKatFarve_DW                   : chr "<code>#1ABC9C</code>"
-DataBillet_T$BilletDisciplinNr_RD                : chr "<code>NA</code>"
-DataBillet_T$BilletDisciplin_RD                  : chr "<code>NA</code>"
-DataBillet_T$BilletRaekkeNr_RD                   : chr "<code>NA</code>"
-DataBillet_T$BilletRaekke_RD                     : chr "<code>NA</code>"
-DataBillet_T$BilletSpilFormatNr_RD               : chr "<code>NA</code>"
-DataBillet_T$BilletSpilFormat_RD                 : chr "<code>NA</code>"
-DataBillet_T$BilletSpilFormatEmoji_RD            : chr "<code>NA</code>"
-DataBillet_T$BilletSpilFormatIkon_RD             : chr "<code>NA</code>"
-DataBillet_T$BilletKat_DW                        : chr "<code>Frokost</code>"
-DataBillet_T$BilletBeskr_RD                      : chr "<code>NA</code>"
-DataBillet_T$BilletTilvalg_RD                    : chr "<code>Kyllingesalat</code>"
-DataBillet_T$BilletPris_RD                       : chr "<code>50</code>"
-DataBillet_T$BilletPrisArr_RD                    : chr "<code>49</code>"
-DataBillet_T$BilletAntalMaks_RD                  : chr "<code>64</code>"
-DataBillet_T$BilletPuljeDelt_RD                  : chr "<code>4</code>"
-DataBillet_T$BilletPulje_DW                      : chr "<code>1</code>"
-DataBillet_T$BilletPuljeStd_DW                   : chr "<code>4</code>"
-DataBillet_T$BilletDelt_DW                       : chr "<code>1</code>"
-DataBillet_T$BilletPuljeRest_DW                  : chr "<code>3</code>"
-DataBillet_T$BilletPrisRes_DW                    : chr "<code>1</code>"
-DataBillet_T$StatAlderForskelAntal_DW            : chr "<code>0</code>"
-DataBillet_T$StatOrdreAntal_DW                   : chr "<code><b>21 Tilmeldt til Sandpapir Åben <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon>"| __truncated__
-DataBillet_T$StatDeltAntal_DW                    : chr "<code>21 Tilmeldt (81%) <iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon> ∙ 5 <q>Totalaf"| __truncated__
-DataBillet_T$StatDeltKoenAntal_DW                : chr "<code>17 Herre (81%) <iconify-icon icon=mdi:gender-male style=color:#009FB7></iconify-icon> ∙ 4 Dame (19%) <ico"| __truncated__
-DataBillet_T$StatDeltGenKatAntal_DW              : chr "<code>21 Debutant (100%) <iconify-icon icon=mdi:numeric-1-circle></iconify-icon></code>"
-DataBillet_T$StatDeltAlderKatAntal_DW            : chr "<code>6 Ungdom (29%) <iconify-icon icon=mdi:cake-variant></iconify-icon> ∙ 11 Senior (52%) <iconify-icon icon=m"| __truncated__
-DataBillet_T$StatDeltAlderAntal_DW               : chr "<code>Yngst 11 år <iconify-icon icon=mdi:cake-variant></iconify-icon> ∙ Gns. 28 år <iconify-icon icon=mdi:cake-"| __truncated__
-DataBillet_T$StatDeltLandsdelAntal_DW            : chr "<code>13 Jylland (62%) <iconify-icon icon=mdi:home></iconify-icon> ∙ 4 Fyn (19%) <iconify-icon icon=mdi:home></"| __truncated__
-DataBillet_T$StatDeltRegionAntal_DW              : chr "<code>2 Region Nordjylland (10%) <iconify-icon icon=mdi:home></iconify-icon> ∙ 9 Region Midtjylland (43%) <icon"| __truncated__
-DataBillet_T$StatDeltKlubKatAntal_DW             : chr "<code>21 Klub (100%) <iconify-icon icon=mdi:home></iconify-icon></code>"
-DataBillet_T$StatKlubAntal_DW                    : chr "<code>12 forskellige klubber <iconify-icon icon=mdi:home></iconify-icon></code>"
-DataBillet_T$StatBilletGnsAntal_DW               : chr "<code>Gns. 2 billetter pr. deltager <span class=bi-tags-fill></span></code>"
-DataBillet_T$StatOrdreKatAntal_DW                : chr "<code>38 Ordinær (58%) <iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon> ∙ 4 Drive-in (6"| __truncated__
-DataBillet_T$StatDeltRatingKatAntal_DW           : chr "<code>10 Elite (48%) <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon> ∙ 11 Amatør (52%) "| __truncated__
-DataBillet_T$StatDeltRatingAntal_DW              : chr "<code>Min. 1000 rating <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon> ∙ Gns. 1845 rati"| __truncated__
-DataBillet_T$StatOekonomiAntal_DW                : chr "<code>Omsætning kr. 4.928 <iconify-icon icon=mdi:cash></iconify-icon> ∙ Arrangørpris kr. 4.388 <iconify-icon ic"| __truncated__
-DataBillet_T$StatForskudtTilAntal_DW             : chr "<code>0 forskudt Tilmeldt <span class=bi-tags-fill></span></code>"
+DataBillet_T$EventAar_RD                         : chr "Ping Pong DM 2024"
+DataBillet_T$BilletNr_RD                         : int 25
+DataBillet_T$Billet_RD                           : chr "Ping Pong DM 2024 - Ping Pong - Single - Sandpapir - Åben"
+DataBillet_T$BilletStartDatoTid_RD               : POSIXct[1:1], format: "2024-06-22 10:30:00"
+DataBillet_T$BilletStartDato_DW                  : Date[1:1], format: "2024-06-22"
+DataBillet_T$BilletStartDato_DW_Aar_DW           : int 2024
+DataBillet_T$BilletStartDato_DW_AarDag_DW        : int 174
+DataBillet_T$BilletStartDato_DW_KvartalNr_DW     : int 2
+DataBillet_T$BilletStartDato_DW_KvartalNavn_DW   : chr "2. kvartal"
+DataBillet_T$BilletStartDato_DW_MaanedNr_DW      : int 6
+DataBillet_T$BilletStartDato_DW_MaanedNavnLang_DW: chr "juni"
+DataBillet_T$BilletStartDato_DW_MaanedNavnKort_DW: chr "jun"
+DataBillet_T$BilletStartDato_DW_MaanedDag_DW     : int 22
+DataBillet_T$BilletStartDato_DW_MaanedDagNavn_DW : chr "22. juni"
+DataBillet_T$BilletStartDato_DW_Uge_DW           : int 25
+DataBillet_T$BilletStartDato_DW_UgeDag_DW        : int 6
+DataBillet_T$BilletStartDato_DW_UgeDagNavnLang_DW: chr "lørdag"
+DataBillet_T$BilletStartDato_DW_UgeDagNavnKort_DW: chr "lør"
+DataBillet_T$BilletStartDato_DW_DMAA_DW          : chr "22.06.2024"
+DataBillet_T$BilletSlutDatoTid_RD                : POSIXct[1:1], format: "2024-06-22 18:15:00"
+DataBillet_T$BilletSlutDato_DW                   : Date[1:1], format: "2024-06-22"
+DataBillet_T$BilletSlutDato_DW_Aar_DW            : int 2024
+DataBillet_T$BilletSlutDato_DW_AarDag_DW         : int 174
+DataBillet_T$BilletSlutDato_DW_KvartalNr_DW      : int 2
+DataBillet_T$BilletSlutDato_DW_KvartalNavn_DW    : chr "2. kvartal"
+DataBillet_T$BilletSlutDato_DW_MaanedNr_DW       : int 6
+DataBillet_T$BilletSlutDato_DW_MaanedNavnLang_DW : chr "juni"
+DataBillet_T$BilletSlutDato_DW_MaanedNavnKort_DW : chr "jun"
+DataBillet_T$BilletSlutDato_DW_MaanedDag_DW      : int 22
+DataBillet_T$BilletSlutDato_DW_MaanedDagNavn_DW  : chr "22. juni"
+DataBillet_T$BilletSlutDato_DW_Uge_DW            : int 25
+DataBillet_T$BilletSlutDato_DW_UgeDag_DW         : int 6
+DataBillet_T$BilletSlutDato_DW_UgeDagNavnLang_DW : chr "lørdag"
+DataBillet_T$BilletSlutDato_DW_UgeDagNavnKort_DW : chr "lør"
+DataBillet_T$BilletSlutDato_DW_DMAA_DW           : chr "22.06.2024"
+DataBillet_T$BilletKatNr_RD                      : int 1
+DataBillet_T$BilletKat_RD                        : chr "Ping Pong"
+DataBillet_T$BilletKatEmoji_RD                   : chr "🏓"
+DataBillet_T$BilletKatIkon_RD                    : chr "<iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon>"
+DataBillet_T$BilletKatFarve_DW                   : chr "#398FCC"
+DataBillet_T$BilletDisciplinNr_RD                : int 1
+DataBillet_T$BilletDisciplin_RD                  : chr "Sandpapir"
+DataBillet_T$BilletRaekkeNr_RD                   : int 1
+DataBillet_T$BilletRaekke_RD                     : chr "Åben"
+DataBillet_T$BilletSpilFormatNr_RD               : int 1
+DataBillet_T$BilletSpilFormat_RD                 : chr "Single"
+DataBillet_T$BilletSpilFormatEmoji_RD            : chr "👤"
+DataBillet_T$BilletSpilFormatIkon_RD             : chr "<iconify-icon icon=mdi:account></iconify-icon>"
+DataBillet_T$BilletKat_DW                        : chr "Sandpapir Åben"
+DataBillet_T$BilletBeskr_RD                      : chr "Spilles lør 22/6 - For ALLE"
+DataBillet_T$BilletTilvalg_RD                    : chr NA
+DataBillet_T$BilletPris_RD                       : num 150
+DataBillet_T$BilletPrisArr_RD                    : num 150
+DataBillet_T$BilletAntalMaks_RD                  : int 66
+DataBillet_T$BilletPuljeDelt_RD                  : int 6
+DataBillet_T$BilletPulje_DW                      : int 1
+DataBillet_T$BilletPuljeStd_DW                   : int 6
+DataBillet_T$BilletDelt_DW                       : int 4
+DataBillet_T$BilletPuljeRest_DW                  : int 2
+DataBillet_T$BilletPrisRes_DW                    : int 0
+DataBillet_T$StatAlderForskelAntal_DW            : int 9
+DataBillet_T$StatOrdreAntal_DW                   : chr "<b>4 Tilmeldt til Sandpapir Åben <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon></b><br"| __truncated__
+DataBillet_T$StatDeltAntal_DW                    : chr "4 Tilmeldt (100%) <iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon>"
+DataBillet_T$StatDeltKoenAntal_DW                : chr "4 Herre (100%) <iconify-icon icon=mdi:gender-male style=color:#009FB7></iconify-icon>"
+DataBillet_T$StatDeltGenKatAntal_DW              : chr "4 Gentilmelding (100%) <iconify-icon icon=mdi:autorenew></iconify-icon>"
+DataBillet_T$StatDeltAlderKatAntal_DW            : chr "4 Senior (100%) <iconify-icon icon=mdi:cake-variant></iconify-icon>"
+DataBillet_T$StatDeltAlderAntal_DW               : chr "Yngst 22 år <iconify-icon icon=mdi:cake-variant></iconify-icon> ∙ Gns. 28 år <iconify-icon icon=mdi:cake-varian"| __truncated__
+DataBillet_T$StatDeltLandsdelAntal_DW            : chr "4 Jylland (100%) <iconify-icon icon=mdi:home></iconify-icon>"
+DataBillet_T$StatDeltRegionAntal_DW              : chr "1 Region Nordjylland (25%) <iconify-icon icon=mdi:home></iconify-icon> ∙ 3 Region Midtjylland (75%) <iconify-ic"| __truncated__
+DataBillet_T$StatDeltKlubKatAntal_DW             : chr "4 Klub (100%) <iconify-icon icon=mdi:home></iconify-icon>"
+DataBillet_T$StatKlubAntal_DW                    : chr "3 forskellige klubber <iconify-icon icon=mdi:home></iconify-icon>"
+DataBillet_T$StatBilletGnsAntal_DW               : chr "Gns. 3,5 billetter pr. deltager <span class=bi-tags-fill></span>"
+DataBillet_T$StatOrdreKatAntal_DW                : chr "14 Ordinær (100%) <iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon>"
+DataBillet_T$StatDeltRatingKatAntal_DW           : chr "4 Elite (100%) <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon>"
+DataBillet_T$StatDeltRatingAntal_DW              : chr "Min. 2400 rating <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon> ∙ Gns. 2500 rating <ic"| __truncated__
+DataBillet_T$StatOekonomiAntal_DW                : chr "Omsætning kr. 2.000 <iconify-icon icon=mdi:cash></iconify-icon> ∙ Arrangørpris kr. 2.000 <iconify-icon icon=mdi"| __truncated__
+DataBillet_T$StatForskudtTilAntal_DW             : chr "10 forskudt Tilmeldt <span class=bi-tags-fill></span>"
