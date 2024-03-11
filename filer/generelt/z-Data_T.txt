@@ -278,8 +278,8 @@ DeltGenNr_DW                            : int 3
 DeltGen_DW                              : Ord.factor w/ 8 levels "0. gang"<"1. gang"<..: 4
 DeltGenKatNr_RD                         : int 2
 DeltGenKat_DW                           : Ord.factor w/ 3 levels "Debutant"<"Gentilmelding"<..: 2
-DeltGenKatEmoji_RD                      : Ord.factor w/ 2 levels "🆕"<"🔃": 2
-DeltGenKatIkon_RD                       : Ord.factor w/ 2 levels "<iconify-icon icon=mdi:numeric-1-circle></iconify-icon>"<..: 2
+DeltGenKatEmoji_RD                      : Ord.factor w/ 3 levels "🆕"<"🔃"<"❌": 2
+DeltGenKatIkon_RD                       : Ord.factor w/ 3 levels "<iconify-icon icon=mdi:numeric-1-circle></iconify-icon>"<..: 2
 DeltKodeJoin_RD                         : chr "MALA"
 DeltKatNr_RD                            : int 1
 DeltKatMin_RD                           : chr "AAAA"

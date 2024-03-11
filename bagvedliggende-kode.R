@@ -1183,23 +1183,23 @@ Data_T <- Data_T %>%
 
   # DeltUnik_DW
   group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW, DeltID_RD) %>%
-  arrange(OrdreStatusSimpelKat_RD, desc(DeltGenKat_DW)) %>%
+  arrange(OrdreStatusSimpelKat_RD, desc(DeltGen_DW)) %>%
   mutate(DeltUnik_DW = ifelse(row_number() == 1, 1, 0)) %>%
   ungroup() %>%
   mutate(across("DeltUnik_DW", \(x) as.integer(x))) %>%
   select(-DeltUnik_DW, everything()) %>%
 
   # DeltKlubUnik_DW
-  group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW, DeltID_RD) %>%
-  arrange(OrdreStatusSimpelKat_RD, KlubKat_DW) %>%
-  mutate(DeltKlubUnik_DW = ifelse(row_number() == 1 & grepl("Klub", KlubKat_DW), 1, 0)) %>%
+  group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW, DeltID_RD, KlubKat_DW) %>%
+  arrange(OrdreStatusSimpelKat_RD) %>%
+  mutate(DeltKlubUnik_DW = ifelse(grepl("Klub", KlubKat_DW), row_number() == 1, 0)) %>%
   mutate(across("DeltKlubUnik_DW", \(x) as.integer(x))) %>%
   select(-DeltKlubUnik_DW, everything()) %>%
 
   # DeltPingPongUnik_DW
-  group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW, DeltID_RD) %>%
-  arrange(OrdreStatusSimpelKat_RD, BilletKat_RD) %>%
-  mutate(DeltPingPongUnik_DW = ifelse(row_number() == 1 & grepl("Ping Pong", BilletKat_RD), 1, 0)) %>%
+  group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW, DeltID_RD, BilletKat_RD) %>%
+  arrange(OrdreStatusSimpelKat_RD) %>%
+  mutate(DeltPingPongUnik_DW = ifelse(grepl("Ping Pong", BilletKat_RD), row_number() == 1, 0)) %>%
   ungroup() %>%
   mutate(across("DeltPingPongUnik_DW", \(x) as.integer(x))) %>%
   select(-DeltPingPongUnik_DW, everything()) %>%
