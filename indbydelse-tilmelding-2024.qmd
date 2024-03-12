@@ -55,7 +55,7 @@ cat(paste0("[BTK Midtjylland](https://btkmidtjylland.dk/forsiden-2){target=_blan
 DataBilletKatAkt_T %>%
 	kbl(table.attr = "data-quarto-disable-processing=true",
 	    col.names = NA, align = "llr", escape = F,
-      caption = paste0("<p>", IkonBillet_V, " <b>Billettyper</b></p><i style=font-size:80%>", length(unique(DataBilletKatAkt_T$Billettype)), " valgmuligheder ved tilmelding.</i>")) %>%
+      caption = paste0("<p>", IkonBillet_V, " <b>Billettyper</b></p><i style=font-size:80%>", length(DataBilletKatAkt_T$Billettype), " valgmuligheder ved tilmelding.</i>")) %>%
 	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
 	footnote(paste0(
     "<i style=font-size:80%>Først til mølle-princip. Tilmeldingsfrist ", DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW, ".<br>Ved tilmelding modtages bekræftelsesmail.<br>Mikrogebyrer pålægges alle priser.</i>"),
@@ -78,35 +78,35 @@ data.frame(
 		IkonFest_V),
 	"Klokkeslæt" = c(
 		paste(
-    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(-90), "%H:%M"),"-",
-    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+465), "%H:%M")),
+    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(-90), "%H:%M"),"-",
+    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+465), "%H:%M")),
     paste(
-    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(-90), "%H:%M"),"-",
-    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(-15), "%H:%M")),
+    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(-90), "%H:%M"),"-",
+    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(-15), "%H:%M")),
     paste(
-    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(-15), "%H:%M"),"-",
-    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+0), "%H:%M")),
+    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(-15), "%H:%M"),"-",
+    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+0), "%H:%M")),
     paste(
-    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+0), "%H:%M"),"-",
-    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+180), "%H:%M")),
+    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+0), "%H:%M"),"-",
+    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+180), "%H:%M")),
     paste(
-    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+180), "%H:%M"),"-",
-    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+330), "%H:%M")),
+    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+180), "%H:%M"),"-",
+    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+330), "%H:%M")),
     paste(
-    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+330), "%H:%M"),"-",
-    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+450), "%H:%M")),
+    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+330), "%H:%M"),"-",
+    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+450), "%H:%M")),
     paste(
-    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+450), "%H:%M"),"-",
-    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+465), "%H:%M")),
+    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+450), "%H:%M"),"-",
+    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+465), "%H:%M")),
     paste(
-    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+465), "%H:%M"),"-",
-    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+510), "%H:%M")),
-    paste("Fra", format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(+510), "%H:%M"))),
+    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+465), "%H:%M"),"-",
+    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+510), "%H:%M")),
+    paste("Fra", format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+510), "%H:%M"))),
 	"Type" = c(
 		paste0("<a style=color:#000000;text-decoration:none href=indbydelse-tilmelding-2023.qmd#ping-pong", ">DM i Ping Pong ", DataEventAarAkt_T$EventAarStartDato_DW_Aar_DW, "</a>"),
     paste(
     	"Mulighed for opvarmning.<br><b>Check-in senest",
-    	format(unique(DataAkt_T$EventAarStartDatoTid_DW) + minutes(-30), "%H:%M."), "</b>"),
+    	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(-30), "%H:%M."), "</b>"),
     "Velkomst og gruppebillede.",
     "Puljespil.",
     "A-/B-slutspil.",
