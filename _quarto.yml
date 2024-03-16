@@ -23,8 +23,6 @@ website:
   google-analytics: "G-6903XX1GX6"
   page-navigation: true
   back-to-top-navigation: false
-  navbar:
-    background: "#398FCC"
   sidebar:
     style: docked
     background: light

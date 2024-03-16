@@ -5,9 +5,12 @@ source(file = "ping-pong-dm-input.R")
 ---
 title: "<iconify-icon icon=mdi:chart-box></iconify-icon> <u>BI</u>"
 subtitle: "Business Intelligence"
-format: 
+format:
   dashboard:
     orientation: columns
+website:
+  navbar:
+    background: "#398FCC"
 editor_options:
   chunk_output_type: console
 ---
