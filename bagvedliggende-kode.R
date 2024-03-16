@@ -1190,15 +1190,15 @@ Data_T <- Data_T %>%
   select(-DeltUnik_DW, everything()) %>%
 
   # DeltKlubUnik_DW
-  group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW, DeltID_RD, KlubKat_DW) %>%
-  arrange(OrdreStatusSimpelKat_RD) %>%
+  group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW, DeltID_RD) %>%
+  arrange(OrdreStatusSimpelKat_RD, KlubKat_DW) %>%
   mutate(DeltKlubUnik_DW = ifelse(grepl("Klub", KlubKat_DW), row_number() == 1, 0)) %>%
   mutate(across("DeltKlubUnik_DW", \(x) as.integer(x))) %>%
   select(-DeltKlubUnik_DW, everything()) %>%
 
   # DeltPingPongUnik_DW
-  group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW, DeltID_RD, BilletKat_RD) %>%
-  arrange(OrdreStatusSimpelKat_RD) %>%
+  group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW, DeltID_RD) %>%
+  arrange(OrdreStatusSimpelKat_RD, BilletKat_RD) %>%
   mutate(DeltPingPongUnik_DW = ifelse(grepl("Ping Pong", BilletKat_RD), row_number() == 1, 0)) %>%
   ungroup() %>%
   mutate(across("DeltPingPongUnik_DW", \(x) as.integer(x))) %>%
