@@ -15,6 +15,7 @@ project:
     - "wcpp.qmd" # "!wcpp.qmd"
     - "koncept.qmd" # "!koncept.qmd"
     - "bi.qmd" # "!bi.qmd"
+    - "bi2.qmd" # "!bi2.qmd"
 
 website:
   site-url: "https://pingpong.quarto.pub/dm"
@@ -72,7 +73,8 @@ website:
 format:
   html:
     theme:
-      light: united
+      light: [flatly, styles.scss]
+      dark: [darkly, styles.scss]
     mermaid:
       theme: default
     grid:
@@ -84,7 +86,6 @@ format:
     html-table-processing: none
     fig-cap-location: top
     mainfont: verdana
-    css: styles.css
     df-print: default
     fig-align: left
     fontsize: "11pt"

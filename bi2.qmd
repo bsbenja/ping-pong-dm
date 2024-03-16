@@ -8,9 +8,6 @@ subtitle: "Business Intelligence"
 format:
   dashboard:
     orientation: columns
-website:
-  navbar:
-    background: "#398FCC"
 editor_options:
   chunk_output_type: console
 ---
