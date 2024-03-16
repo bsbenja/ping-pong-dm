@@ -2,16 +2,13 @@
 source(file = "ping-pong-dm-input.R")
 ```
 
-```{r}
-DataAkt_T <- Data_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
-```
-
 ---
 title: "<iconify-icon icon=mdi:chart-box></iconify-icon> <u>BI</u>"
 subtitle: "Business Intelligence"
-format: dashboard
-  # orientation: columns
-editor_options: 
+format: 
+  dashboard:
+    orientation: columns
+editor_options:
   chunk_output_type: console
 ---
 
