@@ -9,6 +9,7 @@ BilletSpilFormatAkt_V <- "Single"
 
 DataAkt_T <- Data_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataEventAarSidst_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAarSidst_DW))
 DataBilletAkt_T <- DataBillet_T %>% filter(
   grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BilletDisciplinAkt_V, BilletDisciplin_RD) &
@@ -33,10 +34,10 @@ DataDeltAlderKatAkt_T <- DataDeltAlderKat_T %>% filter(grepl(InputEventAarAkt_V,
 DataDeltKoenAkt_T <- DataDeltKoen_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataDeltGenTilAkt_T <- DataDeltGenTil_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataDeltOrdreKatAkt_T <- DataDeltOrdreKat_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
-DataResultSidsteEventAkt_T <- DataResultSidsteEvent_T %>% filter(
+DataResultSidst_T <- DataResult_T %>% filter(
   grepl(InputEventAarAkt_V, EventAarSidst_DW) &
   grepl("A-slutspil", DeltSlutspil_RD) &
-  grepl("1|2|3|4", `Placering`))
+  grepl("[1-4]", `Placering`))
 ```
 
 ---
@@ -89,22 +90,21 @@ if(nrow(DataPraemiePengeAkt_T) == 0) {
   data.frame() %>% kbl()
 } else {
   DataPraemiePengeAkt_T %>%
-    kbl(table.attr = "data-quarto-disable-processing=true",
-        col.names = NA, align = "lrr", escape = F,
-        caption = paste(
-          "<i style=font-size:90%>", IkonPenge_V, "<b>Præmiepenge</b></i>")) %>%
-    kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+    kbl(col.names = NA, align = "lrr", escape = F,
+        caption = paste(IkonPenge_V, "Præmiepenge")) %>%
+    kable_styling(position = "l", full_width = F) %>%
     row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
     row_spec(which(DataPraemiePengeAkt_T$PraemieRank_DW == "1"),
-             bold = T, background = DataEventAarAkt_T$EventAarFarve2_RD) %>%
+             bold = T, background = DataEventAarAkt_T$EventAarFarve2_RD, color = "#000000") %>%
     row_spec(which(DataPraemiePengeAkt_T$PraemieRank_DW == "2"),
-             background = DataEventAarAkt_T$EventAarFarve2_RD) %>%
+             background = DataEventAarAkt_T$EventAarFarve2_RD, color = "#000000") %>%
     row_spec(which(DataPraemiePengeAkt_T$PraemieRank_DW == "3"),
-             background = DataEventAarAkt_T$EventAarFarve2_RD) %>%
+             background = DataEventAarAkt_T$EventAarFarve2_RD, color = "#000000") %>%
     add_indent(which(DataPraemiePengeAkt_T$PraemieRank_DW == "4")) %>%
     column_spec(3, italic = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
     footnote(paste(
-      "<i style=font-size:80%>Præmiesum på", distinct(filter(DataPraemiePengeAkt_T, PraemieRank_DW == 1), Præmiepenge), "er under<br>forudsætning af minimum 64 Ping Pong<br>deltagere.</i>"),
+      "Præmiesum på", distinct(filter(DataPraemiePengeAkt_T, PraemieRank_DW == 1), Præmiepenge),
+      "er under<br>forudsætning af minimum 64 Ping Pong<br>deltagere."),
       general_title = "", escape = F) %>%
     remove_column(4:8)
 }
@@ -114,18 +114,17 @@ if(nrow(DataPraemieYngstAeldstAkt_T) == 0) {
   data.frame() %>% kbl()
 } else {
   DataPraemieYngstAeldstAkt_T %>%
-    kbl(table.attr = "data-quarto-disable-processing=true",
-        col.names = NA, align = "lclc", escape = F,
-      caption = paste0(
-      "<i style=font-size:90%> ", IkonGave_V, " ",
-      "Gave til <b>yngste</b>- og <b>ældste</b> Ping Pong deltager<br>",
-      "for at hylde mangfoldigheden</i>")) %>%
-    kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+    kbl(col.names = NA, align = "lclc", escape = F,
+      caption = paste(
+      IkonGave_V, "Gave til yngste- og ældste Ping Pong deltager")) %>%
+    kable_styling(position = "l", full_width = F) %>%
     row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
     column_spec(1, bold = T) %>%
     column_spec(1:4, extra_css = "border-top:0.7px solid #999999") %>%
     footnote(paste(
-      "<i style=font-size:80%>Aldersforskel", DataBilletAkt_T$StatAlderForskelAntal_DW, "år.</i>"),
+      "Gaverne har til formål at hylde mangfoldigheden.",
+      "<br>",
+      "Aldersforskel", DataBilletAkt_T$StatAlderForskelAntal_DW, "år."),
       general_title = "", escape = F) %>%
     remove_column(5)
 }
@@ -149,19 +148,18 @@ if(InputInfo1234_V %in% c(3)) {
   data.frame() %>% kbl()
 } else {
   DataDeltForAkt_T %>%
-    kbl(table.attr = "data-quarto-disable-processing=true",
-      col.names = NA, align = "ccl", escape = F,
+    kbl(col.names = NA, align = "ccl", escape = F,
       caption = paste0(
-        IkonPerson_V, " <b>Foreløbige deltagere</b>",
+        IkonPerson_V, " Foreløbige deltagere",
         "<br>",
         "<i style=font-size:80%>", DataBilletAkt_T$BilletPuljeDelt_RD, "-mandspuljer ",
         "inddelt efter snake-system vises efter tilmeldingsfrist ",
-        DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW, ".</i>")) %>%
-  kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
-  add_header_above(
-    c("Sorteret efter billettype og fødselsdato" = 8),
-    italic = T, align = "c", font_size = "small", escape = F,
-    extra_css = "border:hidden;border-bottom:1.5px solid #111111") %>%
+        DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW, ".",
+        "<br>",
+        "<br>",
+        "Sorteret efter billettype og fødselsdato",
+        "</i>")) %>%
+  kable_styling(position = "l", full_width = F) %>%
   row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	column_spec(1:4, extra_css = "border-top:0.7px solid #999999") %>%
   remove_column(4:8)
@@ -174,11 +172,10 @@ if(InputInfo1234_V %in% c(1, 2, 4)) {
   data.frame() %>% kbl()
 } else {
   DataDeltPuljerAkt_T %>%
-    kbl(table.attr = "data-quarto-disable-processing=true",
-      col.names = NA, align = "cclr", escape = F,
+    kbl(col.names = NA, align = "cclr", escape = F,
       caption = paste0(
-        "<b>", IkonPingPong_V, " ",
-        DataBilletAkt_T$BilletPuljeDelt_RD, "-mandspuljer til ", DataEventAarAkt_T$EventAar_RD, "</b>",
+        IkonPingPong_V, " ",
+        DataBilletAkt_T$BilletPuljeDelt_RD, "-mandspuljer til ", DataEventAarAkt_T$EventAar_RD,
         "<br>",
         "<i style=font-size:80%>", DataBilletAkt_T$BilletDelt_DW, " ",
         ifelse(DataBilletAkt_T$BilletDelt_DW == 1, "tilmelding", "tilmeldinger"),
@@ -187,16 +184,15 @@ if(InputInfo1234_V %in% c(1, 2, 4)) {
         "<br>",
         "Seedet 1-4 efter sidste <q>Final 4</q>.",
         "<br>",
-        "Rating er opdateret pr. ",
-        DataEventAarAkt_T$EventAarRatingDato_DW_DMAA_DW, ".</i>")) %>%
-  kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
-  add_header_above(
-    c("Bemærk: Puljerne kan ændre sig ved drive-in/afbud" = 10),
-    italic = T, align = "c", font_size = "small", escape = F,
-    extra_css = "border:hidden;border-bottom:1.5px solid #111111") %>%
+        "Rating er opdateret pr. ", DataEventAarAkt_T$EventAarRatingDato_DW_DMAA_DW, ".",
+        "<br>",
+        "<br>",
+        "Bemærk: Puljerne kan ændre sig ved drive-in/afbud",
+        "</i>")) %>%
+  kable_styling(position = "l", full_width = F) %>%
   row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
   row_spec(which(DataDeltPuljerAkt_T$DeltSnakeSeedLagNr_DW == "1"), bold = T,
-           extra_css = "border:hidden;border-top:0.7px solid #111111") %>%
+           extra_css = "border-top:0.7px solid #999999") %>%
   remove_column(5:10)
   }
 }
@@ -207,19 +203,16 @@ if(InputInfo1234_V %in% c(1, 2, 3, 4)) {
   data.frame() %>% kbl()
 } else {
   DataDeltAndetAkt_T %>%
-    kbl(table.attr = "data-quarto-disable-processing=true",
-      col.names = NA, align = "ccl", escape = F,
-  		caption = "Andet end Ping Pong + evt. afbud") %>%
-  kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
-  add_header_above(
-    c("Sorteret efter fødselsdato" = 5),
-    italic = T, align = "c", font_size = "small", escape = F,
-    extra_css = "border:hidden;border-bottom:1.5px solid #111111") %>%
+    kbl(col.names = NA, align = "ccl", escape = F,
+  		caption = paste0(
+        "<p>Andet end Ping Pong + evt. afbud</p>",
+        "<i style=font-size:80%>Sorteret efter fødselsdato</i>")) %>%
+  kable_styling(position = "l", full_width = F) %>%
   row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
   row_spec(which(grepl("Afbud", DataDeltAndetAkt_T$OrdreStatusSimpelKat_RD)),
            strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
   row_spec(which(DataDeltAndetAkt_T$Nr. == "1"),
-           extra_css = "border:hidden;border-top:0.7px solid #111111") %>%
+           extra_css = "border-top:0.7px solid #999999") %>%
   remove_column(4:5)
   }
 }
@@ -271,10 +264,9 @@ cat(paste0(
 
 ```{r}
 DataDeltKlubAkt_T %>%
-	kbl(table.attr = "data-quarto-disable-processing=true",
-	    col.names = NA, align = "l", escape = F,
+	kbl(col.names = NA, align = "l", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter klubantal</i>") %>%
-	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+	kable_styling(position = "l", full_width = F) %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltKlubAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
@@ -337,10 +329,9 @@ cat(paste0(
 
 ```{r}
 DataDeltByAkt_T %>%
-	kbl(table.attr = "data-quarto-disable-processing=true",
-	    col.names = NA, align = "l", escape = F,
+	kbl(col.names = NA, align = "l", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter region og postnr.</i>") %>%
-	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+	kable_styling(position = "l", full_width = F) %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltByAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
@@ -392,10 +383,9 @@ cat(paste0(
 
 ```{r}
 DataDeltAlderKatAkt_T %>%
-	kbl(table.attr = "data-quarto-disable-processing=true",
-	    col.names = NA, align = "l", escape = F,
+	kbl(col.names = NA, align = "l", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter fødselsdato</i>") %>%
-	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+	kable_styling(position = "l", full_width = F) %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltAlderKatAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
@@ -441,10 +431,9 @@ cat(paste0(
 
 ```{r}
 DataDeltKoenAkt_T %>%
-	kbl(table.attr = "data-quarto-disable-processing=true",
-	    col.names = NA, align = "l", escape = F,
+	kbl(col.names = NA, align = "l", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter køn</i>") %>%
-	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+	kable_styling(position = "l", full_width = F) %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltKoenAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
@@ -490,10 +479,9 @@ cat(paste0(
 
 ```{r}
 DataDeltGenTilAkt_T %>%
-	kbl(table.attr = "data-quarto-disable-processing=true",
-	    col.names = NA, align = "l", escape = F,
+	kbl(col.names = NA, align = "l", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter antal gentilmeldinger</i>") %>%
-	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+	kable_styling(position = "l", full_width = F) %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltGenTilAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
@@ -545,10 +533,9 @@ cat(paste0(
 
 ```{r}
 DataDeltOrdreKatAkt_T %>%
-	kbl(table.attr = "data-quarto-disable-processing=true",
-	    col.names = NA, align = "l", escape = F,
+	kbl(col.names = NA, align = "l", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter ældste <q>første ordredato</q></i>") %>%
-	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+	kable_styling(position = "l", full_width = F) %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltOrdreKatAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
@@ -563,21 +550,20 @@ DataDeltOrdreKatAkt_T %>%
 :::
 
 ```{r}
-if(nrow(DataResultSidsteEventAkt_T) == 0) {
+if(nrow(DataResultSidst_T) == 0) {
   data.frame() %>% kbl()
 } else {
-  DataResultSidsteEventAkt_T %>%
-  kbl(table.attr = "data-quarto-disable-processing=true",
-      col.names = NA, align = "lcl", escape = F,
+  DataResultSidst_T %>%
+  kbl(col.names = NA, align = "clcl", escape = F,
       caption = paste(
-        IkonPokal_V, "<b>DM-resultater sidste <q>Final 4</q></b>",
+        IkonPokal_V, "DM-resultater sidste <q>Final 4</q>",
         "<br>",
         "<i style=font-size:80%>Afholdt",
-        unique(DataResultSidsteEventAkt_T$EventAarDato_DW),
-        "i", unique(DataResultSidsteEventAkt_T$EventAarSted_RD), "</i>")) %>%
-  kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
-  row_spec(0, background = unique(DataResultSidsteEventAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
-	remove_column(4:10) %>%
+        DataEventAarSidst_T$EventAarDato_DW,
+        "i", DataEventAarSidst_T$EventAarSted_RD, "</i>")) %>%
+  kable_styling(position = "l", full_width = F) %>%
+  row_spec(0, background = DataEventAarSidst_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
+	remove_column(c(1, 5:9)) %>%
 	footnote(
 		paste0(""),
 		general_title = "", escape = F)

@@ -73,10 +73,10 @@ website:
 format:
   html:
     theme:
-      light: [flatly, styles.scss]
-      dark: [darkly, styles.scss]
+      light: [flatly, custom.scss]
+      dark: [darkly, custom.scss]
     mermaid:
-      theme: default
+      theme: neutral
     grid:
       content-mode:  auto
       sidebar-width: 300px # standard: 250px

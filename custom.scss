@@ -7,9 +7,39 @@ $navbar-bg: #398FCC;
 /*-- scss:rules --*/
 // Herunder angives CSS
 h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
   text-transform: uppercase;
 }
 
+img {
+  border-radius: 4px;
+}
+
+video {
+  border-radius: 4px;
+}
+
+table {
+  border: 1px solid;
+  border-collapse: collapse;
+}
+
+tbody {
+  td {
+    border: none;
+  }
+}
+
+tfoot {
+  td {
+    font-size: 80%;
+    font-style: italic;
+    border: hidden;
+    border-top: 1px solid;
+  }
+}
+
 table caption {
-  caption-side: top; 
+  font-weight: bold;
+  caption-side: top;
 }

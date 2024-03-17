@@ -66,10 +66,9 @@ data.frame(
     "24%",
     "8%"),
   check.names = F) %>%
-  kbl(table.attr = "data-quarto-disable-processing=true",
-      col.names = NA, align = "lrr", escape = F,
+  kbl(col.names = NA, align = "lrr", escape = F,
       caption = paste(IkonPenge_V, "Præmiepenge til WCPP")) %>%
-  kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+  kable_styling(position = "l", full_width = F) %>%
   row_spec(0, background = "#1C2833", color = "#FFFFFF") %>%
   row_spec(1, bold = T, background = "#D5D8DC") %>%
   column_spec(3, italic = T, color = "#5D6D7E") %>%
@@ -107,10 +106,9 @@ data.frame(
     "Maxim Shmyrev",
     "Maxim Shmyrev"),
   check.names = F) %>%
-  kbl(table.attr = "data-quarto-disable-processing=true",
-      col.names = NA, align = "cll", escape = F,
+  kbl(col.names = NA, align = "cll", escape = F,
       caption = paste(IkonPokal_V, "WCPP-vindere statistik")) %>%
-  kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+  kable_styling(position = "l", full_width = F) %>%
   row_spec(0, background = "#1C2833", color = "#FFFFFF") %>%
   gsub("\\{\\{&lt;|&lt;", "{{<", .) %>% gsub("&gt;}}", ">}}", .)
 ```

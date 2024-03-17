@@ -350,13 +350,12 @@ if(nrow(DataKlubMangel_T) == 0) {
 	data.frame() %>% kbl()
 } else {
 	DataKlubMangel_T %>%
-		kbl(table.attr = "data-quarto-disable-processing=true",
-		    col.names = NA, align = "l", escape = F,
+		kbl(col.names = NA, align = "l", escape = F,
 		    caption = paste0(
-					IkonPerson_V, " <b>Manglende klubber</b>",
+					IkonPerson_V, " Manglende klubber",
 					"<br>",
 					"<i style=font-size:80%>Sorteret efter år, region og klub</i>")) %>%
-		kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+		kable_styling(position = "l", full_width = F) %>%
 		row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 		row_spec(which(grepl("Afbud", DataKlubMangel_T$OrdreStatusSimpelKat_RD)),
 						 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
@@ -393,13 +392,12 @@ if(nrow(DataDeltMangel_T) == 0) {
 	data.frame() %>% kbl()
 } else {
   DataDeltMangel_T %>%
-	kbl(table.attr = "data-quarto-disable-processing=true",
-	    col.names = NA, align = "l", escape = F,
+	kbl(col.names = NA, align = "l", escape = F,
 			caption = paste0(
 				IkonPerson_V, " <b>Manglende deltagere</b>",
 				"<br>",
 				"<i style=font-size:80%>Sorteret efter klubantal og år</i>")) %>%
-	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+	kable_styling(position = "l", full_width = F) %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltMangel_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%

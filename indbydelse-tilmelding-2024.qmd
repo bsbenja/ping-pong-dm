@@ -6,9 +6,10 @@ source(file = "ping-pong-dm-input.R")
 InputEventAarAkt_V <- "Ping Pong DM 2024"
 DataAkt_T <- Data_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataEventAarSidst_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAarSidst_DW))
 DataBilletKatAkt_T <- DataBilletKat_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataPraemiePengeAkt_T <- DataPraemiePenge_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
-DataResultSidsteEventAkt_T <- DataResultSidsteEvent_T %>% filter(
+DataResultSidst_T <- DataResult_T %>% filter(
   grepl(InputEventAarAkt_V, EventAarSidst_DW) &
   grepl("A-slutspil", DeltSlutspil_RD) &
   grepl("[1-4]", Placering))
@@ -53,12 +54,14 @@ cat(paste0("[BTK Midtjylland](https://btkmidtjylland.dk/forsiden-2){target=_blan
 ```{r}
 #| layout-ncol: 2
 DataBilletKatAkt_T %>%
-	kbl(table.attr = "data-quarto-disable-processing=true",
-	    col.names = NA, align = "llr", escape = F,
+	kbl(col.names = NA, align = "llr", escape = F,
       caption = paste0("<p>", IkonBillet_V, " <b>Billettyper</b></p><i style=font-size:80%>", length(DataBilletKatAkt_T$Billettype), " valgmuligheder ved tilmelding.</i>")) %>%
-	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+	kable_styling(position = "l", full_width = F) %>%
 	footnote(paste0(
-    "<i style=font-size:80%>Først til mølle-princip. Tilmeldingsfrist ", DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW, ".<br>Ved tilmelding modtages bekræftelsesmail.<br>Mikrogebyrer pålægges alle priser.</i>"),
+    "Først til mølle-princip.<br>",
+    "Tilmeldingsfrist ", DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW, ".<br>",
+    "Ved tilmelding modtages bekræftelsesmail.<br>",
+    "Mikrogebyrer pålægges alle priser."),
     general_title = "", escape = F) %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	column_spec(1:3, extra_css = "border-top:0.7px solid #999999") %>%
@@ -115,15 +118,15 @@ data.frame(
     "Evt. omklædning til fest.",
     "<a style=color:#000000;text-decoration:none href=indbydelse-tilmelding-2023.qmd#fest-om-aftenen>Fest om aftenen</a>"),
 	check.names = F) %>%
-	kbl(table.attr = "data-quarto-disable-processing=true",
-	    col.names = NA, align = "l", escape = F,
+	kbl(col.names = NA, align = "l", escape = F,
       caption = paste0("<p>", IkonTimeglas_V, " <b>Tidsplan</b></p><i style=font-size:80%><b>Bemærk</b>: Tidsplan kan ændres en smule alt efter deltagerantal.</i>")) %>%
-	kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+	kable_styling(position = "l", full_width = F) %>%
 	column_spec(1, width_min = "1em") %>%
 	column_spec(2, width_min = "7em") %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(6, bold = T) %>%
-	row_spec(c(1, 9), bold = T, background = DataEventAarAkt_T$EventAarFarve2_RD, extra_css = "border-top:0.7px solid #999999;border-bottom:0.7px solid #999999") %>%
+	row_spec(c(1, 9), bold = T, background = DataEventAarAkt_T$EventAarFarve2_RD, color = "#000000",
+  extra_css = "border-top:0.7px solid #999999;border-bottom:0.7px solid #999999") %>%
 	column_spec(2:3, extra_css = "border-top:0.7px solid #999999") %>%
 	gsub("\\{\\{&lt;|&lt;", "{{<", .) %>% gsub("&gt;}}", ">}}", .)
 ```
@@ -175,10 +178,9 @@ data.frame(
   	"<br>",
   	IkonTelefon_V, " <a href=tel:28722894 target=_blank>28722894</a>"),
   check.names = F) %>%
-  kbl(table.attr = "data-quarto-disable-processing=true",
-      col.names = NULL, align = "l", escape = F,
+  kbl(col.names = NULL, align = "l", escape = F,
       caption = paste(IkonPerson_V, "<b>Kontaktperson</b><br><i>Evt. spørgsmål til kontaktperson</i>")) %>%
-  kable_styling(position = "l", full_width = F, html_font = "verdana") %>%
+  kable_styling(position = "l", full_width = F) %>%
   column_spec(1, width_min = "5.5em") %>%
   gsub("\\{\\{&lt;|&lt;", "{{<", .) %>% gsub("&gt;}}", ">}}", .)
 
@@ -191,10 +193,9 @@ data.frame(
   	"<br>",
   	IkonTelefon_V, " <a href=tel:23347314 target=_blank>23347314</a>"),
   check.names = F) %>%
-  kbl(table.attr = "data-quarto-disable-processing=true",
-      col.names = NULL, align = "l", escape = F,
+  kbl(col.names = NULL, align = "l", escape = F,
       caption = paste(IkonPerson_V, "<b>Stævneleder</b><br><i>Ansvarlig på stævnedagen</i>")) %>%
-  kable_styling(position = "l", full_width = F, html_font = "verdana") %>%
+  kable_styling(position = "l", full_width = F) %>%
   column_spec(1, width_min = "5.5em") %>%
   gsub("\\{\\{&lt;|&lt;", "{{<", .) %>% gsub("&gt;}}", ">}}", .)
 
@@ -202,10 +203,9 @@ data.frame(
   "1" = paste0("<img src=filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "/lokation.png height=60 style=border-radius:10px>"),
   "2" = DataEventAarAkt_T$EventAarStedAdrPostnrURL_DW,
   check.names = F) %>%
-  kbl(table.attr = "data-quarto-disable-processing=true",
-      col.names = NULL, align = "l", escape = F,
+  kbl(col.names = NULL, align = "l", escape = F,
       caption = paste(IkonLokation_V, "<b>Lokation</b><br><i>Geografisk placering</i>")) %>%
-  kable_styling(position = "l", full_width = F, html_font = "verdana") %>%
+  kable_styling(position = "l", full_width = F) %>%
   column_spec(1, width_min = "5.5em") %>%
   gsub("\\{\\{&lt;|&lt;", "{{<", .) %>% gsub("&gt;}}", ">}}", .)
 ```
@@ -254,21 +254,20 @@ flowchart TD
 ```
 
 ```{r}
-if(nrow(DataResultSidsteEventAkt_T) == 0) {
+if(nrow(DataResultSidst_T) == 0) {
   data.frame() %>% kbl()
 } else {
-  DataResultSidsteEventAkt_T %>%
-  kbl(table.attr = "data-quarto-disable-processing=true",
-      col.names = NA, align = "lcl", escape = F,
+  DataResultSidst_T %>%
+  kbl(col.names = NA, align = "clcl", escape = F,
       caption = paste(
         IkonPokal_V, "<b>DM-resultater sidste <q>Final 4</q></b>",
         "<br>",
         "<i style=font-size:80%>Afholdt",
-        unique(DataResultSidsteEventAkt_T$EventAarDato_DW),
-        "i", unique(DataResultSidsteEventAkt_T$EventAarSted_RD), "</i>")) %>%
-  kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
-  row_spec(0, background = unique(DataResultSidsteEventAkt_T$EventAarFarve1_RD), color = "#FFFFFF") %>%
-	remove_column(4:10) %>%
+        DataEventAarSidst_T$EventAarDato_DW,
+        "i", DataEventAarSidst_T$EventAarSted_RD, "</i>")) %>%
+  kable_styling(position = "l", full_width = F) %>%
+  row_spec(0, background = DataEventAarSidst_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
+	remove_column(c(1, 5:9)) %>%
 	footnote(
 		paste0(""),
 		general_title = "", escape = F) %>%
@@ -330,22 +329,22 @@ if(nrow(DataPraemiePengeAkt_T) == 0) {
   data.frame() %>% kbl()
 } else {
   DataPraemiePengeAkt_T %>%
-    kbl(table.attr = "data-quarto-disable-processing=true",
-        col.names = NA, align = "lrr", escape = F,
+    kbl(col.names = NA, align = "lrr", escape = F,
         caption = paste(
           "<i style=font-size:90%>", IkonPenge_V, "<b>Præmiepenge</b></i>")) %>%
-    kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+    kable_styling(position = "l", full_width = F) %>%
     row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
     row_spec(which(DataPraemiePengeAkt_T$PraemieRank_DW == "1"),
-             bold = T, background = DataEventAarAkt_T$EventAarFarve2_RD) %>%
+             bold = T, background = DataEventAarAkt_T$EventAarFarve2_RD, color = "#000000") %>%
     row_spec(which(DataPraemiePengeAkt_T$PraemieRank_DW == "2"),
-             background = DataEventAarAkt_T$EventAarFarve2_RD) %>%
+             background = DataEventAarAkt_T$EventAarFarve2_RD, color = "#000000") %>%
     row_spec(which(DataPraemiePengeAkt_T$PraemieRank_DW == "3"),
-             background = DataEventAarAkt_T$EventAarFarve2_RD) %>%
+             background = DataEventAarAkt_T$EventAarFarve2_RD, color = "#000000") %>%
     add_indent(which(DataPraemiePengeAkt_T$PraemieRank_DW == "4")) %>%
     column_spec(3, italic = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
     footnote(paste(
-      "<i style=font-size:80%>Præmiesum på", distinct(filter(DataPraemiePengeAkt_T, PraemieRank_DW == 1), Præmiepenge), "er under<br>forudsætning af minimum 64 Ping Pong<br>deltagere.</i>"),
+      "Præmiesum på", distinct(filter(DataPraemiePengeAkt_T, PraemieRank_DW == 1), Præmiepenge),
+      "er under<br>forudsætning af minimum 64 Ping Pong<br>deltagere."),
       general_title = "", escape = F) %>%
     remove_column(4:8)
 }

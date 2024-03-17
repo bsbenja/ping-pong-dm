@@ -40,14 +40,14 @@ OrdreKat_DW                             : Ord.factor w/ 3 levels "Ordinær"<"Dri
 OrdreKatEmoji_DW                        : Ord.factor w/ 3 levels "✔️"<"🏃"<"❌": 1
 OrdreKatIkon_RD                         : Ord.factor w/ 3 levels "<iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon>"<..: 1
 OrdreStatusKatNr_RD                     : int 1
-OrdreStatusKat_RD                       : Ord.factor w/ 2 levels "Tilmeldt inkl. betaling"<..: 1
-OrdreStatusKatEmoji_RD                  : Ord.factor w/ 2 levels "✔️💲👍"<"❌💸👍": 1
-OrdreStatusSimpelKat_RD                 : Ord.factor w/ 2 levels "Tilmeldt"<"Afbud": 1
-OrdreStatusSimpelKatIkon_RD             : Ord.factor w/ 2 levels "<iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon>"<..: 1
+OrdreStatusKat_RD                       : Ord.factor w/ 3 levels "Tilmeldt inkl. betaling"<..: 1
+OrdreStatusKatEmoji_RD                  : Ord.factor w/ 3 levels "✔️💲👍"<"❌💸👍"<..: 1
+OrdreStatusSimpelKat_RD                 : Ord.factor w/ 3 levels "Tilmeldt"<"Afbud"<..: 1
+OrdreStatusSimpelKatIkon_RD             : Ord.factor w/ 3 levels "<iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon>"<..: 1
 OrdreStatusSimpelDeltKat_DW             : Ord.factor w/ 2 levels "Tilmeldt"<"<q>Totalafbud</q>": 1
 OrdreUnik_DW                            : int 1
-BilletNr_RD                             : int 25
-Billet_RD                               : Ord.factor w/ 22 levels "Ping Pong DM 2014 - Ping Pong - Single - Sandpapir - Åben"<..: 22
+BilletNr_RD                             : int 26
+Billet_RD                               : Ord.factor w/ 23 levels "Ping Pong DM 2014 - Ping Pong - Single - Sandpapir - Åben"<..: 23
 BilletStartDatoTid_RD                   : POSIXct[1:1], format: "2024-06-22 10:30:00"
 BilletStartDato_DW                      : Date[1:1], format: "2024-06-22"
 BilletStartDato_DW_Aar_DW               : int 2024
@@ -109,8 +109,8 @@ EventNr_RD                              : int 1
 Event_RD                                : Ord.factor w/ 1 level "Ping Pong DM": 1
 EventSportsgren_RD                      : chr "Ping Pong"
 EventTurnering_RD                       : chr "DM"
-EventAarNr_RD                           : int 10
-EventAar_RD                             : Ord.factor w/ 10 levels "Ping Pong DM 2014"<..: 10
+EventAarNr_RD                           : int 11
+EventAar_RD                             : Ord.factor w/ 11 levels "Ping Pong DM 2014"<..: 11
 EventAarSidst_DW                        : chr NA
 EventAarFristDatoTid_RD                 : POSIXct[1:1], format: "2024-06-09 23:59:59"
 EventAarFristDato_DW                    : Date[1:1], format: "2024-06-09"

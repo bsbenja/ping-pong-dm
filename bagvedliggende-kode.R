@@ -1053,6 +1053,7 @@ Data_T <- Data_T %>%
   # DeltNavnKlub_DW
   mutate(DeltNavnKlub_DW = case_when(
     is.na(DeltID_RD) ~ NA_character_,
+    grepl("Aflyst", OrdreStatusSimpelKat_RD) ~ BilletBeskr_RD,
     grepl("Ingen klub|Udlandet", Klub_RD) ~ paste0(DeltNavn_RD),
     TRUE ~ paste0(DeltNavn_RD, ", <i>", Klub_RD, "</i>"))) %>%
   mutate(across("DeltNavnKlub_DW", \(x) as.character(x))) %>%
@@ -1507,7 +1508,7 @@ Data_T <- Data_T %>%
       EventAarStedURL_DW, ". Der åbnes for tilmelding", EventAarAabningDato_DW_DMAA_DW, 
       "hvor der vil komme en fane med hhv. <q>Indbydelse & tilmelding</q> samt ",
       "<q>Præmier & deltagere</q>, som vil blive opdateret løbende.</i>"),
-    InputInfo1234_V %in% c(3, 4) ~ ifelse(!grepl("Tilmeldt", OrdreStatusSimpelKat_RD), NA, paste(
+    InputInfo1234_V %in% c(3, 4) ~ ifelse(grepl("Afbud", OrdreStatusSimpelKat_RD), NA, paste(
       "<i style=font-size:100%>",
       "<b>Afholdes ", EventAarDato_DW, " i ", EventAarStedURL_DW, "</b></i>",
       "<br>",
@@ -1560,7 +1561,7 @@ Data_T <- Data_T %>%
   
   # InfoTipPraemierDeltagere_DW
   group_by(EventAar_RD) %>%
-  mutate(InfoTipPraemierDeltagere_DW = ifelse(!grepl("Tilmeldt", OrdreStatusSimpelKat_RD), NA, paste(
+  mutate(InfoTipPraemierDeltagere_DW = ifelse(grepl("Afbud", OrdreStatusSimpelKat_RD), NA, paste(
     "<p>",
     IkonGentagelse_V, " Præmier og deltagere opdateres løbende til ",
     EventAar_RD, " [<b>HER</b>](praemier-deltagere.qmd).",
@@ -1606,7 +1607,7 @@ DataBillet_T <- Data_T %>% filter(grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>
   arrange(desc(BilletNr_RD)) %>%
   distinct(across(starts_with(c("EventAar_RD", "Billet", "Stat"))))
 
-  #' # Billettype
+#' # Billettype
 # Billettype --------------------------------------------------------------
 #+ eval=F, warning=F, message=F
 
@@ -1737,7 +1738,6 @@ DataPraemieYngstAeldst_T <- Data_T %>%
     EventAar_RD)
 
 #' # Deltagere
-
 # Deltagere ---------------------------------------------------------------
 
 #' ## Foreløbige deltagere
@@ -1806,37 +1806,22 @@ DataDeltAndet_T <- Data_T %>%
 
 #' # Resultater
 # Resultater --------------------------------------------------------------
-
-#' ## Resultater sidste DM
-#+ eval=F, warning=F, message=F
-
-DataResultSidsteEvent_T <- Data_T %>%
-  filter(!is.na(DeltID_RD) & !is.na(DeltSlutspil_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
-  arrange(desc(EventAarNr_RD), BilletDisciplin_RD, BilletRaekke_RD, DeltSlutspil_RD, DeltPlac_RD) %>%
-  select(
-    "Placering" = DeltPlac_RD,
-    "&emsp;" = KlubLogo_DW,
-    "Navn" = DeltNavnKlub_DW,
-    DeltSlutspil_RD,
-    EventAarSted_RD,
-    EventAarDato_DW,
-    EventAarFarve1_RD,
-    BilletDisciplin_RD,
-    BilletRaekke_RD,
-    EventAarSidst_DW)
-
-#' ## DM-vindere statistik
 #+ eval=F, warning=F, message=F
 
 DataResult_T <- Data_T %>%
-  filter(grepl("1", DeltPlac_RD) & grepl("A-slutspil", DeltSlutspil_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
+  filter((!is.na(DeltSlutspil_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) | grepl("Aflyst", OrdreStatusSimpelKat_RD)) %>%
   filter(EventAarStartDatoTid_DW <= Sys.Date()) %>%
-  add_row(EventAarStartDato_DW_Aar_DW = 2020, DeltNavnKlub_DW = "Aflyst pga. Covid-19") %>%
-  arrange(desc(EventAarStartDato_DW_Aar_DW)) %>%
+  arrange(desc(EventAarNr_RD), BilletDisciplin_RD, BilletRaekke_RD, DeltSlutspil_RD, DeltPlac_RD) %>%
   select(
-    "År"     = EventAarStartDato_DW_Aar_DW,
+    "År" = EventAarStartDato_DW_Aar_DW,
+    "Placering" = DeltPlac_RD,
     "&emsp;" = KlubLogo_DW,
-    "Navn"   = DeltNavnKlub_DW)
+    "Navn" = DeltNavnKlub_DW,
+    BilletDisciplin_RD,
+    BilletRaekke_RD,
+    DeltSlutspil_RD,
+    EventAarSidst_DW,
+    EventAar_RD)
 
 #' # Tabeller til dashboards
 # Tabeller til dashboards -------------------------------------------------

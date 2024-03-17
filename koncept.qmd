@@ -4,6 +4,9 @@ source(file = "ping-pong-dm-input.R")
 
 ```{r}
 DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataResultAlle_T <- DataResult_T %>% filter(
+  grepl("A-slutspil", DeltSlutspil_RD) &
+  grepl("1", `Placering`))
 ```
 
 ---
@@ -179,17 +182,16 @@ tbl_webscraping_DM_resultater <- rbind(data.frame(), data.frame(
   select(År, Spiller)
 
 kbl_webscraping_DM_resultater <- tbl_webscraping_DM_resultater %>%
-  kbl(table.attr = "data-quarto-disable-processing=true",
-      col.names = NA, align = "cl", escape = F,
+  kbl(col.names = NA, align = "cl", escape = F,
       caption = paste(IkonPokal_V, "DM-vindere statistik")) %>%
-  kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+  kable_styling(position = "l", full_width = F) %>%
   row_spec(0, background = "#1C2833", color = "#FFFFFF") %>%
   row_spec(which(tbl_webscraping_DM_resultater$År == "2020"),
               strikeout = T, italic = T, color = "#5D6D7E") %>%
   footnote(
-    "<i>Webscraped fra BTDK's hjemmeside
+    "Webscraped fra BTDK's hjemmeside
     <a href=https://bordtennisdanmark.dk/statistik/ping-pong-dm
-    target=_blank><b>HER</b></a></i>", general_title = "", escape = F) %>%
+    target=_blank><b>HER</b></a>", general_title = "", escape = F) %>%
   gsub("\\{\\{&lt;|&lt;", "{{<", .) %>% gsub("&gt;}}", ">}}", .)
 
 kbl_webscraping_DM_resultater
@@ -198,21 +200,21 @@ kbl_webscraping_DM_resultater
 ```{r}
 
 library(kableExtra)
-if(nrow(DataResult_T) == 0) {
+if(nrow(DataResultAlle_T) == 0) {
   kbl3_dm_resultater <- data.frame() %>% kbl()
 } else {
-DataResult_T %>%
-  kbl(table.attr = "data-quarto-disable-processing=true",
-      col.names = NA, align = "ccl", escape = F,
-      caption = paste(IkonPokal_V, "<b>DM-vindere statistik</b>")) %>%
-  kable_classic(position = "l", full_width = F, html_font = "verdana") %>%
+DataResultAlle_T %>%
+  kbl(col.names = NA, align = "clcl", escape = F,
+      caption = paste(IkonPokal_V, "DM-vindere statistik")) %>%
+  kable_styling(position = "l", full_width = F) %>%
   row_spec(0, background = "#1C2833", color = "#FFFFFF") %>%
-  row_spec(which(DataResult_T$År == "2020"),
+  row_spec(which(DataResultAlle_T$År == "2020"),
            strikeout = T, italic = T, color = "#5D6D7E") %>%
+  remove_column(c(2, 5:9)) %>%
   footnote(
-    "<i>Webscraped fra BTDK's hjemmeside
+    "Webscraped fra BTDK's hjemmeside
     <a href=https://bordtennisdanmark.dk/statistik/ping-pong-dm
-    target=_blank><b>HER</b></a></i>", general_title = "", escape = F)
+    target=_blank><b>HER</b></a>", general_title = "", escape = F)
 }
 ```
 
