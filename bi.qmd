@@ -352,8 +352,7 @@ if(nrow(DataKlubMangel_T) == 0) {
 	DataKlubMangel_T %>%
 		kbl(col.names = NA, align = "l", escape = F,
 		    caption = paste0(
-					IkonPerson_V, " Manglende klubber",
-					"<br>",
+					IkonPerson_V, " Manglende klubber<br>",
 					"<i style=font-size:80%>Sorteret efter år, region og klub</i>")) %>%
 		kable_styling(position = "l", full_width = F) %>%
 		row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
@@ -394,8 +393,7 @@ if(nrow(DataDeltMangel_T) == 0) {
   DataDeltMangel_T %>%
 	kbl(col.names = NA, align = "l", escape = F,
 			caption = paste0(
-				IkonPerson_V, " <b>Manglende deltagere</b>",
-				"<br>",
+				IkonPerson_V, " Manglende deltagere<br>",
 				"<i style=font-size:80%>Sorteret efter klubantal og år</i>")) %>%
 	kable_styling(position = "l", full_width = F) %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%

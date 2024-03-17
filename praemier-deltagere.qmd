@@ -102,10 +102,6 @@ if(nrow(DataPraemiePengeAkt_T) == 0) {
              background = DataEventAarAkt_T$EventAarFarve2_RD, color = "#000000") %>%
     add_indent(which(DataPraemiePengeAkt_T$PraemieRank_DW == "4")) %>%
     column_spec(3, italic = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-    footnote(paste(
-      "Præmiesum på", distinct(filter(DataPraemiePengeAkt_T, PraemieRank_DW == 1), Præmiepenge),
-      "er under<br>forudsætning af minimum 64 Ping Pong<br>deltagere."),
-      general_title = "", escape = F) %>%
     remove_column(4:8)
 }
 
@@ -115,15 +111,13 @@ if(nrow(DataPraemieYngstAeldstAkt_T) == 0) {
 } else {
   DataPraemieYngstAeldstAkt_T %>%
     kbl(col.names = NA, align = "lclc", escape = F,
-      caption = paste(
-      IkonGave_V, "Gave til yngste- og ældste Ping Pong deltager")) %>%
+      caption = paste(IkonGave_V, "Gave til yngste- og ældste Ping Pong deltager")) %>%
     kable_styling(position = "l", full_width = F) %>%
     row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
     column_spec(1, bold = T) %>%
     column_spec(1:4, extra_css = "border-top:0.7px solid #999999") %>%
     footnote(paste(
-      "Gaverne har til formål at hylde mangfoldigheden.",
-      "<br>",
+      "Gaverne har til formål at hylde mangfoldigheden.<br>",
       "Aldersforskel", DataBilletAkt_T$StatAlderForskelAntal_DW, "år."),
       general_title = "", escape = F) %>%
     remove_column(5)
@@ -151,10 +145,9 @@ if(InputInfo1234_V %in% c(3)) {
     kbl(col.names = NA, align = "ccl", escape = F,
       caption = paste0(
         IkonPerson_V, " Foreløbige deltagere",
-        "<br>",
-        "<i style=font-size:80%>", DataBilletAkt_T$BilletPuljeDelt_RD, "-mandspuljer ",
-        "inddelt efter snake-system vises efter tilmeldingsfrist ",
-        DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW, ".",
+        "<br>", "<i style=font-size:80%>",
+        DataBilletAkt_T$BilletPuljeDelt_RD, "-mandspuljer inddelt efter snake-system vises",
+        "efter tilmeldingsfrist ", DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW, ".",
         "<br>",
         "<br>",
         "Sorteret efter billettype og fødselsdato",
@@ -174,11 +167,10 @@ if(InputInfo1234_V %in% c(1, 2, 4)) {
   DataDeltPuljerAkt_T %>%
     kbl(col.names = NA, align = "cclr", escape = F,
       caption = paste0(
-        IkonPingPong_V, " ",
-        DataBilletAkt_T$BilletPuljeDelt_RD, "-mandspuljer til ", DataEventAarAkt_T$EventAar_RD,
+        IkonPingPong_V, " ", DataBilletAkt_T$BilletPuljeDelt_RD, "-mandspuljer til ", DataEventAarAkt_T$EventAar_RD,
         "<br>",
-        "<i style=font-size:80%>", DataBilletAkt_T$BilletDelt_DW, " ",
-        ifelse(DataBilletAkt_T$BilletDelt_DW == 1, "tilmelding", "tilmeldinger"),
+        "<i style=font-size:80%>",
+        DataBilletAkt_T$BilletDelt_DW, " ", ifelse(DataBilletAkt_T$BilletDelt_DW == 1, "tilmelding", "tilmeldinger"),
         " fordelt over ", DataBilletAkt_T$BilletPulje_DW, " ",
         ifelse(DataBilletAkt_T$BilletPulje_DW == 1, "pulje", "puljer"), " efter snake-system.",
         "<br>",
@@ -205,7 +197,7 @@ if(InputInfo1234_V %in% c(1, 2, 3, 4)) {
   DataDeltAndetAkt_T %>%
     kbl(col.names = NA, align = "ccl", escape = F,
   		caption = paste0(
-        "<p>Andet end Ping Pong + evt. afbud</p>",
+        "Andet end Ping Pong + evt. afbud<br>",
         "<i style=font-size:80%>Sorteret efter fødselsdato</i>")) %>%
   kable_styling(position = "l", full_width = F) %>%
   row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
@@ -555,17 +547,12 @@ if(nrow(DataResultSidst_T) == 0) {
 } else {
   DataResultSidst_T %>%
   kbl(col.names = NA, align = "clcl", escape = F,
-      caption = paste(
-        IkonPokal_V, "DM-resultater sidste <q>Final 4</q>",
-        "<br>",
-        "<i style=font-size:80%>Afholdt",
-        DataEventAarSidst_T$EventAarDato_DW,
-        "i", DataEventAarSidst_T$EventAarSted_RD, "</i>")) %>%
+      caption = paste0(
+        IkonPokal_V, " DM-resultater sidste <q>Final 4</q><br>",
+        "<i style=font-size:80%>Afholdt ", DataEventAarSidst_T$EventAarDato_DW,
+        " i ", DataEventAarSidst_T$EventAarSted_RD, "</i>")) %>%
   kable_styling(position = "l", full_width = F) %>%
   row_spec(0, background = DataEventAarSidst_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
-	remove_column(c(1, 5:9)) %>%
-	footnote(
-		paste0(""),
-		general_title = "", escape = F)
+	remove_column(c(1, 5:9))
 }
 ```

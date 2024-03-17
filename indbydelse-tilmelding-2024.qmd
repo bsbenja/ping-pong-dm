@@ -55,18 +55,18 @@ cat(paste0("[BTK Midtjylland](https://btkmidtjylland.dk/forsiden-2){target=_blan
 #| layout-ncol: 2
 DataBilletKatAkt_T %>%
 	kbl(col.names = NA, align = "llr", escape = F,
-      caption = paste0("<p>", IkonBillet_V, " <b>Billettyper</b></p><i style=font-size:80%>", length(DataBilletKatAkt_T$Billettype), " valgmuligheder ved tilmelding.</i>")) %>%
+      caption = paste0(
+        IkonBillet_V, " Billettyper<br>",
+        "<i style=font-size:80%>", length(DataBilletKatAkt_T$Billettype), " valgmuligheder ved tilmelding.</i>")) %>%
 	kable_styling(position = "l", full_width = F) %>%
 	footnote(paste0(
-    "Først til mølle-princip.<br>",
-    "Tilmeldingsfrist ", DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW, ".<br>",
+    "Først til mølle-princip. Tilmeldingsfrist ", DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW, ".<br>",
     "Ved tilmelding modtages bekræftelsesmail.<br>",
     "Mikrogebyrer pålægges alle priser."),
     general_title = "", escape = F) %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	column_spec(1:3, extra_css = "border-top:0.7px solid #999999") %>%
-  remove_column(4) %>%
-	gsub("\\{\\{&lt;|&lt;", "{{<", .) %>% gsub("&gt;}}", ">}}", .)
+  remove_column(4)
 
 data.frame(
 	"&emsp;" = c(
@@ -119,7 +119,9 @@ data.frame(
     "<a style=color:#000000;text-decoration:none href=indbydelse-tilmelding-2023.qmd#fest-om-aftenen>Fest om aftenen</a>"),
 	check.names = F) %>%
 	kbl(col.names = NA, align = "l", escape = F,
-      caption = paste0("<p>", IkonTimeglas_V, " <b>Tidsplan</b></p><i style=font-size:80%><b>Bemærk</b>: Tidsplan kan ændres en smule alt efter deltagerantal.</i>")) %>%
+      caption = paste0(
+        IkonTimeglas_V, " Tidsplan<br>",
+        "<i style=font-size:75%>Bemærk: Tidsplan kan ændres en smule alt efter deltagerantal.</i>")) %>%
 	kable_styling(position = "l", full_width = F) %>%
 	column_spec(1, width_min = "1em") %>%
 	column_spec(2, width_min = "7em") %>%
@@ -127,8 +129,7 @@ data.frame(
 	row_spec(6, bold = T) %>%
 	row_spec(c(1, 9), bold = T, background = DataEventAarAkt_T$EventAarFarve2_RD, color = "#000000",
   extra_css = "border-top:0.7px solid #999999;border-bottom:0.7px solid #999999") %>%
-	column_spec(2:3, extra_css = "border-top:0.7px solid #999999") %>%
-	gsub("\\{\\{&lt;|&lt;", "{{<", .) %>% gsub("&gt;}}", ">}}", .)
+	column_spec(2:3, extra_css = "border-top:0.7px solid #999999")
 ```
 :::
 
@@ -179,10 +180,11 @@ data.frame(
   	IkonTelefon_V, " <a href=tel:28722894 target=_blank>28722894</a>"),
   check.names = F) %>%
   kbl(col.names = NULL, align = "l", escape = F,
-      caption = paste(IkonPerson_V, "<b>Kontaktperson</b><br><i>Evt. spørgsmål til kontaktperson</i>")) %>%
+      caption = paste0(
+        IkonPerson_V, " Kontaktperson<br>",
+        "<i style=font-size:80%>Evt. spørgsmål til kontaktperson</i>")) %>%
   kable_styling(position = "l", full_width = F) %>%
-  column_spec(1, width_min = "5.5em") %>%
-  gsub("\\{\\{&lt;|&lt;", "{{<", .) %>% gsub("&gt;}}", ">}}", .)
+  column_spec(1, width_min = "5.5em")
 
 data.frame(
   "1" = paste0("<img src=filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "/staevneleder.png height=60 style=border-radius:10px>"),
@@ -194,20 +196,22 @@ data.frame(
   	IkonTelefon_V, " <a href=tel:23347314 target=_blank>23347314</a>"),
   check.names = F) %>%
   kbl(col.names = NULL, align = "l", escape = F,
-      caption = paste(IkonPerson_V, "<b>Stævneleder</b><br><i>Ansvarlig på stævnedagen</i>")) %>%
+      caption = paste0(
+        IkonPerson_V, " Stævneleder<br>",
+        "<i style=font-size:80%>Ansvarlig på stævnedagen</i>")) %>%
   kable_styling(position = "l", full_width = F) %>%
-  column_spec(1, width_min = "5.5em") %>%
-  gsub("\\{\\{&lt;|&lt;", "{{<", .) %>% gsub("&gt;}}", ">}}", .)
+  column_spec(1, width_min = "5.5em")
 
 data.frame(
   "1" = paste0("<img src=filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "/lokation.png height=60 style=border-radius:10px>"),
   "2" = DataEventAarAkt_T$EventAarStedAdrPostnrURL_DW,
   check.names = F) %>%
   kbl(col.names = NULL, align = "l", escape = F,
-      caption = paste(IkonLokation_V, "<b>Lokation</b><br><i>Geografisk placering</i>")) %>%
+      caption = paste0(
+        IkonLokation_V, " Lokation<br>",
+        "<i style=font-size:80%>Geografisk placering</i>")) %>%
   kable_styling(position = "l", full_width = F) %>%
-  column_spec(1, width_min = "5.5em") %>%
-  gsub("\\{\\{&lt;|&lt;", "{{<", .) %>% gsub("&gt;}}", ">}}", .)
+  column_spec(1, width_min = "5.5em")
 ```
 :::
 :::
@@ -259,19 +263,13 @@ if(nrow(DataResultSidst_T) == 0) {
 } else {
   DataResultSidst_T %>%
   kbl(col.names = NA, align = "clcl", escape = F,
-      caption = paste(
-        IkonPokal_V, "<b>DM-resultater sidste <q>Final 4</q></b>",
-        "<br>",
-        "<i style=font-size:80%>Afholdt",
-        DataEventAarSidst_T$EventAarDato_DW,
-        "i", DataEventAarSidst_T$EventAarSted_RD, "</i>")) %>%
+      caption = paste0(
+        IkonPokal_V, " DM-resultater sidste <q>Final 4</q><br>",
+        "<i style=font-size:80%>Afholdt ", DataEventAarSidst_T$EventAarDato_DW,
+        " i ", DataEventAarSidst_T$EventAarSted_RD, "</i>")) %>%
   kable_styling(position = "l", full_width = F) %>%
   row_spec(0, background = DataEventAarSidst_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
-	remove_column(c(1, 5:9)) %>%
-	footnote(
-		paste0(""),
-		general_title = "", escape = F) %>%
-  gsub("\\{\\{&lt;|&lt;", "{{<", .) %>% gsub("&gt;}}", ">}}", .)
+	remove_column(c(1, 5:9))
 }
 ```
 :::
@@ -309,7 +307,7 @@ cat(paste0(
 
 ::: {.grid style="font-style:italic"}
 ::: {.g-col-12 .g-col-md-8}
-[**NYHED**]{.underline}**! 2 kvalifikationspladser til [VERDENSMESTERSKABERNE I PING PONG]{.underline} i Mexico City fra den 4. til 6. januar 2024 med en præmiesum på [\$36.000]{.underline} fordelt på SANDPAPIR, HARDBAT og TRÆBAT. Ekstra tilskud hertil på \$500 til 1. pladsen fra DM. Ny arrangør for VM i Ping Pong er International Classic Table Tennis Federation (ICTTF), som erstatter det ellers tidligere velkendte format fra Alexandra Palace i London arrangeret af Matchroom. Se mere om det nye VM-koncept i indbydelsen `r paste0("[HER](filer/event/", DataEventAarAkt_T$EventAarStartDato_DW_Aar_DW, "/ping-pong-world-cup-indbydelse.pdf){target=_blank}")`**.
+[**NYHED**]{.underline}**! 2 kvalifikationspladser til [VERDENSMESTERSKABERNE I PING PONG]{.underline} i Mexico City fra den 4. til 6. januar 2024 med en præmiesum på [\$36.000]{.underline} fordelt på SANDPAPIR, HARDBAT og TRÆBAT. Ekstra tilskud hertil på \$500 til 1. pladsen fra DM. Ny arrangør for VM i Ping Pong er International Classic Table Tennis Federation (ICTTF), som erstatter det ellers tidligere velkendte format fra Alexandra Palace i London arrangeret af Matchroom. Se mere om det nye VM-koncept i indbydelsen `r paste0("[HER](filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "/ping-pong-world-cup-indbydelse.pdf){target=_blank}")`**.
 
 -   Der er også en gave til den **yngste**- og **ældste** Ping Pong deltager for at hylde mangfoldigheden.
 -   Pokaler/diplomer uddeles til alle gave-/præmietagere.
@@ -330,8 +328,7 @@ if(nrow(DataPraemiePengeAkt_T) == 0) {
 } else {
   DataPraemiePengeAkt_T %>%
     kbl(col.names = NA, align = "lrr", escape = F,
-        caption = paste(
-          "<i style=font-size:90%>", IkonPenge_V, "<b>Præmiepenge</b></i>")) %>%
+        caption = paste(IkonPenge_V, "Præmiepenge")) %>%
     kable_styling(position = "l", full_width = F) %>%
     row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
     row_spec(which(DataPraemiePengeAkt_T$PraemieRank_DW == "1"),

@@ -190,9 +190,8 @@ kbl_webscraping_DM_resultater <- tbl_webscraping_DM_resultater %>%
               strikeout = T, italic = T, color = "#5D6D7E") %>%
   footnote(
     "Webscraped fra BTDK's hjemmeside
-    <a href=https://bordtennisdanmark.dk/statistik/ping-pong-dm
-    target=_blank><b>HER</b></a>", general_title = "", escape = F) %>%
-  gsub("\\{\\{&lt;|&lt;", "{{<", .) %>% gsub("&gt;}}", ">}}", .)
+    <a href=https://bordtennisdanmark.dk/statistik/ping-pong-dm target=_blank><b>HER</b></a>",
+    general_title = "", escape = F)
 
 kbl_webscraping_DM_resultater
 ```
@@ -208,13 +207,13 @@ DataResultAlle_T %>%
       caption = paste(IkonPokal_V, "DM-vindere statistik")) %>%
   kable_styling(position = "l", full_width = F) %>%
   row_spec(0, background = "#1C2833", color = "#FFFFFF") %>%
-  row_spec(which(DataResultAlle_T$År == "2020"),
+  row_spec(which(grepl("Aflyst", DataResultAlle_T$Navn)),
            strikeout = T, italic = T, color = "#5D6D7E") %>%
   remove_column(c(2, 5:9)) %>%
   footnote(
     "Webscraped fra BTDK's hjemmeside
-    <a href=https://bordtennisdanmark.dk/statistik/ping-pong-dm
-    target=_blank><b>HER</b></a>", general_title = "", escape = F)
+    <a href=https://bordtennisdanmark.dk/statistik/ping-pong-dm target=_blank><b>HER</b></a>",
+    general_title = "", escape = F)
 }
 ```
 
