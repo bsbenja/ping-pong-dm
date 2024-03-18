@@ -865,13 +865,13 @@ Data_T <- Data_T %>%
   select(-DeltNavn_RD, everything()) %>%
   
   # DeltFoedtDato_DW
-  mutate(DeltFoedtDato_DW = if_else(
-    substr(DeltID_RD, 5, 6) <= substr(EventAarStartDato_DW_Aar_DW, 3, 4),
-    paste0(
+  mutate(DeltFoedtDato_DW = case_when(
+    is.na(DeltID_RD) ~ as.character(EventAarStartDatoTid_DW),
+    substr(DeltID_RD, 5, 6) <= substr(EventAarStartDato_DW_Aar_DW, 3, 4) ~ paste0(
       as.numeric(substr(EventAarStartDato_DW_Aar_DW, 1, 2)), substr(DeltID_RD, 5, 6), "-",
       substr(DeltID_RD, 3, 4), "-",
       substr(DeltID_RD, 1, 2)),
-    paste0(
+    TRUE ~ paste0(
       as.numeric(substr(EventAarStartDato_DW_Aar_DW, 1, 2))-1, substr(DeltID_RD, 5, 6), "-",
       substr(DeltID_RD, 3, 4), "-",
       substr(DeltID_RD, 1, 2)))) %>%
@@ -1064,6 +1064,7 @@ Data_T <- Data_T %>%
   arrange(BilletKat_RD, desc(OrdreFoersteDatoTid_DW)) %>%
   mutate(DeltNavnBilletKat_DW = case_when(
     is.na(DeltID_RD) ~ NA_character_,
+    grepl("Aflyst", OrdreStatusSimpelKat_RD) ~ BilletBeskr_RD,
     grepl("Ingen klub|Udlandet", Klub_RD) ~ paste0(DeltNavn_RD, " (", DeltAlder_DW, " år) ", str_c(
       BilletKatIkon_RD, collapse = "<wbr>")),
     TRUE ~ paste0(DeltNavnKlub_DW, " (", DeltAlder_DW, " år) ", str_c(
@@ -1086,7 +1087,7 @@ Data_T <- Data_T %>%
   # DeltGenNr_DW
   group_by(DeltID_RD, BilletKat_RD, EventAarFra2021_DW) %>%
   arrange(OrdreDatoTid_RD, BilletKat_RD) %>%
-  mutate(DeltGenNr_DW = ifelse(grepl("Afbud", OrdreStatusSimpelKat_RD), 0, 1)) %>%
+  mutate(DeltGenNr_DW = ifelse(grepl("Tilmeldt", OrdreStatusSimpelKat_RD), 1, 0)) %>%
   mutate(DeltGenNr_DW = cumsum(DeltGenNr_DW)) %>%
   ungroup() %>%
   mutate(across("DeltGenNr_DW", \(x) as.integer(x))) %>%
@@ -1286,8 +1287,11 @@ Data_T <- Data_T %>%
   select(-StatDeltAlderKatAntal_DW, everything()) %>%
   
   # StatDeltAlderAntal_DW
-  mutate(StatDeltAlderAntal_DW = ifelse(DeltUnik_DW == 0, NA, DeltAlder_DW)) %>%
   group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW) %>%
+  mutate(StatDeltAlderAntal_DW = case_when(
+    all(is.na(DeltAlder_DW)) ~ 0,
+    DeltUnik_DW == 0 ~ NA,
+    TRUE ~ DeltAlder_DW)) %>%
   mutate(StatDeltAlderAntal_DW = paste(
     "Yngst", min(StatDeltAlderAntal_DW, na.rm = TRUE), "år", IkonFødt_V,
     "∙ Gns.", round(mean(StatDeltAlderAntal_DW, na.rm = TRUE), 0), "år", IkonFødt_V,
@@ -1341,7 +1345,7 @@ Data_T <- Data_T %>%
   group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW) %>%
   mutate(StatKlubAntal_DW = ifelse(StatKlubAntal_DW == 0, NA, paste(
     StatKlubAntal_DW, ifelse(StatKlubAntal_DW == 1, "klub", "forskellige klubber"), KlubIkon_RD))) %>%
-  mutate(StatKlubAntal_DW = unique(na.omit(StatKlubAntal_DW))) %>%
+  mutate(StatKlubAntal_DW = ifelse(all(is.na(StatKlubAntal_DW)), NA, unique(na.omit(StatKlubAntal_DW)))) %>%
   ungroup() %>%
   mutate(across("StatKlubAntal_DW", \(x) as.character(x))) %>%
   select(-StatKlubAntal_DW, everything()) %>%
@@ -1383,8 +1387,11 @@ Data_T <- Data_T %>%
   select(-StatDeltRatingKatAntal_DW, everything()) %>%
   
   # StatDeltRatingAntal_DW
-  mutate(StatDeltRatingAntal_DW = ifelse(DeltPingPongUnik_DW == 0, NA, DeltRating2_RD)) %>%
   group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW) %>%
+  mutate(StatDeltRatingAntal_DW = case_when(
+    all(is.na(DeltRating2_RD)) ~ 0,
+    DeltPingPongUnik_DW == 0 ~ NA,
+    TRUE ~ DeltRating2_RD)) %>%
   mutate(StatDeltRatingAntal_DW = paste(
     "Min.", min(StatDeltRatingAntal_DW, na.rm = TRUE), "rating", IkonPingPong_V,
     "∙ Gns.", round(mean(StatDeltRatingAntal_DW, na.rm = TRUE), 0), "rating", IkonPingPong_V,
@@ -1504,11 +1511,11 @@ Data_T <- Data_T %>%
     InputInfo1234_V %in% c(1) ~ paste(
       "<i>Nærmere information om Ping Pong DM", EventAarStartDato_DW_Aar_DW+1, "følger.</i>"),
     InputInfo1234_V %in% c(2) ~ paste0(
-      "<i>", EventAar_RD, " afholdes ", EventAarDato_DW, " i",
+      "<i>", EventAar_RD, " afholdes ", EventAarDato_DW, " i ",
       EventAarStedURL_DW, ". Der åbnes for tilmelding", EventAarAabningDato_DW_DMAA_DW, 
       "hvor der vil komme en fane med hhv. <q>Indbydelse & tilmelding</q> samt ",
       "<q>Præmier & deltagere</q>, som vil blive opdateret løbende.</i>"),
-    InputInfo1234_V %in% c(3, 4) ~ ifelse(grepl("Afbud", OrdreStatusSimpelKat_RD), NA, paste(
+    InputInfo1234_V %in% c(3, 4) ~ ifelse(!grepl("Tilmeldt", OrdreStatusSimpelKat_RD), NA, paste0(
       "<i style=font-size:100%>",
       "<b>Afholdes ", EventAarDato_DW, " i ", EventAarStedURL_DW, "</b></i>",
       "<br>",
@@ -1516,18 +1523,16 @@ Data_T <- Data_T %>%
       EventAarFristDato_DW_DMAA_DW, "</i>",
       "<br><br>",
       "<ul>",
-      "<li><p>", IkonBillet_V, " ", "[<b>Indbydelse & tilmelding</b>](indbydelse-tilmelding-2023.qmd)",
+      "<li><p>", IkonBillet_V, " [<b>Indbydelse & tilmelding</b>](indbydelse-tilmelding-2023.qmd)",
       "<br>",
-      "<i>Indbydelse, tidsplan, praktisk info samt tilmelding/betaling",
-      "&nbsp;til ", EventAar_RD, ".</i></p></li>",
+      "<i>Indbydelse, tidsplan, praktisk info samt tilmelding/betaling til ", EventAar_RD, ".</i></p></li>",
       "<li><p>", IkonGentagelse_V, " ", "[<b>Præmier & deltagere</b>](praemier-deltagere.qmd)",
       "<br>",
-      "<i>Præmier og deltagere opdateres løbende",
-      "&nbsp;til ", EventAar_RD, ".</i></p>",
+      "<i>Præmier og deltagere opdateres løbende til ", EventAar_RD, ".</i></p>",
       "<i style=font-size:80%;display:inline-block;border:0.6px;border-style:solid;padding:5px>",
       StatOrdreAntal_DW, "</i></li>",
       "</ul>")))) %>%
-  mutate(InfoForside_DW = unique(na.omit(InfoForside_DW))) %>%
+  mutate(InfoForside_DW = ifelse(all(is.na(InfoForside_DW)), NA, unique(na.omit(InfoForside_DW)))) %>%
   ungroup() %>%
   select(-InfoForside_DW, everything()) %>%
   
@@ -1561,14 +1566,15 @@ Data_T <- Data_T %>%
   
   # InfoTipPraemierDeltagere_DW
   group_by(EventAar_RD) %>%
-  mutate(InfoTipPraemierDeltagere_DW = ifelse(grepl("Afbud", OrdreStatusSimpelKat_RD), NA, paste(
+  mutate(InfoTipPraemierDeltagere_DW = ifelse(!grepl("Tilmeldt", OrdreStatusSimpelKat_RD), NA, paste(
     "<p>",
     IkonGentagelse_V, " Præmier og deltagere opdateres løbende til ",
     EventAar_RD, " [<b>HER</b>](praemier-deltagere.qmd).",
     "</p>",
     "<i style=font-size:80%;display:inline-block;border:0.6px;border-style:solid;padding:5px>",
     StatOrdreAntal_DW, "</i>"))) %>%
-  mutate(InfoTipPraemierDeltagere_DW = unique(na.omit(InfoTipPraemierDeltagere_DW))) %>%
+  mutate(InfoTipPraemierDeltagere_DW = ifelse(
+    all(is.na(InfoTipPraemierDeltagere_DW)), NA, unique(na.omit(InfoTipPraemierDeltagere_DW)))) %>%
   ungroup() %>%
   select(-InfoTipPraemierDeltagere_DW, everything()) %>%
   
@@ -1785,7 +1791,7 @@ DataDeltPuljer_T <- Data_T %>%
 DataDeltAndet_T <- Data_T %>%
   filter(
     !grepl("Ping Pong", BilletKat_RD)
-    & DeltBilletSalgNr_DW == 1 | grepl("Afbud", OrdreStatusSimpelKat_RD)) %>%
+    & DeltBilletSalgNr_DW == 1 | !grepl("Tilmeldt|Aflyst", OrdreStatusSimpelKat_RD)) %>%
   group_by(EventAar_RD) %>%
   distinct(DeltID_RD, OrdreStatusSimpelKat_RD, .keep_all = T) %>%
   arrange(

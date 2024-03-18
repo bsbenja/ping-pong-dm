@@ -311,7 +311,7 @@ StatOekonomiAntal_DW                    : chr "Omsætning kr. 2.000 <iconify-ico
 StatForskudtTilAntal_DW                 : chr "10 forskudt Tilmeldt <span class=bi-tags-fill></span>"
 InfoNedtælling_DW                       : chr "<p style=\"text-align:center;width:50em;max-width:100%\">\n      <b style=font-size:120%;text-transform:upperca"| __truncated__
 InfoPlakatCTA_DW                        : chr "<br><br><a style=display:inline-block;background:#FF4A6E;color:#FFFFFF;border-radius:40px;padding-left:50px;pad"| __truncated__
-InfoForside_DW                          : chr "<i style=font-size:100%> <b>Afholdes  21.06.2024 til 22.06.2024  i  <a href=https://www.google.dk/maps/place/Sp"| __truncated__
+InfoForside_DW                          : chr "<i style=font-size:100%><b>Afholdes 21.06.2024 til 22.06.2024 i <a href=https://www.google.dk/maps/place/Sports"| __truncated__
 InfoFacebook_DW                         : chr "<i><p>Del gerne budskabet via [<b>Facebook-begivenheden <q>PING PONG DM 2024</q></b>]({{< var var.facebook_even"| __truncated__
 InfoTipIndbydelse_DW                    : chr "<span class=bi-tags-fill></span> Indbydelse, tidsplan og praktisk info til Ping Pong DM 2024 ses [<b>HER</b>](i"| __truncated__
 InfoTipPraemierDeltagere_DW             : chr "<p> <iconify-icon icon=mdi:autorenew></iconify-icon>  Præmier og deltagere opdateres løbende til  Ping Pong DM "| __truncated__
