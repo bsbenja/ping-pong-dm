@@ -921,8 +921,8 @@ Data_T <- Data_T %>%
   # DeltYngstAeldst_DW
   group_by(EventAar_RD, OrdreStatusSimpelKat_RD, BilletKat_RD) %>%
   mutate(DeltYngstAeldst_DW = case_when(
-    DeltFoedtDato_DW == min(DeltFoedtDato_DW, na.rm = T) ~ "Yngst",
-    DeltFoedtDato_DW == max(DeltFoedtDato_DW, na.rm = T) ~ "Ældst",
+    DeltFoedtDato_DW == max(DeltFoedtDato_DW, na.rm = T) ~ "Yngst",
+    DeltFoedtDato_DW == min(DeltFoedtDato_DW, na.rm = T) ~ "Ældst",
     TRUE ~ NA_character_)) %>%
   ungroup() %>%
   mutate(across("DeltYngstAeldst_DW", \(x) as.character(x))) %>%
@@ -1734,7 +1734,7 @@ DataPraemieYngstAeldst_T <- Data_T %>%
   group_by(EventAar_RD) %>%
   filter(DeltFoedtDato_DW == max(DeltFoedtDato_DW) | DeltFoedtDato_DW == min(DeltFoedtDato_DW)) %>%
   ungroup() %>%
-  mutate(Født  = format(DeltFoedtDato_DW, "%d.%m.%Y")) %>%
+  mutate(Født  = DeltFoedtDato_DW_DMAA_DW) %>%
 	arrange(EventAar_RD, desc(DeltFoedtDato_DW), DeltNavn_RD) %>%
   select(
     " "      = DeltYngstAeldst_DW,
@@ -1879,7 +1879,7 @@ DataDeltAlderKat_T <- Data_T %>%
 	filter(!is.na(DeltID_RD)) %>%
 	distinct(DeltID_RD, .keep_all = T) %>%
 	mutate(DeltAlderKat_RD = paste(
-		DeltAlderKat_RD, IkonFødt_V, "<br>", format(DeltFoedtDato_DW, "%d.%m.%Y"))) %>%
+		DeltAlderKat_RD, IkonFødt_V, "<br>", DeltFoedtDato_DW_DMAA_DW)) %>%
 	arrange(EventAar_RD, OrdreStatusSimpelKat_RD, desc(DeltFoedtDato_DW), DeltNavn_RD) %>%
   ungroup() %>%
 	select(
