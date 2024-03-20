@@ -98,6 +98,9 @@ format:
     fig-dpi: 300
     white-space: pre-wap
     code-overflow: wrap
+    include-before-body:
+      text: |
+        <div class=mobil-tekst>Menulinje fra mobil tilgås oppe i venstre hjørne</div>
     header-includes: |
       <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
       <meta name="google-site-verification" content="izkomDopuYjTHjF7B1NJSGr0ea8hNGw968SgEtk8n8g">
