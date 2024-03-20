@@ -1850,7 +1850,7 @@ DataDeltKlub_T <- Data_T %>%
 	select(
 		" "    = KlubLogo_DW,
 		"Navn" = DeltNavnBilletKat_DW,
-		"Klub" = KlubKat_DW,
+		"Klubgruppe" = KlubKat_DW,
 		OrdreStatusSimpelKat_RD,
 		EventAar_RD)
 
