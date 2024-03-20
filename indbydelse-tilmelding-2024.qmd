@@ -184,7 +184,8 @@ data.frame(
         IkonPerson_V, " Kontaktperson<br>",
         "<i style=font-size:80%>Evt. spørgsmål til kontaktperson</i>")) %>%
   kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
-  column_spec(1, width_min = "5.5em")
+  column_spec(1, width_min = "5.5em") %>%
+  column_spec(1:2, extra_css = "border:hidden")
 
 data.frame(
   "1" = paste0("<img src=filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "/staevneleder.png height=60 style=border-radius:10px>"),
@@ -200,7 +201,8 @@ data.frame(
         IkonPerson_V, " Stævneleder<br>",
         "<i style=font-size:80%>Ansvarlig på stævnedagen</i>")) %>%
   kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
-  column_spec(1, width_min = "5.5em")
+  column_spec(1, width_min = "5.5em") %>%
+  column_spec(1:2, extra_css = "border:hidden")
 
 data.frame(
   "1" = paste0("<img src=filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "/lokation.png height=60 style=border-radius:10px>"),
@@ -211,7 +213,8 @@ data.frame(
         IkonLokation_V, " Lokation<br>",
         "<i style=font-size:80%>Geografisk placering</i>")) %>%
   kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
-  column_spec(1, width_min = "5.5em")
+  column_spec(1, width_min = "5.5em") %>%
+  column_spec(1:2, extra_css = "border:hidden")
 ```
 :::
 :::
