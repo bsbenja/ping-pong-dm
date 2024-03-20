@@ -214,7 +214,7 @@ KlubBy_RD                               : chr "Silkeborg"
 KlubPostnrBy_DW                         : chr "8600 Silkeborg"
 KlubMail_RD                             : chr "npb@sbtk.dk"
 KlubEmoji_RD                            : chr "🛖"
-KlubIkon_RD                             : chr "<iconify-icon icon=mdi:home></iconify-icon>"
+KlubKatIkon_RD                          : chr "<iconify-icon icon=mdi:home></iconify-icon>"
 KlubLandsdelNr_RD                       : int 1
 KlubLandsdelPostnrMin_RD                : chr "6000"
 KlubLandsdelPostnrMaks_RD               : int 9999
