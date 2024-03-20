@@ -1867,7 +1867,9 @@ DataDeltBy_T <- Data_T %>%
   mutate(KlubPostnrBy_DW = paste0("<span style=white-space:nowrap>",
     ifelse(grepl("Ingen klub|Udlandet", Klub_RD),
       paste0(KlubKat_DW, " ", KlubKatIkon_RD),
-      paste0(KlubPostnrBy_DW, " ", KlubKatIkon_RD, "<br>", KlubRegion_RD)),
+      paste0(
+        KlubPostnrBy_DW, " ", KlubKatIkon_RD, "<br>",
+        "<span style=font-size:90%>", KlubRegion_RD, "</span>")),
     "</span>")) %>%
   ungroup() %>%
   select(
