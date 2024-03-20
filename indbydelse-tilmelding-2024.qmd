@@ -58,7 +58,7 @@ DataBilletKatAkt_T %>%
       caption = paste0(
         IkonBillet_V, " Billettyper<br>",
         "<i style=font-size:80%>", length(DataBilletKatAkt_T$Billettype), " valgmuligheder ved tilmelding.</i>")) %>%
-	kable_styling(position = "l", full_width = F) %>%
+	kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
 	footnote(paste0(
     "Først til mølle-princip. Tilmeldingsfrist ", DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW, ".<br>",
     "Ved tilmelding modtages bekræftelsesmail.<br>",
@@ -122,7 +122,7 @@ data.frame(
       caption = paste0(
         IkonTimeglas_V, " Tidsplan<br>",
         "<i style=font-size:75%>Bemærk: Tidsplan kan ændres en smule alt efter deltagerantal.</i>")) %>%
-	kable_styling(position = "l", full_width = F) %>%
+	kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
 	column_spec(1, width_min = "1em") %>%
 	column_spec(2, width_min = "7em") %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
@@ -183,7 +183,7 @@ data.frame(
       caption = paste0(
         IkonPerson_V, " Kontaktperson<br>",
         "<i style=font-size:80%>Evt. spørgsmål til kontaktperson</i>")) %>%
-  kable_styling(position = "l", full_width = F) %>%
+  kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
   column_spec(1, width_min = "5.5em")
 
 data.frame(
@@ -199,7 +199,7 @@ data.frame(
       caption = paste0(
         IkonPerson_V, " Stævneleder<br>",
         "<i style=font-size:80%>Ansvarlig på stævnedagen</i>")) %>%
-  kable_styling(position = "l", full_width = F) %>%
+  kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
   column_spec(1, width_min = "5.5em")
 
 data.frame(
@@ -210,7 +210,7 @@ data.frame(
       caption = paste0(
         IkonLokation_V, " Lokation<br>",
         "<i style=font-size:80%>Geografisk placering</i>")) %>%
-  kable_styling(position = "l", full_width = F) %>%
+  kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
   column_spec(1, width_min = "5.5em")
 ```
 :::
@@ -267,7 +267,7 @@ if(nrow(DataResultSidst_T) == 0) {
         IkonPokal_V, " DM-resultater sidste <q>Final 4</q><br>",
         "<i style=font-size:80%>Afholdt ", DataEventAarSidst_T$EventAarDato_DW,
         " i ", DataEventAarSidst_T$EventAarSted_RD, "</i>")) %>%
-  kable_styling(position = "l", full_width = F) %>%
+  kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
   row_spec(0, background = DataEventAarSidst_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	remove_column(c(1, 5:9))
 }
@@ -329,7 +329,7 @@ if(nrow(DataPraemiePengeAkt_T) == 0) {
   DataPraemiePengeAkt_T %>%
     kbl(col.names = NA, align = "lrr", escape = F,
         caption = paste(IkonPenge_V, "Præmiepenge")) %>%
-    kable_styling(position = "l", full_width = F) %>%
+    kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
     row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
     row_spec(which(DataPraemiePengeAkt_T$PraemieRank_DW == "1"),
              bold = T, background = DataEventAarAkt_T$EventAarFarve2_RD, color = "#000000") %>%

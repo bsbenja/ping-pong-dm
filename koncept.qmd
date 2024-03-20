@@ -184,7 +184,7 @@ tbl_webscraping_DM_resultater <- rbind(data.frame(), data.frame(
 kbl_webscraping_DM_resultater <- tbl_webscraping_DM_resultater %>%
   kbl(col.names = NA, align = "cl", escape = F,
       caption = paste(IkonPokal_V, "DM-vindere statistik")) %>%
-  kable_styling(position = "l", full_width = F) %>%
+  kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
   row_spec(0, background = "#1C2833", color = "#FFFFFF") %>%
   row_spec(which(tbl_webscraping_DM_resultater$År == "2020"),
               strikeout = T, italic = T, color = "#5D6D7E") %>%
@@ -205,7 +205,7 @@ if(nrow(DataResultAlle_T) == 0) {
 DataResultAlle_T %>%
   kbl(col.names = NA, align = "clcl", escape = F,
       caption = paste(IkonPokal_V, "DM-vindere statistik")) %>%
-  kable_styling(position = "l", full_width = F) %>%
+  kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
   row_spec(0, background = "#1C2833", color = "#FFFFFF") %>%
   row_spec(which(grepl("Aflyst", DataResultAlle_T$Navn)),
            strikeout = T, italic = T, color = "#5D6D7E") %>%
