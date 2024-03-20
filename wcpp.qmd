@@ -68,7 +68,7 @@ data.frame(
   check.names = F) %>%
   kbl(col.names = NA, align = "lrr", escape = F,
       caption = paste(IkonPenge_V, "Præmiepenge til WCPP")) %>%
-  kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
+  kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   row_spec(0, background = "#1C2833", color = "#FFFFFF") %>%
   row_spec(1, bold = T, background = "#D5D8DC") %>%
   column_spec(3, italic = T, color = "#5D6D7E")
@@ -107,6 +107,6 @@ data.frame(
   check.names = F) %>%
   kbl(col.names = NA, align = "cll", escape = F,
       caption = paste(IkonPokal_V, "WCPP-vindere statistik")) %>%
-  kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
+  kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   row_spec(0, background = "#1C2833", color = "#FFFFFF")
 ```

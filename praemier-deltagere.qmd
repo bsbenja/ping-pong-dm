@@ -92,7 +92,7 @@ if(nrow(DataPraemiePengeAkt_T) == 0) {
   DataPraemiePengeAkt_T %>%
     kbl(col.names = NA, align = "lrr", escape = F,
         caption = paste(IkonPenge_V, "Præmiepenge")) %>%
-    kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
+    kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
     row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
     row_spec(which(DataPraemiePengeAkt_T$PraemieRank_DW == "1"),
              bold = T, background = DataEventAarAkt_T$EventAarFarve2_RD, color = "#000000") %>%
@@ -112,7 +112,7 @@ if(nrow(DataPraemieYngstAeldstAkt_T) == 0) {
   DataPraemieYngstAeldstAkt_T %>%
     kbl(col.names = NA, align = "lclc", escape = F,
       caption = paste(IkonGave_V, "Gave til yngste- og ældste Ping Pong deltager")) %>%
-    kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
+    kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
     row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
     column_spec(1, bold = T) %>%
     column_spec(1:4, extra_css = "border-top:0.7px solid #999999") %>%
@@ -152,7 +152,7 @@ if(InputInfo1234_V %in% c(3)) {
         "<br>",
         "Sorteret efter billettype og fødselsdato",
         "</i>")) %>%
-  kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
+  kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	column_spec(1:4, extra_css = "border-top:0.7px solid #999999") %>%
   remove_column(4:8)
@@ -181,7 +181,7 @@ if(InputInfo1234_V %in% c(1, 2, 4)) {
         "<br>",
         "Bemærk: Puljerne kan ændre sig ved drive-in/afbud",
         "</i>")) %>%
-  kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
+  kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
   row_spec(which(DataDeltPuljerAkt_T$DeltSnakeSeedLagNr_DW == "1"), bold = T,
            extra_css = "border-top:0.7px solid #999999") %>%
@@ -199,7 +199,7 @@ if(InputInfo1234_V %in% c(1, 2, 3, 4)) {
   		caption = paste0(
         "Andet end Ping Pong + evt. afbud<br>",
         "<i style=font-size:80%>Sorteret efter fødselsdato</i>")) %>%
-  kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
+  kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
   row_spec(which(grepl("Afbud", DataDeltAndetAkt_T$OrdreStatusSimpelKat_RD)),
            strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
@@ -258,7 +258,7 @@ cat(paste0(
 DataDeltKlubAkt_T %>%
 	kbl(col.names = NA, align = "l", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter klubantal</i>") %>%
-	kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
+	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltKlubAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
@@ -323,7 +323,7 @@ cat(paste0(
 DataDeltByAkt_T %>%
 	kbl(col.names = NA, align = "l", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter region og postnr.</i>") %>%
-	kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
+	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltByAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
@@ -377,7 +377,7 @@ cat(paste0(
 DataDeltAlderKatAkt_T %>%
 	kbl(col.names = NA, align = "l", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter fødselsdato</i>") %>%
-	kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
+	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltAlderKatAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
@@ -425,7 +425,7 @@ cat(paste0(
 DataDeltKoenAkt_T %>%
 	kbl(col.names = NA, align = "l", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter køn</i>") %>%
-	kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
+	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltKoenAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
@@ -473,7 +473,7 @@ cat(paste0(
 DataDeltGenTilAkt_T %>%
 	kbl(col.names = NA, align = "l", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter antal gentilmeldinger</i>") %>%
-	kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
+	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltGenTilAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
@@ -527,7 +527,7 @@ cat(paste0(
 DataDeltOrdreKatAkt_T %>%
 	kbl(col.names = NA, align = "l", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter ældste <q>første ordredato</q></i>") %>%
-	kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
+	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltOrdreKatAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
@@ -551,7 +551,7 @@ if(nrow(DataResultSidst_T) == 0) {
         IkonPokal_V, " DM-resultater sidste <q>Final 4</q><br>",
         "<i style=font-size:80%>Afholdt ", DataEventAarSidst_T$EventAarDato_DW,
         " i ", DataEventAarSidst_T$EventAarSted_RD, "</i>")) %>%
-  kable_styling(position = "l", full_width = F, htmltable_class = ".table-condensed") %>%
+  kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   row_spec(0, background = DataEventAarSidst_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	remove_column(c(1, 5:9))
 }
