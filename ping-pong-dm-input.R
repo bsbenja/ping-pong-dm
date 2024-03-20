@@ -4,7 +4,7 @@
 #' ---
 
 #+ eval=F, warning=F, message=F
-# Kopier/indsæt for offentliggørelse af hjemmeside via Terminal (Alt+Shift+M) =>
+# Dette Quarto-projekt publiceres som hjemmeside via følgende kommando i kommandoprompt:
 # quarto publish quarto-pub --no-prompt --no-browser
 
 # Input

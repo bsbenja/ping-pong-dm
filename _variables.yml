@@ -1,6 +1,3 @@
-# Kopier/indsæt for offentliggørelse af hjemmeside via Terminal (Alt+Shift+M) =>
-# quarto publish quarto-pub --no-prompt --no-browser
-
 var:
   facebook_event_url:     "https://www.facebook.com/events/385494387460558" # {{< var var.facebook_event_url >}}
   facebook_side_id:       "100183334928231"                                 # {{< var var.facebook_side_id >}}

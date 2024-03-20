@@ -8,9 +8,11 @@ Alle filer vedr. Ping Pong DM ligger i mappen "filer" fordelt i undermapperne "e
 Kildefilen er "ping-pong-dm-input.R", som primært stammer fra "bagvedliggende-kode.R".\
 De forskellige sider på hjemmesiden stammer fra ".qmd-filerne".
 
-Quarto-projektet publiceres som hjemmeside via følgende kommando i kommandoprompt:
+Dette Quarto-projekt publiceres som hjemmeside via følgende kommando i kommandoprompt:
 
-> quarto publish quarto-pub --no-prompt --no-browser
+``` bash
+quarto publish quarto-pub --no-prompt --no-browser
+```
 
 ### Navngivning
 

@@ -1,6 +1,3 @@
-# Kopier/indsæt for offentliggørelse af hjemmeside via Terminal (Alt+Shift+M) =>
-# quarto publish quarto-pub --no-prompt --no-browser
-
 project:
   type: website
   resources:
