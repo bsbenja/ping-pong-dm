@@ -100,7 +100,15 @@ format:
     code-overflow: wrap
     include-before-body:
       text: |
-        <div class=mobil-tekst>Menulinje fra mobil tilgås oppe i venstre hjørne</div>
+        <div class=mobil-tekst>
+          <div class="callout callout-style-default callout-note callout-titled" style="font-style:italic">
+            <div class="callout-header d-flex align-content-center">
+              <div class="callout-icon-container"><i class="callout-icon"></i></div>
+              <div class="callout-title-container flex-fill">Info</div>
+            </div>
+            <div class="callout-body-container callout-body"><p>Menulinje tilgås oppe i venstre hjørne fra mobil.</p></div>
+          </div>
+        </div>
     header-includes: |
       <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
       <meta name="google-site-verification" content="izkomDopuYjTHjF7B1NJSGr0ea8hNGw968SgEtk8n8g">
