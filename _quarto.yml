@@ -4,15 +4,15 @@ project:
     - "googlebfa7a423a7b87736.html"
   render:
     - "*.qmd"
-    - "!index.qmd" # "!index.qmd"
-    - "!indbydelse-tilmelding-2023.qmd" # "!indbydelse-tilmelding-2023.qmd"
-    - "!indbydelse-tilmelding-2024.qmd" # "!indbydelse-tilmelding-2024.qmd"
-    - "!praemier-deltagere.qmd" # "!praemier-deltagere.qmd"
-    - "!regler.qmd" # "!regler.qmd"
+    - "index.qmd" # "!index.qmd"
+    - "indbydelse-tilmelding-2023.qmd" # "!indbydelse-tilmelding-2023.qmd"
+    - "indbydelse-tilmelding-2024.qmd" # "!indbydelse-tilmelding-2024.qmd"
+    - "praemier-deltagere.qmd" # "!praemier-deltagere.qmd"
+    - "regler.qmd" # "!regler.qmd"
     - "wcpp.qmd" # "!wcpp.qmd"
-    - "!koncept.qmd" # "!koncept.qmd"
-    - "!bi.qmd" # "!bi.qmd"
-    - "!bi2.qmd" # "!bi2.qmd"
+    - "koncept.qmd" # "!koncept.qmd"
+    - "bi.qmd" # "!bi.qmd"
+    - "bi2.qmd" # "!bi2.qmd"
 
 website:
   site-url: "https://pingpong.quarto.pub/dm"
