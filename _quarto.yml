@@ -104,9 +104,8 @@ format:
           <div class="callout callout-style-default callout-note callout-titled" style="font-style:italic">
             <div class="callout-header d-flex align-content-center">
               <div class="callout-icon-container"><i class="callout-icon"></i></div>
-              <div class="callout-title-container flex-fill">Info</div>
+              <div class="callout-title-container flex-fill">Menulinje tilgås oppe i venstre hjørne fra mobil</div>
             </div>
-            <div class="callout-body-container callout-body"><p>Menulinje tilgås oppe i venstre hjørne fra mobil.</p></div>
           </div>
         </div>
     header-includes: |
