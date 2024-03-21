@@ -4,15 +4,15 @@ project:
     - "googlebfa7a423a7b87736.html"
   render:
     - "*.qmd"
-    - "index.qmd" # "!index.qmd"
-    - "indbydelse-tilmelding-2023.qmd" # "!indbydelse-tilmelding-2023.qmd"
-    - "indbydelse-tilmelding-2024.qmd" # "!indbydelse-tilmelding-2024.qmd"
-    - "praemier-deltagere.qmd" # "!praemier-deltagere.qmd"
-    - "regler.qmd" # "!regler.qmd"
+    - "!index.qmd" # "!index.qmd"
+    - "!indbydelse-tilmelding-2023.qmd" # "!indbydelse-tilmelding-2023.qmd"
+    - "!indbydelse-tilmelding-2024.qmd" # "!indbydelse-tilmelding-2024.qmd"
+    - "!praemier-deltagere.qmd" # "!praemier-deltagere.qmd"
+    - "!regler.qmd" # "!regler.qmd"
     - "wcpp.qmd" # "!wcpp.qmd"
-    - "koncept.qmd" # "!koncept.qmd"
-    - "bi.qmd" # "!bi.qmd"
-    - "bi2.qmd" # "!bi2.qmd"
+    - "!koncept.qmd" # "!koncept.qmd"
+    - "!bi.qmd" # "!bi.qmd"
+    - "!bi2.qmd" # "!bi2.qmd"
 
 website:
   site-url: "https://pingpong.quarto.pub/dm"
@@ -100,10 +100,10 @@ format:
     code-overflow: wrap
     include-before-body:
       text: |
-        <div class=mobil-tekst>
+        <div class="mobil-tekst">
           <div class="callout callout-style-default callout-note callout-titled" style="font-style:italic">
             <div class="callout-header d-flex align-content-center">
-              <div class="callout-icon-container"><i class="callout-icon"></i></div>
+              <div class="callout-icon-container"><iconify-icon icon=mdi:arrow-up></iconify-icon></div>
               <div class="callout-title-container flex-fill">Menulinje tilgås oppe til venstre fra mobil/tablet</div>
             </div>
           </div>
