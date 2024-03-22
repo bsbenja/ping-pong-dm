@@ -106,6 +106,7 @@ format:
               <div class="callout-icon-container"><iconify-icon icon=mdi:arrow-up></iconify-icon></div>
               <div class="callout-title-container flex-fill">Menulinje tilgås oppe til venstre fra mobil/tablet</div>
             </div>
+            <div class="callout-body-container callout-body" style="padding-bottom:2.6px"></div>
           </div>
         </div>
     header-includes: |
