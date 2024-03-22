@@ -98,17 +98,6 @@ format:
     fig-dpi: 300
     white-space: pre-wap
     code-overflow: wrap
-    include-before-body:
-      text: |
-        <div class="mobil-tekst">
-          <div class="callout callout-style-default callout-note callout-titled" style="font-style:italic">
-            <div class="callout-header d-flex align-content-center">
-              <div class="callout-icon-container"><iconify-icon icon=mdi:arrow-up-left></iconify-icon></div>
-              <div class="callout-title-container flex-fill">Menu tilgås oppe til venstre fra mobil/tablet</div>
-            </div>
-            <div class="callout-body-container callout-body" style="padding-bottom:2.6px"></div>
-          </div>
-        </div>
     header-includes: |
       <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
       <meta name="google-site-verification" content="izkomDopuYjTHjF7B1NJSGr0ea8hNGw968SgEtk8n8g">
