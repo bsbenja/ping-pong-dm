@@ -10,17 +10,6 @@ DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAa
 title: "<iconify-icon icon=mdi:home></iconify-icon> <u>Forside</u>"
 subtitle: |
   <b style=font-size:140%>Ping Pong DM - Officiel hjemmeside</b><br><i style=font-size:80>Velkommen til den officielle hjemmeside for Danske Mesterskaber i Ping Pong. Ping Pong er bordtennis på <b><u>lige vilkår</u></b> med sandpapirsbat, som er <b><u>åben for ALLE</u></b> til en <b><u>overkommelig pris</u></b>. Se mere ved at navigere rundt her på hjemmesiden. Fra mobil gøres dette via topmenuen.</i>
-include-before-body:
-  text: |
-    <div class="mobil-tekst">
-      <div class="callout callout-style-default callout-note callout-titled" style="font-style:italic">
-        <div class="callout-header d-flex align-content-center">
-          <div class="callout-icon-container"><iconify-icon icon=mdi:arrow-up-left></iconify-icon></div>
-          <div class="callout-title-container flex-fill">Menu tilgås oppe til venstre fra mobil/tablet</div>
-        </div>
-        <div class="callout-body-container callout-body" style="padding-bottom:2.6px"></div>
-      </div>
-    </div>
 editor_options: 
   chunk_output_type: console
 ---
@@ -86,3 +75,15 @@ IkonBogmærke_V, "<b>Bogmærk</b> [denne side](index.qmd) for nem og hurtig adga
 "<br>Genvejstast: {{< kbd Ctrl&nbsp;+&nbsp;d >}} PC", IkonWindows_V, "∙ {{< kbd ⌘&nbsp;+&nbsp;d >}} Mac", IkonMac_V))
 ```
 :::
+
+```{=html}
+<div class="mobil-tekst">
+  <div class="callout callout-style-default callout-note callout-titled" style="font-style:italic">
+    <div class="callout-header d-flex align-content-center">
+      <div class="callout-icon-container"><iconify-icon icon=mdi:arrow-up-left></iconify-icon></div>
+      <div class="callout-title-container flex-fill">Menu tilgås oppe til venstre fra mobil/tablet</div>
+    </div>
+    <div class="callout-body-container callout-body" style="padding-bottom:2.6px"></div>
+  </div>
+</div>
+```
