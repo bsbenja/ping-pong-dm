@@ -103,7 +103,7 @@ format:
         <div class="mobil-tekst">
           <div class="callout callout-style-default callout-note callout-titled" style="font-style:italic">
             <div class="callout-header d-flex align-content-center">
-              <div class="callout-icon-container"><iconify-icon icon=mdi:arrow-up></iconify-icon></div>
+              <div class="callout-icon-container"><iconify-icon icon=mdi:arrow-up-left></iconify-icon></div>
               <div class="callout-title-container flex-fill">Menulinje tilgås oppe til venstre fra mobil/tablet</div>
             </div>
             <div class="callout-body-container callout-body" style="padding-bottom:2.6px"></div>
