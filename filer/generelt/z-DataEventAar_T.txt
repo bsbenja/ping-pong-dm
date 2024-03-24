@@ -100,7 +100,7 @@ DataEventAar_T$InfoNedtælling_DW                       : chr "<p style=\"text-a
 DataEventAar_T$InfoPlakatCTA_DW                        : chr "<br><br><a style=display:inline-block;background:#FF4A6E;color:#FFFFFF;border-radius:40px;padding-left:50px;pad"| __truncated__
 DataEventAar_T$InfoForside_DW                          : chr "<i style=font-size:100%><b>Afholdes 21.06.2024 til 22.06.2024 i <a href=https://www.google.dk/maps/place/Sports"| __truncated__
 DataEventAar_T$InfoFacebook_DW                         : chr "<i><p>Del gerne budskabet via [<b>Facebook-begivenheden <q>PING PONG DM 2024</q></b>]({{< var var.facebook_even"| __truncated__
-DataEventAar_T$InfoTipIndbydelse_DW                    : chr "<span class=bi-tags-fill></span> Indbydelse, tidsplan og praktisk info til Ping Pong DM 2024 ses [<b>HER</b>](i"| __truncated__
+DataEventAar_T$InfoTipIndbydelse_DW                    : chr "<iconify-icon icon=mdi:tags></iconify-icon> Indbydelse, tidsplan og praktisk info til Ping Pong DM 2024 ses [<b"| __truncated__
 DataEventAar_T$InfoTipPraemierDeltagere_DW             : chr "<p> <iconify-icon icon=mdi:autorenew></iconify-icon>  Præmier og deltagere opdateres løbende til  Ping Pong DM "| __truncated__
 DataEventAar_T$InfoTipRegler_DW                        : chr "<iconify-icon icon=mdi:scale-balance></iconify-icon> I Ping Pong tages det bedste fra fortidens- og nutidens bo"| __truncated__
 DataEventAar_T$InfoTipVM_DW                            : chr "<iconify-icon icon=mdi:earth></iconify-icon> World Championship of Ping Pong (WCPP) afholdes sædvanligvis i Lon"| __truncated__

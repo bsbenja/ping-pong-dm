@@ -77,7 +77,7 @@ IkonBogmærke_V, "<b>Bogmærk</b> [denne side](index.qmd) for nem og hurtig adga
 :::
 
 ```{=html}
-<div class="mobil-tekst">
+<div class="vis-kun-mobil">
   <div class="callout callout-style-default callout-note callout-titled" style="font-style:italic">
     <div class="callout-header d-flex align-content-center">
       <div class="callout-icon-container"><iconify-icon icon=mdi:arrow-up-left></iconify-icon></div>

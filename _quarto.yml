@@ -87,8 +87,6 @@ format:
     fig-align: left
     fontsize: "11pt"
     linkcolor: "#398FCC"
-    section-title-footnotes: "Fodnoter"
-    toc-title: "Indhold på side"
     toc-location: right
     toc-depth: 3
     toc-expand: true

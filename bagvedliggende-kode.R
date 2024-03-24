@@ -1218,16 +1218,18 @@ Data_T <- Data_T %>%
 
   # StatAlderForskelAntal_DW
   group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW, Billet_RD) %>%
-  mutate(StatAlderForskelAntal_DW = max(DeltAlder_DW)-min(DeltAlder_DW)) %>%
+  mutate(StatAlderForskelAntal_DW = paste0(
+    "<kbd>", "Aldersforskel ", "<b>", max(DeltAlder_DW)-min(DeltAlder_DW), "</b>", " år", "</kbd>")) %>%
   ungroup() %>%
-  mutate(across("StatAlderForskelAntal_DW", \(x) as.integer(x))) %>%
+  mutate(across("StatAlderForskelAntal_DW", \(x) as.character(x))) %>%
   select(-StatAlderForskelAntal_DW, everything()) %>%
   
   # StatOrdreAntal_DW
   add_count(EventAar_RD, OrdreStatusSimpelKat_RD, Billet_RD, name = "StatOrdreAntal_DW") %>%
   group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
   mutate(StatOrdreAntal_DW = paste0(
-    "<b>", StatOrdreAntal_DW, " ", OrdreStatusSimpelKat_RD, " til ", BilletKat_DW, " ", BilletKatIkon_RD, "</b>")) %>%
+    "<kbd>", "<b>", StatOrdreAntal_DW, "</b>", " ", OrdreStatusSimpelKat_RD,
+    " til ", BilletKat_DW, " ", BilletKatIkon_RD, "</kbd>")) %>%
   arrange(OrdreStatusSimpelKat_RD, BilletDisciplin_RD, BilletRaekke_RD, BilletSpilFormat_RD) %>%
   mutate(StatOrdreAntal_DW = str_c(unique(StatOrdreAntal_DW), collapse = "<br>")) %>%
   ungroup() %>%
@@ -1239,8 +1241,9 @@ Data_T <- Data_T %>%
   mutate(StatDeltAntal_DW = sum(DeltUnik_DW)) %>%
   group_by(EventAar_RD) %>%
   mutate(StatDeltAntal_DW = ifelse(StatDeltAntal_DW == 0, NA, paste0(
-    StatDeltAntal_DW, " ", OrdreStatusSimpelDeltKat_DW , " (",
-    percent(StatDeltAntal_DW/sum(ifelse(StatDeltAntal_DW == 0, 0, 1)), digits = 0), ") ", OrdreStatusSimpelKatIkon_RD))) %>%
+    "<kbd>", "<b>", StatDeltAntal_DW, "</b>", " ", OrdreStatusSimpelDeltKat_DW , " (",
+    percent(StatDeltAntal_DW/sum(ifelse(StatDeltAntal_DW == 0, 0, 1)), digits = 0), ") ",
+    OrdreStatusSimpelKatIkon_RD, "</kbd>"))) %>%
   arrange(OrdreStatusSimpelDeltKat_DW) %>%
   mutate(StatDeltAntal_DW = str_c(unique(na.omit(StatDeltAntal_DW)), collapse = " ∙ ")) %>%
   ungroup() %>%
@@ -1252,8 +1255,9 @@ Data_T <- Data_T %>%
   mutate(StatDeltKoenAntal_DW = sum(DeltUnik_DW)) %>%
   group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW) %>%
   mutate(StatDeltKoenAntal_DW = ifelse(StatDeltKoenAntal_DW == 0, NA, paste0(
-    StatDeltKoenAntal_DW, " ", DeltKoen_RD , " (",
-    percent(StatDeltKoenAntal_DW/sum(ifelse(StatDeltKoenAntal_DW == 0, 0, 1)), digits = 0), ") ", DeltKoenIkon_RD))) %>%
+    "<kbd>", "<b>", StatDeltKoenAntal_DW, "</b>", " ", DeltKoen_RD , " (",
+    percent(StatDeltKoenAntal_DW/sum(ifelse(StatDeltKoenAntal_DW == 0, 0, 1)), digits = 0), ") ",
+    DeltKoenIkon_RD, "</kbd>"))) %>%
   arrange(DeltKoen_RD) %>%
   mutate(StatDeltKoenAntal_DW = str_c(unique(na.omit(StatDeltKoenAntal_DW)), collapse = " ∙ ")) %>%
   ungroup() %>%
@@ -1265,8 +1269,9 @@ Data_T <- Data_T %>%
   mutate(StatDeltGenKatAntal_DW = sum(DeltUnik_DW)) %>%
   group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW) %>%
   mutate(StatDeltGenKatAntal_DW = ifelse(StatDeltGenKatAntal_DW == 0, NA, paste0(
-    StatDeltGenKatAntal_DW, " ", DeltGenKat_DW, " (",
-    percent(StatDeltGenKatAntal_DW/sum(ifelse(StatDeltGenKatAntal_DW == 0, 0, 1)), digits = 0), ") ", DeltGenKatIkon_RD))) %>%
+    "<kbd>", "<b>", StatDeltGenKatAntal_DW, "</b>", " ", DeltGenKat_DW, " (",
+    percent(StatDeltGenKatAntal_DW/sum(ifelse(StatDeltGenKatAntal_DW == 0, 0, 1)), digits = 0), ") ",
+    DeltGenKatIkon_RD, "</kbd>"))) %>%
   arrange(DeltGenKat_DW) %>%
   mutate(StatDeltGenKatAntal_DW = str_c(unique(na.omit(StatDeltGenKatAntal_DW)), collapse = " ∙ ")) %>%
   ungroup() %>%
@@ -1278,8 +1283,9 @@ Data_T <- Data_T %>%
   mutate(StatDeltAlderKatAntal_DW = sum(DeltUnik_DW)) %>%
   group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW) %>%
   mutate(StatDeltAlderKatAntal_DW = ifelse(StatDeltAlderKatAntal_DW == 0, NA, paste0(
-    StatDeltAlderKatAntal_DW, " ", DeltAlderKat_RD , " (",
-    percent(StatDeltAlderKatAntal_DW/sum(ifelse(StatDeltAlderKatAntal_DW == 0, 0, 1)), digits = 0), ") ", IkonFødt_V))) %>%
+    "<kbd>", "<b>", StatDeltAlderKatAntal_DW, "</b>", " ", DeltAlderKat_RD , " (",
+    percent(StatDeltAlderKatAntal_DW/sum(ifelse(StatDeltAlderKatAntal_DW == 0, 0, 1)), digits = 0), ") ",
+    IkonFødt_V, "</kbd>"))) %>%
   arrange(DeltAlderKat_RD) %>%
   mutate(StatDeltAlderKatAntal_DW = str_c(unique(na.omit(StatDeltAlderKatAntal_DW)), collapse = " ∙ ")) %>%
   ungroup() %>%
@@ -1292,10 +1298,10 @@ Data_T <- Data_T %>%
     all(is.na(DeltAlder_DW)) ~ 0,
     DeltUnik_DW == 0 ~ NA,
     TRUE ~ DeltAlder_DW)) %>%
-  mutate(StatDeltAlderAntal_DW = paste(
-    "Yngst", min(StatDeltAlderAntal_DW, na.rm = TRUE), "år", IkonFødt_V,
-    "∙ Gns.", round(mean(StatDeltAlderAntal_DW, na.rm = TRUE), 0), "år", IkonFødt_V,
-    "∙ Ældst", max(StatDeltAlderAntal_DW, na.rm = TRUE), "år", IkonFødt_V)) %>%
+  mutate(StatDeltAlderAntal_DW = paste0(
+    "<kbd>", "Yngst " , "<b>", min(StatDeltAlderAntal_DW, na.rm = TRUE), "</b>", " år ", IkonFødt_V, "</kbd>", " ∙ ",
+    "<kbd>", "Gns. ", "<b>", round(mean(StatDeltAlderAntal_DW, na.rm = TRUE), 0), "</b>", " år ", IkonFødt_V, "</kbd>", " ∙ ",
+    "<kbd>", "Ældst ", "<b>", max(StatDeltAlderAntal_DW, na.rm = TRUE), "</b>", " år ", IkonFødt_V, "</kbd>")) %>%
   ungroup() %>%
   mutate(across("StatDeltAlderAntal_DW", \(x) as.character(x))) %>%
   select(-StatDeltAlderAntal_DW, everything()) %>%
@@ -1305,8 +1311,9 @@ Data_T <- Data_T %>%
   mutate(StatDeltLandsdelAntal_DW = sum(DeltKlubUnik_DW)) %>%
   group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW) %>%
   mutate(StatDeltLandsdelAntal_DW = ifelse(StatDeltLandsdelAntal_DW == 0, NA, paste0(
-    StatDeltLandsdelAntal_DW, " ", KlubLandsdel_RD , " (",
-    percent(StatDeltLandsdelAntal_DW/sum(ifelse(StatDeltLandsdelAntal_DW == 0, 0, 1)), digits = 0), ") ", KlubKatIkon_RD))) %>%
+    "<kbd>", "<b>", StatDeltLandsdelAntal_DW, "</b>", " ", KlubLandsdel_RD , " (",
+    percent(StatDeltLandsdelAntal_DW/sum(ifelse(StatDeltLandsdelAntal_DW == 0, 0, 1)), digits = 0), ") ",
+    KlubKatIkon_RD, "</kbd>"))) %>%
   arrange(KlubLandsdel_RD) %>%
   mutate(StatDeltLandsdelAntal_DW = str_c(unique(na.omit(StatDeltLandsdelAntal_DW)), collapse = " ∙ ")) %>%
   ungroup() %>%
@@ -1318,8 +1325,9 @@ Data_T <- Data_T %>%
   mutate(StatDeltRegionAntal_DW = sum(DeltKlubUnik_DW)) %>%
   group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW) %>%
   mutate(StatDeltRegionAntal_DW = ifelse(StatDeltRegionAntal_DW == 0, NA, paste0(
-    StatDeltRegionAntal_DW, " ", KlubRegion_RD , " (",
-    percent(StatDeltRegionAntal_DW/sum(ifelse(StatDeltRegionAntal_DW == 0, 0, 1)), digits = 0), ") ", KlubKatIkon_RD))) %>%
+    "<kbd>", "<b>", StatDeltRegionAntal_DW, "</b>", " ", KlubRegion_RD , " (",
+    percent(StatDeltRegionAntal_DW/sum(ifelse(StatDeltRegionAntal_DW == 0, 0, 1)), digits = 0), ") ",
+    KlubKatIkon_RD, "</kbd>"))) %>%
   arrange(KlubRegion_RD) %>%
   mutate(StatDeltRegionAntal_DW = str_c(unique(na.omit(StatDeltRegionAntal_DW)), collapse = " ∙ ")) %>%
   ungroup() %>%
@@ -1331,8 +1339,9 @@ Data_T <- Data_T %>%
   mutate(StatDeltKlubKatAntal_DW = sum(DeltUnik_DW)) %>%
   group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW) %>%
   mutate(StatDeltKlubKatAntal_DW = ifelse(StatDeltKlubKatAntal_DW == 0, NA, paste0(
-    StatDeltKlubKatAntal_DW, " ", KlubKat_DW , " (",
-    percent(StatDeltKlubKatAntal_DW/sum(ifelse(StatDeltKlubKatAntal_DW == 0, 0, 1)), digits = 0), ") ", KlubKatIkon_RD))) %>%
+    "<kbd>", "<b>", StatDeltKlubKatAntal_DW, "</b>", " ", KlubKat_DW , " (",
+    percent(StatDeltKlubKatAntal_DW/sum(ifelse(StatDeltKlubKatAntal_DW == 0, 0, 1)), digits = 0), ") ",
+    KlubKatIkon_RD, "</kbd>"))) %>%
   arrange(KlubKat_DW) %>%
   mutate(StatDeltKlubKatAntal_DW = str_c(unique(na.omit(StatDeltKlubKatAntal_DW)), collapse = " ∙ ")) %>%
   ungroup() %>%
@@ -1343,8 +1352,9 @@ Data_T <- Data_T %>%
   group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW, KlubUnik_DW) %>%
   mutate(StatKlubAntal_DW = sum(KlubUnik_DW)) %>%
   group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW) %>%
-  mutate(StatKlubAntal_DW = ifelse(StatKlubAntal_DW == 0, NA, paste(
-    StatKlubAntal_DW, ifelse(StatKlubAntal_DW == 1, "klub", "forskellige klubber"), KlubKatIkon_RD))) %>%
+  mutate(StatKlubAntal_DW = ifelse(StatKlubAntal_DW == 0, NA, paste0(
+    "<kbd>", "<b>", StatKlubAntal_DW, "</b>",
+    " ", ifelse(StatKlubAntal_DW == 1, "klub", "forskellige klubber"), " ", KlubKatIkon_RD, "</kbd>"))) %>%
   mutate(StatKlubAntal_DW = ifelse(all(is.na(StatKlubAntal_DW)), NA, unique(na.omit(StatKlubAntal_DW)))) %>%
   ungroup() %>%
   mutate(across("StatKlubAntal_DW", \(x) as.character(x))) %>%
@@ -1352,10 +1362,10 @@ Data_T <- Data_T %>%
 
   # StatBilletGnsAntal_DW
   group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
-  mutate(StatBilletGnsAntal_DW = paste(
-    "Gns.", round(sum(OrdreUnik_DW)/sum(DeltUnik_DW), 1),
-    ifelse(round(sum(OrdreUnik_DW)/sum(DeltUnik_DW), 1) == 1,
-    "billet pr. deltager", "billetter pr. deltager"), IkonBillet_V)) %>%
+  mutate(StatBilletGnsAntal_DW = paste0(
+    "<kbd>", "Gns. ", "<b>", round(sum(OrdreUnik_DW)/sum(DeltUnik_DW), 1), "</b>",
+    " ", ifelse(round(sum(OrdreUnik_DW)/sum(DeltUnik_DW), 1) == 1,
+    "billet pr. deltager", "billetter pr. deltager"), " ", IkonBillet_V, "</kbd>")) %>%
   ungroup() %>%
   mutate(across("StatBilletGnsAntal_DW", \(x) as.character(x))) %>%
   select(-StatBilletGnsAntal_DW, everything()) %>%
@@ -1365,8 +1375,9 @@ Data_T <- Data_T %>%
   mutate(StatOrdreKatAntal_DW = sum(OrdreUnik_DW)) %>%
   group_by(EventAar_RD) %>%
   mutate(StatOrdreKatAntal_DW = ifelse(StatOrdreKatAntal_DW == 0, NA, paste0(
-    StatOrdreKatAntal_DW, " ", OrdreKat_DW , " (", 
-    percent(StatOrdreKatAntal_DW/sum(ifelse(StatOrdreKatAntal_DW == 0, 0, 1)), digits = 0), ") ", OrdreKatIkon_RD))) %>%
+    "<kbd>", "<b>", StatOrdreKatAntal_DW, "</b>", " ", OrdreKat_DW , " (", 
+    percent(StatOrdreKatAntal_DW/sum(ifelse(StatOrdreKatAntal_DW == 0, 0, 1)), digits = 0), ") ",
+    OrdreKatIkon_RD, "</kbd>"))) %>%
   arrange(OrdreKat_DW) %>%
   mutate(StatOrdreKatAntal_DW = str_c(unique(na.omit(StatOrdreKatAntal_DW)), collapse = " ∙ ")) %>%
   ungroup() %>%
@@ -1378,8 +1389,9 @@ Data_T <- Data_T %>%
   mutate(StatDeltRatingKatAntal_DW = ifelse(is.na(DeltRatingKat_RD), 0, sum(DeltPingPongUnik_DW))) %>%
   group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW) %>%
   mutate(StatDeltRatingKatAntal_DW = ifelse(StatDeltRatingKatAntal_DW == 0, NA, paste0(
-    StatDeltRatingKatAntal_DW, " ", DeltRatingKat_RD , " (",
-    percent(StatDeltRatingKatAntal_DW/sum(ifelse(StatDeltRatingKatAntal_DW == 0, 0, 1)), digits = 0), ") ", IkonPingPong_V))) %>%
+    "<kbd>", "<b>", StatDeltRatingKatAntal_DW, "</b>", " ", DeltRatingKat_RD , " (",
+    percent(StatDeltRatingKatAntal_DW/sum(ifelse(StatDeltRatingKatAntal_DW == 0, 0, 1)), digits = 0), ") ",
+    IkonPingPong_V, "</kbd>"))) %>%
   arrange(DeltRatingKat_RD) %>%
   mutate(StatDeltRatingKatAntal_DW = str_c(unique(na.omit(StatDeltRatingKatAntal_DW)), collapse = " ∙ ")) %>%
   ungroup() %>%
@@ -1392,27 +1404,34 @@ Data_T <- Data_T %>%
     all(is.na(DeltRating2_RD)) ~ 0,
     DeltPingPongUnik_DW == 0 ~ NA,
     TRUE ~ DeltRating2_RD)) %>%
-  mutate(StatDeltRatingAntal_DW = paste(
-    "Min.", min(StatDeltRatingAntal_DW, na.rm = TRUE), "rating", IkonPingPong_V,
-    "∙ Gns.", round(mean(StatDeltRatingAntal_DW, na.rm = TRUE), 0), "rating", IkonPingPong_V,
-    "∙ Maks", max(StatDeltRatingAntal_DW, na.rm = TRUE), "rating", IkonPingPong_V)) %>%
+  mutate(StatDeltRatingAntal_DW = paste0(
+    "<kbd>", "Min. ", "<b>", min(StatDeltRatingAntal_DW, na.rm = TRUE), "</b>", " rating ",
+    IkonPingPong_V, "</kbd>", " ∙ ",
+    "<kbd>", "Gns. ", "<b>", round(mean(StatDeltRatingAntal_DW, na.rm = TRUE), 0), "</b>", " rating ",
+    IkonPingPong_V, "</kbd>", " ∙ ",
+    "<kbd>", "Maks ", "<b>", max(StatDeltRatingAntal_DW, na.rm = TRUE), "</b>", " rating ",
+    IkonPingPong_V, "</kbd>")) %>%
   ungroup() %>%
   mutate(across("StatDeltRatingAntal_DW", \(x) as.character(x))) %>%
   select(-StatDeltRatingAntal_DW, everything()) %>%
 
   # StatOekonomiAntal_DW
   group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
-  mutate(StatOekonomiAntal_DW = paste(
-    "Omsætning kr.", format(round(sum(BilletPris_RD), 0), big.mark = "."), IkonPenge_V,
-    "∙ Arrangørpris kr.", format(round(sum(BilletPrisArr_RD), 0), big.mark = "."), IkonPenge_V,
-    "∙ Over-/underskud arrangør kr.", format(round(sum(BilletPrisRes_DW), 0), big.mark = "."), IkonPenge_V)) %>%
+  mutate(StatOekonomiAntal_DW = paste0(
+    "<kbd>", "Omsætning kr. ", "<b>", format(round(sum(BilletPris_RD), 0), big.mark = "."), "</b>", " ",
+    IkonPenge_V, "</kbd>", " ∙ ",
+    "<kbd>", "Arrangørpris kr. ", "<b>", format(round(sum(BilletPrisArr_RD), 0), big.mark = "."), "</b>", " ",
+    IkonPenge_V, "</kbd>", " ∙ ",
+    "<kbd>", "Over-/underskud arrangør kr. ", "<b>", format(round(sum(BilletPrisRes_DW), 0), big.mark = "."), "</b>", " ",
+    IkonPenge_V, "</kbd>")) %>%
   mutate(across("StatOekonomiAntal_DW", \(x) as.character(x))) %>%
   select(-StatOekonomiAntal_DW, everything()) %>%
   
   # StatForskudtTilAntal_DW
   group_by(EventAar_RD, OrdreStatusSimpelDeltKat_DW) %>%
   mutate(StatForskudtTilAntal_DW = sum(DeltForskudt_DW)) %>%
-  mutate(StatForskudtTilAntal_DW = paste(StatForskudtTilAntal_DW, "forskudt", OrdreStatusSimpelKat_RD, IkonBillet_V)) %>%
+  mutate(StatForskudtTilAntal_DW = paste0(
+    "<kbd>", "<b>", StatForskudtTilAntal_DW, "</b>", " forskudt ", OrdreStatusSimpelKat_RD, " ", IkonBillet_V, "</kbd>")) %>%
   ungroup() %>%
   mutate(across("StatForskudtTilAntal_DW", \(x) as.character(x))) %>%
   select(-StatForskudtTilAntal_DW, everything())
@@ -1529,8 +1548,7 @@ Data_T <- Data_T %>%
       "<li><p>", IkonGentagelse_V, " ", "[<b>Præmier & deltagere</b>](praemier-deltagere.qmd)",
       "<br>",
       "<i>Præmier og deltagere opdateres løbende til ", EventAar_RD, ".</i></p>",
-      "<i style=font-size:80%;display:inline-block;border:0.6px;border-style:solid;padding:5px>",
-      StatOrdreAntal_DW, "</i></li>",
+      "<i>", StatOrdreAntal_DW, "</i></li>",
       "</ul>")))) %>%
   mutate(InfoForside_DW = ifelse(all(is.na(InfoForside_DW)), NA, unique(na.omit(InfoForside_DW)))) %>%
   ungroup() %>%
@@ -1571,8 +1589,7 @@ Data_T <- Data_T %>%
     IkonGentagelse_V, " Præmier og deltagere opdateres løbende til ",
     EventAar_RD, " [<b>HER</b>](praemier-deltagere.qmd).",
     "</p>",
-    "<i style=font-size:80%;display:inline-block;border:0.6px;border-style:solid;padding:5px>",
-    StatOrdreAntal_DW, "</i>"))) %>%
+    "<i>", StatOrdreAntal_DW, "</i>"))) %>%
   mutate(InfoTipPraemierDeltagere_DW = ifelse(
     all(is.na(InfoTipPraemierDeltagere_DW)), NA, unique(na.omit(InfoTipPraemierDeltagere_DW)))) %>%
   ungroup() %>%

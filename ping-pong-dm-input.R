@@ -16,5 +16,5 @@ InputEventAarAkt_V <- "Ping Pong DM 2023" # Event og år
 InputData_V        <- "filer/generelt/ping-pong-dm-tilmelding.xlsx" # Sti til Excel-fil
 
 # Kildefiler
-source(file = "_variables.R")
+source(file = "variable.R")
 source(file = "bagvedliggende-kode.R")

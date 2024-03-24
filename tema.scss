@@ -11,19 +11,18 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
 }
 
-.mobil-tekst {
-  display: none;
-  @media (max-width: 1000px) {
-    display: inline-block;
-  }
-}
-
 img {
   border-radius: 4px;
 }
 
 video {
   border-radius: 4px;
+}
+
+kbd {
+  display: inline-block;
+  font-family: Verdana;
+  color: #000000 !important;
 }
 
 table {
@@ -50,6 +49,13 @@ tfoot td {
   border-top: 1px solid #808080;
 }
 
-kbd { 
-  color: #000000 !important;
+.footnotes {
+  font-style: italic;
+}
+
+.vis-kun-mobil {
+  display: none;
+  @media (max-width: 1000px) {
+    display: inline-block;
+  }
 }
