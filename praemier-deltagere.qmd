@@ -289,7 +289,7 @@ DataAkt_T %>%
 		KlubRegion_RD == "Sjælland"    ~ "sjaelland",
 		KlubRegion_RD == "Hovedstaden" ~ "hovedstaden")) %>%
 	count(KlubPostnr_RD, name = "Deltagerantal", .drop = FALSE) %>%
-	plotDK::plotDK(
+	plotDK(
 		value        = "Deltagerantal",
 		id           = "KlubPostnr_RD",
 		plotlevel    = "zipcode",
