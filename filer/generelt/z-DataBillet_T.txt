@@ -64,14 +64,14 @@ DataBillet_T$StatDeltAntal_DW                    : chr "<kbd><b>4</b> Tilmeldt (
 DataBillet_T$StatDeltKoenAntal_DW                : chr "<kbd><b>4</b> Herre (100%) <iconify-icon icon=mdi:gender-male style=color:#009FB7></iconify-icon></kbd>"
 DataBillet_T$StatDeltGenKatAntal_DW              : chr "<kbd><b>4</b> Gentilmelding (100%) <iconify-icon icon=mdi:autorenew></iconify-icon></kbd>"
 DataBillet_T$StatDeltAlderKatAntal_DW            : chr "<kbd><b>4</b> Senior (100%) <iconify-icon icon=mdi:cake-variant></iconify-icon></kbd>"
-DataBillet_T$StatDeltAlderAntal_DW               : chr "<kbd>Yngst <b>22</b> år <iconify-icon icon=mdi:cake-variant></iconify-icon></kbd> ∙ <kbd>Gns. <b>28</b> år <ico"| __truncated__
+DataBillet_T$StatDeltAlderAntal_DW               : chr "<kbd>Yngst <b>22</b> år <iconify-icon icon=mdi:cake-variant></iconify-icon></kbd>&ensp;<kbd>Gns. <b>28</b> år <"| __truncated__
 DataBillet_T$StatDeltLandsdelAntal_DW            : chr "<kbd><b>4</b> Jylland (100%) <iconify-icon icon=mdi:home></iconify-icon></kbd>"
-DataBillet_T$StatDeltRegionAntal_DW              : chr "<kbd><b>1</b> Region Nordjylland (25%) <iconify-icon icon=mdi:home></iconify-icon></kbd> ∙ <kbd><b>3</b> Region"| __truncated__
+DataBillet_T$StatDeltRegionAntal_DW              : chr "<kbd><b>1</b> Region Nordjylland (25%) <iconify-icon icon=mdi:home></iconify-icon></kbd>&ensp;<kbd><b>3</b> Reg"| __truncated__
 DataBillet_T$StatDeltKlubKatAntal_DW             : chr "<kbd><b>4</b> Klub (100%) <iconify-icon icon=mdi:home></iconify-icon></kbd>"
 DataBillet_T$StatKlubAntal_DW                    : chr "<kbd><b>3</b> forskellige klubber <iconify-icon icon=mdi:home></iconify-icon></kbd>"
 DataBillet_T$StatBilletGnsAntal_DW               : chr "<kbd>Gns. <b>3,5</b> billetter pr. deltager <iconify-icon icon=mdi:tags></iconify-icon></kbd>"
 DataBillet_T$StatOrdreKatAntal_DW                : chr "<kbd><b>14</b> Ordinær (100%) <iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon></kbd>"
 DataBillet_T$StatDeltRatingKatAntal_DW           : chr "<kbd><b>4</b> Elite (100%) <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon></kbd>"
-DataBillet_T$StatDeltRatingAntal_DW              : chr "<kbd>Min. <b>2400</b> rating <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon></kbd> ∙ <k"| __truncated__
-DataBillet_T$StatOekonomiAntal_DW                : chr "<kbd>Omsætning kr. <b>2.000</b> <iconify-icon icon=mdi:cash></iconify-icon></kbd> ∙ <kbd>Arrangørpris kr. <b>2."| __truncated__
+DataBillet_T$StatDeltRatingAntal_DW              : chr "<kbd>Min. <b>2400</b> rating <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon></kbd>&ensp"| __truncated__
+DataBillet_T$StatOekonomiAntal_DW                : chr "<kbd>Omsætning kr. <b>2.000</b> <iconify-icon icon=mdi:cash></iconify-icon></kbd>&ensp;<kbd>Arrangørpris kr. <b"| __truncated__
 DataBillet_T$StatForskudtTilAntal_DW             : chr "<kbd><b>10</b> forskudt Tilmeldt <iconify-icon icon=mdi:tags></iconify-icon></kbd>"

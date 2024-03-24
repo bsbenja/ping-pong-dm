@@ -298,16 +298,16 @@ StatDeltAntal_DW                        : chr "<kbd><b>4</b> Tilmeldt (100%) <ic
 StatDeltKoenAntal_DW                    : chr "<kbd><b>4</b> Herre (100%) <iconify-icon icon=mdi:gender-male style=color:#009FB7></iconify-icon></kbd>"
 StatDeltGenKatAntal_DW                  : chr "<kbd><b>4</b> Gentilmelding (100%) <iconify-icon icon=mdi:autorenew></iconify-icon></kbd>"
 StatDeltAlderKatAntal_DW                : chr "<kbd><b>4</b> Senior (100%) <iconify-icon icon=mdi:cake-variant></iconify-icon></kbd>"
-StatDeltAlderAntal_DW                   : chr "<kbd>Yngst <b>22</b> år <iconify-icon icon=mdi:cake-variant></iconify-icon></kbd> ∙ <kbd>Gns. <b>28</b> år <ico"| __truncated__
+StatDeltAlderAntal_DW                   : chr "<kbd>Yngst <b>22</b> år <iconify-icon icon=mdi:cake-variant></iconify-icon></kbd>&ensp;<kbd>Gns. <b>28</b> år <"| __truncated__
 StatDeltLandsdelAntal_DW                : chr "<kbd><b>4</b> Jylland (100%) <iconify-icon icon=mdi:home></iconify-icon></kbd>"
-StatDeltRegionAntal_DW                  : chr "<kbd><b>1</b> Region Nordjylland (25%) <iconify-icon icon=mdi:home></iconify-icon></kbd> ∙ <kbd><b>3</b> Region"| __truncated__
+StatDeltRegionAntal_DW                  : chr "<kbd><b>1</b> Region Nordjylland (25%) <iconify-icon icon=mdi:home></iconify-icon></kbd>&ensp;<kbd><b>3</b> Reg"| __truncated__
 StatDeltKlubKatAntal_DW                 : chr "<kbd><b>4</b> Klub (100%) <iconify-icon icon=mdi:home></iconify-icon></kbd>"
 StatKlubAntal_DW                        : chr "<kbd><b>3</b> forskellige klubber <iconify-icon icon=mdi:home></iconify-icon></kbd>"
 StatBilletGnsAntal_DW                   : chr "<kbd>Gns. <b>3,5</b> billetter pr. deltager <iconify-icon icon=mdi:tags></iconify-icon></kbd>"
 StatOrdreKatAntal_DW                    : chr "<kbd><b>14</b> Ordinær (100%) <iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon></kbd>"
 StatDeltRatingKatAntal_DW               : chr "<kbd><b>4</b> Elite (100%) <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon></kbd>"
-StatDeltRatingAntal_DW                  : chr "<kbd>Min. <b>2400</b> rating <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon></kbd> ∙ <k"| __truncated__
-StatOekonomiAntal_DW                    : chr "<kbd>Omsætning kr. <b>2.000</b> <iconify-icon icon=mdi:cash></iconify-icon></kbd> ∙ <kbd>Arrangørpris kr. <b>2."| __truncated__
+StatDeltRatingAntal_DW                  : chr "<kbd>Min. <b>2400</b> rating <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon></kbd>&ensp"| __truncated__
+StatOekonomiAntal_DW                    : chr "<kbd>Omsætning kr. <b>2.000</b> <iconify-icon icon=mdi:cash></iconify-icon></kbd>&ensp;<kbd>Arrangørpris kr. <b"| __truncated__
 StatForskudtTilAntal_DW                 : chr "<kbd><b>10</b> forskudt Tilmeldt <iconify-icon icon=mdi:tags></iconify-icon></kbd>"
 InfoNedtælling_DW                       : chr "<p style=\"text-align:center;width:50em;max-width:100%\">\n      <b style=font-size:120%;text-transform:upperca"| __truncated__
 InfoPlakatCTA_DW                        : chr "<br><br><a style=display:inline-block;background:#FF4A6E;color:#FFFFFF;border-radius:40px;padding-left:50px;pad"| __truncated__
