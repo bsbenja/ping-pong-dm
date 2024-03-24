@@ -1548,7 +1548,7 @@ Data_T <- Data_T %>%
       "<li><p>", IkonGentagelse_V, " ", "[<b>Præmier & deltagere</b>](praemier-deltagere.qmd)",
       "<br>",
       "<i>Præmier og deltagere opdateres løbende til ", EventAar_RD, ".</i></p>",
-      "<i>", StatOrdreAntal_DW, "</i></li>",
+      StatOrdreAntal_DW, "</li>",
       "</ul>")))) %>%
   mutate(InfoForside_DW = ifelse(all(is.na(InfoForside_DW)), NA, unique(na.omit(InfoForside_DW)))) %>%
   ungroup() %>%
@@ -1589,7 +1589,7 @@ Data_T <- Data_T %>%
     IkonGentagelse_V, " Præmier og deltagere opdateres løbende til ",
     EventAar_RD, " [<b>HER</b>](praemier-deltagere.qmd).",
     "</p>",
-    "<i>", StatOrdreAntal_DW, "</i>"))) %>%
+    StatOrdreAntal_DW))) %>%
   mutate(InfoTipPraemierDeltagere_DW = ifelse(
     all(is.na(InfoTipPraemierDeltagere_DW)), NA, unique(na.omit(InfoTipPraemierDeltagere_DW)))) %>%
   ungroup() %>%

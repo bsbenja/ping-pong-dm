@@ -239,17 +239,15 @@ DataAkt_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD)) %>%
 ```{r}
 #| output: asis
 cat(paste0(
-"<i style=font-size:70%>",
+"<p style=font-size:70%>",
 DataBilletAkt_T$StatDeltKlubKatAntal_DW,
 "&nbsp;^[<b>Deltagere klub</b>: Deltagere klub opgøres efter antal tilmeldte deltagere til eventet fordelt på <q>klub</q>, <q>ingen klub</q> og <q>udlandet</q>. Procentsatserne viser fordelingen heraf.]",
-"</i>",
+"</p>",
 
-" <br>",
-
-"<i style=font-size:70%>",
+"<p style=font-size:70%>",
 DataBilletAkt_T$StatKlubAntal_DW,
 "&nbsp;^[<b>Forskellige klubber</b>: Forskellige klubber opgøres efter antal tilmeldte bordtennisklubber eksklusiv <q>ingen klub</q> og <q>udlandet</q> til eventet.]",
-"</i>"))
+"</p>"))
 ```
 
 ## Tabel
@@ -303,17 +301,15 @@ DataAkt_T %>%
 ```{r}
 #| output: asis
 cat(paste0(
-"<i style=font-size:70%>",
-"<b>Deltagere landsdel</b>:&nbsp;", DataBilletAkt_T$StatDeltLandsdelAntal_DW,
+"<p style=font-size:70%>",
+"<b>Deltagere landsdel</b>:<br>", DataBilletAkt_T$StatDeltLandsdelAntal_DW,
 " ^[<b>Deltagere landsdel</b>: Deltagere landsdel opgøres efter antal tilmeldte deltagere til eventet fordelt på Jylland, Fyn, Sjælland og Bornholm eksklusiv <q>ingen klub</q> og <q>udlandet</q>. Procentsatserne viser fordelingen heraf. Landsdel tager udgangspunkt i bordtennisklubbens belligenhed.]",
-"</i>",
+"</p>",
 
-" <br>",
-
-"<i style=font-size:70%>",
-"<b>Deltagere region</b>:&nbsp;", DataBilletAkt_T$StatDeltRegionAntal_DW,
+"<p style=font-size:70%>",
+"<b>Deltagere region</b>:<br>", DataBilletAkt_T$StatDeltRegionAntal_DW,
 " ^[<b>Deltagere region</b>: Deltagere region opgøres efter antal tilmeldte deltagere til eventet fordelt på Nordjylland, Midtjylland, Syddanmark, Sjælland og Hovedstaden eksklusiv <q>ingen klub</q> og <q>udlandet</q>. Procentsatserne viser fordelingen heraf. Region tager udgangspunkt i bordtennisklubbens belligenhed.]",
-"</i>"))
+"</p>"))
 ```
 
 ## Tabel
@@ -356,17 +352,15 @@ DataAkt_T %>%
 ```{r}
 #| output: asis
 cat(paste0(
-"<i style=font-size:70%>",
+"<p style=font-size:70%>",
 DataBilletAkt_T$StatDeltAlderKatAntal_DW,
 "&nbsp;^[<b>Deltagere aldersgruppe</b>: Deltagere aldersgruppe opgøres efter antal tilmeldte deltagere til eventet fordelt på ungdom (≤ 17 år), senior (≤ 39 år) og veteran (≥ 40 år). Procentsatserne viser fordelingen heraf. Alder tager udgangspunkt i fødselsdato og eventdatoen ", DataBilletAkt_T$BilletStartDato_DW_DMAA_DW, " (ikke dags dato).]",
-"</i>",
+"</p>",
 
-" <br>",
-
-"<i style=font-size:70%>",
+"<p style=font-size:70%>",
 DataBilletAkt_T$StatDeltAlderAntal_DW,
 "&nbsp;^[<b>Alder</b>: Alder opgøres efter hhv. yngst, gennemsnitlig alder og ældst i forhold til tilmeldte deltagere til eventet. Alder tager udgangspunkt i fødselsdato og eventdatoen ", DataBilletAkt_T$BilletStartDato_DW_DMAA_DW, " (ikke dags dato).]",
-"</i>"))
+"</p>"))
 ```
 
 ## Tabel
@@ -410,10 +404,10 @@ DataAkt_T %>%
 ```{r}
 #| output: asis
 cat(paste0(
-"<i style=font-size:70%>",
+"<p style=font-size:70%>",
 DataBilletAkt_T$StatDeltKoenAntal_DW,
 "&nbsp;^[<b>Deltagere køn</b>: Deltagere køn opgøres efter antal tilmeldte deltagere til eventet fordelt på herre og dame. Procentsatserne viser fordelingen heraf.]",
-"</i>"))
+"</p>"))
 ```
 
 ## Tabel
@@ -456,10 +450,10 @@ DataAkt_T %>%
 ```{r}
 #| output: asis
 cat(paste0(
-"<i style=font-size:70%>",
+"<p style=font-size:70%>",
 DataBilletAkt_T$StatDeltGenKatAntal_DW,
 "&nbsp;^[<b>Deltagere gentilmelding</b>: Deltagere gentilmelding opgøres efter antal tilmeldte deltagere til eventet fordelt på <q>gentilmelding</q> og <q>debutant</q>. Procentsatserne viser fordelingen heraf. Gentilmelding defineres som en, der tidligere har valgt samme billetype, og debutant defineres som en, der har valgt en billettype for første gang. Ved både gentilmelding og debutant tælles dette kun som gentilmelding. Opgørelsen gælder fra og med ", distinct(filter(DataAkt_T, EventAarFra2021_DW == DataEventAarAkt_T$EventAarFra2021_DW), min(EventAarStartDato_DW_Aar_DW)), ".]",
-"</i>"))
+"</p>"))
 ```
 
 ## Tabel
@@ -502,17 +496,15 @@ DataAkt_T %>%
 ```{r}
 #| output: asis
 cat(paste0(
-"<i style=font-size:70%>",
+"<p style=font-size:70%>",
 DataBilletAkt_T$StatDeltAntal_DW,
 "&nbsp;^[<b>Deltagere total</b>: Deltagere total opgøres efter antal unikke tilmeldte deltagere og <q>totalafbud</q> til eventet. Procentsatserne viser fordelingen heraf. Ved <q>totalafbud</q> forstås deltagere, der har meldt afbud til hele eventet.]",
-"</i>",
+"</p>",
 
-" <br>",
-
-"<i style=font-size:70%>",
+"<p style=font-size:70%>",
 DataBilletAkt_T$StatBilletGnsAntal_DW,
 "&nbsp;^[<b>Billetter pr. deltager</b>: Billetter pr. deltager er et gennemsnit, som opgøres efter antal tilmeldinger (billetantal) divideret med tilmeldte deltagere til eventet.]",
-"</i>"))
+"</p>"))
 ```
 
 ## Tabel
