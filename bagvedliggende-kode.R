@@ -1231,7 +1231,7 @@ Data_T <- Data_T %>%
     "<kbd>", "<b>", StatOrdreAntal_DW, "</b>", " ", OrdreStatusSimpelKat_RD,
     " til ", BilletKat_DW, " ", BilletKatIkon_RD, "</kbd>")) %>%
   arrange(OrdreStatusSimpelKat_RD, BilletDisciplin_RD, BilletRaekke_RD, BilletSpilFormat_RD) %>%
-  mutate(StatOrdreAntal_DW = str_c(unique(StatOrdreAntal_DW), collapse = "<br>")) %>%
+  mutate(StatOrdreAntal_DW = str_c(unique(StatOrdreAntal_DW), collapse = "&ensp;")) %>%
   ungroup() %>%
   mutate(across("StatOrdreAntal_DW", \(x) as.character(x))) %>%
   select(-StatOrdreAntal_DW, everything()) %>%

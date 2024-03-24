@@ -126,14 +126,12 @@ if(nrow(DataPraemieYngstAeldstAkt_T) == 0) {
 
 ## `r paste(IkonPerson_V, "Deltagere")`
 
-::: {.callout-note icon="false"}
-## `r paste0(IkonBillet_V, "&nbsp;Tilmeldinger", "^[<b>Tilmeldinger</b>: Tilmeldinger opgøres efter antal tilmeldinger til eventet fordelt på billettype.]")`
-
 ```{r}
 #| output: asis
-cat(paste0(DataBilletAkt_T$StatOrdreAntal_DW))
+cat(paste0(
+"<b>Tilmeldinger billettype</b>^[<b>Tilmeldinger billettype</b>: Tilmeldinger billettype opgøres efter antal tilmeldinger til eventet fordelt på billettype.]",
+"<br>", DataBilletAkt_T$StatOrdreAntal_DW))
 ```
-:::
 
 ```{r}
 # DataDeltForAkt_T
