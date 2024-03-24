@@ -2,6 +2,10 @@
 /*-- scss:defaults --*/
 // Herunder angives variable
 $navbar-bg: #398FCC;
+$link-color: #398FCC;
+$font-family-sans-serif: Verdana;
+$font-family-monospace: Verdana;
+$font-size-root: 11;
 
 // ----------------------------------------------------------------------------------------------------
 /*-- scss:rules --*/
@@ -21,7 +25,6 @@ video {
 
 kbd {
   display: inline-block;
-  font-family: Verdana;
 }
 
 table {

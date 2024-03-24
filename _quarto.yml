@@ -82,11 +82,8 @@ format:
       gutter-width:  1.5em # standard: 1.5em
     html-table-processing: none
     fig-cap-location: top
-    mainfont: verdana
     df-print: default
     fig-align: left
-    fontsize: "11pt"
-    linkcolor: "#398FCC"
     toc-location: right
     toc-depth: 3
     toc-expand: true
