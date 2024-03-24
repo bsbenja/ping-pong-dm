@@ -70,8 +70,8 @@ website:
 format:
   html:
     theme:
-      light: [flatly, tema.scss]
-      dark: [darkly, tema.scss]
+      light: [flatly, tema.scss, tema-lys.scss]
+      dark: [darkly, tema.scss, tema-moerk.scss]
     mermaid:
       theme: neutral
     grid:
