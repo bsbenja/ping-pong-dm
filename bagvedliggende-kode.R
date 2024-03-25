@@ -1633,6 +1633,9 @@ DataBillet_T <- Data_T %>% filter(grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>
   arrange(desc(BilletNr_RD)) %>%
   distinct(across(starts_with(c("EventAar_RD", "Billet", "Stat"))))
 
+# Data_T
+Data_T <- Data_T %>% select(-starts_with(c("Stat", "Info")))
+
 #' # Billettype
 # Billettype --------------------------------------------------------------
 #+ eval=F, warning=F, message=F
@@ -1890,9 +1893,7 @@ DataDeltBy_T <- Data_T %>%
   mutate(KlubPostnrBy_DW = paste0("<span style=white-space:nowrap>",
     ifelse(grepl("Ingen klub|Udlandet", Klub_RD),
       paste0(KlubKat_DW, " ", KlubKatIkon_RD),
-      paste0(
-        "<span style=font-size:80%>", KlubRegion_RD, "</span>", "<br>",
-        "<span style=font-size:90%>", KlubPostnrBy_DW, " ", KlubKatIkon_RD, "</span>")),
+      paste0("<span style=font-size:90%>", KlubRegion_RD, "</span>", "<br>", KlubPostnrBy_DW, " ", KlubKatIkon_RD)),
     "</span>")) %>%
   group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
   mutate(Nr. = row_number()) %>%

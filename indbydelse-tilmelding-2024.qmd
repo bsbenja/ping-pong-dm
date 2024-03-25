@@ -299,9 +299,7 @@ cat(DataEventAarAkt_T$InfoTipRegler_DW)
 ::: {.g-col-12 .g-col-md-4}
 ```{r}
 #| output: asis
-cat(paste0(
-"![](filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "/bat.png){width=15em}",
-"![](filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "/bold.png){width=2em}"))
+cat(paste0("![](filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "/bat-bold.png){width=15em}"))
 ```
 :::
 :::

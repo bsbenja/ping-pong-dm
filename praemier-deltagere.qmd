@@ -258,7 +258,7 @@ DataDeltKlubAkt_T %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltKlubAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-	column_spec(1:4, extra_css = "border-top:0.7px solid #808080") %>%
+	column_spec(1:4, extra_css = "border-top:0.7px solid #808080;font-size:90%") %>%
 	remove_column(5:6) %>%
 	scroll_box(height = "400px")
 ```
@@ -320,7 +320,7 @@ DataDeltByAkt_T %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltByAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-	column_spec(1:4, extra_css = "border-top:0.7px solid #808080") %>%
+	column_spec(1:4, extra_css = "border-top:0.7px solid #808080;font-size:90%") %>%
 	remove_column(5:6) %>%
 	scroll_box(height = "400px")
 ```
@@ -371,7 +371,7 @@ DataDeltAlderKatAkt_T %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltAlderKatAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-	column_spec(1:4, extra_css = "border-top:0.7px solid #808080") %>%
+	column_spec(1:4, extra_css = "border-top:0.7px solid #808080;font-size:90%") %>%
 	remove_column(5:6) %>%
 	scroll_box(height = "400px")
 ```
@@ -418,7 +418,7 @@ DataDeltKoenAkt_T %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltKoenAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-	column_spec(1:4, extra_css = "border-top:0.7px solid #808080") %>%
+	column_spec(1:4, extra_css = "border-top:0.7px solid #808080;font-size:90%") %>%
 	remove_column(5:6) %>%
 	scroll_box(height = "400px")
 ```
@@ -464,7 +464,7 @@ DataDeltGenTilAkt_T %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltGenTilAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-	column_spec(1:4, extra_css = "border-top:0.7px solid #808080") %>%
+	column_spec(1:4, extra_css = "border-top:0.7px solid #808080;font-size:90%") %>%
 	remove_column(5:6) %>%
 	scroll_box(height = "400px")
 ```
@@ -515,7 +515,7 @@ DataDeltOrdreKatAkt_T %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltOrdreKatAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-	column_spec(1:4, extra_css = "border-top:0.7px solid #808080") %>%
+	column_spec(1:4, extra_css = "border-top:0.7px solid #808080;font-size:90%") %>%
 	remove_column(5:6) %>%
 	scroll_box(height = "400px")
 ```
