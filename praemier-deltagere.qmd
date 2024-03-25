@@ -254,11 +254,11 @@ cat(paste0(
 DataDeltKlubAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter klubantal</i>") %>%
-	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
+	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed", font_size = "80%") %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltKlubAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-	column_spec(1:4, extra_css = "border-top:0.7px solid #808080;font-size:90%") %>%
+	column_spec(1:4, extra_css = "border-top:0.7px solid #808080") %>%
 	remove_column(5:6) %>%
 	scroll_box(height = "400px")
 ```
@@ -316,11 +316,11 @@ cat(paste0(
 DataDeltByAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter region og postnr.</i>") %>%
-	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
+	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed", font_size = "80%") %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltByAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-	column_spec(1:4, extra_css = "border-top:0.7px solid #808080;font-size:90%") %>%
+	column_spec(1:4, extra_css = "border-top:0.7px solid #808080") %>%
 	remove_column(5:6) %>%
 	scroll_box(height = "400px")
 ```
@@ -367,11 +367,11 @@ cat(paste0(
 DataDeltAlderKatAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter fødselsdato</i>") %>%
-	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
+	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed", font_size = "80%") %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltAlderKatAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-	column_spec(1:4, extra_css = "border-top:0.7px solid #808080;font-size:90%") %>%
+	column_spec(1:4, extra_css = "border-top:0.7px solid #808080") %>%
 	remove_column(5:6) %>%
 	scroll_box(height = "400px")
 ```
@@ -414,11 +414,11 @@ cat(paste0(
 DataDeltKoenAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter køn</i>") %>%
-	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
+	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed", font_size = "80%") %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltKoenAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-	column_spec(1:4, extra_css = "border-top:0.7px solid #808080;font-size:90%") %>%
+	column_spec(1:4, extra_css = "border-top:0.7px solid #808080") %>%
 	remove_column(5:6) %>%
 	scroll_box(height = "400px")
 ```
@@ -460,11 +460,11 @@ cat(paste0(
 DataDeltGenTilAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter antal gentilmeldinger</i>") %>%
-	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
+	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed", font_size = "80%") %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltGenTilAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-	column_spec(1:4, extra_css = "border-top:0.7px solid #808080;font-size:90%") %>%
+	column_spec(1:4, extra_css = "border-top:0.7px solid #808080") %>%
 	remove_column(5:6) %>%
 	scroll_box(height = "400px")
 ```
@@ -511,11 +511,11 @@ cat(paste0(
 DataDeltOrdreKatAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter ældste <q>første ordredato</q></i>") %>%
-	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
+	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed", font_size = "80%") %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltOrdreKatAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-	column_spec(1:4, extra_css = "border-top:0.7px solid #808080;font-size:90%") %>%
+	column_spec(1:4, extra_css = "border-top:0.7px solid #808080") %>%
 	remove_column(5:6) %>%
 	scroll_box(height = "400px")
 ```
