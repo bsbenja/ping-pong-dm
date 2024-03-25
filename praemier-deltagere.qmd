@@ -37,7 +37,7 @@ DataDeltOrdreKatAkt_T <- DataDeltOrdreKat_T %>% filter(grepl(InputEventAarAkt_V,
 DataResultSidst_T <- DataResult_T %>% filter(
   grepl(InputEventAarAkt_V, EventAarSidst_DW) &
   grepl("A-slutspil", DeltSlutspil_RD) &
-  grepl("[1-4]", `Placering`))
+  grepl("[1-4]", DeltPlacNr_RD))
 ```
 
 ---
@@ -535,6 +535,6 @@ if(nrow(DataResultSidst_T) == 0) {
         " i ", DataEventAarSidst_T$EventAarSted_RD, "</i>")) %>%
   kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   row_spec(0, background = DataEventAarSidst_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
-	remove_column(c(1, 5:9))
+	remove_column(c(1, 5:11))
 }
 ```

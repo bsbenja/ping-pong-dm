@@ -5,8 +5,9 @@ source(file = "ping-pong-dm-input.R")
 ```{r}
 DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataResultAlle_T <- DataResult_T %>% filter(
-  grepl("A-slutspil", DeltSlutspil_RD) &
-  grepl("1", `Placering`))
+  (grepl("A-slutspil", DeltSlutspil_RD) &
+  grepl("1", DeltPlacNr_RD)) |
+  grepl("Aflyst", OrdreStatusSimpelKat_RD))
 ```
 
 ---
@@ -207,9 +208,9 @@ DataResultAlle_T %>%
       caption = paste(IkonPokal_V, "DM-vindere statistik")) %>%
   kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   row_spec(0, background = "#1C2833", color = "#FFFFFF") %>%
-  row_spec(which(grepl("Aflyst", DataResultAlle_T$Navn)),
+  row_spec(which(grepl("Aflyst", DataResultAlle_T$OrdreStatusSimpelKat_RD)),
            strikeout = T, italic = T, color = "#5D6D7E") %>%
-  remove_column(c(2, 5:9)) %>%
+  remove_column(c(2, 5:11)) %>%
   footnote(
     "Webscraped fra BTDK's hjemmeside
     <a href=https://bordtennisdanmark.dk/statistik/ping-pong-dm target=_blank><b>HER</b></a>",

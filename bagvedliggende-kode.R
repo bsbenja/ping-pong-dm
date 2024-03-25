@@ -841,8 +841,8 @@ Data_T <- Data_T %>%
   select(-KlubKat_DW, everything()) %>%
 
   # KlubLogo_DW
-  mutate(KlubLogo_DW = paste0(
-    "<img src=filer/klublogo/", egen_sti_fun(Klub_RD), ".png width=15>")) %>%
+  mutate(KlubLogo_DW = ifelse(is.na(Klub_RD), NA_character_,
+    paste0("<img src=filer/klublogo/", egen_sti_fun(Klub_RD), ".png width=15>"))) %>%
   mutate(across("KlubLogo_DW", \(x) as.character(x))) %>%
   select(-KlubLogo_DW, everything()) %>%
 
@@ -1052,8 +1052,8 @@ Data_T <- Data_T %>%
   
   # DeltNavnKlub_DW
   mutate(DeltNavnKlub_DW = case_when(
-    is.na(DeltID_RD) ~ NA_character_,
     grepl("Aflyst", OrdreStatusSimpelKat_RD) ~ BilletBeskr_RD,
+    is.na(DeltID_RD) ~ NA_character_,
     grepl("Ingen klub|Udlandet", Klub_RD) ~ paste0(DeltNavn_RD),
     TRUE ~ paste0(DeltNavn_RD, ", <i>", Klub_RD, "</i>"))) %>%
   mutate(across("DeltNavnKlub_DW", \(x) as.character(x))) %>%
@@ -1063,8 +1063,8 @@ Data_T <- Data_T %>%
   group_by(EventAar_RD, OrdreStatusSimpelKat_RD, DeltID_RD) %>%
   arrange(BilletKat_RD, desc(OrdreFoersteDatoTid_DW)) %>%
   mutate(DeltNavnBilletKat_DW = case_when(
-    is.na(DeltID_RD) ~ NA_character_,
     grepl("Aflyst", OrdreStatusSimpelKat_RD) ~ BilletBeskr_RD,
+    is.na(DeltID_RD) ~ NA_character_,
     grepl("Ingen klub|Udlandet", Klub_RD) ~ paste0(DeltNavn_RD, " (", DeltAlder_DW, " år) ", str_c(
       BilletKatIkon_RD, collapse = "<wbr>")),
     TRUE ~ paste0(DeltNavnKlub_DW, " (", DeltAlder_DW, " år) ", str_c(
@@ -1761,7 +1761,7 @@ DataPraemieYngstAeldst_T <- Data_T %>%
 	arrange(EventAar_RD, desc(DeltFoedtDato_DW), DeltNavn_RD) %>%
   select(
     " "      = DeltYngstAeldst_DW,
-    "&nbsp;" = KlubLogo_DW,
+    "&emsp;" = KlubLogo_DW,
     "Navn"   = DeltNavnBilletKat_DW,
     "Født"   = Født,
     EventAar_RD)
@@ -1782,7 +1782,7 @@ DataDeltFor_T <- Data_T %>%
   ungroup() %>%
   select(
     "Nr." = RaekkeNr_DW,
-    "&nbsp;" = KlubLogo_DW,
+    "&emsp;" = KlubLogo_DW,
     "Navn" = DeltNavnBilletKat_DW,
     OrdreStatusSimpelKat_RD,
     BilletDisciplin_RD,
@@ -1798,7 +1798,7 @@ DataDeltPuljer_T <- Data_T %>%
   arrange(EventAar_RD, Billet_RD, DeltSnakePuljeNr_DW, DeltSnakeSeedNr_DW) %>%
   select(
     "Nr." = DeltSnakeSeedNr_DW,
-    "&nbsp;" = KlubLogo_DW,
+    "&emsp;" = KlubLogo_DW,
     "Navn" = DeltNavnBilletKat_DW,
     "Rating" = DeltRating_DW,
     DeltSnakeSeedLagNr_DW,
@@ -1828,28 +1828,9 @@ DataDeltAndet_T <- Data_T %>%
   ungroup() %>%
   select(
     "Nr." = RaekkeNr_DW,
-    "&nbsp;" = KlubLogo_DW,
+    "&emsp;" = KlubLogo_DW,
     "Navn" = DeltNavnBilletKat_DW,
     OrdreStatusSimpelKat_RD,
-    EventAar_RD)
-
-#' # Resultater
-# Resultater --------------------------------------------------------------
-#+ eval=F, warning=F, message=F
-
-DataResult_T <- Data_T %>%
-  filter((!is.na(DeltSlutspil_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) | grepl("Aflyst", OrdreStatusSimpelKat_RD)) %>%
-  filter(EventAarStartDatoTid_DW <= Sys.Date()) %>%
-  arrange(desc(EventAarNr_RD), BilletDisciplin_RD, BilletRaekke_RD, DeltSlutspil_RD, DeltPlac_RD) %>%
-  select(
-    "År" = EventAarStartDato_DW_Aar_DW,
-    "Placering" = DeltPlac_RD,
-    "&nbsp;" = KlubLogo_DW,
-    "Navn" = DeltNavnKlub_DW,
-    BilletDisciplin_RD,
-    BilletRaekke_RD,
-    DeltSlutspil_RD,
-    EventAarSidst_DW,
     EventAar_RD)
 
 #' # Tabeller til dashboards
@@ -1874,7 +1855,7 @@ DataDeltKlub_T <- Data_T %>%
   ungroup() %>%
 	select(
     "Nr." = RaekkeNr_DW,
-		"&nbsp;" = KlubLogo_DW,
+		"&emsp;" = KlubLogo_DW,
 		"Navn" = DeltNavnBilletKat_DW,
 		"Klubtype" = KlubKat_DW,
 		OrdreStatusSimpelKat_RD,
@@ -1900,7 +1881,7 @@ DataDeltBy_T <- Data_T %>%
   ungroup() %>%
   select(
     "Nr." = RaekkeNr_DW,
-    "&nbsp;" = KlubLogo_DW,
+    "&emsp;" = KlubLogo_DW,
     "Navn" = DeltNavnBilletKat_DW,
     "Region" = KlubPostnrBy_DW,
     OrdreStatusSimpelKat_RD,
@@ -1922,7 +1903,7 @@ DataDeltAlderKat_T <- Data_T %>%
   ungroup() %>%
 	select(
     "Nr." = RaekkeNr_DW,
-		"&nbsp;" = KlubLogo_DW,
+		"&emsp;" = KlubLogo_DW,
 		"Navn" = DeltNavnBilletKat_DW,
 		"Aldersgruppe" = DeltAlderKat_RD,
 		OrdreStatusSimpelKat_RD,
@@ -1946,7 +1927,7 @@ DataDeltKoen_T <- Data_T %>%
   ungroup() %>%
 	select(
     "Nr." = RaekkeNr_DW,
-		"&nbsp;" = KlubLogo_DW,
+		"&emsp;" = KlubLogo_DW,
 		"Navn" = DeltNavnBilletKat_DW,
 		"Køn" = DeltKoen_RD_ikon,
 		OrdreStatusSimpelKat_RD,
@@ -1970,7 +1951,7 @@ DataDeltGenTil_T <- Data_T %>%
   ungroup() %>%
 	select(
     "Nr." = RaekkeNr_DW,
-		"&nbsp;" = KlubLogo_DW,
+		"&emsp;" = KlubLogo_DW,
 		"Navn" = DeltNavnBilletKat_DW,
 		"Gentilmelding" = DeltGen_DW,
 		OrdreStatusSimpelKat_RD,
@@ -1984,19 +1965,41 @@ DataDeltOrdreKat_T <- Data_T %>%
 	filter(!is.na(DeltID_RD)) %>%
 	distinct(DeltID_RD, .keep_all = T) %>%
 	arrange(EventAar_RD, OrdreStatusSimpelKat_RD, OrdreDatoTid_RD, DeltNavn_RD) %>%
-	mutate(OrdreKat_DW = paste("<span style=white-space:nowrap>",
-	  OrdreFoersteDato_DW_DMAA_DW, "<br>", format(OrdreFoersteDatoTid_DW, "kl. %H:%M"), OrdreKatIkon_RD,
+	mutate(OrdreKat_DW = paste0("<span style=white-space:nowrap>",
+	  OrdreFoersteDato_DW_DMAA_DW, "<br>", format(OrdreFoersteDatoTid_DW, "kl. %H:%M"), " ", OrdreKatIkon_RD,
     "</span>")) %>%
   group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
   mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
 	select(
     "Nr." = RaekkeNr_DW,
-		"&nbsp;" = KlubLogo_DW,
+		"&emsp;" = KlubLogo_DW,
 		"Navn" = DeltNavnBilletKat_DW,
 		"Ordredato" = OrdreKat_DW,
 		OrdreStatusSimpelKat_RD,
 		EventAar_RD)
+
+#' # Resultater
+# Resultater --------------------------------------------------------------
+#+ eval=F, warning=F, message=F
+
+DataResult_T <- Data_T %>%
+  filter((!is.na(DeltSlutspil_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) | grepl("Aflyst", OrdreStatusSimpelKat_RD)) %>%
+  filter(EventAarStartDatoTid_DW <= Sys.Date()) %>%
+  arrange(desc(EventAarNr_RD), BilletDisciplin_RD, BilletRaekke_RD, DeltSlutspil_RD, DeltPlac_RD) %>%
+  mutate(DeltPlac_RD = paste0("<span style=white-space:nowrap>", DeltPlac_RD, "</span>")) %>%
+  select(
+    "År" = EventAarStartDato_DW_Aar_DW,
+    "Plac." = DeltPlac_RD,
+    "&emsp;" = KlubLogo_DW,
+    "Navn" = DeltNavnKlub_DW,
+    BilletDisciplin_RD,
+    BilletRaekke_RD,
+    DeltSlutspil_RD,
+    DeltPlacNr_RD,
+    OrdreStatusSimpelKat_RD,
+    EventAarSidst_DW,
+    EventAar_RD)
 
 #' # Aktuel T/F
 # Aktuel T/F --------------------------------------------------------------
