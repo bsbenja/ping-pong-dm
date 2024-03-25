@@ -72,7 +72,7 @@ cat(DataEventAarAkt_T$InfoFacebook_DW)
 
 cat(paste(
 IkonBogmærke_V, "<b>Bogmærk</b> [denne side](index.qmd) for nem og hurtig adgang.",
-"<br>Genvejstast: {{< kbd Ctrl&nbsp;+&nbsp;d >}} PC", IkonWindows_V, "∙ {{< kbd ⌘&nbsp;+&nbsp;d >}} Mac", IkonMac_V))
+"<br>Genvejstast: {{< kbd Ctrl + d >}} PC", IkonWindows_V, "∙ {{< kbd ⌘ + d >}} Mac", IkonMac_V))
 ```
 :::
 

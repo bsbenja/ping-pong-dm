@@ -1563,17 +1563,17 @@ Data_T <- Data_T %>%
     InputInfo1234_V %in% c(1) ~ paste0(
       "<i>Like og følg den officielle ",
       "[<b>Facebook-side <q>Ping Pong DK</q></b>]",
-      "(https://www.facebook.com/{{< var var.facebook_side_id >}}){target=_blank}",
-      "&nbsp;for at holde dig opdateret.</i>"),
+      "(https://www.facebook.com/{{< var var.facebook_side_id >}}){target=_blank} ",
+      "for at holde dig opdateret.</i>"),
     InputInfo1234_V %in% c(2, 3, 4) ~ paste0(
       "<i><p>Del gerne budskabet via ",
       "[<b>Facebook-begivenheden <q>", toupper(EventAar_RD), "</q></b>]",
-      "({{< var var.facebook_event_url >}}){target=_blank}",
-      "&nbsp;ved at trykke interesseret/deltager og inviter folk.</p>",
-      "Like og følg",
-      "&nbsp;[Facebook-siden <q>Ping Pong DK</q>]",
-      "(https://www.facebook.com/{{< var var.facebook_side_id >}}){target=_blank}",
-      "&nbsp;for at holde dig opdateret.</i>"))) %>%
+      "({{< var var.facebook_event_url >}}){target=_blank} ",
+      "ved at trykke interesseret/deltager og inviter folk.</p>",
+      "Like og følg ",
+      "[Facebook-siden <q>Ping Pong DK</q>]",
+      "(https://www.facebook.com/{{< var var.facebook_side_id >}}){target=_blank} ",
+      "for at holde dig opdateret.</i>"))) %>%
   ungroup() %>%
   select(-InfoFacebook_DW, everything()) %>%
   
@@ -1761,7 +1761,7 @@ DataPraemieYngstAeldst_T <- Data_T %>%
 	arrange(EventAar_RD, desc(DeltFoedtDato_DW), DeltNavn_RD) %>%
   select(
     " "      = DeltYngstAeldst_DW,
-    "&emsp;" = KlubLogo_DW,
+    "&nbsp;" = KlubLogo_DW,
     "Navn"   = DeltNavnBilletKat_DW,
     "Født"   = Født,
     EventAar_RD)
@@ -1782,7 +1782,7 @@ DataDeltFor_T <- Data_T %>%
   ungroup() %>%
   select(
     "Nr." = RaekkeNr_DW,
-    "&emsp;" = KlubLogo_DW,
+    "&nbsp;" = KlubLogo_DW,
     "Navn" = DeltNavnBilletKat_DW,
     OrdreStatusSimpelKat_RD,
     BilletDisciplin_RD,
@@ -1798,8 +1798,8 @@ DataDeltPuljer_T <- Data_T %>%
   arrange(EventAar_RD, Billet_RD, DeltSnakePuljeNr_DW, DeltSnakeSeedNr_DW) %>%
   select(
     "Nr." = DeltSnakeSeedNr_DW,
-    "&emsp;" = KlubLogo_DW,
-    "Navn"   = DeltNavnBilletKat_DW,
+    "&nbsp;" = KlubLogo_DW,
+    "Navn" = DeltNavnBilletKat_DW,
     "Rating" = DeltRating_DW,
     DeltSnakeSeedLagNr_DW,
     DeltSnakePuljeNr_DW,
@@ -1824,12 +1824,12 @@ DataDeltAndet_T <- Data_T %>%
     desc(DeltFoedtDato_DW),
     DeltID_RD) %>%
   group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
-  mutate(Nr. = row_number()) %>%
+  mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
   select(
-    Nr.,
-    "&emsp;" = KlubLogo_DW,
-    "Navn"   = DeltNavnBilletKat_DW,
+    "Nr." = RaekkeNr_DW,
+    "&nbsp;" = KlubLogo_DW,
+    "Navn" = DeltNavnBilletKat_DW,
     OrdreStatusSimpelKat_RD,
     EventAar_RD)
 
@@ -1844,7 +1844,7 @@ DataResult_T <- Data_T %>%
   select(
     "År" = EventAarStartDato_DW_Aar_DW,
     "Placering" = DeltPlac_RD,
-    "&emsp;" = KlubLogo_DW,
+    "&nbsp;" = KlubLogo_DW,
     "Navn" = DeltNavnKlub_DW,
     BilletDisciplin_RD,
     BilletRaekke_RD,
@@ -1870,11 +1870,11 @@ DataDeltKlub_T <- Data_T %>%
     KlubKat_DW, " ", KlubKatIkon_RD,
     "</span>")) %>%
   group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
-  mutate(Nr. = row_number()) %>%
+  mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
 	select(
-    Nr.,
-		" "    = KlubLogo_DW,
+    "Nr." = RaekkeNr_DW,
+		"&nbsp;" = KlubLogo_DW,
 		"Navn" = DeltNavnBilletKat_DW,
 		"Klubtype" = KlubKat_DW,
 		OrdreStatusSimpelKat_RD,
@@ -1896,13 +1896,13 @@ DataDeltBy_T <- Data_T %>%
       paste0("<span style=font-size:90%>", KlubRegion_RD, "</span>", "<br>", KlubPostnrBy_DW, " ", KlubKatIkon_RD)),
     "</span>")) %>%
   group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
-  mutate(Nr. = row_number()) %>%
+  mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
   select(
-    Nr.,
-    " "        = KlubLogo_DW,
-    "Navn"     = DeltNavnBilletKat_DW,
-    "Region"   = KlubPostnrBy_DW,
+    "Nr." = RaekkeNr_DW,
+    "&nbsp;" = KlubLogo_DW,
+    "Navn" = DeltNavnBilletKat_DW,
+    "Region" = KlubPostnrBy_DW,
     OrdreStatusSimpelKat_RD,
     EventAar_RD)
 
@@ -1918,12 +1918,12 @@ DataDeltAlderKat_T <- Data_T %>%
     DeltFoedtDato_DW_DMAA_DW, "<br>", DeltAlderKat_RD, " ", IkonFødt_V,
     "</span>")) %>%
   group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
-  mutate(Nr. = row_number()) %>%
+  mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
 	select(
-    Nr.,
-		" "            = KlubLogo_DW,
-		"Navn"         = DeltNavnBilletKat_DW,
+    "Nr." = RaekkeNr_DW,
+		"&nbsp;" = KlubLogo_DW,
+		"Navn" = DeltNavnBilletKat_DW,
 		"Aldersgruppe" = DeltAlderKat_RD,
 		OrdreStatusSimpelKat_RD,
 		EventAar_RD)
@@ -1942,13 +1942,13 @@ DataDeltKoen_T <- Data_T %>%
     DeltKoen_RD, " ", DeltKoenIkon_RD,
     "</span>")) %>%
   group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
-  mutate(Nr. = row_number()) %>%
+  mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
 	select(
-    Nr.,
-		" "    = KlubLogo_DW,
+    "Nr." = RaekkeNr_DW,
+		"&nbsp;" = KlubLogo_DW,
 		"Navn" = DeltNavnBilletKat_DW,
-		"Køn"  = DeltKoen_RD_ikon,
+		"Køn" = DeltKoen_RD_ikon,
 		OrdreStatusSimpelKat_RD,
 		EventAar_RD)
 
@@ -1966,12 +1966,12 @@ DataDeltGenTil_T <- Data_T %>%
     DeltGenKat_DW, "<br>", DeltGen_DW, " ", DeltGenKatIkon_RD,
     "</span>")) %>%
   group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
-  mutate(Nr. = row_number()) %>%
+  mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
 	select(
-    Nr.,
-		" "             = KlubLogo_DW,
-		"Navn"          = DeltNavnBilletKat_DW,
+    "Nr." = RaekkeNr_DW,
+		"&nbsp;" = KlubLogo_DW,
+		"Navn" = DeltNavnBilletKat_DW,
 		"Gentilmelding" = DeltGen_DW,
 		OrdreStatusSimpelKat_RD,
 		EventAar_RD)
@@ -1988,12 +1988,12 @@ DataDeltOrdreKat_T <- Data_T %>%
 	  OrdreFoersteDato_DW_DMAA_DW, "<br>", format(OrdreFoersteDatoTid_DW, "kl. %H:%M"), OrdreKatIkon_RD,
     "</span>")) %>%
   group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
-  mutate(Nr. = row_number()) %>%
+  mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
 	select(
-    Nr.,
-		" "         = KlubLogo_DW,
-		"Navn"      = DeltNavnBilletKat_DW,
+    "Nr." = RaekkeNr_DW,
+		"&nbsp;" = KlubLogo_DW,
+		"Navn" = DeltNavnBilletKat_DW,
 		"Ordredato" = OrdreKat_DW,
 		OrdreStatusSimpelKat_RD,
 		EventAar_RD)
