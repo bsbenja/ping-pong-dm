@@ -253,11 +253,6 @@ flowchart TD
   A(6-mandspuljer) --> |Nr. 1-3| B(A-slutspil)
   A --> |Nr. 4-6| C(B-slutspil)
   B --> |&#x00BC-finalevindere| D(<q>Final-4</q>)
-  
-  style A fill:#1C2833,stroke:#1C2833,color:#FFFFFF
-  style B fill:#1C2833,stroke:#1C2833,color:#FFFFFF
-  style C fill:#1C2833,stroke:#1C2833,color:#FFFFFF
-  style D fill:#1C2833,stroke:#1C2833,color:#FFFFFF
 ```
 
 ```{r}

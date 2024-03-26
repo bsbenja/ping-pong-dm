@@ -72,8 +72,6 @@ format:
     theme:
       light: [flatly, tema.scss, tema-lys.scss]
       dark: [darkly, tema.scss, tema-moerk.scss]
-    mermaid:
-      theme: neutral
     grid:
       content-mode:  auto
       sidebar-width: 300px # standard: 250px
