@@ -182,7 +182,7 @@ kbl_webscraping_DM_resultater <- tbl_webscraping_DM_resultater %>%
   kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   row_spec(
     which(tbl_webscraping_DM_resultater$År == "2020"),
-    strikeout = T, italic = T, color = FarveFG_V) %>%
+    strikeout = T, italic = T, color = TabelFarveFG_V) %>%
   footnote(paste(
     "Webscraped fra BTDK's hjemmeside,
     <a href=https://bordtennisdanmark.dk/statistik/ping-pong-dm target=_blank><b>HER</b></a>"),
@@ -203,7 +203,7 @@ DataResultAlle_T %>%
   kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   row_spec(
     which(grepl("Aflyst", DataResultAlle_T$OrdreStatusSimpelKat_RD)),
-    strikeout = T, italic = T, color = FarveFG_V) %>%
+    strikeout = T, italic = T, color = TabelFarveFG_V) %>%
   remove_column(c(2, 5:11)) %>%
   footnote(
     "Webscraped fra BTDK's hjemmeside

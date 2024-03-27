@@ -7,8 +7,9 @@
 # Farve -------------------------------------------------------------------
 #+ eval=F, warning=F, message=F
 
-FarveFG_V <- "#5D6D7E"
-FarveBG_V <- "#D5D8DC"
+TabelFarveFG_V   <- "#398FCC"
+TabelFarveBG_V   <- "#E4F0F8"
+TabelFarveKant_V <- "#808080"
 
 #' # Ikon
 # Ikon --------------------------------------------------------------------

@@ -50,21 +50,6 @@ theme_set(theme(
   panel.grid.minor = element_blank()))
 
 options(DT.options = list(
-  initComplete = JS(
-    "function(settings, json) {", paste0(
-      
-      "$(this.api().table().container()).css({",
-      "'font-family': '", "verdana", "', ",
-      "'font-size': '", "90%", "'",
-      "});",
-      
-      "$(this.api().table().header()).css({",
-      "'background-color': '", "#1C2833", "', ",
-      "'color': '", "#FFFFFF", "'",
-      "});",
-      
-      "}")
-  ),
   searchHighlight = T,
   paging = F,
   ordering = F,
