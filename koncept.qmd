@@ -17,10 +17,11 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r}
-#| output: asis
-cat("![](filer/generelt/wcpp-finale-2019.png){width=40em}<br><figcaption><i style=font-size:80%>Billede fra WCPP-finalen 2019</i></figcaption><p><p>")
-```
+::: {#fig-cover}
+![](filer/generelt/wcpp-finale-2019.png){width="40em"}
+
+Billede fra WCPP-finalen 2019
+:::
 
 ## Indledning
 
