@@ -1,5 +1,9 @@
 /*-- scss:rules --*/
 // Herunder angives CSS
+:root {
+  --mermaid-label-fg-color: #000000;
+}
+
 kbd {
   background-color: #ECF0F1 !important;
 }
