@@ -4,6 +4,12 @@
 $font-family-sans-serif: Verdana;
 $font-family-monospace: Verdana;
 $font-size-root: 15px;
+
+$grid-sidebar-width: 300px !default; // standard: 250px
+$grid-body-width: 800px !default; // standard: 800px
+$grid-margin-width: 300px !default; // standard: 250px
+$grid-column-gutter-width: 1.5rem !default; // standard: 1.5em
+
 $navbar-bg: #398FCC;
 $link-color: #398FCC;
 

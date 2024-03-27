@@ -72,12 +72,6 @@ format:
     theme:
       light: [flatly, tema.scss, tema-lys.scss]
       dark: [darkly, tema.scss, tema-moerk.scss]
-    grid:
-      content-mode:  auto
-      sidebar-width: 300px # standard: 250px
-      body-width:    800px # standard: 800px
-      margin-width:  300px # standard: 250px
-      gutter-width:  1.5em # standard: 1.5em
     html-table-processing: none
     fig-cap-location: top
     df-print: default
