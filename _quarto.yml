@@ -72,9 +72,9 @@ format:
     theme:
       light: [flatly, tema.scss, tema-lys.scss]
       dark: [darkly, tema.scss, tema-moerk.scss]
-    html-table-processing: none
-    fig-cap-location: top
     df-print: default
+    html-table-processing: none
+    cap-location: bottom
     fig-align: left
     toc-location: right
     toc-depth: 3

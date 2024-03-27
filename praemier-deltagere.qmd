@@ -87,9 +87,11 @@ cat(DataEventAarAkt_T$InfoTipIndbydelse_DW)
 
 ## `r paste(IkonPokal_V, "Præmier")`
 
+::: {layout="[[32, -2, 66]]"}
+
 ```{r}
-#| label: tbl-praemie-gave
-#| layout: [[32, -2, 66]]
+#| label: tbl-praemiepenge
+#| tbl-cap: "Præmiepenge"
 
 # Præmiepenge
 if(nrow(DataPraemiePengeAkt_T) == 0) {
@@ -110,6 +112,11 @@ if(nrow(DataPraemiePengeAkt_T) == 0) {
     column_spec(3, italic = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
     remove_column(4:8)
 }
+```
+
+```{r}
+#| label: tbl-gave-yngst-aeldst
+#| tbl-cap: "Gave til yngste- og ældste Ping Pong deltager"
 
 # Gave til yngste- og ældste Ping Pong deltager
 if(nrow(DataPraemieYngstAeldstAkt_T) == 0) {
@@ -130,18 +137,21 @@ if(nrow(DataPraemieYngstAeldstAkt_T) == 0) {
 }
 ```
 
+:::
+
 ## `r paste(IkonPerson_V, "Deltagere")`
 
 ```{r}
 #| label: stat-tilmeldinger-billettype
 #| output: asis
 cat(paste0(
-"<b>Tilmeldinger billettype</b>^[<b>Tilmeldinger billettype</b>: Tilmeldinger billettype opgøres efter antal tilmeldinger til eventet fordelt på billettype.]",
+"<b>Tilmeldinger billettype</b>^[<b>Tilmeldinger billettype</b>: Tilmeldinger billettype opgøres efter antal tilmeldinger til eventet fordelt på billettype. Se også @fig-ordre-kat og @tbl-ordre-kat]",
 "<br>", DataBilletAkt_T$StatOrdreAntal_DW))
 ```
 
 ```{r}
-#| label: tbl-delt
+#| label: tbl-deltagere
+#| tbl-cap: "Deltagere"
 
 # DataDeltForAkt_T
 if(InputInfo1234_V %in% c(3)) {
@@ -228,6 +238,7 @@ if(InputInfo1234_V %in% c(1, 2, 3, 4)) {
 
 ```{r}
 #| label: fig-klubber
+#| fig-cap: "Klubber"
 #| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(Klub_RD))))+1.5)/3.3
 DataAkt_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD)) %>%
 	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
@@ -244,7 +255,8 @@ DataAkt_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD)) %>%
 ## Tabel
 
 ```{r}
-#| label: tbl-klubber
+#| label: tbl-klubtype
+#| tbl-cap: "Klubtype"
 DataDeltKlubAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter klubantal</i>") %>%
@@ -263,13 +275,13 @@ DataDeltKlubAkt_T %>%
 #| output: asis
 cat(paste0(
 "<p style=font-size:70%>",
-"<b>Deltagere klubtype</b>^[<b>Deltagere klubtype</b>: Deltagere klubtype opgøres efter antal tilmeldte deltagere til eventet fordelt på <q>klub</q>, <q>ingen klub</q> og <q>udlandet</q>. Procentsatserne viser fordelingen heraf.]",
-"<br>", DataBilletAkt_T$StatDeltKlubKatAntal_DW,
+"<b>Forskellige klubber</b>^[<b>Forskellige klubber</b>: Forskellige klubber opgøres efter antal tilmeldte bordtennisklubber eksklusiv <q>ingen klub</q> og <q>udlandet</q> til eventet. Se også @fig-klubber.]",
+"<br>", DataBilletAkt_T$StatKlubAntal_DW,
 "</p>",
 
 "<p style=font-size:70%>",
-"<b>Forskellige klubber</b>^[<b>Forskellige klubber</b>: Forskellige klubber opgøres efter antal tilmeldte bordtennisklubber eksklusiv <q>ingen klub</q> og <q>udlandet</q> til eventet.]",
-"<br>", DataBilletAkt_T$StatKlubAntal_DW,
+"<b>Deltagere klubtype</b>^[<b>Deltagere klubtype</b>: Deltagere klubtype opgøres efter antal tilmeldte deltagere til eventet fordelt på <q>klub</q>, <q>ingen klub</q> og <q>udlandet</q>. Procentsatserne viser fordelingen heraf. Se også @tbl-klubtype.]",
+"<br>", DataBilletAkt_T$StatDeltKlubKatAntal_DW,
 "</p>"))
 ```
 :::
@@ -282,6 +294,7 @@ cat(paste0(
 
 ```{r}
 #| label: fig-danmarkskort
+#| fig-cap: "Danmarkskort"
 #| fig-height: 5
 DataAkt_T %>%
   filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD) & !grepl("Ingen klub|Udlandet", Klub_RD)) %>%
@@ -307,6 +320,7 @@ DataAkt_T %>%
 
 ```{r}
 #| label: tbl-danmarkskort
+#| tbl-cap: "Danmarkskort"
 DataDeltByAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter region og postnr.</i>") %>%
@@ -325,12 +339,12 @@ DataDeltByAkt_T %>%
 #| output: asis
 cat(paste0(
 "<p style=font-size:70%>",
-"<b>Deltagere landsdel</b>^[<b>Deltagere landsdel</b>: Deltagere landsdel opgøres efter antal tilmeldte deltagere til eventet fordelt på Jylland, Fyn, Sjælland og Bornholm eksklusiv <q>ingen klub</q> og <q>udlandet</q>. Procentsatserne viser fordelingen heraf. Landsdel tager udgangspunkt i bordtennisklubbens belligenhed.]",
+"<b>Deltagere landsdel</b>^[<b>Deltagere landsdel</b>: Deltagere landsdel opgøres efter antal tilmeldte deltagere til eventet fordelt på Jylland, Fyn, Sjælland og Bornholm eksklusiv <q>ingen klub</q> og <q>udlandet</q>. Procentsatserne viser fordelingen heraf. Landsdel tager udgangspunkt i bordtennisklubbens belligenhed. Se også @fig-danmarkskort.]",
 "<br>", DataBilletAkt_T$StatDeltLandsdelAntal_DW,
 "</p>",
 
 "<p style=font-size:70%>",
-"<b>Deltagere region</b>^[<b>Deltagere region</b>: Deltagere region opgøres efter antal tilmeldte deltagere til eventet fordelt på Nordjylland, Midtjylland, Syddanmark, Sjælland og Hovedstaden eksklusiv <q>ingen klub</q> og <q>udlandet</q>. Procentsatserne viser fordelingen heraf. Region tager udgangspunkt i bordtennisklubbens belligenhed.]",
+"<b>Deltagere region</b>^[<b>Deltagere region</b>: Deltagere region opgøres efter antal tilmeldte deltagere til eventet fordelt på Nordjylland, Midtjylland, Syddanmark, Sjælland og Hovedstaden eksklusiv <q>ingen klub</q> og <q>udlandet</q>. Procentsatserne viser fordelingen heraf. Region tager udgangspunkt i bordtennisklubbens belligenhed. Se også @tbl-danmarkskort.]",
 "<br>", DataBilletAkt_T$StatDeltRegionAntal_DW,
 "</p>"))
 ```
@@ -345,6 +359,7 @@ cat(paste0(
 
 ```{r}
 #| label: fig-aldersgrupper
+#| fig-cap: "Aldersgrupper"
 #| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltAlderKat_RD))))+1.5)/3.3
 DataAkt_T %>%
 	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
@@ -359,6 +374,7 @@ DataAkt_T %>%
 
 ```{r}
 #| label: tbl-aldersgrupper
+#| tbl-cap: "Aldersgrupper"
 DataDeltAlderKatAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter fødselsdato</i>") %>%
@@ -377,12 +393,12 @@ DataDeltAlderKatAkt_T %>%
 #| output: asis
 cat(paste0(
 "<p style=font-size:70%>",
-"<b>Deltagere aldersgruppe</b>^[<b>Deltagere aldersgruppe</b>: Deltagere aldersgruppe opgøres efter antal tilmeldte deltagere til eventet fordelt på ungdom (≤ 17 år), senior (≤ 39 år) og veteran (≥ 40 år). Procentsatserne viser fordelingen heraf. Alder tager udgangspunkt i fødselsdato og eventdatoen ", DataBilletAkt_T$BilletStartDato_DW_DMAA_DW, " (ikke dags dato).]",
+"<b>Deltagere aldersgruppe</b>^[<b>Deltagere aldersgruppe</b>: Deltagere aldersgruppe opgøres efter antal tilmeldte deltagere til eventet fordelt på ungdom (≤ 17 år), senior (≤ 39 år) og veteran (≥ 40 år). Procentsatserne viser fordelingen heraf. Alder tager udgangspunkt i fødselsdato og eventdatoen ", DataBilletAkt_T$BilletStartDato_DW_DMAA_DW, " (ikke dags dato). Se også @fig-aldersgrupper]",
 "<br>", DataBilletAkt_T$StatDeltAlderKatAntal_DW,
 "</p>",
 
 "<p style=font-size:70%>",
-"<b>Alder</b>^[<b>Alder</b>: Alder opgøres efter hhv. yngst, gennemsnitlig alder og ældst i forhold til tilmeldte deltagere til eventet. Alder tager udgangspunkt i fødselsdato og eventdatoen ", DataBilletAkt_T$BilletStartDato_DW_DMAA_DW, " (ikke dags dato).]",
+"<b>Alder</b>^[<b>Alder</b>: Alder opgøres efter hhv. yngst, gennemsnitlig alder og ældst i forhold til tilmeldte deltagere til eventet. Alder tager udgangspunkt i fødselsdato og eventdatoen ", DataBilletAkt_T$BilletStartDato_DW_DMAA_DW, " (ikke dags dato). Se også @tbl-aldersgrupper]",
 "<br>", DataBilletAkt_T$StatDeltAlderAntal_DW,
 "</p>"))
 ```
@@ -397,6 +413,7 @@ cat(paste0(
 
 ```{r}
 #| label: fig-koen
+#| fig-cap: "Køn"
 #| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltKoen_RD))))+1.5)/3.3
 DataAkt_T %>%
 	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
@@ -411,6 +428,7 @@ DataAkt_T %>%
 
 ```{r}
 #| label: tbl-koen
+#| tbl-cap: "Køn"
 DataDeltKoenAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter køn</i>") %>%
@@ -429,7 +447,7 @@ DataDeltKoenAkt_T %>%
 #| output: asis
 cat(paste0(
 "<p style=font-size:70%>",
-"<b>Deltagere køn</b>^[<b>Deltagere køn</b>: Deltagere køn opgøres efter antal tilmeldte deltagere til eventet fordelt på herre og dame. Procentsatserne viser fordelingen heraf.]",
+"<b>Deltagere køn</b>^[<b>Deltagere køn</b>: Deltagere køn opgøres efter antal tilmeldte deltagere til eventet fordelt på herre og dame. Procentsatserne viser fordelingen heraf. Se også @fig-koen og @tbl-koen]",
 "<br>", DataBilletAkt_T$StatDeltKoenAntal_DW,
 "</p>"))
 ```
@@ -444,6 +462,7 @@ cat(paste0(
 
 ```{r}
 #| label: fig-gentilmeldinger
+#| fig-cap: "Gentilmeldinger"
 #| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltGenKat_DW))))+1.5)/3.3
 DataAkt_T %>%
 	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
@@ -458,6 +477,7 @@ DataAkt_T %>%
 
 ```{r}
 #| label: tbl-gentilmeldinger
+#| tbl-cap: "Gentilmeldinger"
 DataDeltGenTilAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter antal gentilmeldinger</i>") %>%
@@ -476,7 +496,7 @@ DataDeltGenTilAkt_T %>%
 #| output: asis
 cat(paste0(
 "<p style=font-size:70%>",
-"<b>Deltagere gentilmelding</b>^[<b>Deltagere gentilmelding</b>: Deltagere gentilmelding opgøres efter antal tilmeldte deltagere til eventet fordelt på <q>gentilmelding</q> og <q>debutant</q>. Procentsatserne viser fordelingen heraf. Gentilmelding defineres som en, der tidligere har valgt samme billetype, og debutant defineres som en, der har valgt en billettype for første gang. Ved både gentilmelding og debutant tælles dette kun som gentilmelding. Opgørelsen gælder fra og med ", distinct(filter(DataAkt_T, EventAarFra2021_DW == DataEventAarAkt_T$EventAarFra2021_DW), min(EventAarStartDato_DW_Aar_DW)), ".]",
+"<b>Deltagere gentilmelding</b>^[<b>Deltagere gentilmelding</b>: Deltagere gentilmelding opgøres efter antal tilmeldte deltagere til eventet fordelt på <q>gentilmelding</q> og <q>debutant</q>. Procentsatserne viser fordelingen heraf. Gentilmelding defineres som en, der tidligere har valgt samme billetype, og debutant defineres som en, der har valgt en billettype for første gang. Ved både gentilmelding og debutant tælles dette kun som gentilmelding. Opgørelsen gælder fra og med ", distinct(filter(DataAkt_T, EventAarFra2021_DW == DataEventAarAkt_T$EventAarFra2021_DW), min(EventAarStartDato_DW_Aar_DW)), ". Se også @fig-gentilmeldinger og @tbl-gentilmeldinger]",
 "<br>", DataBilletAkt_T$StatDeltGenKatAntal_DW,
 "</p>"))
 ```
@@ -484,13 +504,14 @@ cat(paste0(
 :::
 
 ::: {.g-col-12 .g-col-md-6}
-### Deltagere
+### Ordretype
 
 ::: panel-tabset
 ## Graf
 
 ```{r}
-#| label: fig-deltagere
+#| label: fig-ordre-kat
+#| fig-cap: "Ordretype"
 #| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD)) %>% summarise(length(unique(OrdreKat_DW))))+1.5)/3.3
 DataAkt_T %>%
   filter(!is.na(DeltID_RD)) %>%
@@ -504,7 +525,8 @@ DataAkt_T %>%
 ## Tabel
 
 ```{r}
-#| label: tbl-deltagere
+#| label: tbl-ordre-kat
+#| tbl-cap: "Ordretype"
 DataDeltOrdreKatAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter ældste <q>første ordredato</q></i>") %>%
@@ -523,7 +545,7 @@ DataDeltOrdreKatAkt_T %>%
 #| output: asis
 cat(paste0(
 "<p style=font-size:70%>",
-"<b>Deltagere total</b>^[<b>Deltagere total</b>: Deltagere total opgøres efter antal unikke tilmeldte deltagere og <q>totalafbud</q> til eventet. Procentsatserne viser fordelingen heraf. Ved <q>totalafbud</q> forstås deltagere, der har meldt afbud til hele eventet.]",
+"<b>Deltagere total</b>^[<b>Deltagere total</b>: Deltagere total opgøres efter antal unikke tilmeldte deltagere og <q>totalafbud</q> til eventet. Procentsatserne viser fordelingen heraf. Ved <q>totalafbud</q> forstås deltagere, der har meldt afbud til hele eventet. Se også @fig-ordre-kat og @tbl-ordre-kat]",
 "<br>", DataBilletAkt_T$StatDeltAntal_DW,
 "</p>",
 
@@ -538,6 +560,7 @@ cat(paste0(
 
 ```{r}
 #| label: tbl-result-sidst
+#| tbl-cap: "DM-resultater sidst"
 if(nrow(DataResultSidst_T) == 0) {
   data.frame() %>% kbl()
 } else {
