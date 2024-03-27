@@ -60,7 +60,7 @@ options(DT.options = list(
       
       "$(this.api().table().header()).css({",
       "'background-color': '", "#1C2833", "', ",
-      "'color': '", "#ffffff", "'",
+      "'color': '", "#FFFFFF", "'",
       "});",
       
       "}")

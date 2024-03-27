@@ -3,14 +3,23 @@
 #' output: html_document
 #' ---
 
-#' # Ikoner
-# Ikoner ------------------------------------------------------------------
+#' # Farve
+# Farve -------------------------------------------------------------------
 #+ eval=F, warning=F, message=F
 
+FarveFG_V <- "#5D6D7E"
+FarveBG_V <- "#D5D8DC"
+
+#' # Ikon
+# Ikon --------------------------------------------------------------------
+#+ eval=F, warning=F, message=F
+
+# Findes OGSÅ i InputData_V
 IkonPingPong_V    <- "<iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon>"
 IkonFest_V        <- "<iconify-icon icon=mdi:party-popper style=color:#F1C40F></iconify-icon>"
 IkonGentagelse_V  <- "<iconify-icon icon=mdi:autorenew></iconify-icon>"
 
+# Findes IKKE i InputData_V
 IkonGlobus_V      <- "<iconify-icon icon=mdi:earth></iconify-icon>"
 IkonPerson_V      <- "<iconify-icon icon=mdi:account></iconify-icon>"
 IkonBogmærke_V    <- "<iconify-icon icon=mdi:bookmark-plus style=color:#F1C40F></iconify-icon>"
