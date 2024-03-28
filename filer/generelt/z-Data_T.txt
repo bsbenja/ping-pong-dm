@@ -222,7 +222,7 @@ KlubLandsdel_RD                         : Ord.factor w/ 4 levels "Jylland"<"Fyn"
 KlubRegionNr_RD                         : int 2
 KlubRegion_RD                           : Ord.factor w/ 6 levels "Region Nordjylland"<..: 2
 KlubKat_DW                              : Ord.factor w/ 3 levels "Klub"<"Ingen klub"<..: 1
-KlubLogo_DW                             : chr "<img src=filer/klublogo/silkeborg-btk.png width=15>"
+KlubLogo_DW                             : chr "<img src=filer/klublogo/silkeborg-btk.png width=1em>"
 KlubUnik_DW                             : int 1
 DeltID_RD                               : chr "050993‑MALA"
 DeltNavn_RD                             : chr "Mads Larsen"

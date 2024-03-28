@@ -28,13 +28,13 @@ cat(DataEventAarAkt_T$InfoPlakatCTA_DW)
 
 ::: grid
 ::: {.g-col-12 .g-col-md-4}
-#### **`r DataEventAarAkt_T$EventAar_RD`**
+#### `r DataEventAarAkt_T$EventAar_RD`
 
 `r DataEventAarAkt_T$InfoForside_DW`
 :::
 
 ::: {.g-col-12 .g-col-md-4}
-#### `r "<b>Generelt om Ping Pong</b>"`
+#### Generelt om Ping Pong
 
 -   `r paste(IkonRegler_V, "[<b>Ping Pong regler</b>](regler.qmd)<br><i>I Ping Pong tages det bedste fra fortidens- og nutidens bordtennis og kan sammenlignes med ordsproget <q>gammel vin på nye flasker</q>. Der er nogle få regler, der adskiller Ping Pong fra bordtennis, bl.a. spilles der til 15 point (14-14 er afgørende bold), alle spiller på lige vilkår med sandpapirsbat, hvor der byttes bat mellem hvert sæt, og der kan tages <q>dobbeltpoint</q>.</i>")`
 
@@ -44,7 +44,7 @@ cat(DataEventAarAkt_T$InfoPlakatCTA_DW)
 :::
 
 ::: {.g-col-12 .g-col-md-4}
-#### `r "<b>Eksterne links</b>"`
+#### Eksterne links
 
 `r "<i>Er du en Ping Pong entusiast eller bare nysgerrig på konceptet? Så tjek én eller flere af nedenstående links ud.</i>"`
 

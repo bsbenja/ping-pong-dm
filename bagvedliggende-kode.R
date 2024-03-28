@@ -827,7 +827,7 @@ Data_T <- Data_T %>%
 
   # KlubLogo_DW
   mutate(KlubLogo_DW = ifelse(is.na(Klub_RD), NA_character_,
-    paste0("<img src=filer/klublogo/", egen_sti_fun(Klub_RD), ".png width=15>"))) %>%
+    paste0("<img src=filer/klublogo/", egen_sti_fun(Klub_RD), ".png width=1em>"))) %>%
   mutate(across("KlubLogo_DW", \(x) as.character(x))) %>%
   select(-KlubLogo_DW, everything()) %>%
 

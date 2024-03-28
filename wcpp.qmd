@@ -11,8 +11,8 @@ editor_options:
   chunk_output_type: console
 ---
 
-::: {#fig-cover layout="[[2, -1]]"}
-![](filer/generelt/wcpp-finale-2020.mp4)
+::: {#fig-cover}
+![](filer/generelt/wcpp-finale-2020.mp4){width=40em}
 
 Videoklip af duel fra WCPP-finalen 2020. Kampen endte 15-14 i afgørende sæt til Andrew Baggaley, England mod Alexander Flemming, Tyskland. Hele kampen kan ses på Youtube [<b>HER</b>](https://www.youtube.com/watch?v=q2f9eDg8WHo){target="_blank"}.
 :::
