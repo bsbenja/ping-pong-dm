@@ -1,5 +1,7 @@
 ```{r}
+#| label: kildefil
 source(file = "variable.R")
+library(kableExtra)
 ```
 
 ---
@@ -9,14 +11,15 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r}
-#| output: asis
-cat("![](filer/generelt/wcpp-finale-2020.mp4){width=40em}<br><figcaption><i style=font-size:80%>Videoklip af duel fra WCPP-finalen 2020. Kampen endte 15-14 i afgørende sæt til Andrew Baggaley, England mod Alexander Flemming, Tyskland. Hele kampen kan ses på Youtube [<b>HER</b>](https://www.youtube.com/watch?v=q2f9eDg8WHo){target=_blank}.</i></figcaption><p><p>")
-```
+::: {#fig-cover}
+![](filer/generelt/wcpp-finale-2020.mp4){width=40em}
+
+Videoklip af duel fra WCPP-finalen 2020. Kampen endte 15-14 i afgørende sæt til Andrew Baggaley, England mod Alexander Flemming, Tyskland. Hele kampen kan ses på Youtube [<b>HER</b>](https://www.youtube.com/watch?v=q2f9eDg8WHo){target=_blank}.
+:::
 
 ***Her kan man få et indtryk af, hvad World Championship of Ping Pong (WCPP) sædvanligvis er for en størrelse**.*
 
-WCPP er en årlig begivenhed, der sædvanligvis afholdes sidste weekend i januar i `r "[Alexandra Palace (Ally Pally) i London](https://www.google.dk/maps/place/Alexandra+Palace/@51.5941783,-0.132962,17z/data=!3m1!4b1!4m5!3m4!1s0x48761bd75310a7cd:0x9a38677b79460879!8m2!3d51.5941783!4d-0.1307733){target=_blank}"` foran et par tusinde fremmødte tilskuere og eksponeres på bl.a. Viaplay Sport og Sky Sports, hvor millioner af seere følger med verden over. Der er vanligt 64 kvalificerede spillere med fra mere end 25 nationer, der konkurrerer om WCPP-titlen og en præmiesum på \$100.000, hvoraf \$20.000 går til vinderen. Første WCPP blev afholdt i Las Vegas i 2011.
+WCPP er en årlig begivenhed, der sædvanligvis afholdes sidste weekend i januar i [Alexandra Palace (Ally Pally) i London](https://www.google.dk/maps/place/Alexandra+Palace/@51.5941783,-0.132962,17z/data=!3m1!4b1!4m5!3m4!1s0x48761bd75310a7cd:0x9a38677b79460879!8m2!3d51.5941783!4d-0.1307733){target=_blank} foran et par tusinde fremmødte tilskuere og eksponeres på bl.a. Viaplay Sport og Sky Sports, hvor millioner af seere følger med verden over. Der er vanligt 64 kvalificerede spillere med fra mere end 25 nationer, der konkurrerer om WCPP-titlen og en præmiesum på \$100.000, hvoraf \$20.000 går til vinderen. Første WCPP blev afholdt i Las Vegas i 2011.
 
 Puljespillet afvikles af 8 puljer med 8 spillere i hver efter "Double Elimination" princippet.\
 Lørdag færdigspilles puljekampene samt 1. runde af hovedturneringen (1/16-finalerne).\
@@ -28,15 +31,14 @@ Kvartfinalister fra foregående WCPP er direkte kvalificeret til efterfølgende 
 ::: {.callout-note style="font-style:italic"}
 ## WCPP-videoer
 
-```{r}
-#| output: asis
-cat("Tidligere kampe ved WCPP kan ses på [Matchroom Live](https://matchroom.live/sports/ping_pong){target=_blank} (gratis bruger kan oprettes) eller YouTube-kanalen [Matchroom Multi Sport](https://www.youtube.com/channel/UCQ8cM7o5Gu9l9G3fDP5Xpsg){target=_blank}.")
-```
+Tidligere kampe ved WCPP kan ses på [Matchroom Live](https://matchroom.live/sports/ping_pong){target=_blank} (gratis bruger kan oprettes) eller YouTube-kanalen [Matchroom Multi Sport](https://www.youtube.com/channel/UCQ8cM7o5Gu9l9G3fDP5Xpsg){target=_blank}.
 :::
 
+::: {layout-ncol=2}
+
 ```{r}
-#| layout-ncol: 2
-library(kableExtra)
+#| label: tbl-vm-praemiepenge
+#| tbl-cap: "Præmiepenge til WCPP"
 data.frame(
   " " = c(
     "Total",
@@ -71,7 +73,11 @@ data.frame(
   kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   row_spec(1, bold = T, background = TabelFarveBG_V, color = "#000000") %>%
   column_spec(3, italic = T, color = TabelFarveFG_V)
+```
 
+```{r}
+#| label: tbl-vm-statistik
+#| tbl-cap: "WCPP-vindere statistik"
 data.frame(
   "År" = c(
     "2020",
@@ -108,3 +114,5 @@ data.frame(
       caption = paste(IkonPokal_V, "WCPP-vindere statistik")) %>%
   kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed")
 ```
+
+:::

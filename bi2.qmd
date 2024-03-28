@@ -1,5 +1,6 @@
 ```{r}
-source(file = "ping-pong-dm-input.R")
+#| label: kildefil
+#source(file = "ping-pong-dm-input.R")
 ```
 
 ---

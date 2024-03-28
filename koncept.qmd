@@ -1,8 +1,10 @@
 ```{r}
+#| label: kildefil
 source(file = "ping-pong-dm-input.R")
 ```
 
 ```{r}
+#| label: kildefil-filter
 DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataResultAlle_T <- DataResult_T %>% filter(
   (grepl("A-slutspil", DeltSlutspil_RD) &
@@ -18,9 +20,9 @@ editor_options:
 ---
 
 ::: {#fig-cover}
-![](filer/generelt/wcpp-finale-2019.png){width="40em"}
+![](filer/generelt/wcpp-finale-2019.png){width=40em}
 
-Billede fra WCPP-finalen 2019
+Billede fra WCPP-finalen 2019.
 :::
 
 ## Indledning
@@ -32,7 +34,7 @@ Ping Pong DM forsøger også at omfavne fællesskabet og mangfoldigheden ved at 
 
 Ping Pong beskrives bedst med ordsproget "*gammel vin på nye flasker*" og har til formål at være en alternativ sportsgren til bordtennis, hvor ALLE kan deltage på lige vilkår til en overkommelig pris. DM-konceptet udgør følgende 3 hovedpunkter:
 
-1.  **ALLE kan deltage**`r "^[<b>ALLE kan deltage</b>: Da turneringen er et dansk mesterskab, skal man enten være (1) dansk statsborger eller (2) have boet i Danmark i minimum de seneste fem år (skal kunne dokumenteres af spilleren). Er dette ikke opfyldt, vil det være muligt at deltage udelukkende i puljespillet, hvor ens resultater ikke tæller med i puljeregnskabet (tilmelding stadig påkrævet).]"`: Der er ingen adgangsbarriere, dvs. ALLE har mulighed for at stille op uanset alder, køn, niveau eller licens. Man behøver derfor ikke nødvendigvis at have haft erfaring med bordtennis/Ping Pong tidligere.
+1.  **ALLE kan deltage**^[<b>ALLE kan deltage</b>: Da turneringen er et dansk mesterskab, skal man enten være (1) dansk statsborger eller (2) have boet i Danmark i minimum de seneste fem år (skal kunne dokumenteres af spilleren). Er dette ikke opfyldt, vil det være muligt at deltage udelukkende i puljespillet, hvor ens resultater ikke tæller med i puljeregnskabet (tilmelding stadig påkrævet).]: Der er ingen adgangsbarriere, dvs. ALLE har mulighed for at stille op uanset alder, køn, niveau eller licens. Man behøver derfor ikke nødvendigvis at have haft erfaring med bordtennis/Ping Pong tidligere.
 2.  **Heldagsbegivenhed**: Heldagsbegivenhed i form af DM-turnering samt socialt arrangement om aftenen/natten for at hylde fællesskabet og mangfoldigheden.
 3.  **Overkommelig pris**: Prisen for et Ping Pong bat og at spille i det hele taget er på et niveau, hvor langt de fleste kan være med.
 
@@ -48,18 +50,18 @@ Det bestræbes på, at det koster maks. kr. 150 at stille op til Ping Pong DM, o
 ::: {.g-col-12 .g-col-md-7}
 Turneringen afvikles som én åben singlerække på fair vis efter snake-system uden klubhensyn. Der spilles 6-mandspuljer, A-, B- og C-slutspil og afslutningsvist "Final 4" i A-slutspil som beskrevet herunder:
 
--   **6-mandspuljer**: Indledende puljespil foregår i primært 6-mandspuljer, som sikrer mange kampe til alle deltagere. Nr. 1-2 går videre til A-slutspil, nr. 3-4 går i B-slutspil, og de resterende går i C-slutspil`r "^[<b>Puljeregnskab</b>: Puljeregnskabet gøres op efter efter de almindeligt gældende regler jf. BTDK's Stævne/Ratingreglement under <q>§ 08: Puljeregnskab</q> (side 4) <b>[HER](https://bordtennisdanmark.dk/wp-content/uploads/2021/08/staevne-rating_reglement_2019-2020_0.pdf){target=_blank}</b>:<br>Stk. 1. Vundet eller afbrudt kamp giver 2 matchpoint og en tabt kamp giver 1 matchpoint.<br>Stk. 2. Hvis to eller flere spillere ender på samme antal matchpoint, afgøres den indbyrdes placering ved at sammenregne indbyrdes matchpoint mellem disse spillere.<br>Stk. 3. Hvis det indbyrdes matchpointtal mellem berørte spillere stadig er lige, beregnes den indbyrdes sætkvotient (vundne sæt divideret med tabte sæt).<br>Stk. 4. Hvis den indbyrdes sætkvotient mellem de berørte spillere er lige, beregnes den indbyrdes boldkvotient (vundne bolde divideret med tabte bolde).<br>Stk. 5. Så snart en placering eller flere kan bestemmes ud fra punkt 2-4, fjernes den eller de spillere. De øvrige spilleres placering beregnes på ny fra punkt 2.<br>Stk. 6. Hvis den ovenstående beregning ikke kan afgøre to eller flere spilleres placering, trækkes der lod. Denne lodtrækning foretages automatisk af stævneafviklingsprogrammet TTC.]"`.
+-   **6-mandspuljer**: Indledende puljespil foregår i primært 6-mandspuljer, som sikrer mange kampe til alle deltagere. Nr. 1-2 går videre til A-slutspil, nr. 3-4 går i B-slutspil, og de resterende går i C-slutspil^[<b>Puljeregnskab</b>: Puljeregnskabet gøres op efter efter de almindeligt gældende regler jf. BTDK's Stævne/Ratingreglement under <q>§ 08: Puljeregnskab</q> (side 4) <b>[HER](https://bordtennisdanmark.dk/wp-content/uploads/2021/08/staevne-rating_reglement_2019-2020_0.pdf){target=_blank}</b>:<br>Stk. 1. Vundet eller afbrudt kamp giver 2 matchpoint og en tabt kamp giver 1 matchpoint.<br>Stk. 2. Hvis to eller flere spillere ender på samme antal matchpoint, afgøres den indbyrdes placering ved at sammenregne indbyrdes matchpoint mellem disse spillere.<br>Stk. 3. Hvis det indbyrdes matchpointtal mellem berørte spillere stadig er lige, beregnes den indbyrdes sætkvotient (vundne sæt divideret med tabte sæt).<br>Stk. 4. Hvis den indbyrdes sætkvotient mellem de berørte spillere er lige, beregnes den indbyrdes boldkvotient (vundne bolde divideret med tabte bolde).<br>Stk. 5. Så snart en placering eller flere kan bestemmes ud fra punkt 2-4, fjernes den eller de spillere. De øvrige spilleres placering beregnes på ny fra punkt 2.<br>Stk. 6. Hvis den ovenstående beregning ikke kan afgøre to eller flere spilleres placering, trækkes der lod. Denne lodtrækning foretages automatisk af stævneafviklingsprogrammet TTC.].
 
 -   **A-slutspil**: A-slutspil afvikles som cup frem til og med kvartfinalerne.
 
-    -   **"Final 4"**: Afslutningsvist afvikles "Final 4" for de sidste 4 spillere i A-slutspil, hvilket består af en finalepulje, hvor alle spiller mod alle. Der spilles her bedst af 5 sæt, 2 "dobbeltpoints" og én timeout pr. spiller i hver kamp`r "^[<b>Afviklingsform til <q>Final 4</q></b>: <q>Final 4</q> kommer til at bestå af følgende 4 runder:<br>Runde 1: Seedet 1 mod 4 og seedet 2 mod 3 (afvikles på to borde).<br>Runde 2: Seedet 1 mod 3 og seedet 2 mod 4 (afvikles på to borde).<br>Runde 3: Seedet 3 mod 4 (afvikles på ét bord).<br>Runde 4: Seedet 1 mod 2 (afvikles på ét bord).]"`.
+    -   **"Final 4"**: Afslutningsvist afvikles "Final 4" for de sidste 4 spillere i A-slutspil, hvilket består af en finalepulje, hvor alle spiller mod alle. Der spilles her bedst af 5 sæt, 2 "dobbeltpoints" og én timeout pr. spiller i hver kamp^[<b>Afviklingsform til <q>Final 4</q></b>: <q>Final 4</q> kommer til at bestå af følgende 4 runder:<br>Runde 1: Seedet 1 mod 4 og seedet 2 mod 3 (afvikles på to borde).<br>Runde 2: Seedet 1 mod 3 og seedet 2 mod 4 (afvikles på to borde).<br>Runde 3: Seedet 3 mod 4 (afvikles på ét bord).<br>Runde 4: Seedet 1 mod 2 (afvikles på ét bord).].
 
 -   **B- og C-slutspil**: B- og C-slutspil afvikles udelukkende som cup.
 
 Puljerne dannes på fair vis efter snake-system uden klubhensyn efter følgende prioritering:
 
-1.  Nr. 1-4 seedes efter placeringerne i "Final 4" i A-slutspil ved sidst afholdte DM`r "^[<b>Resultater sidste DM</b>: Ved sidste DM i 2023 i Hørning var <q>Final 4</q> deltagerne:<br>Nr. 1. Benjamin Sørensen, Hørning BTK.<br>Nr. 2. Emil Madsen, Hørning.<br>Nr. 3. Bjarke Krog, B75.<br>Nr. 4. Mads Larsen, Silkeborg BTK.]"`.
-2.  `r "Seneste [ratingopdateringen i bordtennis](https://bordtennisportalen.dk/DBTU/Ranglister){target=_blank}."`
+1.  Nr. 1-4 seedes efter placeringerne i "Final 4" i A-slutspil ved sidst afholdte DM^[<b>Resultater sidste DM</b>: Ved sidste DM i 2023 i Hørning var <q>Final 4</q> deltagerne:<br>Nr. 1. Benjamin Sørensen, Hørning BTK.<br>Nr. 2. Emil Madsen, Hørning.<br>Nr. 3. Bjarke Krog, B75.<br>Nr. 4. Mads Larsen, Silkeborg BTK.].
+2.  Seneste [ratingopdateringen i bordtennis](https://bordtennisportalen.dk/DBTU/Ranglister){target=_blank}.
 3.  Skøn og lodtrækning.
 
 I det videre spil dannes seedningerne på baggrund af placeringerne fra puljespillet.
@@ -67,6 +69,8 @@ I det videre spil dannes seedningerne på baggrund af placeringerne fra puljespi
 
 ::: {.g-col-12 .g-col-md-5}
 ```{mermaid}
+%%| label: fig-afviklingsform
+%%| fig-cap: "Afviklingsform."
 %%| fig-width: 4
 %%{init: {"flowchart": {"htmlLabels": true}} }%%
 flowchart TD
@@ -80,6 +84,7 @@ flowchart TD
 ## Ping Pong regler
 
 ```{r}
+#| label: info-regler
 #| output: asis
 cat(DataEventAarAkt_T$InfoTipRegler_DW)
 ```
@@ -108,6 +113,7 @@ Resultaterne fra DM danner grundlag for international udtagelse. Normalvis er de
 ## WCPP
 
 ```{r}
+#| label: info-vm
 #| output: asis
 cat(DataEventAarAkt_T$InfoTipVM_DW)
 ```
@@ -121,80 +127,41 @@ Ping Pong har mange ligheder med bordtennis, men omvendt er det også meget ande
 
 Den lidt mere nørdet forklaring er, at Ping Pong spilles med bat uden svamp, som kun er belagt med sandpapir, hvilket er medvirkende til lav friktion mellem bat og bold, hvorfor skrue i Ping Pong kun kan genereres i et begrænset omfang. Dette skaber en sport, der for det første spilles på lige vilkår for alle, og det giver et helt andet slags spil end almindelig bordtennis med bl.a. længere dueller, andre teknikker og taktikker samt er fysisk mere krævende.
 
-::: {.grid style="text-align:center"}
+::: grid
 ::: g-col-12
-##### **Officielle Ping Pong bat anvendt ved WCPP gennem tiden** {style="font-weight:bold"}
+##### Officielle Ping Pong bat anvendt ved WCPP gennem tiden
 :::
 
-::: {.g-col-12 .g-col-md-4}
-###### **Siden 2020** {style="font-weight:bold"}
+::: {#fig-sandpapir-2024 .g-col-12 .g-col-md-4}
+###### Siden 2020
 
-```{r}
-#| output: asis
-cat("![Sanwei WCPP Sandpapirsbat<br>(sort sandpapir)](filer/generelt/sandpapirsbat-sanwei.png){fig-align=center width=15em}")
-```
+![](filer/generelt/sandpapirsbat-sanwei.png){width=15em}
+
+Sanwei WCPP Sandpapirsbat<br>(sort sandpapir).
 :::
 
-::: {.g-col-12 .g-col-md-4}
-###### **2019** {style="font-weight:bold"}
+::: {#fig-sandpapir-2019 .g-col-12 .g-col-md-4}
+###### 2019
 
-```{r}
-#| output: asis
-cat("![Carlton WCPP Sandpapirsbat<br>(grå sandpapir)](filer/generelt/sandpapirsbat-carlton.png){fig-align=center width=15em}")
-```
+![](filer/generelt/sandpapirsbat-carlton.png){width=15em}
+
+Carlton WCPP Sandpapirsbat<br>(grå sandpapir).
 :::
 
-::: {.g-col-12 .g-col-md-4}
-###### **2014-2018** {style="font-weight:bold"}
+::: {#fig-sandpapir-2014-2018 .g-col-12 .g-col-md-4}
+###### 2014-2018
 
-```{r}
-#| output: asis
-cat("![Dunlop WCPP Sandpapirsbat<br>(blå sandpapir)](filer/generelt/sandpapirsbat-dunlop.png){fig-align=center width=15em}")
-```
+![](filer/generelt/sandpapirsbat-dunlop.png){width=15em}
+
+Dunlop WCPP Sandpapirsbat<br>(blå sandpapir).
 :::
 :::
 
 ## Tidligere vindere
 
 ```{r}
-#| eval: false
-library(rvest)
-library(dplyr)
-library(tidyr)
-library(kableExtra)
-
-tbl_webscraping_DM_resultater <- rbind(data.frame(), data.frame(
-  "Spiller" = read_html("https://bordtennisdanmark.dk/statistik/ping-pong-dm")
-  %>% html_nodes("div.elementor-text-editor.elementor-clearfix") %>% html_text(),
-  stringsAsFactors = FALSE)) %>%
-  mutate(Spiller = strsplit(Spiller, "(?<=.)(?=[0-9]{4}:)", perl = T)) %>%
-  unnest(Spiller) %>%
-  slice_tail(n = -1) %>%
-  mutate(Spiller = gsub("\\\t*", "", Spiller)) %>%
-  separate(Spiller, into = c("År", "Spiller"), sep = ":.") %>%
-  separate(Spiller, into = c("Spiller", "Klub"), sep = ",.", fill = "right") %>%
-  mutate(Klub = ifelse(is.na(Klub), "", paste0(", <i>", Klub, "</i>"))) %>%
-  mutate(Spiller = paste0(Spiller, Klub)) %>%
-  select(År, Spiller)
-
-kbl_webscraping_DM_resultater <- tbl_webscraping_DM_resultater %>%
-  kbl(col.names = NA, align = "cl", escape = F,
-      caption = paste(IkonPokal_V, "DM-vindere statistik")) %>%
-  kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
-  row_spec(
-    which(tbl_webscraping_DM_resultater$År == "2020"),
-    strikeout = T, italic = T, color = TabelFarveFG_V) %>%
-  footnote(paste(
-    "Webscraped fra BTDK's hjemmeside,
-    <a href=https://bordtennisdanmark.dk/statistik/ping-pong-dm target=_blank><b>HER</b></a>"),
-    general_title = "", escape = F)
-
-kbl_webscraping_DM_resultater
-```
-
-```{r}
-
-library(kableExtra)
+#| label: tbl-dm-statistik
+#| tbl-cap: "DM-vindere statistik.<br>Webscraped fra BTDK's hjemmeside [<b>HER</b>](https://bordtennisdanmark.dk/statistik/ping-pong-dm){target=_blank}."
 if(nrow(DataResultAlle_T) == 0) {
   kbl3_dm_resultater <- data.frame() %>% kbl()
 } else {
@@ -205,24 +172,20 @@ DataResultAlle_T %>%
   row_spec(
     which(grepl("Aflyst", DataResultAlle_T$OrdreStatusSimpelKat_RD)),
     strikeout = T, italic = T, color = TabelFarveFG_V) %>%
-  remove_column(c(2, 5:11)) %>%
-  footnote(
-    "Webscraped fra BTDK's hjemmeside
-    <a href=https://bordtennisdanmark.dk/statistik/ping-pong-dm target=_blank><b>HER</b></a>",
-    general_title = "", escape = F)
+  remove_column(c(2, 5:11))
 }
 ```
 
 ## Videoer fra DM
 
--   `r "[Video fra Ping Pong DM <b>2022</b>: <q>Final 4</q>](https://youtu.be/2LF1PVgdM-w){target=_blank}"`
--   `r "[Video fra Ping Pong DM <b>2022</b>: Preliminary matches + Playoffs](https://youtu.be/i7NUmq1R6VY){target=_blank}"`
--   `r "[Video fra Ping Pong DM <b>2021</b>: 9 min. sammenklip af finalekampen i <q>Final 4</q>](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/672876054123143){target=_blank}"`
--   `r "[Video fra Ping Pong DM <b>2018</b>: Finale](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/2533896386870286){target=_blank}"`
--   `r "[Video fra Ping Pong DM <b>2018</b>: Semifinale (2)](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/259264551753924){target=_blank}"`
--   `r "[Video fra Ping Pong DM <b>2018</b>: Seminfale (1), sæt 2 af 2](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/303186807322141){target=_blank}"`
--   `r "[Video fra Ping Pong DM <b>2018</b>: Seminfale (1), sæt 1 af 2](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/1569763316525030){target=_blank}"`
--   `r "[Video fra Ping Pong DM <b>2017</b>: Del 2 af 2](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/208760437117940){target=_blank}"`
--   `r "[Video fra Ping Pong DM <b>2016</b>: Finale og bronzekamp](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/144520200285594){target=_blank}"`
--   `r "[Video fra Ping Pong DM <b>2016</b>: Semifinaler](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/3001276553228375){target=_blank}"`
--   `r "[Video fra Ping Pong DM <b>2016</b>: Kvartfinaler](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/512649046032364){target=_blank}"`
+-   [Video fra Ping Pong DM <b>2022</b>: <q>Final 4</q>](https://youtu.be/2LF1PVgdM-w){target=_blank}
+-   [Video fra Ping Pong DM <b>2022</b>: Preliminary matches + Playoffs](https://youtu.be/i7NUmq1R6VY){target=_blank}
+-   [Video fra Ping Pong DM <b>2021</b>: 9 min. sammenklip af finalekampen i <q>Final 4</q>](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/672876054123143){target=_blank}
+-   [Video fra Ping Pong DM <b>2018</b>: Finale](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/2533896386870286){target=_blank}
+-   [Video fra Ping Pong DM <b>2018</b>: Semifinale (2)](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/259264551753924){target=_blank}
+-   [Video fra Ping Pong DM <b>2018</b>: Seminfale (1), sæt 2 af 2](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/303186807322141){target=_blank}
+-   [Video fra Ping Pong DM <b>2018</b>: Seminfale (1), sæt 1 af 2](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/1569763316525030){target=_blank}
+-   [Video fra Ping Pong DM <b>2017</b>: Del 2 af 2](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/208760437117940){target=_blank}
+-   [Video fra Ping Pong DM <b>2016</b>: Finale og bronzekamp](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/144520200285594){target=_blank}
+-   [Video fra Ping Pong DM <b>2016</b>: Semifinaler](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/3001276553228375){target=_blank}
+-   [Video fra Ping Pong DM <b>2016</b>: Kvartfinaler](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/512649046032364){target=_blank}

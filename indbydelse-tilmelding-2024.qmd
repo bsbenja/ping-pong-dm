@@ -1,8 +1,10 @@
 ```{r}
+#| label: kildefil
 source(file = "ping-pong-dm-input.R")
 ```
 
 ```{r}
+#| label: kildefil-filter
 InputEventAarAkt_V <- "Ping Pong DM 2024"
 DataAkt_T <- Data_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))

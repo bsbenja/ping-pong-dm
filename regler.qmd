@@ -1,4 +1,5 @@
 ```{r}
+#| label: kildefil
 source(file = "variable.R")
 ```
 
@@ -9,10 +10,11 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r}
-#| output: asis
-cat("![](filer/generelt/wcpp-finale-2020.png){width=40em}<br><figcaption><i style=font-size:80%>Billede fra WCPP-finalen 2020</i></figcaption><p><p>")
-```
+::: {#fig-cover}
+![](filer/generelt/wcpp-finale-2020.png){width=40em}
+
+Billede fra WCPP-finalen 2020.
+:::
 
 *I Ping Pong tages det bedste fra fortidens- og nutidens bordtennis og kan sammenlignes med ordsproget "gammel vin på nye flasker". Ping Pong reglerne tager udgangspunkt i bordtennisreglerne, dog er der nogle få regler, hvor de to discipliner adskiller sig fra hinanden, samt nogle ekstra regler til "Final 4", hvilket kan ses her på siden.*
 
@@ -50,10 +52,7 @@ cat("![](filer/generelt/wcpp-finale-2020.png){width=40em}<br><figcaption><i styl
 ::: {.callout-note style="font-style:italic"}
 ## Bordtennisregler
 
-```{r}
-#| output: asis
-cat("Reglerne i bordtennis kan ses på Bordtennis Danmarks hjemmeside (BTDK) [<b>HER</b>](https://bordtennisdanmark.dk/regler/ittfs-bordtennislove){target=_blank}.")
-```
+Reglerne i bordtennis kan ses på Bordtennis Danmarks hjemmeside (BTDK) [<b>HER</b>](https://bordtennisdanmark.dk/regler/ittfs-bordtennislove){target=_blank}.
 :::
 
 ::: {.callout-caution style="font-style:italic"}

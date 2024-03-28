@@ -1,10 +1,10 @@
 ```{r}
-#| label: kilde-fil
+#| label: kildefil
 source(file = "ping-pong-dm-input.R")
 ```
 
 ```{r}
-#| label: kilde-filter
+#| label: kildefil-filter
 BilletDisciplinAkt_V  <- "Sandpapir"
 BilletRaekkeAkt_V     <- "Åben"
 BilletSpilFormatAkt_V <- "Single"
@@ -90,7 +90,7 @@ cat(DataEventAarAkt_T$InfoTipIndbydelse_DW)
 ::: {layout="[[32, -2, 66]]"}
 ```{r}
 #| label: tbl-praemiepenge
-#| tbl-cap: !expr paste0("Præmiepenge.<br>Præmiesum på ", distinct(filter(DataPraemiePengeAkt_T, PraemieRank_DW == 1), Præmiepenge), " fordeles på ", length(which(DataPraemiePengeAkt_T$PraemieRank_DW == "4")), " placeringer.")
+#| tbl-cap: !expr paste0("Præmiepenge.<br>Præmiesum på ", "<b>", distinct(filter(DataPraemiePengeAkt_T, PraemieRank_DW == 1), Præmiepenge), "</b>", " fordeles på ", "<b>", length(which(DataPraemiePengeAkt_T$PraemieRank_DW == "4")), "</b>", " placeringer.")
 
 # Præmiepenge
 if(nrow(DataPraemiePengeAkt_T) == 0) {
@@ -236,7 +236,7 @@ if(InputInfo1234_V %in% c(1, 2, 3, 4)) {
 
 ```{r}
 #| label: fig-klubber
-#| fig-cap: "Klubber"
+#| fig-cap: "Klubber."
 #| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(Klub_RD))))+1.5)/3.3
 DataAkt_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD)) %>%
 	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
@@ -292,7 +292,7 @@ cat(paste0(
 
 ```{r}
 #| label: fig-danmarkskort
-#| fig-cap: "Danmarkskort"
+#| fig-cap: "Danmarkskort."
 #| fig-height: 5
 DataAkt_T %>%
   filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD) & !grepl("Ingen klub|Udlandet", Klub_RD)) %>%
@@ -356,7 +356,7 @@ cat(paste0(
 
 ```{r}
 #| label: fig-aldersgrupper
-#| fig-cap: "Aldersgrupper"
+#| fig-cap: "Aldersgrupper."
 #| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltAlderKat_RD))))+1.5)/3.3
 DataAkt_T %>%
 	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
@@ -409,7 +409,7 @@ cat(paste0(
 
 ```{r}
 #| label: fig-koen
-#| fig-cap: "Køn"
+#| fig-cap: "Køn."
 #| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltKoen_RD))))+1.5)/3.3
 DataAkt_T %>%
 	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
@@ -457,7 +457,7 @@ cat(paste0(
 
 ```{r}
 #| label: fig-gentilmeldinger
-#| fig-cap: "Gentilmeldinger"
+#| fig-cap: "Gentilmeldinger."
 #| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltGenKat_DW))))+1.5)/3.3
 DataAkt_T %>%
 	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
@@ -505,7 +505,7 @@ cat(paste0(
 
 ```{r}
 #| label: fig-ordre-kat
-#| fig-cap: "Ordretype"
+#| fig-cap: "Ordretype."
 #| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD)) %>% summarise(length(unique(OrdreKat_DW))))+1.5)/3.3
 DataAkt_T %>%
   filter(!is.na(DeltID_RD)) %>%

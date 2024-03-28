@@ -1,8 +1,10 @@
 ```{r}
+#| label: kildefil
 source(file = "ping-pong-dm-input.R")
 ```
 
 ```{ojs}
+//| label: ojs-html
 //| results: asis
 import {html} from 'https://cdn.skypack.dev/lit-html'
 ```
@@ -21,20 +23,24 @@ editor_options:
 `r "<https://observablehq.com/@d3/horizontal-bar-chart>{target=_blank}"`
 
 ```{r}
+#| label: ojs-define
 ojs_define(Data_T)
 ```
 
 ```{ojs}
+//| label: ojs-transpose
 Data_BI = transpose(Data_T)
 ```
 
 ```{ojs}
+//| label: ojs-filter-transpose
 data_filter = Data_BI.filter(function(Data_BI) {
   return EventAar_RD.includes(Data_BI.EventAar_RD)
 })
 ```
 
 ```{ojs}
+//| label: ojs-panel-input
 //| panel: input
 viewof EventAar_RD = Inputs.checkbox(
   Data_BI.map(d => d.EventAar_RD), {sort: true, unique: true,
@@ -232,6 +238,7 @@ Inputs.table(data_filter, {
 # R-kode
 
 ```{r}
+#| label: kildefil-filter
 BilletDisciplinAkt_V  <- "Sandpapir"
 BilletSpilFormatAkt_V <- "Single"
 BilletRaekkeAkt_V     <- "Åben"
