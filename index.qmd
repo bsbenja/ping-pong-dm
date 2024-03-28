@@ -36,21 +36,21 @@ cat(DataEventAarAkt_T$InfoPlakatCTA_DW)
 ::: {.g-col-12 .g-col-md-4}
 #### Generelt om Ping Pong
 
--   `r paste(IkonRegler_V, "[<b>Ping Pong regler</b>](regler.qmd)<br><i>I Ping Pong tages det bedste fra fortidens- og nutidens bordtennis og kan sammenlignes med ordsproget <q>gammel vin på nye flasker</q>. Der er nogle få regler, der adskiller Ping Pong fra bordtennis, bl.a. spilles der til 15 point (14-14 er afgørende bold), alle spiller på lige vilkår med sandpapirsbat, hvor der byttes bat mellem hvert sæt, og der kan tages <q>dobbeltpoint</q>.</i>")`
+-   `r paste(IkonRegler_V)` [<b>Ping Pong regler</b>](regler.qmd)<br><i>I Ping Pong tages det bedste fra fortidens- og nutidens bordtennis og kan sammenlignes med ordsproget <q>gammel vin på nye flasker</q>. Der er nogle få regler, der adskiller Ping Pong fra bordtennis, bl.a. spilles der til 15 point (14-14 er afgørende bold), alle spiller på lige vilkår med sandpapirsbat, hvor der byttes bat mellem hvert sæt, og der kan tages <q>dobbeltpoint</q>.</i>
 
--   `r paste(IkonGlobus_V, "[<b>WCPP</b>](wcpp.qmd)<br><i>World Championship of Ping Pong (WCPP) afholdes sædvanligvis i London med en præmiesum på $100.000 og eksponeres på bl.a. Viaplay Sport og Sky Sports.</i>")`
+-   `r paste(IkonGlobus_V)` [<b>WCPP</b>](wcpp.qmd)<br><i>World Championship of Ping Pong (WCPP) afholdes sædvanligvis i London med en præmiesum på $100.000 og eksponeres på bl.a. Viaplay Sport og Sky Sports.</i>
 
--   `r paste(IkonKoncept_V, "[<b>DM-koncept</b>](koncept.qmd)<br><i>DM-konceptet er en heldagsbegivenhed, der hylder fællesskabet og mangfoldigheden, hvor ALLE har mulighed for at deltage på lige vilkår i sandpapirsdisciplinen. Der er musik under hele turneringen samt socialt arrangement om aften/natten.</i>")`
+-   `r paste(IkonKoncept_V)` [<b>DM-koncept</b>](koncept.qmd)<br><i>DM-konceptet er en heldagsbegivenhed, der hylder fællesskabet og mangfoldigheden, hvor ALLE har mulighed for at deltage på lige vilkår i sandpapirsdisciplinen. Der er musik under hele turneringen samt socialt arrangement om aften/natten.</i>
 :::
 
 ::: {.g-col-12 .g-col-md-4}
 #### Eksterne links
 
-`r "<i>Er du en Ping Pong entusiast eller bare nysgerrig på konceptet? Så tjek én eller flere af nedenstående links ud.</i>"`
+<i>Er du en Ping Pong entusiast eller bare nysgerrig på konceptet? Så tjek én eller flere af nedenstående links ud.</i>
 
--   `r paste0(IkonLinkNy_V, " [<b>Køb bat hos BTEX</b>](https://www.btex.dk/sanwei-wcpp-sandpapirsbat.html){target=_blank}<br><i>De officielle Sanwei WCPP Sandpapirsbat kan købes hos Bordtennisexperterne (BTEX) til eget brug for ", DataWebBTEX_T$pris, ".</i><p>![](filer/generelt/sandpapirsbat-sanwei.png){width=4em}</p>")`
+-   `r paste0(IkonLinkNy_V)` [<b>Køb bat hos BTEX</b>](https://www.btex.dk/sanwei-wcpp-sandpapirsbat.html){target=_blank}<br><i>De officielle Sanwei WCPP Sandpapirsbat kan købes hos Bordtennisexperterne (BTEX) til eget brug for ", DataWebBTEX_T$pris, ".</i><p>![](filer/generelt/sandpapirsbat-sanwei.png){width=4em}</p>
 
--   `r paste(IkonLinkNy_V, "[<b>ICTTF</b>](https://icttf.co){target=_blank}<br><i>International Classic Table Tennis Federation (ICTTF) er det styrende organ for alle nationale Ping Pong medlemmer, hvis mission er at genintroducere det underholdende og gavnlige spil Ping Pong, også kendt som klassisk bordtennis, til det globale fællesskab.</i><p>![](filer/generelt/icttf.png){width=4em}</p>")`
+-   `r paste(IkonLinkNy_V)` [<b>ICTTF</b>](https://icttf.co){target=_blank}<br><i>International Classic Table Tennis Federation (ICTTF) er det styrende organ for alle nationale Ping Pong medlemmer, hvis mission er at genintroducere det underholdende og gavnlige spil Ping Pong, også kendt som klassisk bordtennis, til det globale fællesskab.</i><p>![](filer/generelt/icttf.png){width=4em}</p>
 :::
 :::
 :::
