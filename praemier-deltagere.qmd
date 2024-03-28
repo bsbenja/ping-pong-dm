@@ -90,7 +90,7 @@ cat(DataEventAarAkt_T$InfoTipIndbydelse_DW)
 ::: {layout="[[32, -2, 66]]"}
 ```{r}
 #| label: tbl-praemiepenge
-#| tbl-cap: "Præmiepenge"
+#| tbl-cap: !expr paste0("Præmiepenge.<br>Præmiesum på ", distinct(filter(DataPraemiePengeAkt_T, PraemieRank_DW == 1), Præmiepenge), " fordeles på ", length(which(DataPraemiePengeAkt_T$PraemieRank_DW == "4")), " placeringer.")
 
 # Præmiepenge
 if(nrow(DataPraemiePengeAkt_T) == 0) {
@@ -115,7 +115,7 @@ if(nrow(DataPraemiePengeAkt_T) == 0) {
 
 ```{r}
 #| label: tbl-gave-yngst-aeldst
-#| tbl-cap: "Gave til yngste- og ældste Ping Pong deltager"
+#| tbl-cap: !expr paste0("Gave til yngste- og ældste Ping Pong deltager.<br>Gaverne har til formål at hylde mangfoldigheden.<br>", DataBilletAkt_T$StatAlderForskelAntal_DW)
 
 # Gave til yngste- og ældste Ping Pong deltager
 if(nrow(DataPraemieYngstAeldstAkt_T) == 0) {
@@ -128,10 +128,6 @@ if(nrow(DataPraemieYngstAeldstAkt_T) == 0) {
     row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
     column_spec(1, bold = T) %>%
     column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V)) %>%
-    footnote(paste(
-      "Gaverne har til formål at hylde mangfoldigheden.<br>",
-      DataBilletAkt_T$StatAlderForskelAntal_DW),
-      general_title = "", escape = F) %>%
     remove_column(5)
 }
 ```
@@ -149,7 +145,7 @@ cat(paste0(
 
 ```{r}
 #| label: tbl-deltagere
-#| tbl-cap: "Deltagere"
+#| tbl-cap: "Deltagere."
 
 # DataDeltForAkt_T
 if(InputInfo1234_V %in% c(3)) {
@@ -198,13 +194,17 @@ if(InputInfo1234_V %in% c(1, 2, 4)) {
         "</i>")) %>%
   kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
-  row_spec(which(DataDeltPuljerAkt_T$DeltSnakeSeedLagNr_DW == "1"), bold = T,
-           extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V)) %>%
+  row_spec(
+    which(DataDeltPuljerAkt_T$DeltSnakeSeedLagNr_DW == "1"), bold = T,
+    extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V)) %>%
   remove_column(5:10)
   }
 }
+```
 
-# DataDeltAndetAkt_T
+```{r}
+#| label: tbl-andet-end-ping-ping
+#| tbl-cap: "Andet end Ping Pong + evt. afbud."
 if(InputInfo1234_V %in% c(1, 2, 3, 4)) {
   if(nrow(DataDeltAndetAkt_T) == 0) {
   data.frame() %>% kbl()
@@ -254,7 +254,7 @@ DataAkt_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD)) %>%
 
 ```{r}
 #| label: tbl-klubtype
-#| tbl-cap: "Klubtype"
+#| tbl-cap: "Klubtype."
 DataDeltKlubAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter klubantal</i>") %>%
@@ -318,7 +318,7 @@ DataAkt_T %>%
 
 ```{r}
 #| label: tbl-danmarkskort
-#| tbl-cap: "Danmarkskort"
+#| tbl-cap: "Danmarkskort."
 DataDeltByAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter region og postnr.</i>") %>%
@@ -371,7 +371,7 @@ DataAkt_T %>%
 
 ```{r}
 #| label: tbl-aldersgrupper
-#| tbl-cap: "Aldersgrupper"
+#| tbl-cap: "Aldersgrupper."
 DataDeltAlderKatAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter fødselsdato</i>") %>%
@@ -424,7 +424,7 @@ DataAkt_T %>%
 
 ```{r}
 #| label: tbl-koen
-#| tbl-cap: "Køn"
+#| tbl-cap: "Køn."
 DataDeltKoenAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter køn</i>") %>%
@@ -472,7 +472,7 @@ DataAkt_T %>%
 
 ```{r}
 #| label: tbl-gentilmeldinger
-#| tbl-cap: "Gentilmeldinger"
+#| tbl-cap: "Gentilmeldinger."
 DataDeltGenTilAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter antal gentilmeldinger</i>") %>%
@@ -520,7 +520,7 @@ DataAkt_T %>%
 
 ```{r}
 #| label: tbl-ordre-kat
-#| tbl-cap: "Ordretype"
+#| tbl-cap: "Ordretype."
 DataDeltOrdreKatAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter ældste <q>første ordredato</q></i>") %>%
@@ -553,7 +553,7 @@ cat(paste0(
 
 ```{r}
 #| label: tbl-result-sidst
-#| tbl-cap: "DM-resultater sidst"
+#| tbl-cap: "DM-resultater sidste <q>Final 4</q>."
 if(nrow(DataResultSidst_T) == 0) {
   data.frame() %>% kbl()
 } else {
