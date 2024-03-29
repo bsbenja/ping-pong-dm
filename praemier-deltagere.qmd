@@ -230,7 +230,7 @@ if(InputInfo1234_V %in% c(1, 2, 3, 4)) {
 #| label: fig-klubber
 #| fig-cap: "Klubber."
 #| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(Klub_RD))))+1.5)/3.3
-DataAkt_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD)) %>%
+DataAkt_T %>%
 	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
 	mutate(Klub_RD = paste0(Klub_RD, "&emsp;", KlubLogo_DW)) %>%
 	ggplot(mapping = aes(y = fct_rev(fct_infreq(Klub_RD)), fill = BilletKat_DW)) +

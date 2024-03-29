@@ -82,6 +82,7 @@ format:
     toc: true
     smooth-scroll: true
     code-tools: false
+    anchor-sections: false
     fig-dpi: 300
     white-space: pre-wap
     code-overflow: wrap

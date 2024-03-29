@@ -6,6 +6,11 @@ source(file = "ping-pong-dm-input.R")
 ```{r}
 #| label: kildefil-filter
 DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataEventAarSidst_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAarSidst_DW))
+DataResultSidst_T <- DataResult_T %>% filter(
+  grepl(InputEventAarAkt_V, EventAarSidst_DW) &
+  grepl("A-slutspil", DeltSlutspil_RD) &
+  grepl("[1-4]", DeltPlacNr_RD))
 DataResultAlle_T <- DataResult_T %>% filter(
   (grepl("A-slutspil", DeltSlutspil_RD) &
   grepl("1", DeltPlacNr_RD)) |
