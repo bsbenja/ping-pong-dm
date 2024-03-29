@@ -309,7 +309,7 @@ Ping Pong World Cup.
 ::: {.g-col-12 .g-col-md-12}
 ```{r}
 #| label: tbl-praemiepenge
-#| tbl-cap: !expr paste("Præmiesum på", distinct(filter(DataPraemiePengeAkt_T, PraemieRank_DW == 1), Præmiepenge), "er under<br>forudsætning af minimum 64 Ping Pong<br>deltagere.")
+#| tbl-cap: !expr paste("Præmiepenge.<br>Præmiesum på", distinct(filter(DataPraemiePengeAkt_T, PraemieRank_DW == 1), Præmiepenge), "er under<br>forudsætning af minimum 64 Ping Pong<br>deltagere.")
 if(nrow(DataPraemiePengeAkt_T) == 0) {
   data.frame() %>% kbl()
 } else {
