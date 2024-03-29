@@ -1,8 +1,10 @@
 ```{r}
+#| label: kildefil
 source(file = "ping-pong-dm-input.R")
 ```
 
 ```{r}
+#| label: kildefil-filter
 InputEventAarAkt_V <- "Ping Pong DM 2023"
 DataAkt_T <- Data_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
@@ -28,7 +30,7 @@ editor_options:
 ---
 
 ```{r}
-#| output: asis
+#| label: info-nedtaelling-plakat
 cat(knitr::raw_html(DataEventAarAkt_T$InfoNedtælling_DW))
 cat(DataEventAarAkt_T$InfoPlakatCTA_DW)
 ```

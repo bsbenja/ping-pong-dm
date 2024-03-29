@@ -38,8 +38,6 @@ Ping Pong beskrives bedst med ordsproget "*gammel vin på nye flasker*" og har t
 2.  **Heldagsbegivenhed**: Heldagsbegivenhed i form af DM-turnering samt socialt arrangement om aftenen/natten for at hylde fællesskabet og mangfoldigheden.
 3.  **Overkommelig pris**: Prisen for et Ping Pong bat og at spille i det hele taget er på et niveau, hvor langt de fleste kan være med.
 
-[^1]: <b>ALLE kan deltage</b>: Da turneringen er et dansk mesterskab, skal man enten være (1) dansk statsborger eller (2) have boet i Danmark i minimum de seneste fem år (skal kunne dokumenteres af spilleren). Er dette ikke opfyldt, vil det være muligt at deltage udelukkende i puljespillet, hvor ens resultater ikke tæller med i puljeregnskabet (tilmelding stadig påkrævet).
-
 ## Turneringen
 
 ### Pris og tilmelding
@@ -85,20 +83,10 @@ flowchart TD
 ::: {.callout-tip style="font-style:italic"}
 ## Ping Pong regler
 
-```{r}
-#| label: info-regler
-#| output: asis
-cat(DataEventAarAkt_T$InfoTipRegler_DW)
-```
+`r DataEventAarAkt_T$InfoTipRegler_DW`
 :::
 :::
 :::
-
-[^2]: <b>Puljeregnskab</b>: Puljeregnskabet gøres op efter efter de almindeligt gældende regler jf. BTDK's Stævne/Ratingreglement under <q>§ 08: Puljeregnskab</q> (side 4) <b>[HER](https://bordtennisdanmark.dk/wp-content/uploads/2021/08/staevne-rating_reglement_2019-2020_0.pdf){target="_blank"}</b>:<br>Stk. 1. Vundet eller afbrudt kamp giver 2 matchpoint og en tabt kamp giver 1 matchpoint.<br>Stk. 2. Hvis to eller flere spillere ender på samme antal matchpoint, afgøres den indbyrdes placering ved at sammenregne indbyrdes matchpoint mellem disse spillere.<br>Stk. 3. Hvis det indbyrdes matchpointtal mellem berørte spillere stadig er lige, beregnes den indbyrdes sætkvotient (vundne sæt divideret med tabte sæt).<br>Stk. 4. Hvis den indbyrdes sætkvotient mellem de berørte spillere er lige, beregnes den indbyrdes boldkvotient (vundne bolde divideret med tabte bolde).<br>Stk. 5. Så snart en placering eller flere kan bestemmes ud fra punkt 2-4, fjernes den eller de spillere. De øvrige spilleres placering beregnes på ny fra punkt 2.<br>Stk. 6. Hvis den ovenstående beregning ikke kan afgøre to eller flere spilleres placering, trækkes der lod. Denne lodtrækning foretages automatisk af stævneafviklingsprogrammet TTC.
-
-[^3]: <b>Afviklingsform til <q>Final 4</q></b>: <q>Final 4</q> kommer til at bestå af følgende 4 runder:<br>Runde 1: Seedet 1 mod 4 og seedet 2 mod 3 (afvikles på to borde).<br>Runde 2: Seedet 1 mod 3 og seedet 2 mod 4 (afvikles på to borde).<br>Runde 3: Seedet 3 mod 4 (afvikles på ét bord).<br>Runde 4: Seedet 1 mod 2 (afvikles på ét bord).
-
-[^4]: <b>Resultater sidste DM</b>: Ved sidste DM i 2023 i Hørning var <q>Final 4</q> deltagerne:<br>Nr. 1. Benjamin Sørensen, Hørning BTK.<br>Nr. 2. Emil Madsen, Hørning.<br>Nr. 3. Bjarke Krog, B75.<br>Nr. 4. Mads Larsen, Silkeborg BTK.
 
 ### Bat og bold
 
@@ -120,11 +108,7 @@ Resultaterne fra DM danner grundlag for international udtagelse. Normalvis er de
 ::: {.callout-tip style="font-style:italic"}
 ## WCPP
 
-```{r}
-#| label: info-vm
-#| output: asis
-cat(DataEventAarAkt_T$InfoTipVM_DW)
-```
+`r DataEventAarAkt_T$InfoTipVM_DW`
 :::
 
 ## Historie
@@ -143,7 +127,7 @@ Den lidt mere nørdet forklaring er, at Ping Pong spilles med bat uden svamp, so
 
 ![](filer/generelt/sandpapirsbat-sanwei.png){width="15em"}
 
-Sanwei WCPP Sandpapirsbat<br>(sort sandpapir).
+Sanwei WCPP Sandpapirsbat (sort sandpapir).
 :::
 
 ::: {#fig-sandpapir-2019}
@@ -151,7 +135,7 @@ Sanwei WCPP Sandpapirsbat<br>(sort sandpapir).
 
 ![](filer/generelt/sandpapirsbat-carlton.png){width="15em"}
 
-Carlton WCPP Sandpapirsbat<br>(grå sandpapir).
+Carlton WCPP Sandpapirsbat (grå sandpapir).
 :::
 
 ::: {#fig-sandpapir-2014-2018}
@@ -159,7 +143,7 @@ Carlton WCPP Sandpapirsbat<br>(grå sandpapir).
 
 ![](filer/generelt/sandpapirsbat-dunlop.png){width="15em"}
 
-Dunlop WCPP Sandpapirsbat<br>(blå sandpapir).
+Dunlop WCPP Sandpapirsbat (blå sandpapir).
 :::
 :::
 
@@ -184,14 +168,36 @@ DataResultAlle_T %>%
 
 ## Videoer fra DM
 
--   [Video fra Ping Pong DM <b>2022</b>: <q>Final 4</q>](https://youtu.be/2LF1PVgdM-w){target="_blank"}
--   [Video fra Ping Pong DM <b>2022</b>: Preliminary matches + Playoffs](https://youtu.be/i7NUmq1R6VY){target="_blank"}
--   [Video fra Ping Pong DM <b>2021</b>: 9 min. sammenklip af finalekampen i <q>Final 4</q>](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/672876054123143){target="_blank"}
--   [Video fra Ping Pong DM <b>2018</b>: Finale](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/2533896386870286){target="_blank"}
--   [Video fra Ping Pong DM <b>2018</b>: Semifinale (2)](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/259264551753924){target="_blank"}
--   [Video fra Ping Pong DM <b>2018</b>: Seminfale (1), sæt 2 af 2](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/303186807322141){target="_blank"}
--   [Video fra Ping Pong DM <b>2018</b>: Seminfale (1), sæt 1 af 2](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/1569763316525030){target="_blank"}
--   [Video fra Ping Pong DM <b>2017</b>: Del 2 af 2](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/208760437117940){target="_blank"}
--   [Video fra Ping Pong DM <b>2016</b>: Finale og bronzekamp](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/144520200285594){target="_blank"}
--   [Video fra Ping Pong DM <b>2016</b>: Semifinaler](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/3001276553228375){target="_blank"}
--   [Video fra Ping Pong DM <b>2016</b>: Kvartfinaler](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/512649046032364){target="_blank"}
+-   [Video fra Ping Pong DM **2022**: "Final 4"](https://youtu.be/2LF1PVgdM-w){target="_blank"}
+-   [Video fra Ping Pong DM **2022**: Preliminary matches + Playoffs](https://youtu.be/i7NUmq1R6VY){target="_blank"}
+-   [Video fra Ping Pong DM **2021**: 9 min. sammenklip af finalekampen i "Final 4"](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/672876054123143){target="_blank"}
+-   [Video fra Ping Pong DM **2018**: Finale](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/2533896386870286){target="_blank"}
+-   [Video fra Ping Pong DM **2018**: Semifinale (2)](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/259264551753924){target="_blank"}
+-   [Video fra Ping Pong DM **2018**: Seminfale (1), sæt 2 af 2](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/303186807322141){target="_blank"}
+-   [Video fra Ping Pong DM **2018**: Seminfale (1), sæt 1 af 2](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/1569763316525030){target="_blank"}
+-   [Video fra Ping Pong DM **2017**: Del 2 af 2](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/208760437117940){target="_blank"}
+-   [Video fra Ping Pong DM **2016**: Finale og bronzekamp](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/144520200285594){target="_blank"}
+-   [Video fra Ping Pong DM **2016**: Semifinaler](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/3001276553228375){target="_blank"}
+-   [Video fra Ping Pong DM **2016**: Kvartfinaler](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/512649046032364){target="_blank"}
+
+[^1]: **ALLE kan deltage**: Da turneringen er et dansk mesterskab, skal man enten være (1) dansk statsborger eller (2) have boet i Danmark i minimum de seneste fem år (skal kunne dokumenteres af spilleren). Er dette ikke opfyldt, vil det være muligt at deltage udelukkende i puljespillet, hvor ens resultater ikke tæller med i puljeregnskabet (tilmelding stadig påkrævet).
+
+[^2]: **Puljeregnskab**: Puljeregnskabet gøres op efter efter de almindeligt gældende regler jf. BTDK's Stævne/Ratingreglement under "§ 08: Puljeregnskab" (side 4) [**HER**](https://bordtennisdanmark.dk/wp-content/uploads/2021/08/staevne-rating_reglement_2019-2020_0.pdf){target="_blank"}:\
+    Stk. 1. Vundet eller afbrudt kamp giver 2 matchpoint og en tabt kamp giver 1 matchpoint.\
+    Stk. 2. Hvis to eller flere spillere ender på samme antal matchpoint, afgøres den indbyrdes placering ved at sammenregne indbyrdes matchpoint mellem disse spillere.\
+    Stk. 3. Hvis det indbyrdes matchpointtal mellem berørte spillere stadig er lige, beregnes den indbyrdes sætkvotient (vundne sæt divideret med tabte sæt).\
+    Stk. 4. Hvis den indbyrdes sætkvotient mellem de berørte spillere er lige, beregnes den indbyrdes boldkvotient (vundne bolde divideret med tabte bolde).\
+    Stk. 5. Så snart en placering eller flere kan bestemmes ud fra punkt 2-4, fjernes den eller de spillere. De øvrige spilleres placering beregnes på ny fra punkt 2.\
+    Stk. 6. Hvis den ovenstående beregning ikke kan afgøre to eller flere spilleres placering, trækkes der lod. Denne lodtrækning foretages automatisk af stævneafviklingsprogrammet TTC.
+
+[^3]: **Afviklingsform til "Final 4"**: "Final 4" kommer til at bestå af følgende 4 runder:\
+    Runde 1: Seedet 1 mod 4 og seedet 2 mod 3 (afvikles på to borde).\
+    Runde 2: Seedet 1 mod 3 og seedet 2 mod 4 (afvikles på to borde).\
+    Runde 3: Seedet 3 mod 4 (afvikles på ét bord).\
+    Runde 4: Seedet 1 mod 2 (afvikles på ét bord).
+
+[^4]: **Resultater sidste DM**: Ved sidste DM i 2023 i Hørning var "Final 4" deltagerne:\
+    Nr. 1. Benjamin Sørensen, Hørning BTK.\
+    Nr. 2. Emil Madsen, Hørning.\
+    Nr. 3. Bjarke Krog, B75.\
+    Nr. 4. Mads Larsen, Silkeborg BTK.

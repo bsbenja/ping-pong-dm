@@ -68,21 +68,13 @@ cat(DataEventAarAkt_T$InfoPlakatCTA_DW)
 ::: {.callout-note style="font-style:italic"}
 ## Sideinfo
 
-```{r}
-#| label: sideinfo
-#| output: asis
-cat(paste(IkonGentagelse_V, "Præmier og deltagere opdateres løbende for", DataEventAarAkt_T$EventAar_RD, "og er sidst opdateret", format(floor_date(Sys.time(), "30 minutes"), "%d.%m.%Y kl. %H:%M.")))
-```
+Præmier og deltagere opdateres løbende for `r DataEventAarAkt_T$EventAar_RD` og er sidst opdateret `r format(floor_date(Sys.time(), "30 minutes"), "%d.%m.%Y kl. %H:%M.")`
 :::
 
 ::: {.callout-tip style="font-style:italic"}
 ## Tip
 
-```{r}
-#| label: info-tip-indbydelse
-#| output: asis
-cat(DataEventAarAkt_T$InfoTipIndbydelse_DW)
-```
+`r DataEventAarAkt_T$InfoTipIndbydelse_DW`
 :::
 
 ## `r paste(IkonPokal_V, "Præmier")`
