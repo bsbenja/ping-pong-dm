@@ -103,12 +103,12 @@ if(nrow(DataResultSidst_T) == 0) {
 }
 ```
 :::
+:::
 
 ::: {.callout-tip style="font-style:italic"}
 ## Ping Pong regler
 
 `r DataEventAarAkt_T$InfoTipRegler_DW`
-:::
 :::
 
 ### Bat og bold
