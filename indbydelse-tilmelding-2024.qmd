@@ -48,29 +48,30 @@ cat(DataEventAarAkt_T$InfoPlakatCTA_DW)
 
 ::: {style="font-style:italic"}
 ```{r}
+#| label: chunk-1
 #| output: asis
 cat(paste0("[BTK Midtjylland](https://btkmidtjylland.dk/forsiden-2){target=_blank}, i samarbejde med [Bordtennis Danmark](https://bordtennisdanmark.dk){target=_blank}, indbyder til det ", DataEventAarAkt_T$EventAarNr_RD, ". DANSKE MESTERSKABER I PING PONG ", DataEventAarAkt_T$EventAarStartDato_DW_Aar_DW, " (bordtennis på lige vilkår med sandpapirsbat) samt efterfølgende FEST OM AFTENEN ", DataEventAarAkt_T$EventAarDato_DW, " i ", DataEventAarAkt_T$EventAarStedURL_DW, ". Uanset om du er ungdomsspiller, seniorspiller, veteranspiller eller aldrig har prøvet Ping Pong/bordtennis før, så kan du stille op (ALLE kan deltage uanset alder, køn, niveau eller licens)^[<b>ALLE kan deltage</b>: Da turneringen er et dansk mesterskab, skal man enten være (1) dansk statsborger eller (2) have boet i Danmark i minimum de seneste fem år (skal kunne dokumenteres af spilleren). Er dette ikke opfyldt, vil det være muligt at deltage udelukkende i puljespillet, hvor ens resultater ikke tæller med i puljeregnskabet (tilmelding stadig påkrævet).]. Eventet er før sommerferien og som noget af det sidste af indeværende bordtennissæson, da det ligger i uge ", DataEventAarAkt_T$EventAarStartDato_DW_Uge_DW , ". Der er lagt op til en masse fede kampe på lige vilkår i sandpapirsdisciplinen med stemningsmusik og/eller et brag af en fest om aftenen, som alt sammen fås til en overkommelig pris."))
 ```
 :::
 
-::: {style="font-style:italic"}
+::: {style="font-style:italic" layout-ncol="2"}
 ```{r}
-#| layout-ncol: 2
+#| label: tbl-billettype
+#| tbl-cap: !expr paste0("Billettype.<br>", "Først til mølle-princip. Tilmeldingsfrist ", DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW, ".<br>", "Ved tilmelding modtages bekræftelsesmail.<br>", "Mikrogebyrer pålægges alle priser.")
 DataBilletKatAkt_T %>%
 	kbl(col.names = NA, align = "llr", escape = F,
       caption = paste0(
         IkonBillet_V, " Billettyper<br>",
         "<i style=font-size:80%>", length(DataBilletKatAkt_T$Billettype), " valgmuligheder ved tilmelding.</i>")) %>%
 	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
-	footnote(paste0(
-    "Først til mølle-princip. Tilmeldingsfrist ", DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW, ".<br>",
-    "Ved tilmelding modtages bekræftelsesmail.<br>",
-    "Mikrogebyrer pålægges alle priser."),
-    general_title = "", escape = F) %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	column_spec(1:3, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V)) %>%
   remove_column(4)
+```
 
+```{r}
+#| label: tbl-tidsplan
+#| tbl-cap: Tidsplan.
 data.frame(
 	"&emsp;" = c(
 		IkonPingPong_V,
@@ -140,6 +141,7 @@ data.frame(
 ## Praktiske informationer
 
 ```{r}
+#| label: praktiske-informationer
 #| output: asis
 cat(paste0(
 "<p>",
@@ -250,6 +252,8 @@ I det videre spil dannes seedningerne på baggrund af placeringerne fra puljespi
 
 ::: {.g-col-12 .g-col-md-5}
 ```{mermaid}
+%%| label: fig-afviklingsform
+%%| fig-cap: "Afviklingsform."
 %%| fig-width: 2.5
 %%{init: {"flowchart": {"htmlLabels": true}} }%%
 flowchart TD
@@ -259,6 +263,8 @@ flowchart TD
 ```
 
 ```{r}
+#| label: tbl-result-sidst
+#| tbl-cap: "DM-resultater sidste <q>Final 4</q>."
 if(nrow(DataResultSidst_T) == 0) {
   data.frame() %>% kbl()
 } else {
@@ -293,6 +299,8 @@ if(nrow(DataResultSidst_T) == 0) {
 
 ::: {.g-col-12 .g-col-md-4}
 ```{r}
+#| label: fig-bat-bold
+#| fig-cap: "Bat og bold"
 #| output: asis
 cat(paste0("![](filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "/bat-bold.png){width=15em}"))
 ```
@@ -311,6 +319,8 @@ cat(paste0("![](filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "/ba
 
 ::: {.g-col-12 .g-col-md-4}
 ```{r}
+#| label: fig-ping-pong_world-cup
+#| fig-cap: "Ping Pong World Cup"
 #| output: asis
 cat(paste0(
 "![](filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "//ping-pong-world-cup-logo.png){width=20em}"))
@@ -319,6 +329,8 @@ cat(paste0(
 
 ::: {.g-col-12 .g-col-md-12}
 ```{r}
+#| label: tbl-praemiepenge
+#| tbl-cap: !expr paste("Præmiesum på", distinct(filter(DataPraemiePengeAkt_T, PraemieRank_DW == 1), Præmiepenge), "er under<br>forudsætning af minimum 64 Ping Pong<br>deltagere.")
 if(nrow(DataPraemiePengeAkt_T) == 0) {
   data.frame() %>% kbl()
 } else {
@@ -335,10 +347,6 @@ if(nrow(DataPraemiePengeAkt_T) == 0) {
              background = DataEventAarAkt_T$EventAarFarve2_RD, color = "#000000") %>%
     add_indent(which(DataPraemiePengeAkt_T$PraemieRank_DW == "4")) %>%
     column_spec(3, italic = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-    footnote(paste(
-      "Præmiesum på", distinct(filter(DataPraemiePengeAkt_T, PraemieRank_DW == 1), Præmiepenge),
-      "er under<br>forudsætning af minimum 64 Ping Pong<br>deltagere."),
-      general_title = "", escape = F) %>%
     remove_column(4:8)
 }
 ```
@@ -366,6 +374,8 @@ Aldersgrænsen for festen er 16 år (bytur 18 år). Hvis man er 16 eller 17 år,
 :::
 
 ```{r}
+#| label: fig-fest-om-aftenen
+#| fig-cap: "Fest om aftenen."
 #| output: asis
 cat(paste0(
 "![](filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "//fest-om-aftenen.png){width=20em}"))
@@ -375,6 +385,7 @@ cat(paste0(
 ## Overnatning
 
 ```{r}
+#| label: overnatning
 #| output: asis
 cat(paste0(
 IkonOvernatning_V, " Se forslag til evt. overnatning under <q>Intro, tidsplan & praktisk</q> [<b>HER</b>](indbydelse-tilmelding-", DataEventAarAkt_T$EventAarStartDato_DW_Aar_DW, ".qmd#intro-tidsplan-praktisk)."))
