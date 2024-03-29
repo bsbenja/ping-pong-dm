@@ -20,7 +20,7 @@ editor_options:
 ---
 
 ::: {#fig-cover}
-![](filer/generelt/wcpp-finale-2019.png){width=40em}
+![](filer/generelt/wcpp-finale-2019.png){width="40em"}
 
 Billede fra WCPP-finalen 2019.
 :::
@@ -60,7 +60,7 @@ Turneringen afvikles som én åben singlerække på fair vis efter snake-system 
 
 Puljerne dannes på fair vis efter snake-system uden klubhensyn efter følgende prioritering:
 
-1.  Nr. 1-4 seedes efter placeringerne i "Final 4" i A-slutspil ved sidst afholdte DM[^4].
+1.  Nr. 1-4 seedes efter placeringerne i "Final 4" i A-slutspil ved sidst afholdte DM. Se @tbl-result-sidst.
 2.  Seneste [ratingopdateringen i bordtennis](https://bordtennisportalen.dk/DBTU/Ranglister){target="_blank"}.
 3.  Skøn og lodtrækning.
 
@@ -78,6 +78,24 @@ flowchart TD
   A --> |Nr. 3-4| C(B-slutspil)
   A --> |Nr. 5-6| D(C-slutspil)
   B --> |&#x00BC-finalevindere| E(<q>Final-4</q>)
+```
+
+```{r}
+#| label: tbl-result-sidst
+#| tbl-cap: "DM-resultater sidste <q>Final 4</q>."
+if(nrow(DataResultSidst_T) == 0) {
+  data.frame() %>% kbl()
+} else {
+  DataResultSidst_T %>%
+  kbl(col.names = NA, align = "clcl", escape = F,
+      caption = paste0(
+        IkonPokal_V, " DM-resultater sidste <q>Final 4</q><br>",
+        "<i style=font-size:80%>Afholdt ", DataEventAarSidst_T$EventAarDato_DW,
+        " i ", DataEventAarSidst_T$EventAarSted_RD, "</i>")) %>%
+  kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
+  row_spec(0, background = DataEventAarSidst_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
+	remove_column(c(1, 5:11))
+}
 ```
 
 ::: {.callout-tip style="font-style:italic"}
@@ -195,9 +213,3 @@ DataResultAlle_T %>%
     Runde 2: Seedet 1 mod 3 og seedet 2 mod 4 (afvikles på to borde).\
     Runde 3: Seedet 3 mod 4 (afvikles på ét bord).\
     Runde 4: Seedet 1 mod 2 (afvikles på ét bord).
-
-[^4]: **Resultater sidste DM**: Ved sidste DM i 2023 i Hørning var "Final 4" deltagerne:\
-    Nr. 1. Benjamin Sørensen, Hørning BTK.\
-    Nr. 2. Emil Madsen, Hørning.\
-    Nr. 3. Bjarke Krog, B75.\
-    Nr. 4. Mads Larsen, Silkeborg BTK.

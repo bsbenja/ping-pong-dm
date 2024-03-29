@@ -47,11 +47,7 @@ cat(DataEventAarAkt_T$InfoPlakatCTA_DW)
 ## `r paste(IkonTimeglas_V, "Intro, tidsplan & praktisk")`
 
 ::: {style="font-style:italic"}
-```{r}
-#| label: chunk-1
-#| output: asis
-cat(paste0("[BTK Midtjylland](https://btkmidtjylland.dk/forsiden-2){target=_blank}, i samarbejde med [Bordtennis Danmark](https://bordtennisdanmark.dk){target=_blank}, indbyder til det ", DataEventAarAkt_T$EventAarNr_RD, ". DANSKE MESTERSKABER I PING PONG ", DataEventAarAkt_T$EventAarStartDato_DW_Aar_DW, " (bordtennis på lige vilkår med sandpapirsbat) samt efterfølgende FEST OM AFTENEN ", DataEventAarAkt_T$EventAarDato_DW, " i ", DataEventAarAkt_T$EventAarStedURL_DW, ". Uanset om du er ungdomsspiller, seniorspiller, veteranspiller eller aldrig har prøvet Ping Pong/bordtennis før, så kan du stille op (ALLE kan deltage uanset alder, køn, niveau eller licens)^[<b>ALLE kan deltage</b>: Da turneringen er et dansk mesterskab, skal man enten være (1) dansk statsborger eller (2) have boet i Danmark i minimum de seneste fem år (skal kunne dokumenteres af spilleren). Er dette ikke opfyldt, vil det være muligt at deltage udelukkende i puljespillet, hvor ens resultater ikke tæller med i puljeregnskabet (tilmelding stadig påkrævet).]. Eventet er før sommerferien og som noget af det sidste af indeværende bordtennissæson, da det ligger i uge ", DataEventAarAkt_T$EventAarStartDato_DW_Uge_DW , ". Der er lagt op til en masse fede kampe på lige vilkår i sandpapirsdisciplinen med stemningsmusik og/eller et brag af en fest om aftenen, som alt sammen fås til en overkommelig pris."))
-```
+[BTK Midtjylland](https://btkmidtjylland.dk/forsiden-2){target="_blank"}, i samarbejde med [Bordtennis Danmark](https://bordtennisdanmark.dk){target="_blank"}, indbyder til det `r DataEventAarAkt_T$EventAarNr_RD` DANSKE MESTERSKABER I PING PONG `r DataEventAarAkt_T$EventAarStartDato_DW_Aar_DW` (bordtennis på lige vilkår med sandpapirsbat) samt efterfølgende FEST OM AFTENEN `r DataEventAarAkt_T$EventAarDato_DW` i `r DataEventAarAkt_T$EventAarStedURL_DW`. Uanset om du er ungdomsspiller, seniorspiller, veteranspiller eller aldrig har prøvet Ping Pong/bordtennis før, så kan du stille op (ALLE kan deltage uanset alder, køn, niveau eller licens)[^1]. Eventet er før sommerferien og som noget af det sidste af indeværende bordtennissæson, da det ligger i uge `r DataEventAarAkt_T$EventAarStartDato_DW_Uge_DW`. Der er lagt op til en masse fede kampe på lige vilkår i sandpapirsdisciplinen med stemningsmusik og/eller et brag af en fest om aftenen, som alt sammen fås til en overkommelig pris.
 :::
 
 ::: {style="font-style:italic" layout-ncol="2"}
@@ -140,41 +136,23 @@ data.frame(
 ::: {.callout-note style="font-style:italic"}
 ## Praktiske informationer
 
-```{r}
-#| label: praktiske-informationer
-#| output: asis
-cat(paste0(
-"<p>",
-	
-IkonForplejning_V, " <b>Forplejning</b>: Mad og drikkevarer kan købes i hallen i Café Sejr for både spillere og tilskuere <b>under hele stævnet</b>, hvilket der er god mulighed for at gøre mellem kampene, hvorfor frokostpause ikke er lagt specifikt ind i tidsplanen. Man kan bl.a. købe sandwich, burger, snacks, øl og sodavand.</i>",
+`r IkonForplejning_V` **Forplejning**: Mad og drikkevarer kan købes i hallen i Café Sejr for både spillere og tilskuere **under hele stævnet**, hvilket der er god mulighed for at gøre mellem kampene, hvorfor frokostpause ikke er lagt specifikt ind i tidsplanen. Man kan bl.a. købe sandwich, burger, snacks, øl og sodavand.
 
-"</p><p>",
+`r IkonMedbring_V` **Medbring**: Til turneringen medbringes kun sportstøj og indendørssko. Der skal ikke medbringes bat, da stævnearrangøren udleverer bat til opvarmning og kampe på selve stævnedagen. Hvis man skal med til festen medbringes outfit hertil, og der er også mulighed for at tage bad i hallen.
 
-IkonMedbring_V, " <b>Medbring</b>: Til turneringen medbringes kun sportstøj og indendørssko. Der skal ikke medbringes bat, da stævnearrangøren udleverer bat til opvarmning og kampe på selve stævnedagen. Hvis man skal med til festen medbringes outfit hertil, og der er også mulighed for at tage bad i hallen.",
+`r IkonTransport_V` **Offentlig transport**: Der er gode tog- og busforbindelser til Hørning (10 min. med tog fra Aarhus Hovedbanegård). Hørning station ligger kun 1,5 km fra `r DataEventAarAkt_T$EventAarSted_RD`. Se muligheder for offentlig transport på Rejseplanen [**HER**](https://rejseplanen.dk){target="_blank"}.
 
-"</p><p>",
+`r IkonParkering_V` **Parkering**: Mange parkeringspladser og gratis parkering ved `r DataEventAarAkt_T$EventAarSted_RD`.
 
-IkonTransport_V, " <b>Offentlig transport</b>: Der er gode tog- og busforbindelser til Hørning (10 min. med tog fra Aarhus Hovedbanegård). Hørning station ligger kun 1,5 km fra ", DataEventAarAkt_T$EventAarSted_RD, ". Se muligheder for offentlig transport på Rejseplanen [<b>HER</b>](https://rejseplanen.dk){target=_blank}.",
+`r IkonOvernatning_V` **Overnatning**: Gode muligheder for at booke overnatning, hvis man fx kommer langvejsfra. Man kan evt. gå sammen nogle stykker og booke på CABINN Hotel Aarhus, som nok er det bedste valg pris- og belliggenhedsmæssigt, da det ligger ned til åen i midten af Aarhus byliv, hvilket kan bookes [**HER**](https://www.cabinn.com/hotel/cabinn-aarhus){target="_blank"}. Skal man være en del af festen, er det naturligvis også en mulighed at tage et morgentog eller lignende hjem søndag, hvis man kan holde sig i gang til et godt stykke ud på natten, hvilket tidligere er set.
 
-"</p><p>",
-
-IkonParkering_V, " <b>Parkering</b>: Mange parkeringspladser og gratis parkering ved ", DataEventAarAkt_T$EventAarSted_RD, ".",
-
-"</p><p>",
-
-IkonOvernatning_V, " <b>Overnatning</b>: Gode muligheder for at booke overnatning, hvis man fx kommer langvejsfra. Man kan evt. gå sammen nogle stykker og booke på CABINN Hotel Aarhus, som nok er det bedste valg pris- og belliggenhedsmæssigt, da det ligger ned til åen i midten af Aarhus byliv, hvilket kan bookes [<b>HER</b>](https://www.cabinn.com/hotel/cabinn-aarhus){target=_blank}. Skal man være en del af festen, er det naturligvis også en mulighed at tage et morgentog eller lignende hjem søndag, hvis man kan holde sig i gang til et godt stykke ud på natten, hvilket tidligere er set.",
-
-"</p><p>",
-
-IkonRefusion_V, " <b>Refusion</b>: Tilmelding er ikke bindende, hvorfor evt. refusion er muligt frem til og med tilmeldingsfristen ", DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW, " ved henvendelse til kontaktpersonen. Ønskes alle billetter refunderet, vil refusion ske hurtigst muligt. Hvis der ønskes refusion af enkeltbilletter, vil refusion ske umiddelbart efter eventet. Mikrogebyrer refunderes ikke.",
-
-"</p>"))
-```
+`r IkonRefusion_V` **Refusion**: Tilmelding er ikke bindende, hvorfor evt. refusion er muligt frem til og med tilmeldingsfristen `r DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW` ved henvendelse til kontaktpersonen. Ønskes alle billetter refunderet, vil refusion ske hurtigst muligt. Hvis der ønskes refusion af enkeltbilletter, vil refusion ske umiddelbart efter eventet. Mikrogebyrer refunderes ikke.
 :::
 
-::: {style="font-size:90%"}
+::: {layout-ncol="3" style="font-size:90%"}
 ```{r}
-#| layout-ncol: 3
+#| label: tbl-kontaktperson
+#| tbl-cap: "Kontaktperson."
 data.frame(
   "1" = paste0("<img src=filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "/kontaktperson.png height=60 style=border-radius:10px>"),
   "2" = paste0(
@@ -191,7 +169,11 @@ data.frame(
   kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   column_spec(1, width_min = "5.5em") %>%
   column_spec(1:2, extra_css = "border:hidden")
+```
 
+```{r}
+#| label: tbl-staevneleder
+#| tbl-cap: "Stævneleder."
 data.frame(
   "1" = paste0("<img src=filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "/staevneleder.png height=60 style=border-radius:10px>"),
   "2" = paste0(
@@ -208,7 +190,11 @@ data.frame(
   kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   column_spec(1, width_min = "5.5em") %>%
   column_spec(1:2, extra_css = "border:hidden")
+```
 
+```{r}
+#| label: tbl-lokation
+#| tbl-cap: "Lokation."
 data.frame(
   "1" = paste0("<img src=filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "/lokation.png height=60 style=border-radius:10px>"),
   "2" = DataEventAarAkt_T$EventAarStedAdrPostnrURL_DW,
@@ -233,18 +219,18 @@ data.frame(
 ::: {.g-col-12 .g-col-md-7}
 Turneringen afvikles som én åben singlerække på fair vis efter snake-system uden klubhensyn. Der spilles 6-mandspuljer, A-/B-slutspil og afslutningsvist "Final 4" i A-slutspil som beskrevet herunder:
 
--   **6-mandspuljer**: Indledende puljespil foregår i primært 6-mandspuljer, som sikrer mange kampe til alle deltagere. Nr. 1-3 går videre til A-slutspil, og de resterende går i B-slutspil`r "^[<b>Puljeregnskab</b>: Puljeregnskabet gøres op efter efter de almindeligt gældende regler jf. BTDK's Stævne/Ratingreglement under <q>§ 08: Puljeregnskab</q> (side 4) <b>[HER](https://bordtennisdanmark.dk/wp-content/uploads/2021/08/staevne-rating_reglement_2019-2020_0.pdf){target=_blank}</b>:<br>Stk. 1. Vundet eller afbrudt kamp giver 2 matchpoint og en tabt kamp giver 1 matchpoint.<br>Stk. 2. Hvis to eller flere spillere ender på samme antal matchpoint, afgøres den indbyrdes placering ved at sammenregne indbyrdes matchpoint mellem disse spillere.<br>Stk. 3. Hvis det indbyrdes matchpointtal mellem berørte spillere stadig er lige, beregnes den indbyrdes sætkvotient (vundne sæt divideret med tabte sæt).<br>Stk. 4. Hvis den indbyrdes sætkvotient mellem de berørte spillere er lige, beregnes den indbyrdes boldkvotient (vundne bolde divideret med tabte bolde).<br>Stk. 5. Så snart en placering eller flere kan bestemmes ud fra punkt 2-4, fjernes den eller de spillere. De øvrige spilleres placering beregnes på ny fra punkt 2.<br>Stk. 6. Hvis den ovenstående beregning ikke kan afgøre to eller flere spilleres placering, trækkes der lod. Denne lodtrækning foretages automatisk af stævneafviklingsprogrammet TTC.]"`.
+-   **6-mandspuljer**: Indledende puljespil foregår i primært 6-mandspuljer, som sikrer mange kampe til alle deltagere. Nr. 1-3 går videre til A-slutspil, og de resterende går i B-slutspil[^2].
 
 -   **A-slutspil**: A-slutspil afvikles som cup frem til og med kvartfinalerne.
 
-    -   **"Final 4"**: Afslutningsvist afvikles "Final 4" for de sidste 4 spillere i A-slutspil, hvilket består af en finalepulje, hvor alle spiller mod alle. Der spilles her bedst af 5 sæt, 2 "dobbeltpoints" og én timeout pr. spiller i hver kamp`r "^[<b>Afviklingsform til <q>Final 4</q></b>: <q>Final 4</q> kommer til at bestå af følgende 4 runder:<br>Runde 1: Seedet 1 mod 4 og seedet 2 mod 3 (afvikles på to borde).<br>Runde 2: Seedet 1 mod 3 og seedet 2 mod 4 (afvikles på to borde).<br>Runde 3: Seedet 3 mod 4 (afvikles på ét bord).<br>Runde 4: Seedet 1 mod 2 (afvikles på ét bord).]"`.
+    -   **"Final 4"**: Afslutningsvist afvikles "Final 4" for de sidste 4 spillere i A-slutspil, hvilket består af en finalepulje, hvor alle spiller mod alle. Der spilles her bedst af 5 sæt, 2 "dobbeltpoints" og én timeout pr. spiller i hver kamp[^3].
 
 -   **B-slutspil**: B-slutspil afvikles udelukkende som cup.
 
 Puljerne dannes på fair vis efter snake-system uden klubhensyn efter følgende prioritering:
 
-1.  Nr. 1-4 seedes efter placeringerne i "Final 4" i A-slutspil ved sidst afholdte DM`.`
-2.  `r paste0("[Ratingopdateringen i bordtennis](https://bordtennisportalen.dk/DBTU/Ranglister){target=_blank} pr. ", DataEventAarAkt_T$EventAarRatingDato_DW_DMAA_DW, ".")`
+1.  Nr. 1-4 seedes efter placeringerne i "Final 4" i A-slutspil ved sidst afholdte DM. Se @tbl-result-sidst.
+2.  [Ratingopdateringen i bordtennis](https://bordtennisportalen.dk/DBTU/Ranglister){target="_blank"} pr `r DataEventAarAkt_T$EventAarRatingDato_DW_DMAA_DW`.
 3.  Skøn og lodtrækning.
 
 I det videre spil dannes seedningerne på baggrund af placeringerne fra puljespillet.
@@ -297,13 +283,10 @@ if(nrow(DataResultSidst_T) == 0) {
 -   **Bold**: Der spilles med hvide bordtennisbolde i form af Inzone Dura \*\* bolde i puljerne og Double Happiness \*\*\* bolde i slutspillet.
 :::
 
-::: {.g-col-12 .g-col-md-4}
-```{r}
-#| label: fig-bat-bold
-#| fig-cap: "Bat og bold"
-#| output: asis
-cat(paste0("![](filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "/bat-bold.png){width=15em}"))
-```
+::: {#fig-bat-bold .g-col-12 .g-col-md-4}
+`r paste0("![](filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "/bat-bold.png){width=15em}")`
+
+Bat og bold.
 :::
 :::
 
@@ -317,14 +300,10 @@ cat(paste0("![](filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "/ba
 -   Pokaler/diplomer uddeles til alle gave-/præmietagere.
 :::
 
-::: {.g-col-12 .g-col-md-4}
-```{r}
-#| label: fig-ping-pong_world-cup
-#| fig-cap: "Ping Pong World Cup"
-#| output: asis
-cat(paste0(
-"![](filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "//ping-pong-world-cup-logo.png){width=20em}"))
-```
+::: {#fig-ping-pong_world-cup .g-col-12 .g-col-md-4}
+`r paste0("![](filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "//ping-pong-world-cup-logo.png){width=20em}")`
+
+Ping Pong World Cup.
 :::
 
 ::: {.g-col-12 .g-col-md-12}
@@ -373,23 +352,16 @@ Fra kl. 19 vil der være stor fest! Festen starter samme sted som turneringen af
 Aldersgrænsen for festen er 16 år (bytur 18 år). Hvis man er 16 eller 17 år, udleveres kun alkohol med en skriftlig tilladelse fra forældre/værge, som enten kan sendes til kontaktpersonen eller medbringes på selve dagen.
 :::
 
-```{r}
-#| label: fig-fest-om-aftenen
-#| fig-cap: "Fest om aftenen."
-#| output: asis
-cat(paste0(
-"![](filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "//fest-om-aftenen.png){width=20em}"))
-```
+::: {#fig-fest-om-aftenen}
+`r paste0("![](filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "//fest-om-aftenen.png){width=20em}")`
+
+Fest om aftenen.
+:::
 
 ::: {.callout-note style="font-style:italic"}
 ## Overnatning
 
-```{r}
-#| label: overnatning
-#| output: asis
-cat(paste0(
-IkonOvernatning_V, " Se forslag til evt. overnatning under <q>Intro, tidsplan & praktisk</q> [<b>HER</b>](indbydelse-tilmelding-", DataEventAarAkt_T$EventAarStartDato_DW_Aar_DW, ".qmd#intro-tidsplan-praktisk)."))
-```
+`r paste0(IkonOvernatning_V, " Se forslag til evt. overnatning under <q>Intro, tidsplan & praktisk</q> [<b>HER</b>](indbydelse-tilmelding-", DataEventAarAkt_T$EventAarStartDato_DW_Aar_DW, ".qmd#intro-tidsplan-praktisk).")`
 :::
 :::
 
@@ -400,6 +372,7 @@ IkonOvernatning_V, " Se forslag til evt. overnatning under <q>Intro, tidsplan & 
 
 ::: {style="text-align:center"}
 ```{r}
+#| label: tilmelding-overskrift
 #| output: asis
 cat(paste0(
 "<p>",
@@ -417,22 +390,10 @@ IkonBillet_V, " <i>Der er let tilmelding og betaling med betalingskort her</i> "
 ```
 :::
 
-<div>
-
-```{r}
-#| output: asis
-cat(paste0(
-"<div class=ticketbutler-iframe data-type=EVENT data-domain=billetfix.dk data-slug=dm-i-ping-pong-", DataEventAarAkt_T$EventAarStartDato_DW_Aar_DW, "></div><script type=text/javascript src=https://unpkg.com/@ticketbutler/event-embedder@latest/dist/index.js></script>"))
-```
-
-</div>
+`r paste0("<div class=ticketbutler-iframe data-type=EVENT data-domain=billetfix.dk data-slug=dm-i-ping-pong-", DataEventAarAkt_T$EventAarStartDato_DW_Aar_DW, "></div><script type=text/javascript src=https://unpkg.com/@ticketbutler/event-embedder@latest/dist/index.js></script>")`
 
 ::: {style="font-size:80%;font-style:italic;text-align:center;color:#63696D"}
-```{r}
-#| output: asis
-cat(paste0(
-"(Hvis indlejret tilmelding ikke virker, klik [<b>HER</b>](https://billetfix.dk/da/e/dm-i-ping-pong-", DataEventAarAkt_T$EventAarStartDato_DW_Aar_DW, "){target=_blank})"))
-```
+`r paste0("(Hvis indlejret tilmelding ikke virker, klik [<b>HER</b>](https://billetfix.dk/da/e/dm-i-ping-pong-", DataEventAarAkt_T$EventAarStartDato_DW_Aar_DW, "){target=_blank})")`
 :::
 
 ------------------------------------------------------------------------
@@ -446,9 +407,22 @@ cat(paste0(
 ::: {.callout-note style="font-style:italic"}
 ## Info
 
-```{r}
-#| output: asis
-cat(paste0("Da en del af Ping Pong konceptet er, at ALLE kan stille op (uanset alder, køn, niveau eller licens), foregår tilmelding og betaling her på siden og derfor udenom BordtennisPortalen. Ved tilmelding modtages bekræftelsesmail (tilmelding er ikke bindende, hvorfor evt. refusion er muligt frem til og med tilmeldingsfristen ", DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW, "). Først til mølle-princip."))
-```
+Da en del af Ping Pong konceptet er, at ALLE kan stille op (uanset alder, køn, niveau eller licens), foregår tilmelding og betaling her på siden og derfor udenom BordtennisPortalen. Ved tilmelding modtages bekræftelsesmail (tilmelding er ikke bindende, hvorfor evt. refusion er muligt frem til og med tilmeldingsfristen `r DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW` "). Først til mølle-princip.
 :::
 :::
+
+[^1]: **ALLE kan deltage**: Da turneringen er et dansk mesterskab, skal man enten være (1) dansk statsborger eller (2) have boet i Danmark i minimum de seneste fem år (skal kunne dokumenteres af spilleren). Er dette ikke opfyldt, vil det være muligt at deltage udelukkende i puljespillet, hvor ens resultater ikke tæller med i puljeregnskabet (tilmelding stadig påkrævet).
+
+[^2]: **Puljeregnskab**: Puljeregnskabet gøres op efter efter de almindeligt gældende regler jf. BTDK's Stævne/Ratingreglement under "§ 08: Puljeregnskab" (side 4) [**HER**](https://bordtennisdanmark.dk/wp-content/uploads/2021/08/staevne-rating_reglement_2019-2020_0.pdf){target="_blank"}:\
+    Stk. 1. Vundet eller afbrudt kamp giver 2 matchpoint og en tabt kamp giver 1 matchpoint.\
+    Stk. 2. Hvis to eller flere spillere ender på samme antal matchpoint, afgøres den indbyrdes placering ved at sammenregne indbyrdes matchpoint mellem disse spillere.\
+    Stk. 3. Hvis det indbyrdes matchpointtal mellem berørte spillere stadig er lige, beregnes den indbyrdes sætkvotient (vundne sæt divideret med tabte sæt).\
+    Stk. 4. Hvis den indbyrdes sætkvotient mellem de berørte spillere er lige, beregnes den indbyrdes boldkvotient (vundne bolde divideret med tabte bolde).\
+    Stk. 5. Så snart en placering eller flere kan bestemmes ud fra punkt 2-4, fjernes den eller de spillere. De øvrige spilleres placering beregnes på ny fra punkt 2.\
+    Stk. 6. Hvis den ovenstående beregning ikke kan afgøre to eller flere spilleres placering, trækkes der lod. Denne lodtrækning foretages automatisk af stævneafviklingsprogrammet TTC.
+
+[^3]: **Afviklingsform til "Final 4"**: "Final 4" kommer til at bestå af følgende 4 runder:\
+    Runde 1: Seedet 1 mod 4 og seedet 2 mod 3 (afvikles på to borde).\
+    Runde 2: Seedet 1 mod 3 og seedet 2 mod 4 (afvikles på to borde).\
+    Runde 3: Seedet 3 mod 4 (afvikles på ét bord).\
+    Runde 4: Seedet 1 mod 2 (afvikles på ét bord).

@@ -11,7 +11,7 @@ editor_options:
 ---
 
 ::: {#fig-cover}
-![](filer/generelt/wcpp-finale-2020.png){width=40em}
+![](filer/generelt/wcpp-finale-2020.png){width="40em"}
 
 Billede fra WCPP-finalen 2020.
 :::
@@ -52,7 +52,7 @@ Billede fra WCPP-finalen 2020.
 ::: {.callout-note style="font-style:italic"}
 ## Bordtennisregler
 
-Reglerne i bordtennis kan ses på Bordtennis Danmarks hjemmeside (BTDK) [**HER**](https://bordtennisdanmark.dk/regler/ittfs-bordtennislove){target=_blank}.
+Reglerne i bordtennis kan ses på Bordtennis Danmarks hjemmeside (BTDK) [**HER**](https://bordtennisdanmark.dk/regler/ittfs-bordtennislove){target="_blank"}.
 :::
 
 ::: {.callout-caution style="font-style:italic"}
