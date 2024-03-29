@@ -267,7 +267,7 @@ if(nrow(DataResultSidst_T) == 0) {
 ```
 :::
 
-::: {.callout-tip .g-col-12 .g-col-md-12 style="font-style:italic"}
+::: {.callout-tip style="font-style:italic"}
 ## Ping Pong regler
 
 `r DataEventAarAkt_T$InfoTipRegler_DW`

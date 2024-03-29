@@ -102,12 +102,12 @@ if(nrow(DataResultSidst_T) == 0) {
 	remove_column(c(1, 5:11))
 }
 ```
+:::
 
 ::: {.callout-tip style="font-style:italic"}
 ## Ping Pong regler
 
 `r DataEventAarAkt_T$InfoTipRegler_DW`
-:::
 :::
 :::
 
