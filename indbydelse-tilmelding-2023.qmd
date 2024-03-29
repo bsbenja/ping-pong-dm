@@ -31,6 +31,7 @@ editor_options:
 
 ```{r}
 #| label: info-nedtaelling-plakat
+#| output: asis
 cat(knitr::raw_html(DataEventAarAkt_T$InfoNedtælling_DW))
 cat(DataEventAarAkt_T$InfoPlakatCTA_DW)
 ```
