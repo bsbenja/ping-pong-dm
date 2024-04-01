@@ -261,6 +261,7 @@ if(nrow(DataResultSidst_T) == 0) {
         " i ", DataEventAarSidst_T$EventAarSted_RD, "</i>")) %>%
   kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   row_spec(0, background = DataEventAarSidst_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
+  column_spec(2, extra_css = "white-space:nowrap;") %>%
 	remove_column(c(1, 5:11))
 }
 ```

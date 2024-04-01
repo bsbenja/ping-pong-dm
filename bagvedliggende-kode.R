@@ -1941,9 +1941,9 @@ DataDeltOrdreKat_T <- Data_T %>%
 	filter(!is.na(DeltID_RD)) %>%
 	distinct(DeltID_RD, .keep_all = T) %>%
 	arrange(EventAar_RD, OrdreStatusSimpelKat_RD, OrdreDatoTid_RD, DeltNavn_RD) %>%
-	mutate(OrdreKat_DW = paste0("<span style=white-space:nowrap>",
-	  OrdreFoersteDato_DW_DMAA_DW, "<br>", format(OrdreFoersteDatoTid_DW, "kl. %H:%M"), " ", OrdreKatIkon_RD,
-    "</span>")) %>%
+	mutate(OrdreKat_DW = paste0(
+	  OrdreFoersteDato_DW_DMAA_DW, "<br>",
+    format(OrdreFoersteDatoTid_DW, "kl. %H:%M"), " ", OrdreKatIkon_RD)) %>%
   group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
   mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
@@ -1965,7 +1965,6 @@ DataResult_T <- Data_T %>%
   filter((!is.na(DeltSlutspil_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) | grepl("Aflyst", OrdreStatusSimpelKat_RD)) %>%
   filter(EventAarStartDatoTid_DW <= Sys.Date()) %>%
   arrange(desc(EventAarNr_RD), BilletDisciplin_RD, BilletRaekke_RD, DeltSlutspil_RD, DeltPlac_RD) %>%
-  mutate(DeltPlac_RD = paste0("<span style=white-space:nowrap>", DeltPlac_RD, "</span>")) %>%
   select(
     "År" = EventAarStartDato_DW_Aar_DW,
     "#" = DeltPlac_RD,
