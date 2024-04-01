@@ -23,7 +23,7 @@ quarto publish quarto-pub --no-prompt --no-browser
 
 ### Navngivning af variable
 
-Navngivning af variable er baseret på Pascal Case efterfulgt af underscore og variabeltype.
+Navngivning af variable er baseret på Pascal Case efterfulgt af underscore og variabeltype.\
 Eksempler på navngivning ses i nedenstående tabel:
 
 | Navngivning   | Beskrivelse                   |
