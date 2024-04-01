@@ -342,14 +342,14 @@ DataKlubMangel_T <- Data_T %>%
 	  KlubRegion_RD,
 	  Klub_RD) %>%
 	group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
-	mutate(Nr. = row_number()) %>%
+	mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
 	select(
-		Nr.,
-		" "      = KlubLogo_DW,
-		"Klub"   = Klub_RD,
+		"#" = RaekkeNr_DW,
+		" " = KlubLogo_DW,
+		"Klub" = Klub_RD,
 		"Region" = KlubRegion_RD,
-		"Sidst"  = EventAarStartDato_DW_Aar_DW,
+		"Sidst" = EventAarStartDato_DW_Aar_DW,
 		OrdreStatusSimpelKat_RD,
 		EventAar_RD)
 
@@ -365,8 +365,7 @@ if(nrow(DataKlubMangel_T) == 0) {
 		row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 		row_spec(which(grepl("Afbud", DataKlubMangel_T$OrdreStatusSimpelKat_RD)),
 						 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-		column_spec(1, width_min = "2em") %>%
-		column_spec(1:5, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V)) %>%
+		column_spec(1:5, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
 		remove_column(6:7)
 }
 
@@ -384,11 +383,11 @@ DataDeltMangel_T <- Data_T %>%
 	  Klub_RD, desc(EventAarStartDato_DW_Aar_DW),
 		desc(DeltBilletSalgNr_DW), BilletKat_DW, DeltNavn_RD) %>%
 	group_by(OrdreStatusSimpelKat_RD) %>%
-	mutate(Nr. = row_number()) %>%
+	mutate(RaekkeNr_DW = row_number()) %>%
 	select(
-		Nr.,
-		" "     = KlubLogo_DW,
-		"Navn"  = DeltNavnBilletKat_DW,
+		"#" = RaekkeNr_DW,
+		" " = KlubLogo_DW,
+		"Navn" = DeltNavnBilletKat_DW,
 		"Sidst" = EventAarStartDato_DW_Aar_DW,
 		OrdreStatusSimpelKat_RD,
 		EventAar_RD) %>%
@@ -406,8 +405,7 @@ if(nrow(DataDeltMangel_T) == 0) {
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltMangel_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-	column_spec(1, width_min = "2em") %>%
-	column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V)) %>%
+	column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
 	remove_column(5:6)
 }
 ```

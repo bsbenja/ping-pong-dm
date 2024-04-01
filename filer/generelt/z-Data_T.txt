@@ -94,7 +94,7 @@ BilletSpilFormat_RD                     : Ord.factor w/ 1 level "Single": 1
 BilletSpilFormatEmoji_RD                : Ord.factor w/ 1 level "👤": 1
 BilletSpilFormatIkon_RD                 : Ord.factor w/ 1 level "<iconify-icon icon=mdi:account></iconify-icon>": 1
 BilletKat_DW                            : Ord.factor w/ 6 levels "Sandpapir Åben"<..: 1
-BilletBeskr_RD                          : chr "Spilles lør 22/6 - For ALLE"
+BilletBeskr_RD                          : chr "Spilles lør 22/6 - Åben er for ALLE"
 BilletTilvalg_RD                        : chr NA
 BilletPris_RD                           : num 150
 BilletPrisArr_RD                        : num 150

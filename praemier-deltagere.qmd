@@ -119,7 +119,7 @@ if(nrow(DataPraemieYngstAeldstAkt_T) == 0) {
     kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
     row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
     column_spec(1, bold = T) %>%
-    column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V)) %>%
+    column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
     remove_column(5)
 }
 ```
@@ -157,7 +157,7 @@ if(InputInfo1234_V %in% c(3)) {
         "</i>")) %>%
   kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
-	column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V)) %>%
+	column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
   remove_column(4:8)
   }
 }
@@ -188,7 +188,7 @@ if(InputInfo1234_V %in% c(1, 2, 4)) {
   row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
   row_spec(
     which(DataDeltPuljerAkt_T$DeltSnakeSeedLagNr_DW == "1"), bold = T,
-    extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V)) %>%
+    extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
   remove_column(5:10)
   }
 }
@@ -211,7 +211,7 @@ if(InputInfo1234_V %in% c(1, 2, 3, 4)) {
   row_spec(which(grepl("Afbud", DataDeltAndetAkt_T$OrdreStatusSimpelKat_RD)),
            strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
   row_spec(which(DataDeltAndetAkt_T$Nr. == "1"),
-           extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V)) %>%
+           extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
   remove_column(4:5)
   }
 }
@@ -254,7 +254,8 @@ DataDeltKlubAkt_T %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltKlubAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-	column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V)) %>%
+  column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
+  column_spec(4, extra_css = "white-space:nowrap;") %>%
 	remove_column(5:6) %>%
 	scroll_box(height = "400px")
 ```
@@ -318,7 +319,8 @@ DataDeltByAkt_T %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltByAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-	column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V)) %>%
+  column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
+  column_spec(4, extra_css = "white-space:nowrap;") %>%
 	remove_column(5:6) %>%
 	scroll_box(height = "400px")
 ```
@@ -371,7 +373,8 @@ DataDeltAlderKatAkt_T %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltAlderKatAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-	column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V)) %>%
+  column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
+  column_spec(4, extra_css = "white-space:nowrap;") %>%
 	remove_column(5:6) %>%
 	scroll_box(height = "400px")
 ```
@@ -424,7 +427,8 @@ DataDeltKoenAkt_T %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltKoenAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-	column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V)) %>%
+  column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
+  column_spec(4, extra_css = "white-space:nowrap;") %>%
 	remove_column(5:6) %>%
 	scroll_box(height = "400px")
 ```
@@ -472,7 +476,8 @@ DataDeltGenTilAkt_T %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltGenTilAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-	column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V)) %>%
+  column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
+  column_spec(4, extra_css = "white-space:nowrap;") %>%
 	remove_column(5:6) %>%
 	scroll_box(height = "400px")
 ```
@@ -520,7 +525,8 @@ DataDeltOrdreKatAkt_T %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltOrdreKatAkt_T$OrdreStatusSimpelKat_RD)),
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-	column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V)) %>%
+  column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
+  column_spec(4, extra_css = "white-space:nowrap;") %>%
 	remove_column(5:6) %>%
 	scroll_box(height = "400px")
 ```

@@ -47,7 +47,7 @@ DataBillet_T$BilletSpilFormat_RD                 : chr "Single"
 DataBillet_T$BilletSpilFormatEmoji_RD            : chr "👤"
 DataBillet_T$BilletSpilFormatIkon_RD             : chr "<iconify-icon icon=mdi:account></iconify-icon>"
 DataBillet_T$BilletKat_DW                        : chr "Sandpapir Åben"
-DataBillet_T$BilletBeskr_RD                      : chr "Spilles lør 22/6 - For ALLE"
+DataBillet_T$BilletBeskr_RD                      : chr "Spilles lør 22/6 - Åben er for ALLE"
 DataBillet_T$BilletTilvalg_RD                    : chr NA
 DataBillet_T$BilletPris_RD                       : num 150
 DataBillet_T$BilletPrisArr_RD                    : num 150

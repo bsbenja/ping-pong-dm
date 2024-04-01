@@ -61,7 +61,7 @@ DataBilletKatAkt_T %>%
         "<i style=font-size:80%>", length(DataBilletKatAkt_T$Billettype), " valgmuligheder ved tilmelding.</i>")) %>%
 	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
-	column_spec(1:3, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V)) %>%
+	column_spec(1:3, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
   remove_column(4)
 ```
 
@@ -123,13 +123,12 @@ data.frame(
         IkonTimeglas_V, " Tidsplan<br>",
         "<i style=font-size:75%>Bemærk: Tidsplan kan ændres en smule alt efter deltagerantal.</i>")) %>%
 	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
-	column_spec(1, width_min = "1em") %>%
-	column_spec(2, width_min = "7em") %>%
+	column_spec(2, extra_css = "white-space:nowrap;") %>%
 	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(6, bold = T) %>%
 	row_spec(c(1, 9), bold = T, background = DataEventAarAkt_T$EventAarFarve2_RD, color = "#000000",
-  extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";border-bottom:0.7px solid ", TabelFarveKant_V)) %>%
-	column_spec(2:3, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V))
+  extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";border-bottom:0.7px solid ", TabelFarveKant_V, ";")) %>%
+	column_spec(2:3, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";"))
 ```
 :::
 
@@ -168,7 +167,7 @@ data.frame(
         "<i style=font-size:80%>Evt. spørgsmål til kontaktperson</i>")) %>%
   kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   column_spec(1, width_min = "5.5em") %>%
-  column_spec(1:2, extra_css = "border:hidden")
+  column_spec(1:2, extra_css = "border:hidden;")
 ```
 
 ```{r}
@@ -189,7 +188,7 @@ data.frame(
         "<i style=font-size:80%>Ansvarlig på stævnedagen</i>")) %>%
   kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   column_spec(1, width_min = "5.5em") %>%
-  column_spec(1:2, extra_css = "border:hidden")
+  column_spec(1:2, extra_css = "border:hidden;")
 ```
 
 ```{r}
@@ -205,7 +204,7 @@ data.frame(
         "<i style=font-size:80%>Geografisk placering</i>")) %>%
   kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   column_spec(1, width_min = "5.5em") %>%
-  column_spec(1:2, extra_css = "border:hidden")
+  column_spec(1:2, extra_css = "border:hidden;")
 ```
 :::
 :::

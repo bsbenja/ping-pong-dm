@@ -1832,9 +1832,7 @@ DataDeltKlub_T <- Data_T %>%
 	arrange(
 	  EventAar_RD, OrdreStatusSimpelKat_RD, KlubKat_DW, desc(n),
 	  Klub_RD, desc(DeltBilletSalgNr_DW), BilletKat_RD, DeltNavn_RD) %>%
-  mutate(KlubKat_DW = paste0("<span style=white-space:nowrap>",
-    KlubKat_DW, " ", KlubKatIkon_RD,
-    "</span>")) %>%
+  mutate(KlubKat_DW = paste0(KlubKat_DW, " ", KlubKatIkon_RD)) %>%
   group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
   mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
@@ -1856,11 +1854,9 @@ DataDeltBy_T <- Data_T %>%
   arrange(
     OrdreStatusSimpelKat_RD, KlubRegion_RD, desc(KlubPostnr_RD),
     desc(DeltBilletSalgNr_DW), BilletKat_RD, DeltNavn_RD) %>%
-  mutate(KlubPostnrBy_DW = paste0("<span style=white-space:nowrap>",
-    ifelse(grepl("Ingen klub|Udlandet", Klub_RD),
+  mutate(KlubPostnrBy_DW = paste0(ifelse(grepl("Ingen klub|Udlandet", Klub_RD),
       paste0(KlubKat_DW, " ", KlubKatIkon_RD),
-      paste0(KlubRegion_RD, "<br>", KlubPostnrBy_DW, " ", KlubKatIkon_RD)),
-    "</span>")) %>%
+      paste0(KlubRegion_RD, "<br>", KlubPostnrBy_DW, " ", KlubKatIkon_RD)))) %>%
   group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
   mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
@@ -1880,9 +1876,8 @@ DataDeltAlderKat_T <- Data_T %>%
 	filter(!is.na(DeltID_RD)) %>%
 	distinct(DeltID_RD, .keep_all = T) %>%
 	arrange(OrdreStatusSimpelKat_RD, desc(DeltFoedtDato_DW), DeltNavn_RD) %>%
-  mutate(DeltAlderKat_RD = paste0("<span style=white-space:nowrap>",
-    DeltFoedtDato_DW_DMAA_DW, "<br>", DeltAlderKat_RD, " ", IkonFødt_V,
-    "</span>")) %>%
+  mutate(DeltAlderKat_RD = paste0(
+    DeltFoedtDato_DW_DMAA_DW, "<br>", DeltAlderKat_RD, " ", IkonFødt_V)) %>%
   group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
   mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
@@ -1904,9 +1899,7 @@ DataDeltKoen_T <- Data_T %>%
 	arrange(
 	  EventAar_RD, OrdreStatusSimpelKat_RD, DeltKoen_RD,
 		desc(DeltBilletSalgNr_DW), BilletKat_RD, DeltNavnBilletKat_DW) %>%
-  mutate(DeltKoen_RD_ikon = paste0("<span style=white-space:nowrap>",
-    DeltKoen_RD, " ", DeltKoenIkon_RD,
-    "</span>")) %>%
+  mutate(DeltKoen_RD_ikon = paste0(DeltKoen_RD, " ", DeltKoenIkon_RD)) %>%
   group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
   mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
@@ -1928,9 +1921,7 @@ DataDeltGenTil_T <- Data_T %>%
 	arrange(
 	  EventAar_RD, OrdreStatusSimpelKat_RD, DeltGen_DW,
 		desc(DeltBilletSalgNr_DW), BilletKat_RD, DeltNavnBilletKat_DW) %>%
-	mutate(DeltGen_DW = paste0("<span style=white-space:nowrap>",
-    DeltGenKat_DW, "<br>", DeltGen_DW, " ", DeltGenKatIkon_RD,
-    "</span>")) %>%
+	mutate(DeltGen_DW = paste0(DeltGenKat_DW, "<br>", DeltGen_DW, " ", DeltGenKatIkon_RD)) %>%
   group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
   mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
