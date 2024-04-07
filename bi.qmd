@@ -1,6 +1,6 @@
 ```{r}
 #| label: kildefil
-source(file = "ping-pong-dm-input.R")
+source(file = "input.R")
 ```
 
 ```{ojs}
