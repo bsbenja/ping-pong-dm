@@ -23,10 +23,10 @@ cat(knitr::raw_html(DataEventAarAkt_T$InfoNedtælling_DW))
 cat(DataEventAarAkt_T$InfoPlakatCTA_DW)
 ```
 
-::: callout-tip
+::::::: callout-tip
 ## Sider
 
-::: grid
+:::::: grid
 ::: {.g-col-12 .g-col-md-4}
 #### `r DataEventAarAkt_T$EventAar_RD`
 
@@ -51,16 +51,12 @@ cat(DataEventAarAkt_T$InfoPlakatCTA_DW)
 
 *Er du en Ping Pong entusiast eller bare nysgerrig på konceptet? Så tjek én eller flere af nedenstående links ud.*
 
--   `r paste0(IkonLinkNy_V)` [**Køb bat hos BTEX**](https://www.btex.dk/sanwei-wcpp-sandpapirsbat.html){target="_blank"}\
-    *De officielle Sanwei WCPP Sandpapirsbat kan købes hos Bordtennisexperterne (BTEX) til eget brug for `r DataWebBTEX_T$pris`.*\
-    ![](filer/generelt/sandpapirsbat-sanwei.png){width="4em"}
-
 -   `r paste(IkonLinkNy_V)` [**ICTTF**](https://icttf.co){target="_blank"}\
     *International Classic Table Tennis Federation (ICTTF) er det styrende organ for alle nationale Ping Pong medlemmer, hvis mission er at genintroducere det underholdende og gavnlige spil Ping Pong, også kendt som klassisk bordtennis, til det globale fællesskab.*\
     ![](filer/generelt/icttf.png){width="4em"}
 :::
-:::
-:::
+::::::
+:::::::
 
 ::: {.callout-note style="font-style:italic" icon="false"}
 ## `r paste(IkonFacebook_V, "Facebook")`
@@ -68,9 +64,14 @@ cat(DataEventAarAkt_T$InfoPlakatCTA_DW)
 `r DataEventAarAkt_T$InfoFacebook_DW`
 :::
 
-```{=html}
-<iframe src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/{{< var var.facebook_side_id >}}&tabs=timeline,events,messages&width=320&" width="100%" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay;clipboard-write;encrypted-media;picture-in-picture;web-share"></iframe>
+```{r}
+#| label: facebook
+#| output: asis
+cat('
+<iframe src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/100183334928231&amp;tabs=timeline,events,messages&amp;width=320&amp;" width="100%" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay;clipboard-write;encrypted-media;picture-in-picture;web-share"></iframe>
+')
 ```
+
 ::: {.callout-tip style="font-style:italic"}
 ## Tip
 
@@ -78,14 +79,8 @@ cat(DataEventAarAkt_T$InfoPlakatCTA_DW)
 Genvejstast: {{< kbd Ctrl + d >}} PC `r IkonWindows_V` ∙ {{< kbd ⌘ + d >}} Mac `r IkonMac_V`
 :::
 
-```{=html}
-<div class="vis-kun-mobil">
-  <div class="callout callout-style-default callout-note callout-titled" style="font-style:italic">
-    <div class="callout-header d-flex align-content-center">
-      <div class="callout-icon-container"><iconify-icon icon=mdi:arrow-up-left></iconify-icon></div>
-      <div class="callout-title-container flex-fill">Menu tilgås i toppen til venstre fra mobil/tablet</div>
-    </div>
-    <div class="callout-body-container callout-body" style="padding-bottom:2.6px"></div>
-  </div>
-</div>
-```
+::: {.callout-note .vis-kun-mobil style="font-style:italic" icon="false"}
+## `r paste(IkonPilOpVenstre_V, "Tip på mobil/tablet")`
+
+Menu tilgås i toppen til venstre fra mobil/tablet.
+:::

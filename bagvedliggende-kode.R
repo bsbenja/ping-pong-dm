@@ -1744,7 +1744,7 @@ DataPraemieYngstAeldst_T <- Data_T %>%
   ungroup() %>%
   mutate(Født  = DeltFoedtDato_DW_DMAA_DW) %>%
 	arrange(EventAar_RD, desc(DeltFoedtDato_DW), DeltNavn_RD) %>%
-  select(
+  distinct(
     " "      = DeltYngstAeldst_DW,
     "&emsp;" = KlubLogo_DW,
     "Navn"   = DeltNavnBilletKat_DW,
@@ -2176,15 +2176,15 @@ writeLines(paste0("DataBillet_T$", gsub("^\\s*[^[:space:]]+\\s", "", tail(captur
 #' ## Webscraping af BTEX Ping Pong bat
 #+ eval=F, warning=F, message=F
 
-DataWebBTEX_T <- data.frame()
-link <- paste0("https://www.btex.dk/sanwei-wcpp-sandpapirsbat.html")
-
-DataWebBTEX_T <- rbind(DataWebBTEX_T, data.frame(
-  "produkt"      = read_html(link) %>% html_nodes(".name")                        %>% html_text(),
-  "pris"         = read_html(link) %>% html_nodes(".price")                       %>% html_text(),
-  "lagerstatus"  = read_html(link) %>% html_nodes(".title span")                  %>% html_text(),
-  "levering"     = read_html(link) %>% html_nodes("#product_addtocart_form .txt") %>% html_text(),
-  stringsAsFactors = FALSE)) %>% mutate(pris = trimws(pris))
+# DataWebBTEX_T <- data.frame()
+# link <- paste0("https://www.btex.dk/sanwei-wcpp-sandpapirsbat.html")
+#
+# DataWebBTEX_T <- rbind(DataWebBTEX_T, data.frame(
+#   "produkt"      = read_html(link) %>% html_nodes(".name")                        %>% html_text(),
+#   "pris"         = read_html(link) %>% html_nodes(".price")                       %>% html_text(),
+#   "lagerstatus"  = read_html(link) %>% html_nodes(".title span")                  %>% html_text(),
+#   "levering"     = read_html(link) %>% html_nodes("#product_addtocart_form .txt") %>% html_text(),
+#   stringsAsFactors = FALSE)) %>% mutate(pris = trimws(pris))
 
 #' ## Danmarkskort med lokation
 #+ eval=F, warning=F, message=F

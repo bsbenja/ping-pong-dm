@@ -44,7 +44,6 @@ website:
       - text: "---"
       - section: "<b>Eksterne links</b>"
         contents:
-        - text: "<a href=https://www.btex.dk/sanwei-wcpp-sandpapirsbat.html target=_blank><iconify-icon icon=mdi:open-in-new></iconify-icon> <u>Køb bat hos BTEX</u></a>"
         - text: "<a href=https://icttf.co target=_blank><iconify-icon icon=mdi:open-in-new></iconify-icon> <u>ICTTF</u></a>"
   page-footer:
     background: light

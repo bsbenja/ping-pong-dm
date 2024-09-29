@@ -77,7 +77,7 @@ I det videre spil dannes seedningerne på baggrund af placeringerne fra puljespi
 %%| label: fig-afviklingsform
 %%| fig-cap: "Afviklingsform."
 %%| fig-width: 4
-%%{init: {"flowchart": {"htmlLabels": true}} }%%
+
 flowchart TD
   A(6-mandspuljer) --> |Nr. 1-2| B(A-slutspil)
   A --> |Nr. 3-4| C(B-slutspil)

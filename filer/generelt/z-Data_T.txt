@@ -1,4 +1,4 @@
-OrdreDatoTid_RD                         : POSIXct[1:1], format: "2024-01-01 00:00:03"
+OrdreDatoTid_RD                         : POSIXct[1:1], format: "2024-01-01 00:04:03"
 OrdreDato_DW                            : Date[1:1], format: "2024-01-01"
 OrdreDato_DW_Aar_DW                     : int 2024
 OrdreDato_DW_AarDag_DW                  : int 1
@@ -14,7 +14,7 @@ OrdreDato_DW_UgeDag_DW                  : int 1
 OrdreDato_DW_UgeDagNavnLang_DW          : Ord.factor w/ 7 levels "mandag"<"tirsdag"<..: 1
 OrdreDato_DW_UgeDagNavnKort_DW          : Ord.factor w/ 7 levels "man"<"tir"<"ons"<..: 1
 OrdreDato_DW_DMAA_DW                    : chr "01.01.2024"
-OrdreFoersteDatoTid_DW                  : POSIXct[1:1], format: "2024-01-01 00:00:03"
+OrdreFoersteDatoTid_DW                  : POSIXct[1:1], format: "2024-01-01 00:04:03"
 OrdreFoersteDato_DW                     : Date[1:1], format: "2024-01-01"
 OrdreFoersteDato_DW_Aar_DW              : int 2024
 OrdreFoersteDato_DW_AarDag_DW           : int 1
@@ -30,7 +30,7 @@ OrdreFoersteDato_DW_UgeDag_DW           : int 1
 OrdreFoersteDato_DW_UgeDagNavnLang_DW   : Ord.factor w/ 7 levels "mandag"<"tirsdag"<..: 1
 OrdreFoersteDato_DW_UgeDagNavnKort_DW   : Ord.factor w/ 7 levels "man"<"tir"<"ons"<..: 1
 OrdreFoersteDato_DW_DMAA_DW             : chr "01.01.2024"
-OrdreFoersteTidJoin_DW                  : chr "000003"
+OrdreFoersteTidJoin_DW                  : chr "000403"
 OrdreFoersteTidKatNr_RD                 : int 2
 OrdreFoersteTidKatMin_RD                : chr "000000"
 OrdreFoersteTidKatMaks_RD               : chr "175959"
@@ -46,64 +46,64 @@ OrdreStatusSimpelKat_RD                 : Ord.factor w/ 3 levels "Tilmeldt"<"Afb
 OrdreStatusSimpelKatIkon_RD             : Ord.factor w/ 3 levels "<iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon>"<..: 1
 OrdreStatusSimpelDeltKat_DW             : Ord.factor w/ 2 levels "Tilmeldt"<"<q>Totalafbud</q>": 1
 OrdreUnik_DW                            : int 1
-BilletNr_RD                             : int 26
-Billet_RD                               : Ord.factor w/ 23 levels "Ping Pong DM 2014 - Ping Pong - Single - Sandpapir - Åben"<..: 23
-BilletStartDatoTid_RD                   : POSIXct[1:1], format: "2024-06-22 10:30:00"
-BilletStartDato_DW                      : Date[1:1], format: "2024-06-22"
+BilletNr_RD                             : int 22
+Billet_RD                               : Ord.factor w/ 22 levels "Ping Pong DM 2014 - Ping Pong - Single - Sandpapir - Åben"<..: 19
+BilletStartDatoTid_RD                   : POSIXct[1:1], format: "2024-06-21 16:00:00"
+BilletStartDato_DW                      : Date[1:1], format: "2024-06-21"
 BilletStartDato_DW_Aar_DW               : int 2024
-BilletStartDato_DW_AarDag_DW            : int 174
+BilletStartDato_DW_AarDag_DW            : int 173
 BilletStartDato_DW_KvartalNr_DW         : int 2
 BilletStartDato_DW_KvartalNavn_DW       : Ord.factor w/ 4 levels "1. kvartal"<"2. kvartal"<..: 2
 BilletStartDato_DW_MaanedNr_DW          : int 6
 BilletStartDato_DW_MaanedNavnLang_DW    : Ord.factor w/ 12 levels "januar"<"februar"<..: 6
 BilletStartDato_DW_MaanedNavnKort_DW    : Ord.factor w/ 12 levels "jan"<"feb"<"mar"<..: 6
-BilletStartDato_DW_MaanedDag_DW         : int 22
-BilletStartDato_DW_MaanedDagNavn_DW     : chr "22. juni"
+BilletStartDato_DW_MaanedDag_DW         : int 21
+BilletStartDato_DW_MaanedDagNavn_DW     : chr "21. juni"
 BilletStartDato_DW_Uge_DW               : int 25
-BilletStartDato_DW_UgeDag_DW            : int 6
-BilletStartDato_DW_UgeDagNavnLang_DW    : Ord.factor w/ 7 levels "mandag"<"tirsdag"<..: 6
-BilletStartDato_DW_UgeDagNavnKort_DW    : Ord.factor w/ 7 levels "man"<"tir"<"ons"<..: 6
-BilletStartDato_DW_DMAA_DW              : chr "22.06.2024"
-BilletSlutDatoTid_RD                    : POSIXct[1:1], format: "2024-06-22 18:15:00"
-BilletSlutDato_DW                       : Date[1:1], format: "2024-06-22"
+BilletStartDato_DW_UgeDag_DW            : int 5
+BilletStartDato_DW_UgeDagNavnLang_DW    : Ord.factor w/ 7 levels "mandag"<"tirsdag"<..: 5
+BilletStartDato_DW_UgeDagNavnKort_DW    : Ord.factor w/ 7 levels "man"<"tir"<"ons"<..: 5
+BilletStartDato_DW_DMAA_DW              : chr "21.06.2024"
+BilletSlutDatoTid_RD                    : POSIXct[1:1], format: "2024-06-21 21:00:00"
+BilletSlutDato_DW                       : Date[1:1], format: "2024-06-21"
 BilletSlutDato_DW_Aar_DW                : int 2024
-BilletSlutDato_DW_AarDag_DW             : int 174
+BilletSlutDato_DW_AarDag_DW             : int 173
 BilletSlutDato_DW_KvartalNr_DW          : int 2
 BilletSlutDato_DW_KvartalNavn_DW        : Ord.factor w/ 4 levels "1. kvartal"<"2. kvartal"<..: 2
 BilletSlutDato_DW_MaanedNr_DW           : int 6
 BilletSlutDato_DW_MaanedNavnLang_DW     : Ord.factor w/ 12 levels "januar"<"februar"<..: 6
 BilletSlutDato_DW_MaanedNavnKort_DW     : Ord.factor w/ 12 levels "jan"<"feb"<"mar"<..: 6
-BilletSlutDato_DW_MaanedDag_DW          : int 22
-BilletSlutDato_DW_MaanedDagNavn_DW      : chr "22. juni"
+BilletSlutDato_DW_MaanedDag_DW          : int 21
+BilletSlutDato_DW_MaanedDagNavn_DW      : chr "21. juni"
 BilletSlutDato_DW_Uge_DW                : int 25
-BilletSlutDato_DW_UgeDag_DW             : int 6
-BilletSlutDato_DW_UgeDagNavnLang_DW     : Ord.factor w/ 7 levels "mandag"<"tirsdag"<..: 6
-BilletSlutDato_DW_UgeDagNavnKort_DW     : Ord.factor w/ 7 levels "man"<"tir"<"ons"<..: 6
-BilletSlutDato_DW_DMAA_DW               : chr "22.06.2024"
+BilletSlutDato_DW_UgeDag_DW             : int 5
+BilletSlutDato_DW_UgeDagNavnLang_DW     : Ord.factor w/ 7 levels "mandag"<"tirsdag"<..: 5
+BilletSlutDato_DW_UgeDagNavnKort_DW     : Ord.factor w/ 7 levels "man"<"tir"<"ons"<..: 5
+BilletSlutDato_DW_DMAA_DW               : chr "21.06.2024"
 BilletKatNr_RD                          : int 1
 BilletKat_RD                            : Ord.factor w/ 3 levels "Ping Pong"<"Fest om aftenen"<..: 1
 BilletKatEmoji_RD                       : Ord.factor w/ 3 levels "🏓"<"🥳"<"🥪": 1
 BilletKatIkon_RD                        : Ord.factor w/ 3 levels "<iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon>"<..: 1
 BilletKatFarve_DW                       : Ord.factor w/ 3 levels "#398FCC"<"#F1C40F"<..: 1
-BilletDisciplinNr_RD                    : int 1
-BilletDisciplin_RD                      : Ord.factor w/ 2 levels "Sandpapir"<"Træbat": 1
-BilletRaekkeNr_RD                       : int 1
-BilletRaekke_RD                         : Ord.factor w/ 2 levels "Åben"<"Ungdom": 1
+BilletDisciplinNr_RD                    : int 2
+BilletDisciplin_RD                      : Ord.factor w/ 2 levels "Sandpapir"<"Træbat": 2
+BilletRaekkeNr_RD                       : int 2
+BilletRaekke_RD                         : Ord.factor w/ 2 levels "Åben"<"Ungdom": 2
 BilletSpilFormatNr_RD                   : int 1
 BilletSpilFormat_RD                     : Ord.factor w/ 1 level "Single": 1
 BilletSpilFormatEmoji_RD                : Ord.factor w/ 1 level "👤": 1
 BilletSpilFormatIkon_RD                 : Ord.factor w/ 1 level "<iconify-icon icon=mdi:account></iconify-icon>": 1
-BilletKat_DW                            : Ord.factor w/ 6 levels "Sandpapir Åben"<..: 1
-BilletBeskr_RD                          : chr "Spilles lør 22/6 - Åben er for ALLE"
+BilletKat_DW                            : Ord.factor w/ 6 levels "Sandpapir Åben"<..: 4
+BilletBeskr_RD                          : chr "Spilles fre 21/6 - Ungdom er for 23 år eller derunder"
 BilletTilvalg_RD                        : chr NA
 BilletPris_RD                           : num 150
 BilletPrisArr_RD                        : num 150
-BilletAntalMaks_RD                      : int 66
-BilletPuljeDelt_RD                      : int 6
+BilletAntalMaks_RD                      : int 32
+BilletPuljeDelt_RD                      : int 4
 BilletPulje_DW                          : int 1
-BilletPuljeStd_DW                       : int 6
+BilletPuljeStd_DW                       : int 4
 BilletDelt_DW                           : int 4
-BilletPuljeRest_DW                      : int 2
+BilletPuljeRest_DW                      : int 0
 BilletPrisRes_DW                        : int 0
 EventNr_RD                              : int 1
 Event_RD                                : Ord.factor w/ 1 level "Ping Pong DM": 1
@@ -187,7 +187,7 @@ EventAarStartDato_DW_UgeDag_DW          : int 5
 EventAarStartDato_DW_UgeDagNavnLang_DW  : Ord.factor w/ 7 levels "mandag"<"tirsdag"<..: 5
 EventAarStartDato_DW_UgeDagNavnKort_DW  : Ord.factor w/ 7 levels "man"<"tir"<"ons"<..: 5
 EventAarStartDato_DW_DMAA_DW            : chr "21.06.2024"
-EventAarSlutDatoTid_DW                  : POSIXct[1:1], format: "2024-06-22 23:59:59"
+EventAarSlutDatoTid_DW                  : POSIXct[1:1], format: "2024-06-22 18:15:00"
 EventAarSlutDato_DW                     : Date[1:1], format: "2024-06-22"
 EventAarSlutDato_DW_Aar_DW              : int 2024
 EventAarSlutDato_DW_AarDag_DW           : int 174
@@ -207,88 +207,88 @@ EventAarDato_DW                         : chr "21.06.2024 til 22.06.2024"
 EventAarStedURL_DW                      : chr "<a href=https://www.google.dk/maps/place/Sportscenter+Herning/@56.157455,8.9619456,17z/data=!3m1!4b1!4m6!3m5!1s"| __truncated__
 EventAarStedAdrPostnrURL_DW             : chr "<a href=https://www.google.dk/maps/place/Sportscenter+Herning/@56.157455,8.9619456,17z/data=!3m1!4b1!4m6!3m5!1s"| __truncated__
 EventAarFra2021_DW                      : logi TRUE
-KlubNr_RD                               : int 27
-Klub_RD                                 : Ord.factor w/ 30 levels "Amager BTK"<"B75"<..: 19
-KlubPostnr_RD                           : chr "8600"
-KlubBy_RD                               : chr "Silkeborg"
-KlubPostnrBy_DW                         : chr "8600 Silkeborg"
-KlubMail_RD                             : chr "npb@sbtk.dk"
-KlubEmoji_RD                            : chr "🛖"
-KlubKatIkon_RD                          : chr "<iconify-icon icon=mdi:home></iconify-icon>"
-KlubLandsdelNr_RD                       : int 1
-KlubLandsdelPostnrMin_RD                : chr "6000"
-KlubLandsdelPostnrMaks_RD               : int 9999
-KlubLandsdel_RD                         : Ord.factor w/ 4 levels "Jylland"<"Fyn"<..: 1
-KlubRegionNr_RD                         : int 2
-KlubRegion_RD                           : Ord.factor w/ 6 levels "Region Nordjylland"<..: 2
-KlubKat_DW                              : Ord.factor w/ 3 levels "Klub"<"Ingen klub"<..: 1
-KlubLogo_DW                             : chr "<img src=filer/klublogo/silkeborg-btk.png width=15>"
-KlubUnik_DW                             : int 1
-DeltID_RD                               : chr "050993‑MALA"
-DeltNavn_RD                             : chr "Mads Larsen"
-DeltFoedtDato_DW                        : Date[1:1], format: "1993-09-05"
-DeltFoedtDato_DW_Aar_DW                 : int 1993
-DeltFoedtDato_DW_AarDag_DW              : int 248
-DeltFoedtDato_DW_KvartalNr_DW           : int 3
-DeltFoedtDato_DW_KvartalNavn_DW         : Ord.factor w/ 4 levels "1. kvartal"<"2. kvartal"<..: 3
-DeltFoedtDato_DW_MaanedNr_DW            : int 9
-DeltFoedtDato_DW_MaanedNavnLang_DW      : Ord.factor w/ 12 levels "januar"<"februar"<..: 9
-DeltFoedtDato_DW_MaanedNavnKort_DW      : Ord.factor w/ 12 levels "jan"<"feb"<"mar"<..: 9
-DeltFoedtDato_DW_MaanedDag_DW           : int 5
-DeltFoedtDato_DW_MaanedDagNavn_DW       : chr "5. september"
-DeltFoedtDato_DW_Uge_DW                 : int 35
-DeltFoedtDato_DW_UgeDag_DW              : int 7
-DeltFoedtDato_DW_UgeDagNavnLang_DW      : Ord.factor w/ 7 levels "mandag"<"tirsdag"<..: 7
-DeltFoedtDato_DW_UgeDagNavnKort_DW      : Ord.factor w/ 7 levels "man"<"tir"<"ons"<..: 7
-DeltFoedtDato_DW_DMAA_DW                : chr "05.09.1993"
-DeltAlder_DW                            : int 30
-DeltAlderJoin_DW                        : chr "30"
-DeltAlderKatNr_RD                       : int 2
-DeltAlderKatMin_RD                      : chr "18"
-DeltAlderKatMaks_RD                     : chr "39"
-DeltAlderKat_RD                         : Ord.factor w/ 3 levels "Ungdom"<"Senior"<..: 2
+KlubNr_RD                               : int 38
+Klub_RD                                 : Ord.factor w/ 30 levels "Amager BTK"<"B75"<..: 29
+KlubPostnr_RD                           : chr "0001"
+KlubBy_RD                               : chr "(Ukendt by)"
+KlubPostnrBy_DW                         : chr "(Ingen klub)"
+KlubMail_RD                             : chr "(Ukendt mail)"
+KlubEmoji_RD                            : chr "⛺"
+KlubKatIkon_RD                          : chr "<iconify-icon icon=mdi:home-off></iconify-icon>"
+KlubLandsdelNr_RD                       : int 6
+KlubLandsdelPostnrMin_RD                : chr "0001"
+KlubLandsdelPostnrMaks_RD               : int 1
+KlubLandsdel_RD                         : Ord.factor w/ 4 levels "Jylland"<"Fyn"<..: 4
+KlubRegionNr_RD                         : int 6
+KlubRegion_RD                           : Ord.factor w/ 6 levels "Region Nordjylland"<..: 6
+KlubKat_DW                              : Ord.factor w/ 3 levels "Klub"<"Ingen klub"<..: 2
+KlubLogo_DW                             : chr "<img src=filer/klublogo/ingen-klub.png width=15>"
+KlubUnik_DW                             : int 0
+DeltID_RD                               : chr "010110‑0015"
+DeltNavn_RD                             : chr "Bertram Bach"
+DeltFoedtDato_DW                        : Date[1:1], format: "2010-01-01"
+DeltFoedtDato_DW_Aar_DW                 : int 2010
+DeltFoedtDato_DW_AarDag_DW              : int 1
+DeltFoedtDato_DW_KvartalNr_DW           : int 1
+DeltFoedtDato_DW_KvartalNavn_DW         : Ord.factor w/ 4 levels "1. kvartal"<"2. kvartal"<..: 1
+DeltFoedtDato_DW_MaanedNr_DW            : int 1
+DeltFoedtDato_DW_MaanedNavnLang_DW      : Ord.factor w/ 12 levels "januar"<"februar"<..: 1
+DeltFoedtDato_DW_MaanedNavnKort_DW      : Ord.factor w/ 12 levels "jan"<"feb"<"mar"<..: 1
+DeltFoedtDato_DW_MaanedDag_DW           : int 1
+DeltFoedtDato_DW_MaanedDagNavn_DW       : chr "1. januar"
+DeltFoedtDato_DW_Uge_DW                 : int 0
+DeltFoedtDato_DW_UgeDag_DW              : int 5
+DeltFoedtDato_DW_UgeDagNavnLang_DW      : Ord.factor w/ 7 levels "mandag"<"tirsdag"<..: 5
+DeltFoedtDato_DW_UgeDagNavnKort_DW      : Ord.factor w/ 7 levels "man"<"tir"<"ons"<..: 5
+DeltFoedtDato_DW_DMAA_DW                : chr "01.01.2010"
+DeltAlder_DW                            : int 14
+DeltAlderJoin_DW                        : chr "14"
+DeltAlderKatNr_RD                       : int 1
+DeltAlderKatMin_RD                      : chr "00"
+DeltAlderKatMaks_RD                     : chr "17"
+DeltAlderKat_RD                         : Ord.factor w/ 3 levels "Ungdom"<"Senior"<..: 1
 DeltYngstAeldst_DW                      : chr NA
 DeltKoenNr_RD                           : int 1
 DeltKoen_RD                             : Ord.factor w/ 2 levels "Herre"<"Dame": 1
 DeltKoenEmoji_RD                        : Ord.factor w/ 2 levels "♂️"<"♀️": 1
 DeltKoenIkon_RD                         : Ord.factor w/ 2 levels "<iconify-icon icon=mdi:gender-male style=color:#009FB7></iconify-icon>"<..: 1
-DeltRang1_RD                            : int 4
-DeltRating2_RD                          : int 2500
+DeltRang1_RD                            : int NA
+DeltRating2_RD                          : int NA
 DeltRang3_RD                            : int NA
-DeltRating_DW                           : chr "[4] 2500"
-DeltRating2Join_DW                      : chr "2500"
-DeltRatingKatNr_RD                      : int 1
-DeltRatingKatMin_RD                     : chr "2000"
-DeltRatingKatMaks_RD                    : chr "9999"
-DeltRatingKat_RD                        : Ord.factor w/ 2 levels "Elite"<"Amatør": 1
+DeltRating_DW                           : chr "-"
+DeltRating2Join_DW                      : chr "  NA"
+DeltRatingKatNr_RD                      : int NA
+DeltRatingKatMin_RD                     : chr NA
+DeltRatingKatMaks_RD                    : chr NA
+DeltRatingKat_RD                        : Ord.factor w/ 2 levels "Elite"<"Amatør": NA
 DeltSlutspilNr_RD                       : int NA
 DeltSlutspil_RD                         : Ord.factor w/ 2 levels "A-slutspil"<"B-slutspil": 1
 DeltPlacNr_RD                           : int 4
 DeltPlac_RD                             : Ord.factor w/ 8 levels "1. plads"<"2. plads"<..: 4
 DeltAntalBillet_DW                      : int 4
-DeltPraemie_RD                          : num 1000
-DeltPraemiePct_DW                       : num 0,04
-DeltPraemieAkt_DW                       : num 1000
-DeltPraemiePot_DW                       : num 1000
-DeltNavnKlub_DW                         : chr "Mads Larsen, <i>Silkeborg BTK</i>"
-DeltNavnBilletKat_DW                    : chr "Mads Larsen, <i>Silkeborg BTK</i> (30 år) <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-ico"| __truncated__
-DeltBilletSalgNr_DW                     : int 2
-DeltBilletSalg_DW                       : Ord.factor w/ 5 levels "1 stk. billetsalg"<..: 2
-DeltGenNr_DW                            : int 3
-DeltGen_DW                              : Ord.factor w/ 8 levels "0. gang"<"1. gang"<..: 4
-DeltGenKatNr_RD                         : int 2
-DeltGenKat_DW                           : Ord.factor w/ 3 levels "Debutant"<"Gentilmelding"<..: 2
-DeltGenKatEmoji_RD                      : Ord.factor w/ 3 levels "🆕"<"🔃"<"❌": 2
-DeltGenKatIkon_RD                       : Ord.factor w/ 3 levels "<iconify-icon icon=mdi:numeric-1-circle></iconify-icon>"<..: 2
-DeltKodeJoin_RD                         : chr "MALA"
-DeltKatNr_RD                            : int 1
-DeltKatMin_RD                           : chr "AAAA"
-DeltKatMaks_RD                          : chr "ÅÅÅÅ"
-DeltKat_RD                              : Ord.factor w/ 2 levels "Bordtennisspiller"<..: 1
+DeltPraemie_RD                          : num NA
+DeltPraemiePct_DW                       : num NA
+DeltPraemieAkt_DW                       : num NA
+DeltPraemiePot_DW                       : num NA
+DeltNavnKlub_DW                         : chr "Bertram Bach"
+DeltNavnBilletKat_DW                    : chr "Bertram Bach (14 år) <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon>"
+DeltBilletSalgNr_DW                     : int 1
+DeltBilletSalg_DW                       : Ord.factor w/ 4 levels "1 stk. billetsalg"<..: 1
+DeltGenNr_DW                            : int 1
+DeltGen_DW                              : Ord.factor w/ 6 levels "0. gang"<"1. gang"<..: 2
+DeltGenKatNr_RD                         : int 1
+DeltGenKat_DW                           : Ord.factor w/ 3 levels "Debutant"<"Gentilmelding"<..: 1
+DeltGenKatEmoji_RD                      : Ord.factor w/ 3 levels "🆕"<"🔃"<"❌": 1
+DeltGenKatIkon_RD                       : Ord.factor w/ 3 levels "<iconify-icon icon=mdi:numeric-1-circle></iconify-icon>"<..: 1
+DeltKodeJoin_RD                         : chr "0015"
+DeltKatNr_RD                            : int 2
+DeltKatMin_RD                           : chr "0000"
+DeltKatMaks_RD                          : chr "9999"
+DeltKat_RD                              : Ord.factor w/ 2 levels "Bordtennisspiller"<..: 2
 DeltSnakeSeedNr_DW                      : int 4
 DeltSnakeSeedLagNr_DW                   : int NA
 DeltSnakePuljeNr_DW                     : int NA
 DeltUnik_DW                             : int 1
-DeltKlubUnik_DW                         : int 1
+DeltKlubUnik_DW                         : int 0
 DeltPingPongUnik_DW                     : int 1
 DeltForskudt_DW                         : int 0

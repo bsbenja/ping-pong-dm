@@ -1,5 +1,5 @@
 DataBillet_T$EventAar_RD                         : chr "Ping Pong DM 2024"
-DataBillet_T$BilletNr_RD                         : int 26
+DataBillet_T$BilletNr_RD                         : int 25
 DataBillet_T$Billet_RD                           : chr "Ping Pong DM 2024 - Ping Pong - Single - Sandpapir - Åben"
 DataBillet_T$BilletStartDatoTid_RD               : POSIXct[1:1], format: "2024-06-22 10:30:00"
 DataBillet_T$BilletStartDato_DW                  : Date[1:1], format: "2024-06-22"
@@ -49,29 +49,29 @@ DataBillet_T$BilletSpilFormatIkon_RD             : chr "<iconify-icon icon=mdi:a
 DataBillet_T$BilletKat_DW                        : chr "Sandpapir Åben"
 DataBillet_T$BilletBeskr_RD                      : chr "Spilles lør 22/6 - Åben er for ALLE"
 DataBillet_T$BilletTilvalg_RD                    : chr NA
-DataBillet_T$BilletPris_RD                       : num 150
-DataBillet_T$BilletPrisArr_RD                    : num 150
-DataBillet_T$BilletAntalMaks_RD                  : int 66
-DataBillet_T$BilletPuljeDelt_RD                  : int 6
-DataBillet_T$BilletPulje_DW                      : int 1
-DataBillet_T$BilletPuljeStd_DW                   : int 6
-DataBillet_T$BilletDelt_DW                       : int 4
-DataBillet_T$BilletPuljeRest_DW                  : int 2
+DataBillet_T$BilletPris_RD                       : num 200
+DataBillet_T$BilletPrisArr_RD                    : num 200
+DataBillet_T$BilletAntalMaks_RD                  : int 64
+DataBillet_T$BilletPuljeDelt_RD                  : int 4
+DataBillet_T$BilletPulje_DW                      : int 8
+DataBillet_T$BilletPuljeStd_DW                   : int 32
+DataBillet_T$BilletDelt_DW                       : int 29
+DataBillet_T$BilletPuljeRest_DW                  : int 3
 DataBillet_T$BilletPrisRes_DW                    : int 0
-DataBillet_T$StatAlderForskelAntal_DW            : chr "<kbd>Aldersforskel <b>9</b> år</kbd>"
-DataBillet_T$StatOrdreAntal_DW                   : chr "<kbd><b>4</b> Tilmeldt til Sandpapir Åben <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-ico"| __truncated__
-DataBillet_T$StatDeltAntal_DW                    : chr "<kbd><b>4</b> Tilmeldt (100%) <iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon></kbd>"
-DataBillet_T$StatDeltKoenAntal_DW                : chr "<kbd><b>4</b> Herre (100%) <iconify-icon icon=mdi:gender-male style=color:#009FB7></iconify-icon></kbd>"
-DataBillet_T$StatDeltGenKatAntal_DW              : chr "<kbd><b>4</b> Gentilmelding (100%) <iconify-icon icon=mdi:autorenew></iconify-icon></kbd>"
-DataBillet_T$StatDeltAlderKatAntal_DW            : chr "<kbd><b>4</b> Senior (100%) <iconify-icon icon=mdi:cake-variant></iconify-icon></kbd>"
-DataBillet_T$StatDeltAlderAntal_DW               : chr "<kbd>Yngst <b>22</b> år <iconify-icon icon=mdi:cake-variant></iconify-icon></kbd>&#8203;<kbd>Gns. <b>28</b> år "| __truncated__
-DataBillet_T$StatDeltLandsdelAntal_DW            : chr "<kbd><b>4</b> Jylland (100%) <iconify-icon icon=mdi:home></iconify-icon></kbd>"
-DataBillet_T$StatDeltRegionAntal_DW              : chr "<kbd><b>1</b> Region Nordjylland (25%) <iconify-icon icon=mdi:home></iconify-icon></kbd>&#8203;<kbd><b>3</b> Re"| __truncated__
-DataBillet_T$StatDeltKlubKatAntal_DW             : chr "<kbd><b>4</b> Klub (100%) <iconify-icon icon=mdi:home></iconify-icon></kbd>"
-DataBillet_T$StatKlubAntal_DW                    : chr "<kbd><b>3</b> forskellige klubber <iconify-icon icon=mdi:home></iconify-icon></kbd>"
-DataBillet_T$StatBilletGnsAntal_DW               : chr "<kbd>Gns. <b>3,5</b> billetter pr. deltager <iconify-icon icon=mdi:tags></iconify-icon></kbd>"
-DataBillet_T$StatOrdreKatAntal_DW                : chr "<kbd><b>14</b> Ordinær (100%) <iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon></kbd>"
-DataBillet_T$StatDeltRatingKatAntal_DW           : chr "<kbd><b>4</b> Elite (100%) <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon></kbd>"
-DataBillet_T$StatDeltRatingAntal_DW              : chr "<kbd>Min. <b>2400</b> rating <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon></kbd>&#820"| __truncated__
-DataBillet_T$StatOekonomiAntal_DW                : chr "<kbd>Omsætning kr. <b>2.000</b> <iconify-icon icon=mdi:cash></iconify-icon></kbd>&#8203;<kbd>Arrangørpris kr. <"| __truncated__
-DataBillet_T$StatForskudtTilAntal_DW             : chr "<kbd><b>10</b> forskudt Tilmeldt <iconify-icon icon=mdi:tags></iconify-icon></kbd>"
+DataBillet_T$StatAlderForskelAntal_DW            : chr "<kbd>Aldersforskel <b>45</b> år</kbd>"
+DataBillet_T$StatOrdreAntal_DW                   : chr "<kbd><b>29</b> Tilmeldt til Sandpapir Åben <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-ic"| __truncated__
+DataBillet_T$StatDeltAntal_DW                    : chr "<kbd><b>36</b> Tilmeldt (100%) <iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon></kbd>"
+DataBillet_T$StatDeltKoenAntal_DW                : chr "<kbd><b>35</b> Herre (97%) <iconify-icon icon=mdi:gender-male style=color:#009FB7></iconify-icon></kbd>&#8203;<"| __truncated__
+DataBillet_T$StatDeltGenKatAntal_DW              : chr "<kbd><b>7</b> Debutant (19%) <iconify-icon icon=mdi:numeric-1-circle></iconify-icon></kbd>&#8203;<kbd><b>29</b>"| __truncated__
+DataBillet_T$StatDeltAlderKatAntal_DW            : chr "<kbd><b>10</b> Ungdom (28%) <iconify-icon icon=mdi:cake-variant></iconify-icon></kbd>&#8203;<kbd><b>16</b> Seni"| __truncated__
+DataBillet_T$StatDeltAlderAntal_DW               : chr "<kbd>Yngst <b>9</b> år <iconify-icon icon=mdi:cake-variant></iconify-icon></kbd>&#8203;<kbd>Gns. <b>30</b> år <"| __truncated__
+DataBillet_T$StatDeltLandsdelAntal_DW            : chr "<kbd><b>33</b> Jylland (100%) <iconify-icon icon=mdi:home></iconify-icon></kbd>"
+DataBillet_T$StatDeltRegionAntal_DW              : chr "<kbd><b>3</b> Region Nordjylland (9%) <iconify-icon icon=mdi:home></iconify-icon></kbd>&#8203;<kbd><b>30</b> Re"| __truncated__
+DataBillet_T$StatDeltKlubKatAntal_DW             : chr "<kbd><b>33</b> Klub (92%) <iconify-icon icon=mdi:home></iconify-icon></kbd>&#8203;<kbd><b>2</b> Ingen klub (6%)"| __truncated__
+DataBillet_T$StatKlubAntal_DW                    : chr "<kbd><b>13</b> forskellige klubber <iconify-icon icon=mdi:home></iconify-icon></kbd>"
+DataBillet_T$StatBilletGnsAntal_DW               : chr "<kbd>Gns. <b>1,4</b> billetter pr. deltager <iconify-icon icon=mdi:tags></iconify-icon></kbd>"
+DataBillet_T$StatOrdreKatAntal_DW                : chr "<kbd><b>50</b> Ordinær (100%) <iconify-icon icon=mdi:account-check style=color:#1ABC9C></iconify-icon></kbd>"
+DataBillet_T$StatDeltRatingKatAntal_DW           : chr "<kbd><b>10</b> Elite (33%) <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon></kbd>&#8203;"| __truncated__
+DataBillet_T$StatDeltRatingAntal_DW              : chr "<kbd>Min. <b>938</b> rating <iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon></kbd>&#8203"| __truncated__
+DataBillet_T$StatOekonomiAntal_DW                : chr "<kbd>Omsætning kr. <b>9.350</b> <iconify-icon icon=mdi:cash></iconify-icon></kbd>&#8203;<kbd>Arrangørpris kr. <"| __truncated__
+DataBillet_T$StatForskudtTilAntal_DW             : chr "<kbd><b>14</b> forskudt Tilmeldt <iconify-icon icon=mdi:tags></iconify-icon></kbd>"
