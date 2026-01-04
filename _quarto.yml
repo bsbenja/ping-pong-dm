@@ -5,12 +5,11 @@ project:
   render:
     - "*.qmd"
     - "index.qmd" # "!index.qmd"
-    - "indbydelse-tilmelding-2023.qmd" # "!indbydelse-tilmelding-2023.qmd"
-    - "indbydelse-tilmelding-2024.qmd" # "!indbydelse-tilmelding-2024.qmd"
-    - "praemier-deltagere.qmd" # "!praemier-deltagere.qmd"
+    - "raekke-sandpapir-aaben-single.qmd" # "!raekke-sandpapir-aaben-single.qmd"
     - "regler.qmd" # "!regler.qmd"
     - "wcpp.qmd" # "!wcpp.qmd"
     - "koncept.qmd" # "!koncept.qmd"
+    - "indbydelse-tilmelding-2023.qmd" # "!indbydelse-tilmelding-2023.qmd"
     - "bi.qmd" # "!bi.qmd"
     - "bi2.qmd" # "!bi2.qmd"
 
@@ -31,10 +30,10 @@ website:
     contents:
       - href: "index.qmd"
       - text: "---"
-      - section: "<b>Ping Pong DM 2023</b>"
+      - section: "<b>Ping Pong DM 2025</b>"
         contents:
-        - href: "indbydelse-tilmelding-2023.qmd"
-        - href: "praemier-deltagere.qmd"
+        # - href: "indbydelse-tilmelding-2023.qmd"
+        - href: "raekke-sandpapir-aaben-single.qmd"
       - text: "---"
       - section: "<b>Generelt om Ping Pong</b>"
         contents:
@@ -69,8 +68,8 @@ website:
 format:
   html:
     theme:
-      light: [flatly, tema.scss, tema-lys.scss]
-      dark: [darkly, tema.scss, tema-moerk.scss]
+      light: [flatly, kode/scss/tema.scss, kode/scss/tema-lys.scss]
+      dark: [darkly, kode/scss/tema.scss, kode/scss/tema-moerk.scss]
     df-print: default
     html-table-processing: none
     cap-location: bottom
@@ -88,8 +87,6 @@ format:
     header-includes: |
       <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
       <meta name="google-site-verification" content="izkomDopuYjTHjF7B1NJSGr0ea8hNGw968SgEtk8n8g">
-
-editor: visual
 
 knitr:
   opts_chunk:

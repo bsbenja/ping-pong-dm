@@ -1,12 +1,12 @@
 ```{r}
 #| label: kildefil
-source(file = "input.R")
+source(file = "_input.R")
 ```
 
 ```{r}
 #| label: kildefil-filter
 InputEventAarAkt_V <- "Ping Pong DM 2023"
-DataAkt_T <- Data_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataAkt_T <- Analyse_Ordre %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataBilletKatAkt_T <- DataBilletKat_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataPraemiePengeAkt_T <- DataPraemiePenge_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
@@ -38,13 +38,13 @@ cat(DataEventAarAkt_T$InfoPlakatCTA_DW)
 
 # `r paste(IkonIndbydelse_V, "Indbydelse")`
 
-::: {style="border-left:solid 5px #63696D;padding-left:20px"}
+::::::: {style="border-left:solid 5px #63696D;padding-left:20px"}
 ## `r paste(IkonTimeglas_V, "Intro, tidsplan & praktisk")`
 
 ::: {style="font-style:italic"}
 ```{r}
 #| output: asis
-cat(paste0("[Hørning Bordtennisklub](http://hoerningbtk.dk){target=_blank}, i samarbejde med [Bordtennis Danmark](https://bordtennisdanmark.dk){target=_blank} og [DGI](https://www./dgi.dk/bordtennis){target=_blank}, indbyder til det ", DataEventAarAkt_T$EventAarNr_RD, ". DANSKE MESTERSKABER I PING PONG ", DataEventAarAkt_T$EventAarStartDato_DW_Aar_DW, " (bordtennis på lige vilkår med sandpapirsbat) samt efterfølgende FEST OM AFTENEN ", DataEventAarAkt_T$EventAarDato_DW, " i ", DataEventAarAkt_T$EventAarStedURL_DW, ". Uanset om du er ungdomsspiller, seniorspiller, veteranspiller eller aldrig har prøvet Ping Pong/bordtennis før, så kan du stille op (ALLE kan deltage uanset alder, køn, niveau eller licens)^[<b>ALLE kan deltage</b>: Da turneringen er et dansk mesterskab, skal man enten være (1) dansk statsborger eller (2) have boet i Danmark i minimum de seneste fem år (skal kunne dokumenteres af spilleren). Er dette ikke opfyldt, vil det være muligt at deltage udelukkende i puljespillet, hvor ens resultater ikke tæller med i puljeregnskabet (tilmelding stadig påkrævet).]. Eventet er før sommerferien og som noget af det sidste af indeværende bordtennissæson, da det ligger i uge ", DataEventAarAkt_T$EventAarStartDato_DW_Uge_DW , ". Der er lagt op til en masse fede kampe på lige vilkår i sandpapirsdisciplinen med stemningsmusik og/eller et brag af en fest om aftenen, som alt sammen fås til en overkommelig pris."))
+cat(paste0("[Hørning Bordtennisklub](http://hoerningbtk.dk){target=_blank}, i samarbejde med [Bordtennis Danmark](https://bordtennisdanmark.dk){target=_blank} og [DGI](https://www./dgi.dk/bordtennis){target=_blank}, indbyder til det ", DataEventAarAkt_T$EventAarNr_RD, ". DANSKE MESTERSKABER I PING PONG ", DataEventAarAkt_T$EventAarStartDatoTid_DW, " (bordtennis på lige vilkår med sandpapirsbat) samt efterfølgende FEST OM AFTENEN ", DataEventAarAkt_T$EventAarDato_DW, " i ", DataEventAarAkt_T$EventAarStedURL_DW, ". Uanset om du er ungdomsspiller, seniorspiller, veteranspiller eller aldrig har prøvet Ping Pong/bordtennis før, så kan du stille op (ALLE kan deltage uanset alder, køn, niveau eller licens)^[<b>ALLE kan deltage</b>: Da turneringen er et dansk mesterskab, skal man enten være (1) dansk statsborger eller (2) have boet i Danmark i minimum de seneste fem år (skal kunne dokumenteres af spilleren). Er dette ikke opfyldt, vil det være muligt at deltage udelukkende i puljespillet, hvor ens resultater ikke tæller med i puljeregnskabet (tilmelding stadig påkrævet).]. Eventet er før sommerferien og som noget af det sidste af indeværende bordtennissæson, da det ligger i uge ", DataEventAarAkt_T$EventAarStartDato_DW_Uge_DW , ". Der er lagt op til en masse fede kampe på lige vilkår i sandpapirsdisciplinen med stemningsmusik og/eller et brag af en fest om aftenen, som alt sammen fås til en overkommelig pris."))
 ```
 :::
 
@@ -104,7 +104,7 @@ data.frame(
     	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+510), "%H:%M")),
     paste("Fra", format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(+510), "%H:%M"))),
 	"Type" = c(
-		paste0("<a style=color:#000000;text-decoration:none href=indbydelse-tilmelding-2023.qmd#ping-pong", ">DM i Ping Pong ", DataEventAarAkt_T$EventAarStartDato_DW_Aar_DW, "</a>"),
+		paste0("<a style=color:#000000;text-decoration:none href=indbydelse-tilmelding-2023.qmd#ping-pong", ">DM i Ping Pong ", DataEventAarAkt_T$EventAarStartDatoTid_DW, "</a>"),
     paste(
     	"Mulighed for opvarmning.<br><b>Check-in senest",
     	format(DataEventAarAkt_T$EventAarStartDatoTid_DW + minutes(-30), "%H:%M."), "</b>"),
@@ -216,14 +216,14 @@ data.frame(
 ```
 
 </div>
-:::
+:::::::
 
-::: {style="border-left:solid 5px #398FCC;padding-left:20px"}
+:::::::::::::: {style="border-left:solid 5px #398FCC;padding-left:20px"}
 ## `r paste(IkonPingPong_V, "DM i Ping Pong")`
 
 ### Afviklingsform
 
-::: {.grid style="font-style:italic"}
+:::::: {.grid style="font-style:italic"}
 ::: {.g-col-12 .g-col-md-7}
 Turneringen afvikles som én åben singlerække på fair vis efter snake-system uden klubhensyn. Der spilles 6-mandspuljer, A-/B-slutspil og afslutningsvist "Final 4" i A-slutspil som beskrevet herunder:
 
@@ -244,7 +244,7 @@ Puljerne dannes på fair vis efter snake-system uden klubhensyn efter følgende 
 I det videre spil dannes seedningerne på baggrund af placeringerne fra puljespillet.
 :::
 
-::: {.g-col-12 .g-col-md-5}
+:::: {.g-col-12 .g-col-md-5}
 ```{mermaid}
 %%| fig-width: 2.5
 
@@ -262,12 +262,12 @@ flowchart TD
 cat(DataEventAarAkt_T$InfoTipRegler_DW)
 ```
 :::
-:::
-:::
+::::
+::::::
 
 ### Bat og bold
 
-::: {.grid style="font-style:italic"}
+::::: {.grid style="font-style:italic"}
 ::: {.g-col-12 .g-col-md-8}
 -   **Bat**: Der spilles med "Sanwei WCPP Sandpapirsbat", som også blev benyttet ved sidste WCPP. Et stort tak skal lyde til Bordtennis Danmark (BTDK), da de støtter med 50 splinternye sandpapirsbat. Det er formentligt ikke alment kendt, men Ping Pong entusiaster vil kunne nikke genkendende til, at der er stor forskel på et nyt- og brugt sandpapirsbat, da et nyt sandpapirsbat qua sin ruhed kan genere mere skrue, hvilket er gavnligt i specielt det offensive spil. Evt. yderligere sandpapirsbat vil være lettere brugte. Til deltagerne i "Final 4" i A-slutspil udleveres 4 nye sandpapirsbat. Battet kan også købes hos BTEX til eget brug `r "<b>[HER](https://www.btex.dk/sanwei-wcpp-sandpapirsbat.html){target=_blank}</b>"`, dog udleveres bat af stævnearrangøren til opvarmning og kampe på selve stævnedagen.
 
@@ -280,11 +280,11 @@ cat(DataEventAarAkt_T$InfoTipRegler_DW)
 cat(paste0("![](filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "/bat-bold.png){width=15em}"))
 ```
 :::
-:::
+:::::
 
 ### Præmier
 
-::: {.grid style="font-style:italic"}
+:::::: {.grid style="font-style:italic"}
 ::: {.g-col-12 .g-col-md-8}
 [**NYHED**]{.underline}**! 2 kvalifikationspladser til [VERDENSMESTERSKABERNE I PING PONG]{.underline} i Mexico City fra den 4. til 6. januar 2024 med en præmiesum på [\$36.000]{.underline} fordelt på SANDPAPIR, HARDBAT og TRÆBAT. Ekstra tilskud hertil på \$500 til 1. pladsen fra DM. Ny arrangør for VM i Ping Pong er International Classic Table Tennis Federation (ICTTF), som erstatter det ellers tidligere velkendte format fra Alexandra Palace i London arrangeret af Matchroom. Se mere om det nye VM-koncept i indbydelsen `r paste0("[HER](filer/event/", egen_sti_fun(DataEventAarAkt_T$EventAar_RD), "/ping-pong-world-cup-indbydelse.pdf){target=_blank}")`**.
 
@@ -326,10 +326,10 @@ if(nrow(DataPraemiePengeAkt_T) == 0) {
 }
 ```
 :::
-:::
-:::
+::::::
+::::::::::::::
 
-::: {style="border-left:solid 5px #F1C40F;padding-left:20px"}
+::::: {style="border-left:solid 5px #F1C40F;padding-left:20px"}
 ## `r paste(IkonFest_V, "Fest om aftenen")`
 
 ::: {style="font-style:italic"}
@@ -360,12 +360,12 @@ cat(paste0(
 ```{r}
 #| output: asis
 cat(paste0(
-IkonOvernatning_V, " Se forslag til evt. overnatning under <q>Intro, tidsplan & praktisk</q> [<b>HER</b>](indbydelse-tilmelding-", DataEventAarAkt_T$EventAarStartDato_DW_Aar_DW, ".qmd#intro-tidsplan-praktisk)."))
+IkonOvernatning_V, " Se forslag til evt. overnatning under <q>Intro, tidsplan & praktisk</q> [<b>HER</b>](indbydelse-tilmelding-", DataEventAarAkt_T$EventAarStartDatoTid_DW, ".qmd#intro-tidsplan-praktisk)."))
 ```
 :::
-:::
+:::::
 
-::: {style="border:solid 5px #FF4A6E;border-radius:20px;padding:20px"}
+::::::::: {style="border:solid 5px #FF4A6E;border-radius:20px;padding:20px"}
 ::: {style="text-align:center;font-weight:bold;text-transform:uppercase"}
 # `r paste(IkonBillet_V, "Tilmelding")`
 :::
@@ -394,7 +394,7 @@ IkonBillet_V, " <i>Der er let tilmelding og betaling med betalingskort her</i> "
 ```{r}
 #| output: asis
 cat(paste0(
-"<div class=ticketbutler-iframe data-type=EVENT data-domain=billetfix.dk data-slug=dm-i-ping-pong-", DataEventAarAkt_T$EventAarStartDato_DW_Aar_DW, "></div><script type=text/javascript src=https://unpkg.com/@ticketbutler/event-embedder@latest/dist/index.js></script>"))
+"<div class=ticketbutler-iframe data-type=EVENT data-domain=billetfix.dk data-slug=dm-i-ping-pong-", DataEventAarAkt_T$EventAarStartDatoTid_DW, "></div><script type=text/javascript src=https://unpkg.com/@ticketbutler/event-embedder@latest/dist/index.js></script>"))
 ```
 
 </div>
@@ -403,7 +403,7 @@ cat(paste0(
 ```{r}
 #| output: asis
 cat(paste0(
-"(Hvis indlejret tilmelding ikke virker, klik [<b>HER</b>](https://billetfix.dk/da/e/dm-i-ping-pong-", DataEventAarAkt_T$EventAarStartDato_DW_Aar_DW, "){target=_blank})"))
+"(Hvis indlejret tilmelding ikke virker, klik [<b>HER</b>](https://billetfix.dk/da/e/dm-i-ping-pong-", DataEventAarAkt_T$EventAarStartDatoTid_DW, "){target=_blank})"))
 ```
 :::
 
@@ -426,4 +426,4 @@ cat(DataEventAarAkt_T$InfoTipPraemierDeltagere_DW)
 cat(paste0("Da en del af Ping Pong konceptet er, at ALLE kan stille op (uanset alder, køn, niveau eller licens), foregår tilmelding og betaling her på siden og derfor udenom BordtennisPortalen. Ved tilmelding modtages bekræftelsesmail (tilmelding er ikke bindende, hvorfor evt. refusion er muligt frem til og med tilmeldingsfristen ", DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW, "). Først til mølle-princip."))
 ```
 :::
-:::
+:::::::::

@@ -1,6 +1,6 @@
 ```{r}
 #| label: kildefil
-source(file = "input.R")
+source(file = "_input.R")
 ```
 
 ```{ojs}
@@ -24,12 +24,12 @@ editor_options:
 
 ```{r}
 #| label: ojs-define
-ojs_define(Data_T)
+ojs_define(Analyse_Ordre)
 ```
 
 ```{ojs}
 //| label: ojs-transpose
-Data_BI = transpose(Data_T)
+Data_BI = transpose(Analyse_Ordre)
 ```
 
 ```{ojs}
@@ -243,7 +243,7 @@ BilletDisciplinAkt_V  <- "Sandpapir"
 BilletSpilFormatAkt_V <- "Single"
 BilletRaekkeAkt_V     <- "Åben"
 
-DataAkt_T <- Data_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataAkt_T <- Analyse_Ordre %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataBilletAkt_T <- DataBillet_T %>% filter(
   grepl(InputEventAarAkt_V, EventAar_RD) &
@@ -330,7 +330,7 @@ DataPraemiePenge_T %>%
 ```
 
 ```{r}
-DataKlubMangel_T <- Data_T %>%
+DataKlubMangel_T <- Analyse_Ordre %>%
 	anti_join(y = DataAkt_T, by = "Klub_RD") %>%
 	group_by(EventAar_RD, Klub_RD) %>%
 	slice(which.max(OrdreDatoTid_RD)) %>%
@@ -369,7 +369,7 @@ if(nrow(DataKlubMangel_T) == 0) {
 		remove_column(6:7)
 }
 
-DataDeltMangel_T <- Data_T %>%
+DataDeltMangel_T <- Analyse_Ordre %>%
 	anti_join(y = DataAkt_T, by = "DeltID_RD") %>%
 	group_by(EventAar_RD, DeltID_RD) %>%
 	slice(which.max(OrdreDatoTid_RD)) %>%

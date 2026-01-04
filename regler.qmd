@@ -1,6 +1,6 @@
 ```{r}
 #| label: kildefil
-source(file = "variable.R")
+source(file = "kode/r/_variables.R")
 ```
 
 ---

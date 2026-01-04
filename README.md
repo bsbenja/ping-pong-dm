@@ -7,7 +7,7 @@
 Alle filer vedr. Ping Pong DM ligger i mappen "filer" fordelt i undermapperne "event", "generelt" og "klublogo".\
 De forskellige sider på hjemmesiden stammer fra ".qmd-filerne".
 
-Kildefilen er "input.R", hvorfra følgende er muligt:
+Kildefilen er "_input.R", hvorfra følgende er muligt:
 
 -   Hentning af eventordre (TRUE/FALSE).
 -   Webscraping af rating (TRUE/FALSE).

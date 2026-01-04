@@ -1,19 +1,18 @@
 ```{r}
 #| label: kildefil
-source(file = "input.R")
+source(file = "_input.R")
 ```
 
 ```{r}
 #| label: kildefil-filter
 DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataEventAarSidst_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAarSidst_DW))
-DataResultSidst_T <- DataResult_T %>% filter(
-  grepl(InputEventAarAkt_V, EventAarSidst_DW) &
-  grepl("A-slutspil", DeltSlutspil_RD) &
-  grepl("[1-4]", DeltPlacNr_RD))
-DataResultAlle_T <- DataResult_T %>% filter(
+DataResultSandpapirAabenSingle_T <- DataResult_T %>% filter(
   (grepl("A-slutspil", DeltSlutspil_RD) &
-  grepl("1", DeltPlacNr_RD)) |
+  grepl("1", DeltPlacNr_RD) &
+  grepl("Sandpapir", BilletDisciplin_RD) &
+  grepl("Åben", BilletRaekke_RD) &
+  grepl("Single", BilletSpilFormat_RD)) |
   grepl("Aflyst", OrdreStatusSimpelKat_RD))
 ```
 
@@ -51,7 +50,7 @@ Det bestræbes på, at det koster maks. kr. 150 at stille op til Ping Pong DM, o
 
 ### Afviklingsform
 
-::: grid
+::::: grid
 ::: {.g-col-12 .g-col-md-7}
 Turneringen afvikles som én åben singlerække på fair vis efter snake-system uden klubhensyn. Der spilles 6-mandspuljer, A-, B- og C-slutspil og afslutningsvist "Final 4" i A-slutspil som beskrevet herunder:
 
@@ -65,7 +64,7 @@ Turneringen afvikles som én åben singlerække på fair vis efter snake-system 
 
 Puljerne dannes på fair vis efter snake-system uden klubhensyn efter følgende prioritering:
 
-1.  Nr. 1-4 seedes efter placeringerne i "Final 4" i A-slutspil ved sidst afholdte DM. Se @tbl-result-sidst.
+1.  Nr. 1-4 seedes efter placeringerne i "Final 4" i A-slutspil ved sidst afholdte DM.
 2.  Seneste [ratingopdateringen i bordtennis](https://bordtennisportalen.dk/DBTU/Ranglister){target="_blank"}.
 3.  Skøn og lodtrækning.
 
@@ -84,27 +83,8 @@ flowchart TD
   A --> |Nr. 5-6| D(C-slutspil)
   B --> |&#x00BC-finalevindere| E(<q>Final-4</q>)
 ```
-
-```{r}
-#| label: tbl-result-sidst
-#| tbl-cap: "DM-resultater sidste <q>Final 4</q>."
-if(nrow(DataResultSidst_T) == 0) {
-  data.frame() %>% kbl()
-} else {
-  DataResultSidst_T %>%
-  kbl(col.names = NA, align = "clcl", escape = F,
-      caption = paste0(
-        IkonPokal_V, " DM-resultater sidste <q>Final 4</q><br>",
-        "<i style=font-size:80%>Afholdt ", DataEventAarSidst_T$EventAarDato_DW,
-        " i ", DataEventAarSidst_T$EventAarSted_RD, "</i>")) %>%
-  kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
-  row_spec(0, background = DataEventAarSidst_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
-  column_spec(2, extra_css = "white-space:nowrap;") %>%
-	remove_column(c(1, 5:11))
-}
-```
 :::
-:::
+:::::
 
 ::: {.callout-tip style="font-style:italic"}
 ## Ping Pong regler
@@ -145,8 +125,8 @@ Den lidt mere nørdet forklaring er, at Ping Pong spilles med bat uden svamp, so
 
 ##### Officielle Ping Pong bat anvendt ved WCPP gennem tiden
 
-::: {layout-ncol="3"}
-::: {#fig-sandpapir-2024}
+:::::: {layout-ncol="3"}
+::: {#fig-sandpapir-2020}
 ###### Siden 2020
 
 ![](filer/generelt/sandpapirsbat-sanwei.png){width="15em"}
@@ -169,24 +149,24 @@ Carlton WCPP Sandpapirsbat (grå sandpapir).
 
 Dunlop WCPP Sandpapirsbat (blå sandpapir).
 :::
-:::
+::::::
 
 ## Tidligere vindere
 
 ```{r}
-#| label: tbl-dm-statistik
+#| label: tbl-dm-statistik-sandpapir-aaben-single
 #| tbl-cap: "DM-vindere statistik.<br>Webscraped fra BTDK's hjemmeside [<b>HER</b>](https://bordtennisdanmark.dk/statistik/ping-pong-dm){target=_blank}."
-if(nrow(DataResultAlle_T) == 0) {
+if(nrow(DataResultSandpapirAabenSingle_T) == 0) {
   kbl3_dm_resultater <- data.frame() %>% kbl()
 } else {
-DataResultAlle_T %>%
+DataResultSandpapirAabenSingle_T %>%
   kbl(col.names = NA, align = "clcl", escape = F,
-      caption = paste(IkonPokal_V, "DM-vindere statistik")) %>%
+      caption = paste(IkonPokal_V, "DM-vindere Sandpapir Åben Single")) %>%
   kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   row_spec(
-    which(grepl("Aflyst", DataResultAlle_T$OrdreStatusSimpelKat_RD)),
+    which(grepl("Aflyst", DataResultSandpapirAabenSingle_T$OrdreStatusSimpelKat_RD)),
     strikeout = T, italic = T, color = TabelFarveFG_V) %>%
-  remove_column(c(2, 5:11))
+  remove_column(c(2, 5:12))
 }
 ```
 

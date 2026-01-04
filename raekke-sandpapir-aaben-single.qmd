@@ -1,6 +1,6 @@
 ```{r}
 #| label: kildefil
-source(file = "input.R")
+source(file = "_input.R")
 ```
 
 ```{r}
@@ -9,7 +9,7 @@ BilletDisciplinAkt_V  <- "Sandpapir"
 BilletRaekkeAkt_V     <- "Åben"
 BilletSpilFormatAkt_V <- "Single"
 
-DataAkt_T <- Data_T %>% filter(
+DataAkt_T <- Analyse_Ordre %>% filter(
   grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BilletDisciplinAkt_V, BilletDisciplin_RD) &
   grepl(BilletRaekkeAkt_V, BilletRaekke_RD) &
@@ -42,12 +42,15 @@ DataDeltGenTilAkt_T <- DataDeltGenTil_T %>% filter(grepl(InputEventAarAkt_V, Eve
 DataDeltOrdreKatAkt_T <- DataDeltOrdreKat_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataResultSidst_T <- DataResult_T %>% filter(
   grepl(InputEventAarAkt_V, EventAarSidst_DW) &
+  grepl(BilletDisciplinAkt_V, BilletDisciplin_RD) &
+  grepl(BilletRaekkeAkt_V, BilletRaekke_RD) &
+  grepl(BilletSpilFormatAkt_V, BilletSpilFormat_RD) &
   grepl("A-slutspil", DeltSlutspil_RD) &
   grepl("[1-4]", DeltPlacNr_RD))
 ```
 
 ---
-title: "<iconify-icon icon=mdi:autorenew></iconify-icon> <u>Præmier & deltagere</u>"
+title: "<iconify-icon icon=mdi:table-tennis></iconify-icon> <u>Sandpapir Åben Single</u>"
 subtitle: |
   `r paste0(
   "<b style=font-size:140%>", DataEventAarAkt_T$EventAar_RD, "</b>",
@@ -223,8 +226,8 @@ if(InputInfo1234_V %in% c(1, 2, 3, 4)) {
 
 ## `r paste(IkonGraf_V, "Dashboards")`
 
-::: {.grid style="text-align:center"}
-::: {.g-col-12 .g-col-md-6}
+::::::::::::::: {.grid style="text-align:center"}
+:::: {.g-col-12 .g-col-md-6}
 ### Klubber
 
 ::: panel-tabset
@@ -279,9 +282,9 @@ cat(paste0(
 "<br>", DataBilletAkt_T$StatDeltKlubKatAntal_DW,
 "</p>"))
 ```
-:::
+::::
 
-::: {.g-col-12 .g-col-md-6}
+:::: {.g-col-12 .g-col-md-6}
 ### Danmarkskort
 
 ::: panel-tabset
@@ -344,9 +347,9 @@ cat(paste0(
 "<br>", DataBilletAkt_T$StatDeltRegionAntal_DW,
 "</p>"))
 ```
-:::
+::::
 
-::: {.g-col-12 .g-col-md-6}
+:::: {.g-col-12 .g-col-md-6}
 ### Aldersgrupper
 
 ::: panel-tabset
@@ -398,9 +401,9 @@ cat(paste0(
 "<br>", DataBilletAkt_T$StatDeltAlderAntal_DW,
 "</p>"))
 ```
-:::
+::::
 
-::: {.g-col-12 .g-col-md-6}
+:::: {.g-col-12 .g-col-md-6}
 ### Køn
 
 ::: panel-tabset
@@ -447,9 +450,9 @@ cat(paste0(
 "<br>", DataBilletAkt_T$StatDeltKoenAntal_DW,
 "</p>"))
 ```
-:::
+::::
 
-::: {.g-col-12 .g-col-md-6}
+:::: {.g-col-12 .g-col-md-6}
 ### Gentilmeldinger
 
 ::: panel-tabset
@@ -458,7 +461,7 @@ cat(paste0(
 ```{r}
 #| label: fig-gentilmeldinger
 #| fig-cap: "Gentilmeldinger."
-#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltGenKat_DW))))+1.5)/3.3
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltGen_DW))))+1.5)/3.3
 DataAkt_T %>%
 	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
 	ggplot(mapping = aes(y = fct_rev(DeltGen_DW), fill = BilletKat_DW)) +
@@ -496,9 +499,9 @@ cat(paste0(
 "<br>", DataBilletAkt_T$StatDeltGenKatAntal_DW,
 "</p>"))
 ```
-:::
+::::
 
-::: {.g-col-12 .g-col-md-6}
+:::: {.g-col-12 .g-col-md-6}
 ### Ordretype
 
 ::: panel-tabset
@@ -550,8 +553,8 @@ cat(paste0(
 "<br>", DataBilletAkt_T$StatBilletGnsAntal_DW,
 "</p>"))
 ```
-:::
-:::
+::::
+:::::::::::::::
 
 ```{r}
 #| label: tbl-result-sidst

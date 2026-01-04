@@ -12,9 +12,9 @@ InputWebOrdreTF_V  <- F # T/F for hentning af eventordre
 InputWebRatingTF_V <- F # T/F for webscraping af rating
 InputPNGPlakatTF_V <- F # T/F for plakater fra PDF til PNG
 InputInfo1234_V    <- 4 # Tilmelding angives som (1) lukket, (2) teaser, (3) åben og (4) endelig
-InputEventAarAkt_V <- "Ping Pong DM 2024" # Event og år
+InputEventAarAkt_V <- "Ping Pong DM 2025" # Event og år
 InputData_V        <- "filer/generelt/ping-pong-dm-tilmelding.xlsx" # Sti til Excel-fil
 
 # Kildefiler
-source(file = "variable.R")
-source(file = "bagvedliggende-kode.R")
+source(file = "kode/r/_variables.R")
+source(file = "kode/r/bagvedliggende-kode.R")
