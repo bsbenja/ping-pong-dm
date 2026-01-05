@@ -1,5 +1,11 @@
+```{r}
+#| label: kildefil
+source(file = "_input.R")
+```
+
 ---
-title: "Dashboard"
+title: "<iconify-icon icon=mdi:chart-box></iconify-icon> <u>Dashboard</u>"
+subtitle: "Ping Pong DM"
 format:
   dashboard:
     embed-resources: true
@@ -7,4 +13,84 @@ format:
     expandable: false
 ---
 
-Dette er en test.
+Klik her for at komme tilbage til [**Forsiden**](index.qmd)**.**
+
+# Samlet
+
+## KPI
+
+::: {.valuebox icon="credit-card-fill" color="primary"}
+Test
+:::
+
+::: {.valuebox icon="piggy-bank-fill" color="secondary"}
+Test
+:::
+
+::: {.valuebox icon="thermometer" color="secondary"}
+Test
+:::
+
+## Tabel {.tabset}
+
+### Test
+
+Test
+
+### Test
+
+Test
+
+### Test
+
+Test
+
+### Test
+
+Test
+
+### Test
+
+Test
+
+### Test
+
+Test
+
+# 2025
+
+## KPI
+
+::: {.valuebox icon="credit-card-fill" color="primary"}
+Test
+:::
+
+::: {.valuebox icon="piggy-bank-fill" color="secondary"}
+Test
+:::
+
+::: {.valuebox icon="thermometer" color="secondary"}
+Test
+:::
+
+## Tabel {.tabset}
+
+### Test
+
+Test
+
+### Test
+
+Test
+
+### Test
+
+Test
+
+### Test
+
+Test
+
+### Test
+
+Test

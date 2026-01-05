@@ -7,7 +7,7 @@ project:
     - "index.qmd" # "!index.qmd"
     - "raekke-sandpapir-aaben-single.qmd" # "!raekke-sandpapir-aaben-single.qmd"
     - "dashboard.qmd" # "!dashboard.qmd"
-    - "!regler.qmd" # "!regler.qmd"
+    - "regler.qmd" # "!regler.qmd"
     - "wcpp.qmd" # "!wcpp.qmd"
     - "koncept.qmd" # "!koncept.qmd"
     - "indbydelse-tilmelding-2023.qmd" # "!indbydelse-tilmelding-2023.qmd"
