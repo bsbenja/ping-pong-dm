@@ -6,7 +6,8 @@ project:
     - "*.qmd"
     - "index.qmd" # "!index.qmd"
     - "raekke-sandpapir-aaben-single.qmd" # "!raekke-sandpapir-aaben-single.qmd"
-    - "regler.qmd" # "!regler.qmd"
+    - "dashboard.qmd" # "!dashboard.qmd"
+    - "!regler.qmd" # "!regler.qmd"
     - "wcpp.qmd" # "!wcpp.qmd"
     - "koncept.qmd" # "!koncept.qmd"
     - "indbydelse-tilmelding-2023.qmd" # "!indbydelse-tilmelding-2023.qmd"
@@ -34,6 +35,7 @@ website:
         contents:
         # - href: "indbydelse-tilmelding-2023.qmd"
         - href: "raekke-sandpapir-aaben-single.qmd"
+        - href: "dashboard.qmd"
       - text: "---"
       - section: "<b>Generelt om Ping Pong</b>"
         contents:

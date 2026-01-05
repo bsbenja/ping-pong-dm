@@ -1,0 +1,10 @@
+---
+title: "Dashboard"
+format:
+  dashboard:
+    embed-resources: true
+    scrolling: true
+    expandable: false
+---
+
+Dette er en test.
