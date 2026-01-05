@@ -5,46 +5,52 @@ source(file = "_input.R")
 
 ```{r}
 #| label: kildefil-filter
-BilletDisciplinAkt_V  <- "Sandpapir"
-BilletRaekkeAkt_V     <- "Åben"
-BilletSpilFormatAkt_V <- "Single"
+
+BillettypeAkt_V <- "Sandpapir - Åben - Single"
 
 DataAkt_T <- Analyse_Ordre %>% filter(
-  grepl(InputEventAarAkt_V, EventAar_RD) &
-  grepl(BilletDisciplinAkt_V, BilletDisciplin_RD) &
-  grepl(BilletRaekkeAkt_V, BilletRaekke_RD) &
-  grepl(BilletSpilFormatAkt_V, BilletSpilFormat_RD))
-DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
-DataEventAarSidst_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAarSidst_DW))
+  grepl(InputEventAarAkt_V, EventAar_RD))
+DataEventAarAkt_T <- DataEventAar_T %>% filter(
+  grepl(InputEventAarAkt_V, EventAar_RD))
+DataEventAarSidst_T <- DataEventAar_T %>% filter(
+  grepl(InputEventAarAkt_V, EventAarSidst_DW))
 DataBilletAkt_T <- DataBillet_T %>% filter(
   grepl(InputEventAarAkt_V, EventAar_RD) &
-  grepl(BilletDisciplinAkt_V, BilletDisciplin_RD) &
-  grepl(BilletRaekkeAkt_V, BilletRaekke_RD) &
-  grepl(BilletSpilFormatAkt_V, BilletSpilFormat_RD))
-DataPraemiePengeAkt_T <- DataPraemiePenge_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
-DataPraemieYngstAeldstAkt_T <- DataPraemieYngstAeldst_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+  grepl(BillettypeAkt_V, Billettype_DW))
+DataPraemiePengeAkt_T <- DataPraemiePenge_T %>% filter(
+  grepl(InputEventAarAkt_V, EventAar_RD) &
+  grepl(BillettypeAkt_V, Billettype_DW))
+DataPraemieYngstAeldstAkt_T <- DataPraemieYngstAeldst_T %>% filter(
+  grepl(InputEventAarAkt_V, EventAar_RD))
 DataDeltForAkt_T <- DataDeltFor_T %>% filter(
   grepl(InputEventAarAkt_V, EventAar_RD) &
-  grepl(BilletDisciplinAkt_V, BilletDisciplin_RD) &
-  grepl(BilletRaekkeAkt_V, BilletRaekke_RD) &
-  grepl(BilletSpilFormatAkt_V, BilletSpilFormat_RD))
+  grepl(BillettypeAkt_V, Billettype_DW))
 DataDeltPuljerAkt_T <- DataDeltPuljer_T %>% filter(
   grepl(InputEventAarAkt_V, EventAar_RD) &
-  grepl(BilletDisciplinAkt_V, BilletDisciplin_RD) &
-  grepl(BilletRaekkeAkt_V, BilletRaekke_RD) &
-  grepl(BilletSpilFormatAkt_V, BilletSpilFormat_RD))
-DataDeltAndetAkt_T <- DataDeltAndet_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
-DataDeltKlubAkt_T <- DataDeltKlub_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
-DataDeltByAkt_T <- DataDeltBy_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
-DataDeltAlderKatAkt_T <- DataDeltAlderKat_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
-DataDeltKoenAkt_T <- DataDeltKoen_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
-DataDeltGenTilAkt_T <- DataDeltGenTil_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
-DataDeltOrdreKatAkt_T <- DataDeltOrdreKat_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+  grepl(BillettypeAkt_V, Billettype_DW))
+DataDeltAndetAkt_T <- DataDeltAndet_T %>% filter(
+  grepl(InputEventAarAkt_V, EventAar_RD))
+DataDeltKlubAkt_T <- DataDeltKlub_T %>% filter(
+  grepl(InputEventAarAkt_V, EventAar_RD) &
+  grepl(BillettypeAkt_V, Billettype_DW))
+DataDeltByAkt_T <- DataDeltBy_T %>% filter(
+  grepl(InputEventAarAkt_V, EventAar_RD) &
+  grepl(BillettypeAkt_V, Billettype_DW))
+DataDeltAlderKatAkt_T <- DataDeltAlderKat_T %>% filter(
+  grepl(InputEventAarAkt_V, EventAar_RD) &
+  grepl(BillettypeAkt_V, Billettype_DW))
+DataDeltKoenAkt_T <- DataDeltKoen_T %>% filter(
+  grepl(InputEventAarAkt_V, EventAar_RD) &
+  grepl(BillettypeAkt_V, Billettype_DW))
+DataDeltGenTilAkt_T <- DataDeltGenTil_T %>% filter(
+  grepl(InputEventAarAkt_V, EventAar_RD) &
+  grepl(BillettypeAkt_V, Billettype_DW))
+DataDeltOrdreKatAkt_T <- DataDeltOrdreKat_T %>% filter(
+  grepl(InputEventAarAkt_V, EventAar_RD) &
+  grepl(BillettypeAkt_V, Billettype_DW))
 DataResultSidst_T <- DataResult_T %>% filter(
   grepl(InputEventAarAkt_V, EventAarSidst_DW) &
-  grepl(BilletDisciplinAkt_V, BilletDisciplin_RD) &
-  grepl(BilletRaekkeAkt_V, BilletRaekke_RD) &
-  grepl(BilletSpilFormatAkt_V, BilletSpilFormat_RD) &
+  grepl(BillettypeAkt_V, Billettype_DW) &
   grepl("A-slutspil", DeltSlutspil_RD) &
   grepl("[1-4]", DeltPlacNr_RD))
 ```
@@ -89,7 +95,7 @@ Præmier og deltagere opdateres løbende for `r DataEventAarAkt_T$EventAar_RD` o
 ::: {layout="[[32, -2, 66]]"}
 ```{r}
 #| label: tbl-praemiepenge
-#| tbl-cap: !expr paste0("Præmiepenge.<br>Præmiesum på ", "<b>", distinct(filter(DataPraemiePengeAkt_T, PraemieRank_DW == 1), Præmiepenge), "</b>", " fordeles på ", "<b>", length(which(DataPraemiePengeAkt_T$PraemieRank_DW == "4")), "</b>", " placeringer.")
+#| tbl-cap: !expr paste0("Præmiepenge.<br>Præmiesum på ", "<b>", DataPraemiePengeAkt_T$Præmiepenge[1], "</b>", " fordeles på ", "<b>", length(which(DataPraemiePengeAkt_T$PraemieRank_DW == "4")), "</b>", " placeringer.")
 
 # Præmiepenge
 if(nrow(DataPraemiePengeAkt_T) == 0) {
@@ -196,7 +202,7 @@ if(InputInfo1234_V %in% c(1, 2, 4)) {
   row_spec(
     which(DataDeltPuljerAkt_T$DeltSnakeSeedLagNr_DW == "1"), bold = T,
     extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
-  remove_column(5:10)
+  remove_column(5:8)
   }
 }
 ```
@@ -217,7 +223,7 @@ if(InputInfo1234_V %in% c(1, 2, 3, 4)) {
   row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
   row_spec(which(grepl("Afbud", DataDeltAndetAkt_T$OrdreStatusSimpelKat_RD)),
            strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
-  row_spec(which(DataDeltAndetAkt_T$Nr. == "1"),
+  row_spec(which(DataDeltAndetAkt_T$`#` == "1"),
            extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
   remove_column(4:5)
   }
@@ -263,7 +269,7 @@ DataDeltKlubAkt_T %>%
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
   column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
   column_spec(4, extra_css = "white-space:nowrap;") %>%
-	remove_column(5:6) %>%
+	remove_column(5:7) %>%
 	scroll_box(height = "400px")
 ```
 :::
@@ -328,7 +334,7 @@ DataDeltByAkt_T %>%
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
   column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
   column_spec(4, extra_css = "white-space:nowrap;") %>%
-	remove_column(5:6) %>%
+	remove_column(5:7) %>%
 	scroll_box(height = "400px")
 ```
 :::
@@ -382,7 +388,7 @@ DataDeltAlderKatAkt_T %>%
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
   column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
   column_spec(4, extra_css = "white-space:nowrap;") %>%
-	remove_column(5:6) %>%
+	remove_column(5:7) %>%
 	scroll_box(height = "400px")
 ```
 :::
@@ -436,7 +442,7 @@ DataDeltKoenAkt_T %>%
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
   column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
   column_spec(4, extra_css = "white-space:nowrap;") %>%
-	remove_column(5:6) %>%
+	remove_column(5:7) %>%
 	scroll_box(height = "400px")
 ```
 :::
@@ -485,7 +491,7 @@ DataDeltGenTilAkt_T %>%
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
   column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
   column_spec(4, extra_css = "white-space:nowrap;") %>%
-	remove_column(5:6) %>%
+	remove_column(5:7) %>%
 	scroll_box(height = "400px")
 ```
 :::
@@ -534,7 +540,7 @@ DataDeltOrdreKatAkt_T %>%
 					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
   column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
   column_spec(4, extra_css = "white-space:nowrap;") %>%
-	remove_column(5:6) %>%
+	remove_column(5:7) %>%
 	scroll_box(height = "400px")
 ```
 :::
@@ -571,6 +577,6 @@ if(nrow(DataResultSidst_T) == 0) {
   kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
   row_spec(0, background = DataEventAarSidst_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
   column_spec(2, extra_css = "white-space:nowrap;") %>%
-	remove_column(c(1, 5:11))
+	remove_column(c(1, 5:9))
 }
 ```

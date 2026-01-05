@@ -10,9 +10,7 @@ DataEventAarSidst_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, Event
 DataResultSandpapirAabenSingle_T <- DataResult_T %>% filter(
   (grepl("A-slutspil", DeltSlutspil_RD) &
   grepl("1", DeltPlacNr_RD) &
-  grepl("Sandpapir", BilletDisciplin_RD) &
-  grepl("Åben", BilletRaekke_RD) &
-  grepl("Single", BilletSpilFormat_RD)) |
+  grepl("Sandpapir - Åben - Single", Billettype_DW)) |
   grepl("Aflyst", OrdreStatusSimpelKat_RD))
 ```
 
@@ -166,7 +164,7 @@ DataResultSandpapirAabenSingle_T %>%
   row_spec(
     which(grepl("Aflyst", DataResultSandpapirAabenSingle_T$OrdreStatusSimpelKat_RD)),
     strikeout = T, italic = T, color = TabelFarveFG_V) %>%
-  remove_column(c(2, 5:12))
+  remove_column(c(2, 5:10))
 }
 ```
 

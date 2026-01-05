@@ -377,6 +377,14 @@ Analyse_Ordre <- Analyse_Ordre %>%
   arrange(BilletNr_RD) %>%
   mutate(across("Billet_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
   select(-Billet_RD, everything()) %>%
+
+  # Billettype_DW
+  mutate(Billettype_DW = ifelse(
+    is.na(BilletDisciplin_RD) & is.na(BilletRaekke_RD) & is.na(BilletSpilFormat_RD),
+    BilletKat_RD,
+    paste(BilletDisciplin_RD, "-", BilletRaekke_RD, "-", BilletSpilFormat_RD))) %>%
+  mutate(across("Billettype_DW", \(x) as.character(x))) %>%
+  select(-Billettype_DW, everything()) %>%
   
   # BilletStartDatoTid_RD
   mutate(across("BilletStartDatoTid_RD", \(x) as_datetime(x))) %>%
@@ -1605,6 +1613,7 @@ DataPraemiePenge_T <- Analyse_Ordre %>%
     BilletDisciplin_RD,
     BilletRaekke_RD,
     BilletSpilFormat_RD,
+    Billettype_DW,
     BilletKat_DW, .direction = "updown") %>%
   ungroup() %>%
   
@@ -1653,8 +1662,8 @@ DataPraemiePenge_T <- Analyse_Ordre %>%
     "Pct." = DeltPraemiePct_DW,
     "Potentielt" = DeltPraemiePot_DW,
     PraemieRank_DW,
-    Billet_RD,
     EventAarPraemieSpons_RD,
+    Billettype_DW,
     EventAar_RD)
 
 #' ## Gaver
@@ -1696,9 +1705,7 @@ DataDeltFor_T <- Analyse_Ordre %>%
     "&emsp;" = KlubLogo_DW,
     "Navn" = DeltNavnBilletKat_DW,
     OrdreStatusSimpelKat_RD,
-    BilletDisciplin_RD,
-    BilletRaekke_RD,
-    BilletSpilFormat_RD,
+    Billettype_DW,
     EventAar_RD)
 
 #' ## Puljer
@@ -1714,9 +1721,7 @@ DataDeltPuljer_T <- Analyse_Ordre %>%
     "Rating" = DeltRating_DW,
     DeltSnakeSeedLagNr_DW,
     DeltSnakePuljeNr_DW,
-    BilletDisciplin_RD,
-    BilletRaekke_RD,
-    BilletSpilFormat_RD,
+    Billettype_DW,
     EventAar_RD)
 
 #' ## Kun til festen inkl. afbud
@@ -1768,6 +1773,7 @@ DataDeltKlub_T <- Analyse_Ordre %>%
 		"Navn" = DeltNavnBilletKat_DW,
 		"Klubtype" = KlubKat_DW,
 		OrdreStatusSimpelKat_RD,
+    Billettype_DW,
 		EventAar_RD)
 
 #' ## Deltagere fordelt på Danmarkskort
@@ -1792,6 +1798,7 @@ DataDeltBy_T <- Analyse_Ordre %>%
     "Navn" = DeltNavnBilletKat_DW,
     "Region" = KlubPostnrBy_DW,
     OrdreStatusSimpelKat_RD,
+    Billettype_DW,
     EventAar_RD)
 
 #' ## Aldersgruppe
@@ -1813,6 +1820,7 @@ DataDeltAlderKat_T <- Analyse_Ordre %>%
 		"Navn" = DeltNavnBilletKat_DW,
 		"Aldersgruppe" = DeltAlderKat_RD,
 		OrdreStatusSimpelKat_RD,
+    Billettype_DW,
 		EventAar_RD)
 
 #' ## Køn
@@ -1835,6 +1843,7 @@ DataDeltKoen_T <- Analyse_Ordre %>%
 		"Navn" = DeltNavnBilletKat_DW,
 		"Køn" = DeltKoen_RD_ikon,
 		OrdreStatusSimpelKat_RD,
+    Billettype_DW,
 		EventAar_RD)
 
 #' ## Gentilmeldinger
@@ -1857,6 +1866,7 @@ DataDeltGenTil_T <- Analyse_Ordre %>%
 		"Navn" = DeltNavnBilletKat_DW,
 		"Gentilmelding" = DeltGen_DW,
 		OrdreStatusSimpelKat_RD,
+    Billettype_DW,
 		EventAar_RD)
 
 #' ## Tilmeldingstype
@@ -1879,6 +1889,7 @@ DataDeltOrdreKat_T <- Analyse_Ordre %>%
 		"Navn" = DeltNavnBilletKat_DW,
 		"Ordredato" = OrdreKat_DW,
 		OrdreStatusSimpelKat_RD,
+    Billettype_DW,
 		EventAar_RD)
 
 #' # Resultater
@@ -1896,13 +1907,11 @@ DataResult_T <- Analyse_Ordre %>%
     "#" = DeltPlac_RD,
     "&emsp;" = KlubLogo_DW,
     "Navn" = DeltNavnKlub_DW,
-    BilletDisciplin_RD,
-    BilletRaekke_RD,
-    BilletSpilFormat_RD,
     DeltSlutspil_RD,
     DeltPlacNr_RD,
     OrdreStatusSimpelKat_RD,
     EventAarSidst_DW,
+    Billettype_DW,
     EventAar_RD)
 
 #' ## Resultater webscraped
