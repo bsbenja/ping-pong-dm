@@ -186,7 +186,7 @@ if(InputInfo1234_V %in% c(1, 2, 4)) {
         "<br>",
         "Seedet 1-4 efter sidste <q>Final 4</q>.",
         "<br>",
-        "Rating er opdateret pr. ", DataEventAarAkt_T$EventAarRatingDato_DW_DMAA_DW, ".",
+        "Rating er opdateret pr. ", DataEventAarAkt_T$EventAarRatingDato_RD_DMAA_DW, ".",
         "<br>",
         "<br>",
         "Bemærk: Puljerne kan ændre sig ved drive-in/afbud",

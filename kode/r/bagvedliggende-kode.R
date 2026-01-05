@@ -600,19 +600,13 @@ Analyse_Ordre <- Analyse_Ordre %>%
     na_matches = "never") %>%
   
   # EventAarRatingDato_RD
-  mutate(across("EventAarRatingDato_RD", \(x) convertToDate(x))) %>%
   mutate(across("EventAarRatingDato_RD", \(x) as_date(x))) %>%
   select(-EventAarRatingDato_RD, everything()) %>%
   
-  # EventAarRatingDato_DW
-  mutate(EventAarRatingDato_DW = EventAarRatingDato_RD) %>%
-  mutate(across("EventAarRatingDato_DW", \(x) as_date(x))) %>%
-  select(-EventAarRatingDato_DW, everything()) %>%
-  
   # Left join Dim1_Kalender
   left_join(
-    y = Dim1_Kalender %>% rename_with(~ paste0("EventAarRatingDato_DW_", .)),
-    by = c("EventAarRatingDato_DW" = "EventAarRatingDato_DW_Dato_DW"),
+    y = Dim1_Kalender %>% rename_with(~ paste0("EventAarRatingDato_RD_", .)),
+    by = c("EventAarRatingDato_RD" = "EventAarRatingDato_RD_Dato_DW"),
     na_matches = "never") %>%
   
   # EventAarPraemieSpons_RD
@@ -2037,15 +2031,15 @@ if(InputWebRatingTF_V == T) {
     nrow(rbind(tbl5_webscraping_rating, data.frame(
       "DeltID_RD" = read_html(
         paste0("https://bordtennisportalen.dk/DBTU/Ranglister/Udskriv/?params=,59,4",
-               DataEventAarAkt_T$EventAarRatingDato_DW_Aar_DW, ",",
+               DataEventAarAkt_T$EventAarRatingDato_RD_Aar_DW, ",",
                format(DataEventAarAkt_T$EventAarRatingDato_RD, "%m/%d/%Y"),
                ",,,,True,,,,,", "0", ",,,0,,,,,")) %>% html_nodes(".playerid") %>% html_text(),
       stringsAsFactors = FALSE)) %>% filter(DeltID_RD != "Spiller-Id")) > 0,
     paste0("https://bordtennisportalen.dk/DBTU/Ranglister/Udskriv/?params=,59,4",
-           DataEventAarAkt_T$EventAarRatingDato_DW_Aar_DW, ",",
+           DataEventAarAkt_T$EventAarRatingDato_RD_Aar_DW, ",",
            format(DataEventAarAkt_T$EventAarRatingDato_RD, "%m/%d/%Y")),
     paste0("https://bordtennisportalen.dk/DBTU/Ranglister/Udskriv/?params=,59,4",
-           DataEventAarAkt_T$EventAarRatingDato_DW_Aar_DW-1, ",",
+           DataEventAarAkt_T$EventAarRatingDato_RD_Aar_DW-1, ",",
            format(DataEventAarAkt_T$EventAarRatingDato_RD, "%m/%d/%Y")))
   
   for (side in seq(from = 1, to = 50, by = 1)) {
@@ -2074,11 +2068,11 @@ if(InputWebRatingTF_V == T) {
   
   write_xlsx(
     setNames(
-      list(tbl5_webscraping_rating), DataEventAarAkt_T$EventAarRatingDato_DW_DMAA_DW),
+      list(tbl5_webscraping_rating), DataEventAarAkt_T$EventAarRatingDato_RD_DMAA_DW),
     path = normalizePath("filer/generelt/rating.xlsx"))
   write_xlsx(
     setNames(
-      list(tbl5_join_webscraping_rating), DataEventAarAkt_T$EventAarRatingDato_DW_DMAA_DW),
+      list(tbl5_join_webscraping_rating), DataEventAarAkt_T$EventAarRatingDato_RD_DMAA_DW),
     path = normalizePath("filer/generelt/ping-pong-dm-rating.xlsx"))
   shell.exec(normalizePath("filer/generelt/ping-pong-dm-rating.xlsx"))
 } else if(InputWebRatingTF_V == F) {"InputWebRatingTF_V = F"}

@@ -238,7 +238,7 @@ Turneringen afvikles som én åben singlerække på fair vis efter snake-system 
 Puljerne dannes på fair vis efter snake-system uden klubhensyn efter følgende prioritering:
 
 1.  Nr. 1-4 seedes efter placeringerne i "Final 4" i A-slutspil ved sidst afholdte DM`r "^[<b>Resultater sidste DM</b>: Ved sidste DM i 2022 i Sisu/MBK var <q>Final 4</q> deltagerne:<br>Nr. 1. Benjamin Sørensen, Hørning BTK.<br>Nr. 2. Simon Larsen, BTK Viby.<br>Nr. 3. Mads Larsen, Silkeborg BTK.<br>Nr. 4. Emil Madsen, Hørning BTK.]"`.
-2.  `r paste0("[Ratingopdateringen i bordtennis](https://bordtennisportalen.dk/DBTU/Ranglister){target=_blank} pr. ", DataEventAarAkt_T$EventAarRatingDato_DW_DMAA_DW, ".")`
+2.  `r paste0("[Ratingopdateringen i bordtennis](https://bordtennisportalen.dk/DBTU/Ranglister){target=_blank} pr. ", DataEventAarAkt_T$EventAarRatingDato_RD_DMAA_DW, ".")`
 3.  Skøn og lodtrækning.
 
 I det videre spil dannes seedningerne på baggrund af placeringerne fra puljespillet.
