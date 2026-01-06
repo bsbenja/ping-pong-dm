@@ -17,7 +17,7 @@ project:
 website:
   site-url: "https://pingpong.quarto.pub/dm"
   favicon: "filer/generelt/ping-pong-dk.png"
-  title: "Ping Pong DM - Officiel hjemmeside"
+  title: "Ping Pong DM - Uofficiel hjemmeside"
   google-analytics: "G-6903XX1GX6"
   page-navigation: true
   back-to-top-navigation: false
@@ -53,17 +53,7 @@ website:
       - text: |
           <a style=font-weight:bold;font-size:18px;text-decoration:none href=index.qmd><img src=filer/generelt/ping-pong-dk.png style=height:18px>&nbsp;Ping Pong DM</a>
           <br><br>
-          <a href=https://bordtennisdanmark.dk/kalender/dm-i-ping-pong target=_blank><img src=filer/generelt/btdk.png style=height:24px></a>
-          &nbsp;<a href=https://www./dgi.dk/bordtennis target=_blank><img src=filer/generelt//dgi.png style=height:24px></a>
-          &nbsp;<a href=http://hoerningbtk.dk target=_blank><img src=filer/event/ping-pong-dm-2023/arrangoer.png style=height:24px></a>
-          &nbsp;<a href=https://icttf.co target=_blank><img src=filer/generelt/icttf.png style=height:24px></a>
-          &nbsp;<a href=https://www.sport-live.dk target=_blank><img src=filer/event/ping-pong-dm-2023/tv.png style=height:24px></a>
-          &nbsp;<a href=https://rema1000.dk target=_blank><img src=filer/event/ping-pong-dm-2023/sponsor-1.png style=height:24px></a>
-          &nbsp;<a href=https://www.gfforsikring.dk/gfaarhus target=_blank><img src=filer/event/ping-pong-dm-2023/sponsor-2.png style=height:24px></a>
-          &nbsp;<a href=https://supervisionalarm.dk/ target=_blank><img src=filer/event/ping-pong-dm-2023/sponsor-3.png style=height:24px></a>
-          &nbsp;<a href=https://installsound.dk target=_blank><img src=filer/event/ping-pong-dm-2023/sponsor-4.png style=height:24px></a>
-          &nbsp;<a href=https://www.dsv.com/da-dk target=_blank><img src=filer/event/ping-pong-dm-2023/sponsor-5.png style=height:24px></a>
-          &nbsp;<a href={{< var var.facebook_event_url >}} target=_blank><span class=bi-facebook style=color:#1877F2;font-size:18px></span></a>
+          <a href={{< var var.facebook_event_url >}} target=_blank><span class=bi-facebook style=color:#1877F2;font-size:18px></span></a>
           &nbsp;<a href=https://m.me/{{< var var.facebook_side_id >}} target=_blank><span class=bi-messenger style=color:#0695FF;font-size:18px></span></a>
           &nbsp;<a href=https://github.com/bsbenja/ping-pong-dm target=_blank><span class=bi-github style=color:#9F7BE1;font-size:18px></span></a>
 

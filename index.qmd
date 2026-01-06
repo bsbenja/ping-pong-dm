@@ -11,7 +11,7 @@ DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAa
 ---
 title: "<iconify-icon icon=mdi:home></iconify-icon> <u>Forside</u>"
 subtitle: |
-  <b style=font-size:140%>Ping Pong DM - Officiel hjemmeside</b><br><i style=font-size:80>Velkommen til den officielle hjemmeside for Danske Mesterskaber i Ping Pong. Ping Pong er bordtennis på <b><u>lige vilkår</u></b> med sandpapirsbat, som er <b><u>åben for ALLE</u></b> til en <b><u>overkommelig pris</u></b>. Se mere ved at navigere rundt her på hjemmesiden. Fra mobil gøres dette via topmenuen.</i>
+  <b style=font-size:140%>Ping Pong DM - Uofficiel hjemmeside</b><br><i style=font-size:80>Velkommen til den uofficielle hjemmeside for Danske Mesterskaber i Ping Pong. Ping Pong er bordtennis på <b><u>lige vilkår</u></b> med sandpapirsbat, som er <b><u>åben for ALLE</u></b> til en <b><u>overkommelig pris</u></b>. Se mere ved at navigere rundt her på hjemmesiden. Fra mobil gøres dette via topmenuen.</i>
 editor_options: 
   chunk_output_type: console
 ---

@@ -5,7 +5,7 @@ source(file = "_input.R")
 
 ---
 title: "<iconify-icon icon=mdi:chart-box></iconify-icon> <u>Dashboard</u>"
-subtitle: "Ping Pong DM"
+subtitle: "<a href=index.qmd>Ping Pong DM</a>"
 format:
   dashboard:
     embed-resources: true
