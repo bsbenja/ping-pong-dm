@@ -13,13 +13,51 @@ format:
     expandable: false
 ---
 
-Klik her for at komme tilbage til [**Forsiden**](index.qmd)**.**
+# `r DataEventAar_T$EventAarFristDato_DW_Aar_DW[1]`
+
+## KPI
+
+::: {.valuebox icon="person-fill" color="primary"}
+**Samlet antal deltagere**
+
+`r DataEventAar_T$KPIDeltAntal_DW[1]`
+:::
+
+::: {.valuebox icon="piggy-bank-fill" color="secondary"}
+Test
+:::
+
+::: {.valuebox icon="thermometer" color="secondary"}
+Test
+:::
+
+## Tabel {.tabset}
+
+### Test
+
+Test
+
+### Test
+
+Test
+
+### Test
+
+Test
+
+### Test
+
+Test
+
+### Test
+
+Test
 
 # Samlet
 
 ## KPI
 
-::: {.valuebox icon="credit-card-fill" color="primary"}
+::: {.valuebox icon="person-fill" color="primary"}
 Test
 :::
 
@@ -36,44 +74,6 @@ Test
 ### Test
 
 Test
-
-### Test
-
-Test
-
-### Test
-
-Test
-
-### Test
-
-Test
-
-### Test
-
-Test
-
-### Test
-
-Test
-
-# 2025
-
-## KPI
-
-::: {.valuebox icon="credit-card-fill" color="primary"}
-Test
-:::
-
-::: {.valuebox icon="piggy-bank-fill" color="secondary"}
-Test
-:::
-
-::: {.valuebox icon="thermometer" color="secondary"}
-Test
-:::
-
-## Tabel {.tabset}
 
 ### Test
 

@@ -1355,6 +1355,13 @@ Analyse_Ordre <- Analyse_Ordre %>%
   mutate(across("StatForskudtTilAntal_DW", \(x) as.character(x))) %>%
   select(-StatForskudtTilAntal_DW, everything())
 
+# KPI
+Analyse_Ordre <- Analyse_Ordre %>%
+  
+  group_by(EventAar_RD) %>%
+  mutate(KPIDeltAntal_DW = sum(DeltUnik_DW)) %>%
+  ungroup()
+
 # Info
 Analyse_Ordre <- Analyse_Ordre %>%
   
@@ -1541,7 +1548,7 @@ Analyse_Ordre <- Analyse_Ordre %>%
 DataEventAar_T <- Analyse_Ordre %>%
   mutate(across(where(~ is.factor(.)), as.character)) %>%
   arrange(desc(EventAarNr_RD)) %>%
-  distinct(across(starts_with(c("EventAar", "Info"))))
+  distinct(across(starts_with(c("EventAar", "Info", "KPI"))))
 
 # DataBillet_T
 DataBillet_T <- Analyse_Ordre %>% filter(grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
