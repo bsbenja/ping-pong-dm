@@ -71,13 +71,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r}
-#| label: info-nedtaelling-plakat
-#| output: asis
-cat(knitr::raw_html(tbl2_EventAarAkt_T$InfoNedtælling_DW))
-cat(tbl2_EventAarAkt_T$InfoPlakatCTA_DW)
-```
-
 ::: {.callout-note style="font-style:italic"}
 ## Sideinfo
 

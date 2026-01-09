@@ -1353,8 +1353,8 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
   # InfoTipIndbydelse_DW
   group_by(EventAar_RD) %>%
   mutate(InfoTipIndbydelse_DW = paste0(
-    IkonBillet_V, "Indbydelse, tidsplan og praktisk info til ",
-    EventAar_RD, "ses [<b>HER</b>](indbydelse-tilmelding-", EventAarStartDato_DW_Aar_DW, ".qmd).</i>")) %>%
+    IkonBillet_V, "Indbydelse, tidsplan og praktisk info til ", EventAar_RD,
+    " ses [<b>HER</b>](indbydelse-tilmelding-", EventAarStartDato_DW_Aar_DW, ".qmd).</i>")) %>%
   ungroup() %>%
   select(-InfoTipIndbydelse_DW, everything()) %>%
   
