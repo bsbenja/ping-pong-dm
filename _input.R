@@ -1,9 +1,3 @@
-#' ---
-#' title: Input for Ping Pong DM
-#' output: html_document
-#' ---
-
-#+ eval=F, warning=F, message=F
 # Dette Quarto-projekt publiceres som hjemmeside via følgende kommando i kommandoprompt:
 # quarto publish quarto-pub --no-prompt --no-browser
 
@@ -17,4 +11,9 @@ InputData_V        <- "filer/generelt/ping-pong-dm-tilmelding.xlsx" # Sti til Ex
 
 # Kildefiler
 source(file = "kode/r/_variables.R")
-source(file = "kode/r/bagvedliggende-kode.R")
+source(file = "kode/r/0-setup.R")
+source(file = "kode/r/1-funktioner.R")
+source(file = "kode/r/2-indlaesning-af-tabeller.R")
+source(file = "kode/r/3-tabel-1-og-2.R")
+source(file = "kode/r/4-tabel-3.R")
+source(file = "kode/r/5-aktuel-input.R")

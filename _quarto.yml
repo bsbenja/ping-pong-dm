@@ -1,7 +1,5 @@
 project:
   type: website
-  resources:
-    - "googlebfa7a423a7b87736.html"
   render:
     - "*.qmd"
     - "index.qmd" # "!index.qmd"

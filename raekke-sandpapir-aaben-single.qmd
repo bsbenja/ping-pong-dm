@@ -8,47 +8,47 @@ source(file = "_input.R")
 
 BillettypeAkt_V <- "Sandpapir - Åben - Single"
 
-DataAkt_T <- Analyse_Ordre %>% filter(
+DataAkt_T <- tbl1_Ordre_T %>% filter(
   grepl(InputEventAarAkt_V, EventAar_RD))
-DataEventAarAkt_T <- DataEventAar_T %>% filter(
+tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(
   grepl(InputEventAarAkt_V, EventAar_RD))
-DataEventAarSidst_T <- DataEventAar_T %>% filter(
+DataEventAarSidst_T <- tbl2_EventAar_T %>% filter(
   grepl(InputEventAarAkt_V, EventAarSidst_DW))
-DataBilletAkt_T <- DataBillet_T %>% filter(
+DataBilletAkt_T <- tbl2_Billet_T %>% filter(
   grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BillettypeAkt_V, Billettype_DW))
-DataPraemiePengeAkt_T <- DataPraemiePenge_T %>% filter(
+DataPraemiePengeAkt_T <- tbl3_PraemiePenge_T %>% filter(
   grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BillettypeAkt_V, Billettype_DW))
-DataPraemieYngstAeldstAkt_T <- DataPraemieYngstAeldst_T %>% filter(
+DataPraemieYngstAeldstAkt_T <- tbl3_DeltYngstAeldst_T %>% filter(
   grepl(InputEventAarAkt_V, EventAar_RD))
-DataDeltForAkt_T <- DataDeltFor_T %>% filter(
+DataDeltForAkt_T <- tbl3_DeltFor_T %>% filter(
   grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BillettypeAkt_V, Billettype_DW))
-DataDeltPuljerAkt_T <- DataDeltPuljer_T %>% filter(
+DataDeltPuljerAkt_T <- tbl3_DeltPuljer_T %>% filter(
   grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BillettypeAkt_V, Billettype_DW))
-DataDeltAndetAkt_T <- DataDeltAndet_T %>% filter(
+DataDeltAndetAkt_T <- tbl3_DeltAndet_T %>% filter(
   grepl(InputEventAarAkt_V, EventAar_RD))
-DataDeltKlubAkt_T <- DataDeltKlub_T %>% filter(
+DataDeltKlubAkt_T <- tbl3_DeltKlub_T %>% filter(
   grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BillettypeAkt_V, Billettype_DW))
-DataDeltByAkt_T <- DataDeltBy_T %>% filter(
+DataDeltByAkt_T <- tbl3_DeltBy_T %>% filter(
   grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BillettypeAkt_V, Billettype_DW))
-DataDeltAlderKatAkt_T <- DataDeltAlderKat_T %>% filter(
+DataDeltAlderKatAkt_T <- tbl3_DeltAlderKat_T %>% filter(
   grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BillettypeAkt_V, Billettype_DW))
-DataDeltKoenAkt_T <- DataDeltKoen_T %>% filter(
+DataDeltKoenAkt_T <- tbl3_DeltKoen_T %>% filter(
   grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BillettypeAkt_V, Billettype_DW))
-DataDeltGenTilAkt_T <- DataDeltGenTil_T %>% filter(
+DataDeltGenTilAkt_T <- tbl3_DeltGenTil_T %>% filter(
   grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BillettypeAkt_V, Billettype_DW))
-DataDeltOrdreKatAkt_T <- DataDeltOrdreKat_T %>% filter(
+DataDeltOrdreKatAkt_T <- tbl3_DeltOrdreKat_T %>% filter(
   grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BillettypeAkt_V, Billettype_DW))
-DataResultSidst_T <- DataResult_T %>% filter(
+DataResultSidst_T <- tbl3_Result_T %>% filter(
   grepl(InputEventAarAkt_V, EventAarSidst_DW) &
   grepl(BillettypeAkt_V, Billettype_DW) &
   grepl("A-slutspil", DeltSlutspil_RD) &
@@ -59,14 +59,14 @@ DataResultSidst_T <- DataResult_T %>% filter(
 title: "<iconify-icon icon=mdi:table-tennis></iconify-icon> <u>Sandpapir Åben Single</u>"
 subtitle: |
   `r paste0(
-  "<b style=font-size:140%>", DataEventAarAkt_T$EventAar_RD, "</b>",
+  "<b style=font-size:140%>", tbl2_EventAarAkt_T$EventAar_RD, "</b>",
   "<br>",
   "<i style=font-size:110%>",
-  "<b>Afholdes ", DataEventAarAkt_T$EventAarDato_DW, " i ", DataEventAarAkt_T$EventAarStedURL_DW,
+  "<b>Afholdes ", tbl2_EventAarAkt_T$EventAarDato_DW, " i ", tbl2_EventAarAkt_T$EventAarStedURL_DW,
   "</b></i>",
   "<br>",
   "<i style=font-size:80%>Først til mølle-princip ∙ Tilmeldingsfrist ",
-  DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW, "</i>")`
+  tbl2_EventAarAkt_T$EventAarFristDato_DW_DMAA_DW, "</i>")`
 editor_options: 
   chunk_output_type: console
 ---
@@ -74,20 +74,20 @@ editor_options:
 ```{r}
 #| label: info-nedtaelling-plakat
 #| output: asis
-cat(knitr::raw_html(DataEventAarAkt_T$InfoNedtælling_DW))
-cat(DataEventAarAkt_T$InfoPlakatCTA_DW)
+cat(knitr::raw_html(tbl2_EventAarAkt_T$InfoNedtælling_DW))
+cat(tbl2_EventAarAkt_T$InfoPlakatCTA_DW)
 ```
 
 ::: {.callout-note style="font-style:italic"}
 ## Sideinfo
 
-Præmier og deltagere opdateres løbende for `r DataEventAarAkt_T$EventAar_RD` og er sidst opdateret `r format(floor_date(Sys.time(), "30 minutes"), "%d.%m.%Y kl. %H:%M.")`
+Præmier og deltagere opdateres løbende for `r tbl2_EventAarAkt_T$EventAar_RD` og er sidst opdateret `r format(floor_date(Sys.time(), "30 minutes"), "%d.%m.%Y kl. %H:%M.")`
 :::
 
 ::: {.callout-tip style="font-style:italic"}
 ## Tip
 
-`r DataEventAarAkt_T$InfoTipIndbydelse_DW`
+`r tbl2_EventAarAkt_T$InfoTipIndbydelse_DW`
 :::
 
 ## `r paste(IkonPokal_V, "Præmier")`
@@ -105,15 +105,15 @@ if(nrow(DataPraemiePengeAkt_T) == 0) {
     kbl(col.names = NA, align = "lrr", escape = F,
         caption = paste(IkonPenge_V, "Præmiepenge")) %>%
     kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
-    row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
+    row_spec(0, background = tbl2_EventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
     row_spec(which(DataPraemiePengeAkt_T$PraemieRank_DW == "1"),
-             bold = T, background = DataEventAarAkt_T$EventAarFarve2_RD, color = "#000000") %>%
+             bold = T, background = tbl2_EventAarAkt_T$EventAarFarve2_RD, color = "#000000") %>%
     row_spec(which(DataPraemiePengeAkt_T$PraemieRank_DW == "2"),
-             background = DataEventAarAkt_T$EventAarFarve2_RD, color = "#000000") %>%
+             background = tbl2_EventAarAkt_T$EventAarFarve2_RD, color = "#000000") %>%
     row_spec(which(DataPraemiePengeAkt_T$PraemieRank_DW == "3"),
-             background = DataEventAarAkt_T$EventAarFarve2_RD, color = "#000000") %>%
+             background = tbl2_EventAarAkt_T$EventAarFarve2_RD, color = "#000000") %>%
     add_indent(which(DataPraemiePengeAkt_T$PraemieRank_DW == "4")) %>%
-    column_spec(3, italic = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
+    column_spec(3, italic = T, color = tbl2_EventAarAkt_T$EventAarFarve1_RD) %>%
     remove_column(4:8)
 }
 ```
@@ -130,7 +130,7 @@ if(nrow(DataPraemieYngstAeldstAkt_T) == 0) {
     kbl(col.names = NA, align = "lclc", escape = F,
       caption = paste(IkonGave_V, "Gave til yngste- og ældste Ping Pong deltager")) %>%
     kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
-    row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
+    row_spec(0, background = tbl2_EventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
     column_spec(1, bold = T) %>%
     column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
     remove_column(5)
@@ -163,13 +163,13 @@ if(InputInfo1234_V %in% c(3)) {
         IkonPerson_V, " Foreløbige deltagere",
         "<br>", "<i style=font-size:80%>",
         DataBilletAkt_T$BilletPuljeDelt_RD, "-mandspuljer inddelt efter snake-system vises",
-        "efter tilmeldingsfrist ", DataEventAarAkt_T$EventAarFristDato_DW_DMAA_DW, ".",
+        "efter tilmeldingsfrist ", tbl2_EventAarAkt_T$EventAarFristDato_DW_DMAA_DW, ".",
         "<br>",
         "<br>",
         "Sorteret efter billettype og fødselsdato",
         "</i>")) %>%
   kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
-  row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
+  row_spec(0, background = tbl2_EventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
   remove_column(4:8)
   }
@@ -183,7 +183,7 @@ if(InputInfo1234_V %in% c(1, 2, 4)) {
   DataDeltPuljerAkt_T %>%
     kbl(col.names = NA, align = "cclr", escape = F,
       caption = paste0(
-        IkonPingPong_V, " ", DataBilletAkt_T$BilletPuljeDelt_RD, "-mandspuljer til ", DataEventAarAkt_T$EventAar_RD,
+        IkonPingPong_V, " ", DataBilletAkt_T$BilletPuljeDelt_RD, "-mandspuljer til ", tbl2_EventAarAkt_T$EventAar_RD,
         "<br>",
         "<i style=font-size:80%>",
         DataBilletAkt_T$BilletDelt_DW, " ", ifelse(DataBilletAkt_T$BilletDelt_DW == 1, "tilmelding", "tilmeldinger"),
@@ -192,13 +192,13 @@ if(InputInfo1234_V %in% c(1, 2, 4)) {
         "<br>",
         "Seedet 1-4 efter sidste <q>Final 4</q>.",
         "<br>",
-        "Rating er opdateret pr. ", DataEventAarAkt_T$EventAarRatingDato_RD_DMAA_DW, ".",
+        "Rating er opdateret pr. ", tbl2_EventAarAkt_T$EventAarRatingDato_RD_DMAA_DW, ".",
         "<br>",
         "<br>",
         "Bemærk: Puljerne kan ændre sig ved drive-in/afbud",
         "</i>")) %>%
   kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
-  row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
+  row_spec(0, background = tbl2_EventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
   row_spec(
     which(DataDeltPuljerAkt_T$DeltSnakeSeedLagNr_DW == "1"), bold = T,
     extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
@@ -220,9 +220,9 @@ if(InputInfo1234_V %in% c(1, 2, 3, 4)) {
         "Andet end Ping Pong + evt. afbud<br>",
         "<i style=font-size:80%>Sorteret efter fødselsdato</i>")) %>%
   kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed") %>%
-  row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
+  row_spec(0, background = tbl2_EventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
   row_spec(which(grepl("Afbud", DataDeltAndetAkt_T$OrdreStatusSimpelKat_RD)),
-           strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
+           strikeout = T, color = tbl2_EventAarAkt_T$EventAarFarve1_RD) %>%
   row_spec(which(DataDeltAndetAkt_T$`#` == "1"),
            extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
   remove_column(4:5)
@@ -264,9 +264,9 @@ DataDeltKlubAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter klubantal</i>") %>%
 	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed", font_size = "80%") %>%
-	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
+	row_spec(0, background = tbl2_EventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltKlubAkt_T$OrdreStatusSimpelKat_RD)),
-					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
+					 strikeout = T, color = tbl2_EventAarAkt_T$EventAarFarve1_RD) %>%
   column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
   column_spec(4, extra_css = "white-space:nowrap;") %>%
 	remove_column(5:7) %>%
@@ -329,9 +329,9 @@ DataDeltByAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter region og postnr.</i>") %>%
 	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed", font_size = "80%") %>%
-	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
+	row_spec(0, background = tbl2_EventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltByAkt_T$OrdreStatusSimpelKat_RD)),
-					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
+					 strikeout = T, color = tbl2_EventAarAkt_T$EventAarFarve1_RD) %>%
   column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
   column_spec(4, extra_css = "white-space:nowrap;") %>%
 	remove_column(5:7) %>%
@@ -383,9 +383,9 @@ DataDeltAlderKatAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter fødselsdato</i>") %>%
 	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed", font_size = "80%") %>%
-	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
+	row_spec(0, background = tbl2_EventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltAlderKatAkt_T$OrdreStatusSimpelKat_RD)),
-					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
+					 strikeout = T, color = tbl2_EventAarAkt_T$EventAarFarve1_RD) %>%
   column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
   column_spec(4, extra_css = "white-space:nowrap;") %>%
 	remove_column(5:7) %>%
@@ -437,9 +437,9 @@ DataDeltKoenAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter køn</i>") %>%
 	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed", font_size = "80%") %>%
-	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
+	row_spec(0, background = tbl2_EventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltKoenAkt_T$OrdreStatusSimpelKat_RD)),
-					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
+					 strikeout = T, color = tbl2_EventAarAkt_T$EventAarFarve1_RD) %>%
   column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
   column_spec(4, extra_css = "white-space:nowrap;") %>%
 	remove_column(5:7) %>%
@@ -486,9 +486,9 @@ DataDeltGenTilAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter antal gentilmeldinger</i>") %>%
 	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed", font_size = "80%") %>%
-	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
+	row_spec(0, background = tbl2_EventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltGenTilAkt_T$OrdreStatusSimpelKat_RD)),
-					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
+					 strikeout = T, color = tbl2_EventAarAkt_T$EventAarFarve1_RD) %>%
   column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
   column_spec(4, extra_css = "white-space:nowrap;") %>%
 	remove_column(5:7) %>%
@@ -501,7 +501,7 @@ DataDeltGenTilAkt_T %>%
 #| output: asis
 cat(paste0(
 "<p style=font-size:70%>",
-"<b>Deltagere gentilmelding</b>^[<b>Deltagere gentilmelding</b>: Deltagere gentilmelding opgøres efter antal tilmeldte deltagere til eventet fordelt på <q>gentilmelding</q> og <q>debutant</q>. Procentsatserne viser fordelingen heraf. Gentilmelding defineres som en, der tidligere har valgt samme billetype, og debutant defineres som en, der har valgt en billettype for første gang. Ved både gentilmelding og debutant tælles dette kun som gentilmelding. Opgørelsen gælder fra og med ", distinct(filter(DataAkt_T, EventAarFra2021_DW == DataEventAarAkt_T$EventAarFra2021_DW), min(EventAarStartDato_DW_Aar_DW)), ". Se også @fig-gentilmeldinger og @tbl-gentilmeldinger]",
+"<b>Deltagere gentilmelding</b>^[<b>Deltagere gentilmelding</b>: Deltagere gentilmelding opgøres efter antal tilmeldte deltagere til eventet fordelt på <q>gentilmelding</q> og <q>debutant</q>. Procentsatserne viser fordelingen heraf. Gentilmelding defineres som en, der tidligere har valgt samme billetype, og debutant defineres som en, der har valgt en billettype for første gang. Ved både gentilmelding og debutant tælles dette kun som gentilmelding. Opgørelsen gælder fra og med ", distinct(filter(DataAkt_T, EventAarFra2021_DW == tbl2_EventAarAkt_T$EventAarFra2021_DW), min(EventAarStartDato_DW_Aar_DW)), ". Se også @fig-gentilmeldinger og @tbl-gentilmeldinger]",
 "<br>", DataBilletAkt_T$StatDeltGenKatAntal_DW,
 "</p>"))
 ```
@@ -535,9 +535,9 @@ DataDeltOrdreKatAkt_T %>%
 	kbl(col.names = NA, align = "ccll", escape = F,
 			caption = "<i style=font-size:80%>Sorteret efter ældste <q>første ordredato</q></i>") %>%
 	kable_styling(position = "l", full_width = F, htmltable_class = "table-condensed", font_size = "80%") %>%
-	row_spec(0, background = DataEventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
+	row_spec(0, background = tbl2_EventAarAkt_T$EventAarFarve1_RD, color = "#FFFFFF") %>%
 	row_spec(which(grepl("Afbud", DataDeltOrdreKatAkt_T$OrdreStatusSimpelKat_RD)),
-					 strikeout = T, color = DataEventAarAkt_T$EventAarFarve1_RD) %>%
+					 strikeout = T, color = tbl2_EventAarAkt_T$EventAarFarve1_RD) %>%
   column_spec(1:4, extra_css = paste0("border-top:0.7px solid ", TabelFarveKant_V, ";")) %>%
   column_spec(4, extra_css = "white-space:nowrap;") %>%
 	remove_column(5:7) %>%

@@ -13,14 +13,14 @@ format:
     expandable: false
 ---
 
-# `r DataEventAar_T$EventAarFristDato_DW_Aar_DW[1]`
+# `r tbl2_EventAar_T$EventAarFristDato_DW_Aar_DW[1]`
 
 ## KPI
 
 ::: {.valuebox icon="person-fill" color="primary"}
 **Samlet antal deltagere**
 
-`r DataEventAar_T$KPIDeltAntal_DW[1]`
+`r tbl2_EventAar_T$KPIDeltAntal_DW[1]`
 :::
 
 ::: {.valuebox icon="piggy-bank-fill" color="secondary"}

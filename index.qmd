@@ -5,7 +5,7 @@ source(file = "_input.R")
 
 ```{r}
 #| label: kildefil-filter
-DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 ```
 
 ---
@@ -19,8 +19,8 @@ editor_options:
 ```{r}
 #| label: info-nedtaelling-plakat
 #| output: asis
-cat(knitr::raw_html(DataEventAarAkt_T$InfoNedtælling_DW))
-cat(DataEventAarAkt_T$InfoPlakatCTA_DW)
+cat(knitr::raw_html(tbl2_EventAarAkt_T$InfoNedtælling_DW))
+cat(tbl2_EventAarAkt_T$InfoPlakatCTA_DW)
 ```
 
 ::::::: callout-tip
@@ -28,9 +28,9 @@ cat(DataEventAarAkt_T$InfoPlakatCTA_DW)
 
 :::::: grid
 ::: {.g-col-12 .g-col-md-4}
-#### `r DataEventAarAkt_T$EventAar_RD`
+#### `r tbl2_EventAarAkt_T$EventAar_RD`
 
-`r DataEventAarAkt_T$InfoForside_DW`
+`r tbl2_EventAarAkt_T$InfoForside_DW`
 :::
 
 ::: {.g-col-12 .g-col-md-4}
@@ -61,7 +61,7 @@ cat(DataEventAarAkt_T$InfoPlakatCTA_DW)
 ::: {.callout-note style="font-style:italic" icon="false"}
 ## `r paste(IkonFacebook_V, "Facebook")`
 
-`r DataEventAarAkt_T$InfoFacebook_DW`
+`r tbl2_EventAarAkt_T$InfoFacebook_DW`
 :::
 
 ```{r}

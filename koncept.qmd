@@ -5,9 +5,9 @@ source(file = "_input.R")
 
 ```{r}
 #| label: kildefil-filter
-DataEventAarAkt_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
-DataEventAarSidst_T <- DataEventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAarSidst_DW))
-DataResultSandpapirAabenSingle_T <- DataResult_T %>% filter(
+tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataEventAarSidst_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAarSidst_DW))
+DataResultSandpapirAabenSingle_T <- tbl3_Result_T %>% filter(
   (grepl("A-slutspil", DeltSlutspil_RD) &
   grepl("1", DeltPlacNr_RD) &
   grepl("Sandpapir - Åben - Single", Billettype_DW)) |
@@ -87,7 +87,7 @@ flowchart TD
 ::: {.callout-tip style="font-style:italic"}
 ## Ping Pong regler
 
-`r DataEventAarAkt_T$InfoTipRegler_DW`
+`r tbl2_EventAarAkt_T$InfoTipRegler_DW`
 :::
 
 ### Bat og bold
@@ -110,7 +110,7 @@ Resultaterne fra DM danner grundlag for international udtagelse. Normalvis er de
 ::: {.callout-tip style="font-style:italic"}
 ## WCPP
 
-`r DataEventAarAkt_T$InfoTipVM_DW`
+`r tbl2_EventAarAkt_T$InfoTipVM_DW`
 :::
 
 ## Historie

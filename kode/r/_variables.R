@@ -1,19 +1,10 @@
-#' ---
-#' title: Variable for Ping Pong DM
-#' output: html_document
-#' ---
-
-#' # Farve
-# Farve -------------------------------------------------------------------
-#+ eval=F, warning=F, message=F
+# Farve ----------------------------------------------------------------------------------------------------------------
 
 TabelFarveFG_V   <- "#398FCC"
 TabelFarveBG_V   <- "#E4F0F8"
 TabelFarveKant_V <- "#808080"
 
-#' # Ikon
-# Ikon --------------------------------------------------------------------
-#+ eval=F, warning=F, message=F
+# Ikon -----------------------------------------------------------------------------------------------------------------
 
 # Findes OGSÅ i InputData_V
 IkonPingPong_V    <- "<iconify-icon icon=mdi:table-tennis style=color:#398FCC></iconify-icon>"
