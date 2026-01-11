@@ -29,4 +29,4 @@ Der arbejdes på gode pengepræmier
 ```{=typst}
 #v(-15pt)
 ```
-[Godkendt af ICTTF]{style="font-size:12pt"}`#h(1fr)`{=typst}[**Lokation**: Nørre Boulevard 1, 8000 Aarhus C]{style="font-size:12pt"}
+[*Godkendt af ICTTF*]{style="font-size:12pt"}`#h(1fr)`{=typst}[***Lokation**: Nørre Boulevard 1, 8000 Aarhus C*]{style="font-size:12pt"}
