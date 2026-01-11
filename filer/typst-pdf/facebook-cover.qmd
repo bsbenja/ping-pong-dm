@@ -5,7 +5,7 @@ author: Sisu/MBK
 format: _extensions-typst
 ---
 
-`#fun-fa-stack("calendar-days")`{=typst} **Tid**: {{< meta date >}} `#h(20pt)`{=typst} `#fun-fa-stack("location-dot")`{=typst} **Sted**: {{< meta author >}}
+`#fun-fa-stack("location-dot")`{=typst} **Tid og sted**: {{< meta date >}} i {{< meta author >}}
 
 `#fun-fa-stack("table-tennis-paddle-ball")`{=typst} **Discipliner**: Træbat Åben Single og Sandpapir Åben Single
 
@@ -14,7 +14,7 @@ format: _extensions-typst
 `#fun-fa-stack("trophy")`{=typst} **Præmier**: Kvalifikationspladser til World Cup 2027\
 Der arbejdes på gode pengepræmier…!
 
-`#fun-fa-stack("x")`{=typst} ***Sæt*** `#text(fill: rgb(Farve_Tema))[*X*]`{=typst} ***i kalenderen! Nærmere info følger…!***
+`#fun-fa-stack("x")`{=typst} ***Sæt*** `#text(fill: rgb(Farve_Tema))[_*X*_]`{=typst} ***i kalenderen! Nærmere info følger…!***
 
 ::: {.block fill="rgb(\"#FFFFFF\")" inset="6pt" radius="4pt" width="100%"}
 ```{=typst}
