@@ -5,18 +5,18 @@ author: Sisu/MBK
 format: _extensions-typst
 ---
 
-**Tid og sted**: {{< meta date >}} i {{< meta author >}}
+`#fun-fa-stack("calendar")`{=typst} **Tid og sted**: {{< meta date >}} i {{< meta author >}}
 
-**Discipliner**: Træbat Åben Single og Sandpapir Åben Single
+`#fun-fa-stack("table-tennis-paddle-ball")`{=typst} **Discipliner**: Træbat Åben Single og Sandpapir Åben Single
 
-**Stor fest**: Der arbejdes på at arrangere en stor fest om aftenen
+`#fun-fa-stack("music")`{=typst} **Stor fest**: Der arbejdes på at arrangere en stor fest om aftenen
 
-**Præmier**: Kvalifikationspladser til World Cup 2027\
+`#fun-fa-stack("trophy")`{=typst} **Præmier**: Kvalifikationspladser til World Cup 2027\
 Der arbejdes på gode pengepræmier
 
-*Sæt [X]{style="color:red"} i kalenderen! Nærmere info følger...*
+`#fun-fa-stack("x")`{=typst} *Sæt* `#text(fill: rgb(Farve_Tema))[X]`{=typst} *i kalenderen! Nærmere info følger...*
 
-::: {.block fill="rgb(\"#FFFFFF\")" inset="1pt" radius="1pt" width="100%"}
+::: {.block fill="rgb(\"#FFFFFF\")" inset="6pt" radius="4pt" width="100%"}
 ```{=typst}
 #grid(columns: (1fr, 1fr, 1fr), align: (left, auto, right),
   [#image("billede/icttf.png")],
@@ -26,6 +26,7 @@ Der arbejdes på gode pengepræmier
 ```
 :::
 
-Godkendt af ICTTF
-
-**Lokation**: Nørre Boulevard 1, 8000 Aarhus C
+```{=typst}
+#v(-15pt)
+```
+[Godkendt af ICTTF]{style="font-size:12pt"}`#h(1fr)`{=typst}[**Lokation**: Nørre Boulevard 1, 8000 Aarhus C]{style="font-size:12pt"}

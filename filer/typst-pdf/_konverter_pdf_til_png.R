@@ -20,5 +20,5 @@ for (pdf in pdf_files) {
   out_files <- file.path(paste0(base_name, "_", seq_len(n_pages), ".png"))
   
   # Convert and save PNGs
-  pdf_convert(pdf = pdf, dpi = 600, filenames = file.path(paste0(base_name, "-", seq_len(n_pages), ".png")))
+  pdf_convert(pdf = pdf, dpi = 72, filenames = file.path(paste0(base_name, "-", seq_len(n_pages), ".png")))
 }
