@@ -58,8 +58,8 @@ website:
 format:
   html:
     theme:
-      light: [flatly, kode/scss/tema.scss, kode/scss/tema-lys.scss]
-      dark: [darkly, kode/scss/tema.scss, kode/scss/tema-moerk.scss]
+      light: [flatly, filer/kode/scss/tema.scss, filer/kode/scss/tema-lys.scss]
+      dark: [darkly, filer/kode/scss/tema.scss, filer/kode/scss/tema-moerk.scss]
     df-print: default
     html-table-processing: none
     cap-location: bottom

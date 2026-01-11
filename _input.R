@@ -10,10 +10,10 @@ InputEventAarAkt_V <- "Ping Pong DM 2025" # Event og år
 InputData_V        <- "filer/generelt/ping-pong-dm-tilmelding.xlsx" # Sti til Excel-fil
 
 # Kildefiler
-source(file = "kode/r/_variables.R")
-source(file = "kode/r/0-setup.R")
-source(file = "kode/r/1-funktioner.R")
-source(file = "kode/r/2-indlaesning-af-tabeller.R")
-source(file = "kode/r/3-tabel-1-og-2.R")
-source(file = "kode/r/4-tabel-3.R")
-source(file = "kode/r/5-aktuel-input.R")
+source(file = "filer/kode/r/_variables.R")
+source(file = "filer/kode/r/0-setup.R")
+source(file = "filer/kode/r/1-funktioner.R")
+source(file = "filer/kode/r/2-indlaesning-af-tabeller.R")
+source(file = "filer/kode/r/3-tabel-1-og-2.R")
+source(file = "filer/kode/r/4-tabel-3.R")
+source(file = "filer/kode/r/5-aktuel-input.R")
