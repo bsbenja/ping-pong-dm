@@ -1,0 +1,31 @@
+# I denne fil defineres grundlæggende Pandoc metadata samt format
+
+contributes:
+  formats:
+    common:
+      lang: da
+      date-format: dddd D. MMMM YYYY
+      execute:
+        echo: false
+        warning: false
+      
+    typst:
+      keep-typ: false
+      shift-heading-level-by: 0
+      template-partials:
+        - typst-template.typ
+        - typst-show.typ
+      filters:
+        - filter.lua
+        
+    html:
+      theme:
+        light: flatly
+        dark: darkly
+      tbl-colwidths: [50,50]
+      toc: true
+      number-sections: true
+      code-tools: true
+      code-copy: true
+      code-overflow: wrap
+      embed-resources: true

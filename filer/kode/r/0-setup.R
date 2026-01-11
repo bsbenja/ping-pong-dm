@@ -4,7 +4,7 @@
 for (Packages_V in c(
   "readxl", "cellranger", "openxlsx", "writexl", "dplyr", "tidyr", "stringr",
   "formattable", "lubridate", "plotly", "ggplot2", "ggtext", "forcats",
-  "plotDK", "httr", "rvest", "pdftools", "kableExtra", "DT")) {
+  "plotDK", "httr", "rvest", "pdftools", "kableExtra", "DT", "rstudioapi")) {
   if (!requireNamespace(Packages_V, quietly = TRUE)) {
     install.packages(Packages_V, dependencies = TRUE)
   }

@@ -1,0 +1,31 @@
+---
+title: Ping Pong DM 2026
+date: 05/16/2026
+author: Sisu/MBK
+format: _extensions-typst
+---
+
+**Tid og sted**: {{< meta date >}} i {{< meta author >}}
+
+**Discipliner**: Træbat Åben Single og Sandpapir Åben Single
+
+**Stor fest**: Der arbejdes på at arrangere en stor fest om aftenen
+
+**Præmier**: Kvalifikationspladser til World Cup 2027\
+Der arbejdes på gode pengepræmier
+
+*Sæt [X]{style="color:red"} i kalenderen! Nærmere info følger...*
+
+::: {.block fill="rgb(\"#FFFFFF\")" inset="1pt" radius="1pt" width="100%"}
+```{=typst}
+#grid(columns: (1fr, 1fr, 1fr), align: (left, auto, right),
+  [#image("billede/icttf.png")],
+  [#image("billede/sisu-mbk.png")],
+  [#image("billede/bordtennis-danmark.png")]
+)
+```
+:::
+
+Godkendt af ICTTF
+
+**Lokation**: Nørre Boulevard 1, 8000 Aarhus C
