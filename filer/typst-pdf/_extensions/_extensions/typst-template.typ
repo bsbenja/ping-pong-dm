@@ -1,9 +1,9 @@
 // Denne fil er den centrale skabelonfunktion for Typst
 
 // 🔹 ANGIV HEX-farver
-#let Farve_Tema      = "#D9534F"
+#let Farve_Tema1     = "#D9534F"
+#let Farve_Tema2     = "#211D71"
 #let Farve_Brødtekst = "#FFFFFF"
-#let Farve_Side      = "#211D71"
 
 // 🔹 fun-fa-stack
 #import "@preview/fontawesome:0.5.0": * /* Importerer Font Awesome ikoner */
@@ -12,12 +12,19 @@
   box(inset: (right: 0.1em),
     place(bottom, float: true, dy: 0.16em, clearance: -0.28em,
       fa-stack(
-        circle(fill: rgb(Farve_Tema), radius: radius),
-        (x, (fill: rgb(Farve_Brødtekst), size: radius, solid: true))
+        circle(fill: rgb(Farve_Tema1), radius: radius),
+        (x, (fill: rgb(Farve_Tema2), size: radius, solid: true))
       )
     )
   )
 }
+
+// 🔹 fun-fa-stack
+#let fun-img-color(img, color) = layout(bounds => {
+  let size = measure(img, ..bounds)
+  img
+  place(top + left, block(..size, fill: color))
+})
 
 // =================================================================================================
 // 🔷 _extensions-typst
@@ -35,26 +42,25 @@
 ) = {
 
   // 🔹 Angiver sideopsætning
-  set page(width: 820pt, height: 360pt, margin: (y: 24*1.6pt, x: 90*1.6pt), footer: none, fill: rgb(Farve_Side).lighten(20%))
+  set page(
+    width: 820pt,
+    height: 360pt,
+    margin: (y: 24*1.6pt, x: 90*1.6pt),
+    footer: none,
+  background: fun-img-color(image("billede/_baggrund.png", height: 140%), rgb(gray).transparentize(25%))
+  )
 
   // 🔹 Angiver skrifttype og orddeling
-  set text(fill: rgb(Farve_Brødtekst), font: "Arial", size: 17.5pt, tracking: 0.04em, lang: lang, hyphenate: false)
+  set text(fill: rgb(Farve_Brødtekst), font: "Arial", size: 13.6pt, tracking: 0.04em, lang: lang, hyphenate: false)
 
   // 🔹 Angiver linjeafstand, paragrafafstand og margen
   set par(leading: 0.6em, spacing: 1em, justify: false)
 
   // 🔹 Angiver centreret indhold
-  set align(center)
+  set align(left)
 
   // 🔹 Angiver billeder
   set image(height: 1.5em)
   
-  // 🔹 Opsætning af dokumenter generelt
-  [
-    #text(size: 2em)[*#upper(title)*]
-    #v(-1.5em)
-    #text(size: 0.8em)[#smallcaps[*Danmarksmesterskaberne i klassisk bordtennis på lige vilkår*]]
-    #v(0em)
-    #body
-  ]
+  body
 }
