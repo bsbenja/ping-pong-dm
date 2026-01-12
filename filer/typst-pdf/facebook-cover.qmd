@@ -13,11 +13,11 @@ format: _extensions-typst
 
 `#fun-fa-stack("trophy")`{=typst} **Præmier**: Der arbejdes på gode præmier…!
 
-::: {.block stroke="0.15em + rgb(\"#FFFFFF\")" inset="0.5em" radius="0.4em"}
-`*Sæt #text(fill: rgb(Farve_Tema))[X] i kalenderen! Nærmere info følger…!*`{=typst}
+::: {.block fill="rgb(Farve_Tema)" inset="0.5em" radius="0.4em"}
+**Sæt X i kalenderen! Nærmere info følger…!**
 :::
 
-::: {.block fill="rgb(\"#FFFFFF\")" inset="0.4em" radius="0.4em" width="100%"}
+::: {.block fill="rgb(Farve_Brødtekst)" inset="0.4em" radius="0.4em" width="100%"}
 ```{=typst}
 #grid(columns: (1fr, 1fr, 1fr), align: (left, auto, right),
   [#image("billede/icttf.png")],
