@@ -30,4 +30,4 @@ format: _extensions-typst
 ```{=typst}
 #v(-0.7em)
 ```
-[*Godkendt af ICTTF*]{style="font-size:0.7em"}`#h(1fr)`{=typst}[***Lokation**: Nørre Boulevard 1, 8000 Aarhus C*]{style="font-size:0.7em"}
+[*Godkendt af ICTTF*]{style="font-size:0.6em"}`#h(1fr)`{=typst}[***Lokation**: Nørre Boulevard 1, 8000 Aarhus C*]{style="font-size:0.6em"}
