@@ -14,9 +14,11 @@ format: _extensions-typst
 `#fun-fa-stack("trophy")`{=typst} **Præmier**: Kvalifikationspladser til World Cup 2027\
 Der arbejdes på gode pengepræmier…!
 
-`#fun-fa-stack("x")`{=typst} ***Sæt*** `#text(fill: rgb(Farve_Tema))[_*X*_]`{=typst} ***i kalenderen! Nærmere info følger…!***
+::: {.block stroke="rgb(\"#FFFFFF\")" inset="0.5em" radius="0.4em"}
+`Sæt #text(fill: rgb(Farve_Tema))[_*X*_] i kalenderen! Nærmere info følger…!`{=typst}
+:::
 
-::: {.block fill="rgb(\"#FFFFFF\")" inset="6pt" radius="4pt" width="100%"}
+::: {.block fill="rgb(\"#FFFFFF\")" inset="0.4em" radius="0.4em" width="100%"}
 ```{=typst}
 #grid(columns: (1fr, 1fr, 1fr), align: (left, auto, right),
   [#image("billede/icttf.png")],
@@ -27,6 +29,6 @@ Der arbejdes på gode pengepræmier…!
 :::
 
 ```{=typst}
-#v(-15pt)
+#v(-0.5em)
 ```
-[*Godkendt af ICTTF*]{style="font-size:0.6em"}`#h(1fr)`{=typst}[***Lokation**: Nørre Boulevard 1, 8000 Aarhus C*]{style="font-size:0.6em"}
+[*Godkendt af ICTTF*]{style="font-size:0.7em"}`#h(1fr)`{=typst}[***Lokation**: Nørre Boulevard 1, 8000 Aarhus C*]{style="font-size:0.7em"}
