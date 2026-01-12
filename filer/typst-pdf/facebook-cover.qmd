@@ -14,7 +14,7 @@ format: _extensions-typst
 `#fun-fa-stack("trophy")`{=typst} **Præmier**: Kvalifikationspladser til World Cup 2027\
 Der arbejdes på gode pengepræmier…!
 
-::: {.block stroke="rgb(\"#FFFFFF\")" inset="0.5em" radius="0.4em"}
+::: {.block stroke="0.15em + rgb(\"#FFFFFF\")" inset="0.5em" radius="0.4em"}
 `Sæt #text(fill: rgb(Farve_Tema))[_*X*_] i kalenderen! Nærmere info følger…!`{=typst}
 :::
 
