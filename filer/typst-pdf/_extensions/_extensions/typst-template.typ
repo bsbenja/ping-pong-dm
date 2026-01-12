@@ -38,10 +38,10 @@
   set page(width: 820pt, height: 360pt, margin: (y: 24pt, x: 90pt), footer: none, fill: rgb(Farve_Side).lighten(20%))
 
   // 🔹 Angiver skrifttype og orddeling
-  set text(fill: rgb(Farve_Brødtekst), font: "Arial", size: 19.1pt, lang: lang, hyphenate: false)
+  set text(fill: rgb(Farve_Brødtekst), font: "Arial", size: 19.3pt, tracking: 0.04em, lang: lang, hyphenate: false)
 
   // 🔹 Angiver linjeafstand, paragrafafstand og margen
-  set par(leading: 0.6em, spacing: 0.8em, justify: false)
+  set par(leading: 0.6em, spacing: 1em, justify: false)
 
   // 🔹 Angiver centreret indhold
   set align(center)
@@ -52,8 +52,8 @@
   // 🔹 Opsætning af dokumenter generelt
   [
     #text(size: 2em)[*#upper(title)*]
-    #v(-1.2em)
-    #text(size: 0.9em)[_Klassisk bordtennis på lige vilkår_]
+    #v(-1.5em)
+    #text(size: 0.8em)[#smallcaps[*Klassisk bordtennis på lige vilkår*]]
     #v(0em)
     #body
   ]

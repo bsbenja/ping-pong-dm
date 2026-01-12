@@ -9,13 +9,12 @@ format: _extensions-typst
 
 `#fun-fa-stack("table-tennis-paddle-ball")`{=typst} **Discipliner**: Træbat Åben Single og Sandpapir Åben Single
 
-`#fun-fa-stack("music")`{=typst} **Stor fest**: Der arbejdes på at arrangere en stor fest om aftenen…!
+`#fun-fa-stack("music")`{=typst} **Fest**: Der arbejdes på en stor fest om aftenen…!
 
-`#fun-fa-stack("trophy")`{=typst} **Præmier**: Kvalifikationspladser til World Cup 2027\
-Der arbejdes på gode pengepræmier…!
+`#fun-fa-stack("trophy")`{=typst} **Præmier**: Der arbejdes på gode præmier…!
 
 ::: {.block stroke="0.15em + rgb(\"#FFFFFF\")" inset="0.5em" radius="0.4em"}
-`Sæt #text(fill: rgb(Farve_Tema))[_*X*_] i kalenderen! Nærmere info følger…!`{=typst}
+`*Sæt #text(fill: rgb(Farve_Tema))[X] i kalenderen! Nærmere info følger…!*`{=typst}
 :::
 
 ::: {.block fill="rgb(\"#FFFFFF\")" inset="0.4em" radius="0.4em" width="100%"}
@@ -29,6 +28,6 @@ Der arbejdes på gode pengepræmier…!
 :::
 
 ```{=typst}
-#v(-0.5em)
+#v(-0.8em)
 ```
 [*Godkendt af ICTTF*]{style="font-size:0.7em"}`#h(1fr)`{=typst}[***Lokation**: Nørre Boulevard 1, 8000 Aarhus C*]{style="font-size:0.7em"}
