@@ -1,20 +1,20 @@
 ---
 title: Ping Pong DM 2026
 date: 05/16/2026
-author: Sisu/MBK
+author: Sisu/MBK, Aarhus
 format: _extensions-typst
 ---
 
 `#fun-fa-stack("location-dot")`{=typst} **Tid og sted**: {{< meta date >}} i {{< meta author >}}
 
-`#fun-fa-stack("table-tennis-paddle-ball")`{=typst} **Discipliner**: Træbat Åben Single og Sandpapir Åben Single
+`#fun-fa-stack("table-tennis-paddle-ball")`{=typst} **Discipliner**: Træbat & Sandpapir - åben single
 
-`#fun-fa-stack("music")`{=typst} **Fest**: Der arbejdes på en stor fest om aftenen…!
+`#fun-fa-stack("champagne-glasses")`{=typst} **Fest**: Afterparty om aftenen - mere info følger
 
-`#fun-fa-stack("trophy")`{=typst} **Præmier**: Der arbejdes på gode præmier…!
+`#fun-fa-stack("trophy")`{=typst} **Præmier**: Attraktive præmier - detaljer offentliggøres
 
 ::: {.block fill="rgb(Farve_Tema)" inset="0.5em" radius="0.4em"}
-**Sæt X i kalenderen! Nærmere info følger…!**
+**Sæt X i kalenderen - tilmelding åbner senere**
 :::
 
 ::: {.block fill="rgb(Farve_Brødtekst)" inset="0.4em" radius="0.4em" width="100%"}

@@ -53,7 +53,7 @@
   [
     #text(size: 2em)[*#upper(title)*]
     #v(-1.5em)
-    #text(size: 0.8em)[#smallcaps[*Klassisk bordtennis på lige vilkår*]]
+    #text(size: 0.8em)[#smallcaps[*Danmarksmesterskaberne i klassisk bordtennis på lige vilkår*]]
     #v(0em)
     #body
   ]
