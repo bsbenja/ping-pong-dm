@@ -63,12 +63,14 @@
   // 🔹 Angiver linjeafstand, paragrafafstand og margen
   set par(
     leading: 0.6em,
-    spacing: 0em,
+    spacing: 1em,
     justify: false
   )
 
   // Angiver block
   set block(
+    above: 0em,
+    below: 0em,
     radius: 0.1em
   )
   
