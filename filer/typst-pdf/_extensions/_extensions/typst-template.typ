@@ -13,7 +13,7 @@
     place(bottom, float: true, dy: 0.16em, clearance: -0.28em,
       fa-stack(
         circle(fill: rgb(Farve_Tema1), radius: radius),
-        (x, (fill: rgb(Farve_Tema2), size: radius, solid: true))
+        (x, (fill: rgb(Farve_Brødtekst), size: radius, solid: true))
       )
     )
   )
@@ -47,20 +47,25 @@
     height: 360pt,
     margin: (y: 24*1.6pt, x: 90*1.6pt),
     footer: none,
-  background: fun-img-color(image("billede/_baggrund.png", height: 140%), rgb(gray).transparentize(25%))
+  background: fun-img-color(image("billede/_baggrund.png", height: 140%), rgb(gray).transparentize(30%))
   )
 
   // 🔹 Angiver skrifttype og orddeling
-  set text(fill: rgb(Farve_Brødtekst), font: "Arial", size: 13.6pt, tracking: 0.04em, lang: lang, hyphenate: false)
+  set text(
+    size: 15.3pt,
+    font: "Arial",
+    fill: rgb(Farve_Brødtekst),
+    tracking: 0.04em,
+    lang: lang,
+    hyphenate: false
+  )
 
   // 🔹 Angiver linjeafstand, paragrafafstand og margen
-  set par(leading: 0.6em, spacing: 1em, justify: false)
-
-  // 🔹 Angiver centreret indhold
-  set align(left)
-
-  // 🔹 Angiver billeder
-  set image(height: 1.5em)
+  set par(
+    leading: 0.6em,
+    spacing: 0em,
+    justify: false
+  )
   
   body
 }
