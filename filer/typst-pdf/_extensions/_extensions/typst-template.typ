@@ -19,13 +19,6 @@
   )
 }
 
-// 🔹 fun-img-color
-#let fun-img-color(img, color) = layout(bounds => {
-  let size = measure(img, ..bounds)
-  img
-  place(top + left, block(..size, fill: color))
-})
-
 // =================================================================================================
 // 🔷 _extensions-typst
 // =================================================================================================
@@ -47,12 +40,12 @@
     height: 360pt,
     margin: (y: 24*1.6pt, x: 90*1.6pt),
     footer: none,
-    background: fun-img-color(image("billede/_baggrund.png", height: 140%), rgb(gray).transparentize(30%))
+    background: image("billede/_baggrund.png", width: 100%)
   )
 
   // 🔹 Angiver skrifttype og orddeling
   set text(
-    size: 15.3pt,
+    size: 15.5pt,
     font: "Arial",
     fill: rgb(Farve_Brødtekst),
     tracking: 0.04em,
@@ -71,7 +64,7 @@
   set block(
     above: 0em,
     below: 0em,
-    radius: 0.1em
+    radius: 0em
   )
   
   body

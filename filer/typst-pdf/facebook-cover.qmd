@@ -22,7 +22,7 @@ format: _extensions-typst
 ```
 ::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.5em"}
 ```{=typst}
-#fun-fa-icon("table-tennis-paddle-ball") *Discipliner*: Træbat & Sandpapir - åben single
+#fun-fa-icon("user-group") *Discipliner*: Træbat & Sandpapir - åben single
 ```
 :::
 
@@ -47,7 +47,7 @@ format: _extensions-typst
 ```
 :::
 
-::: {.block fill="rgb(Farve_Tema1).transparentize(20%)" inset="0.5em"}
+::: {.block fill="rgb(Farve_Tema1).transparentize(20%)" inset="(top: 0.25em, bottom: 0.5em, x: 0.5em)"}
 ```{=typst}
 *Sæt X i kalenderen - tilmelding åbner senere*
 ```
@@ -56,7 +56,7 @@ format: _extensions-typst
 ```{=typst}
 #v(1em)
 ```
-::: {.block fill="rgb(\"#FFFFFF\")" inset="0.4em" width="68.4%" height="2.5em"}
+::: {.block fill="rgb(\"#FFFFFF\")" inset="0.4em" width="63%" height="2.5em"}
 ```{=typst}
 #stack(dir: ltr, spacing: 1fr,
   [#image("billede/icttf.png")],
@@ -66,7 +66,7 @@ format: _extensions-typst
 ```
 :::
 
-::: {.block fill="rgb(\"#FFFFFF\").transparentize(40%)" inset="0.2em" width="68.4%"}
+::: {.block fill="rgb(\"#FFFFFF\").transparentize(40%)" inset="0.2em" width="63%"}
 ```{=typst}
 #text(size: 0.6em, fill: rgb("#000000").transparentize(20%))[_Godkendt af ICTTF_#h(1fr)_*Lokation*: Nørre Boulevard 1, 8000 Aarhus C_]
 ```
