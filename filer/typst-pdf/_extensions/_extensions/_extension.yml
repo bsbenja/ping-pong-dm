@@ -15,8 +15,6 @@ contributes:
       template-partials:
         - typst-template.typ
         - typst-show.typ
-      filters:
-        - filter.lua
         
     html:
       theme:

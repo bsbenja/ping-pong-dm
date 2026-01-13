@@ -1,7 +1,7 @@
 // Denne fil er den centrale skabelonfunktion for Typst
 
 // 🔹 ANGIV HEX-farver
-#let Farve_Tema1     = "#D9534F"
+#let Farve_Tema1     = "#ED1846"
 #let Farve_Tema2     = "#211D71"
 #let Farve_Brødtekst = "#FFFFFF"
 

@@ -22,12 +22,6 @@ format: _extensions-typst
 ```
 ::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.5em"}
 ```{=typst}
-#fun-fa-icon("location-dot") *Tid og sted*: {{< meta date >}} i {{< meta author >}}
-```
-:::
-
-::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.5em"}
-```{=typst}
 #fun-fa-icon("table-tennis-paddle-ball") *Discipliner*: Træbat & Sandpapir - åben single
 ```
 :::
@@ -47,7 +41,13 @@ format: _extensions-typst
 ```{=typst}
 #v(1em)
 ```
-::: {.block fill="rgb(Farve_Tema1).transparentize(0%)" inset="0.5em"}
+::: {.block fill="rgb(Farve_Tema1).transparentize(20%)" inset="0.5em"}
+```{=typst}
+*Afvikles {{< meta date >}} i {{< meta author >}}*
+```
+:::
+
+::: {.block fill="rgb(Farve_Tema1).transparentize(20%)" inset="0.5em"}
 ```{=typst}
 *Sæt X i kalenderen - tilmelding åbner senere*
 ```
