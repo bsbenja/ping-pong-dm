@@ -5,48 +5,58 @@ author: Sisu/MBK, Aarhus
 format: _extensions-typst
 ---
 
-::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="(top: 0.5em, x: 0.5em)" radius="0.2em"}
+::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="(top: 0.5em, x: 0.5em)"}
 ```{=typst}
 #text(size: 2em)[*#upper("{{< meta title >}}")*]
 ```
 :::
 
-::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.5em" radius="0.2em"}
+::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.5em"}
 ```{=typst}
-#text(size: 0.8em)[#smallcaps[*Danmarksmesterskaberne i klassisk bordtennis på lige vilkår*]]
+#text(size: 0.9em)[#smallcaps[*Danmarksmesterskaberne i klassisk bordtennis på lige vilkår*]]
 ```
 :::
 
 ```{=typst}
 #v(1em)
 ```
-::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.5em" radius="0.2em"}
-`#fun-fa-stack("location-dot")`{=typst} **Tid og sted**: {{< meta date >}} i {{< meta author >}}
+::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.5em"}
+```{=typst}
+#fun-fa-icon("location-dot") *Tid og sted*: {{< meta date >}} i {{< meta author >}}
+```
 :::
 
-::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.5em" radius="0.2em"}
-`#fun-fa-stack("table-tennis-paddle-ball")`{=typst} **Discipliner**: Træbat & Sandpapir - åben single
+::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.5em"}
+```{=typst}
+#fun-fa-icon("table-tennis-paddle-ball") *Discipliner*: Træbat & Sandpapir - åben single
+```
 :::
 
-::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.5em" radius="0.2em"}
-`#fun-fa-stack("champagne-glasses")`{=typst} **Fest**: Afterparty om aftenen - mere info følger
+::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.5em"}
+```{=typst}
+#fun-fa-icon("champagne-glasses") *Fest*: Afterparty om aftenen - mere info følger
+```
 :::
 
-::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.5em" radius="0.2em"}
-`#fun-fa-stack("trophy")`{=typst} **Præmier**: Attraktive præmier - detaljer offentliggøres
+::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.5em"}
+```{=typst}
+#fun-fa-icon("trophy") *Præmier*: Attraktive præmier - detaljer offentliggøres
+```
 :::
 
 ```{=typst}
 #v(1em)
 ```
-::: {.block fill="rgb(Farve_Tema1).transparentize(0%)" inset="0.5em" radius="0.2em"}
-**Sæt X i kalenderen - tilmelding åbner senere**
+::: {.block fill="rgb(Farve_Tema1).transparentize(0%)" inset="0.5em"}
+```{=typst}
+*Sæt X i kalenderen - tilmelding åbner senere*
+```
 :::
 
 ```{=typst}
 #v(1em)
 ```
-::: {.block fill="rgb(\"#FFFFFF\")" inset="0.4em" radius="0.2em" width="68.4%" height="2.5em"}
+::: {.block fill="rgb(\"#FFFFFF\")" inset="0.4em" width="68.4%" height="2.5em"}
 ```{=typst}
 #stack(dir: ltr, spacing: 1fr,
   [#image("billede/icttf.png")],
@@ -56,7 +66,7 @@ format: _extensions-typst
 ```
 :::
 
-::: {.block fill="rgb(\"#FFFFFF\").transparentize(40%)" inset="0.2em" radius="0.2em" width="68.4%"}
+::: {.block fill="rgb(\"#FFFFFF\").transparentize(40%)" inset="0.2em" width="68.4%"}
 ```{=typst}
 #text(size: 0.6em, fill: rgb("#000000").transparentize(20%))[_Godkendt af ICTTF_#h(1fr)_*Lokation*: Nørre Boulevard 1, 8000 Aarhus C_]
 ```

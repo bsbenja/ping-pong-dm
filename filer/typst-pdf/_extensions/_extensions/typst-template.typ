@@ -5,9 +5,9 @@
 #let Farve_Tema2     = "#211D71"
 #let Farve_Brødtekst = "#FFFFFF"
 
-// 🔹 fun-fa-stack
+// 🔹 fun-fa-icon
 #import "@preview/fontawesome:0.5.0": * /* Importerer Font Awesome ikoner */
-#let fun-fa-stack(x) = {
+#let fun-fa-icon(x) = {
   let radius = 0.5em
   box(inset: (right: 0.1em),
     place(bottom, float: true, dy: 0.16em, clearance: -0.28em,
@@ -65,6 +65,11 @@
     leading: 0.6em,
     spacing: 0em,
     justify: false
+  )
+
+  // Angiver block
+  set block(
+    radius: 0.1em
   )
   
   body
