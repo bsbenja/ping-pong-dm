@@ -19,7 +19,7 @@
   )
 }
 
-// 🔹 fun-fa-stack
+// 🔹 fun-img-color
 #let fun-img-color(img, color) = layout(bounds => {
   let size = measure(img, ..bounds)
   img
@@ -47,7 +47,7 @@
     height: 360pt,
     margin: (y: 24*1.6pt, x: 90*1.6pt),
     footer: none,
-  background: fun-img-color(image("billede/_baggrund.png", height: 140%), rgb(gray).transparentize(30%))
+    background: fun-img-color(image("billede/_baggrund.png", height: 140%), rgb(gray).transparentize(30%))
   )
 
   // 🔹 Angiver skrifttype og orddeling
