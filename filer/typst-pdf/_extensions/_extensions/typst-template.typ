@@ -1,31 +1,17 @@
 // Denne fil er den centrale skabelonfunktion for Typst
 
-// 🔹 ANGIV HEX-farver
+// ANGIV HEX-farver
 #let Farve_Tema1     = "#ED1846"
 #let Farve_Tema2     = "#211D71"
 #let Farve_Brødtekst = "#FFFFFF"
 
-// 🔹 fun-fa-icon
-#import "@preview/fontawesome:0.5.0": * /* Importerer Font Awesome ikoner */
-#let fun-fa-icon(x) = {
-  let radius = 0.5em
-  box(inset: (right: 0.1em),
-    place(bottom, float: true, dy: 0.16em, clearance: -0.28em,
-      fa-stack(
-        circle(fill: rgb(Farve_Tema1), radius: radius),
-        (x, (fill: rgb(Farve_Brødtekst), size: radius, solid: true))
-      )
-    )
-  )
-}
-
 // =================================================================================================
-// 🔷 _extensions-typst
+// _extensions-typst
 // =================================================================================================
 
 #let _extensions(
 
-  // 🔹 YAML - Defineres også i typst-show.typ
+  // YAML - Defineres også i typst-show.typ
   title: none,
   author: none,
   date: none,
@@ -34,7 +20,7 @@
   body
 ) = {
 
-  // 🔹 Angiver sideopsætning
+  // Angiver sideopsætning
   set page(
     width: 820pt,
     height: 360pt,
@@ -43,7 +29,7 @@
     background: image("billede/_baggrund.png", width: 100%)
   )
 
-  // 🔹 Angiver skrifttype og orddeling
+  // Angiver skrifttype og orddeling
   set text(
     size: 15.5pt,
     font: "Arial",
@@ -53,7 +39,7 @@
     hyphenate: false
   )
 
-  // 🔹 Angiver linjeafstand, paragrafafstand og margen
+  // Angiver linjeafstand, paragrafafstand og margen
   set par(
     leading: 0.6em,
     spacing: 1em,
@@ -66,6 +52,10 @@
     below: 0em,
     radius: 0em
   )
+
+  // Justering af indhold
+  set align(center)
   
+  // body
   body
 }
