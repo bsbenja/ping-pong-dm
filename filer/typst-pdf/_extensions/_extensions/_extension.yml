@@ -3,9 +3,10 @@
 contributes:
   formats:
     typst:
-      title: Ping Pong DM 2026
-      date: 05/16/2026
-      author: Sisu/MBK, Aarhus
+      title: Ping Pong DM 2026 # ANGIV titel
+      date: 05/16/2026 # ANGIV dato i formatet MM/DD/ÅÅÅÅ
+      author: Sisu/MBK, Aarhus # ANGIV stævnearrangør
+
       lang: da
       date-format: dddd D. MMMM YYYY
       keep-typ: false
