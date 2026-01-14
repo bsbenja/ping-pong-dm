@@ -11,7 +11,7 @@ contributes:
       author-city: Aarhus C # ANGIV arrangørens by
 
       lang: da
-      date-format: dddd D. MMMM YYYY
+      date-format: dddd [d. ] D. MMMM YYYY
       keep-typ: false
       shift-heading-level-by: 0
       template-partials:
