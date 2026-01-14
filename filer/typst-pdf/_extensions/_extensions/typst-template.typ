@@ -24,7 +24,7 @@
   set page(
     width: 820pt,
     height: 360pt,
-    margin: (y: 24*1.6pt, x: 90*1.6pt),
+    margin: (y: 24*1.6pt, x: 90*1.2pt),
     background: image("billede/_baggrund.png", width: 100%),
     footer: none,
   )
