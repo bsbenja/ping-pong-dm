@@ -13,9 +13,12 @@
 
   // YAML - Defineres også i typst-show.typ
   title: none,
-  author: none,
   date: none,
   lang: none,
+  author_name: none,
+  author_address: none,
+  author_postal_code: none,
+  author_city: none,
 
   body
 ) = {
