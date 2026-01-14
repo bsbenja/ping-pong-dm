@@ -5,13 +5,13 @@ author: Sisu/MBK, Aarhus
 format: _extensions-typst
 ---
 
-::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="(top: 0.5em, x: 0.5em)"}
+::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="(top: 0.4em, x: 0.4em)"}
 ```{=typst}
 #text(size: 2em)[*#upper("{{< meta title >}}")*]
 ```
 :::
 
-::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.5em"}
+::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.4em"}
 ```{=typst}
 #text(size: 0.9em)[#smallcaps[*Danmarksmesterskaberne i klassisk bordtennis på lige vilkår*]]
 ```
@@ -20,19 +20,19 @@ format: _extensions-typst
 ```{=typst}
 #v(1em)
 ```
-::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.5em"}
+::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.4em"}
 ```{=typst}
 *Discipliner*: Træbat & Sandpapir - åben single
 ```
 :::
 
-::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.5em"}
+::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.4em"}
 ```{=typst}
 *Fest*: Afterparty om aftenen - mere info følger
 ```
 :::
 
-::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.5em"}
+::: {.block fill="rgb(Farve_Tema2).transparentize(20%)" inset="0.4em"}
 ```{=typst}
 *Præmier*: Attraktive præmier - detaljer offentliggøres
 ```
@@ -41,13 +41,13 @@ format: _extensions-typst
 ```{=typst}
 #v(1em)
 ```
-::: {.block fill="rgb(Farve_Tema1).transparentize(20%)" inset="0.5em"}
+::: {.block fill="rgb(Farve_Tema1).transparentize(20%)" inset="0.4em"}
 ```{=typst}
 *Afvikles {{< meta date >}} i {{< meta author >}}*
 ```
 :::
 
-::: {.block fill="rgb(Farve_Tema1).transparentize(20%)" inset="(top: 0.25em, bottom: 0.5em, x: 0.5em)"}
+::: {.block fill="rgb(Farve_Tema1).transparentize(20%)" inset="(top: 0.2em, bottom: 0.4em, x: 0.4em)"}
 ```{=typst}
 *Sæt X i kalenderen - tilmelding åbner senere*
 ```
