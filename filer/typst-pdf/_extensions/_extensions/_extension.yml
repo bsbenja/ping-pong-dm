@@ -2,28 +2,17 @@
 
 contributes:
   formats:
-    common:
+    typst:
+      title: Ping Pong DM 2026
+      date: 05/16/2026
+      author: Sisu/MBK, Aarhus
       lang: da
       date-format: dddd D. MMMM YYYY
-      execute:
-        echo: false
-        warning: false
-      
-    typst:
       keep-typ: false
       shift-heading-level-by: 0
       template-partials:
         - typst-template.typ
         - typst-show.typ
-        
-    html:
-      theme:
-        light: flatly
-        dark: darkly
-      tbl-colwidths: [50,50]
-      toc: true
-      number-sections: true
-      code-tools: true
-      code-copy: true
-      code-overflow: wrap
-      embed-resources: true
+      execute:
+        echo: false
+        warning: false

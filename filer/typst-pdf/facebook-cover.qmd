@@ -1,7 +1,4 @@
 ---
-title: Ping Pong DM 2026
-date: 05/16/2026
-author: Sisu/MBK, Aarhus
 format: _extensions-typst
 ---
 
