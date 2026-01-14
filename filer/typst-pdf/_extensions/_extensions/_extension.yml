@@ -3,7 +3,7 @@
 contributes:
   formats:
     typst:
-      title: Ping Pong DM 2026 # ANGIV titel
+      title: DM i Ping Pong 2026 # ANGIV titel
       date: 05/16/2026 # ANGIV dato i formatet MM/DD/ÅÅÅÅ
       author-name: Sisu/MBK # ANGIV arrangørens navn
       author-address: Nørre Boulevard 1 # ANGIV arrangørens adresse
