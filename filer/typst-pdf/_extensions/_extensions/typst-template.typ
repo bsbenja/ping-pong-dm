@@ -15,10 +15,10 @@
   title: none,
   date: none,
   lang: none,
-  author_name: none,
-  author_address: none,
-  author_postal_code: none,
-  author_city: none,
+  author-name: none,
+  author-address: none,
+  author-postal-code: none,
+  author-city: none,
 
   body
 ) = {

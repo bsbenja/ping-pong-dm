@@ -40,7 +40,7 @@ format: _extensions-typst
 ```
 ::: {.block fill="rgb(Farve_Tema1).transparentize(20%)" inset="0.4em"}
 ```{=typst}
-*Afvikles {{< meta date >}} i {{< meta author_name >}}
+*Afvikles {{< meta date >}} i {{< meta author-name >}}, {{< meta author-city >}}
 *
 ```
 :::
@@ -66,6 +66,6 @@ format: _extensions-typst
 
 ::: {.block fill="rgb(\"#FFFFFF\").transparentize(40%)" inset="0.2em" width="68%"}
 ```{=typst}
-#text(size: 0.6em, fill: rgb("#000000").transparentize(20%))[_Godkendt af ICTTF#h(1fr)*Lokation*: {{< meta author_address >}}, {{< meta author_postal_code >}} {{< meta author_city >}}_]
+#text(size: 0.6em, fill: rgb("#000000").transparentize(20%))[_Godkendt af ICTTF#h(1fr)*Lokation*: {{< meta author-address >}}, {{< meta author-postal-code >}} {{< meta author-city >}}_]
 ```
 :::

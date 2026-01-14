@@ -5,10 +5,10 @@ contributes:
     typst:
       title: Ping Pong DM 2026 # ANGIV titel
       date: 05/16/2026 # ANGIV dato i formatet MM/DD/ÅÅÅÅ
-      author_name: Sisu/MBK, Aarhus # ANGIV arrangørens navn
-      author_address: Nørre Boulevard 1 # ANGIV arrangørens adresse
-      author_postal_code: 8000 # ANGIV arrangørens postnummer
-      author_city: Aarhus C # ANGIV arrangørens by
+      author-name: Sisu/MBK # ANGIV arrangørens navn
+      author-address: Nørre Boulevard 1 # ANGIV arrangørens adresse
+      author-postal-code: 8000 # ANGIV arrangørens postnummer
+      author-city: Aarhus C # ANGIV arrangørens by
 
       lang: da
       date-format: dddd D. MMMM YYYY
