@@ -3,12 +3,20 @@
 contributes:
   formats:
     typst:
+      title: DM i Ping Pong 2026 # ANGIV titel
+      date: 05/16/2026 # ANGIV dato i formatet MM/DD/ÅÅÅÅ
+      author-name: Sisu/MBK # ANGIV arrangørens navn
+      author-address: Nørre Boulevard 1 # ANGIV arrangørens adresse
+      author-postal-code: 8000 # ANGIV arrangørens postnummer
+      author-city: Aarhus C # ANGIV arrangørens by
+      hex-theme-1: ED1846 # ANGIV hex-farvekode for tema 1
+      hex-theme-2: 211D71 # ANGIV hex-farvekode for tema 2
+      hex-body-text: FFFFFF # ANGIV hex-farvekode for brødtekst
+
       lang: da
       date-format: dddd [d. ] D. MMMM YYYY
       keep-typ: false
       shift-heading-level-by: 0
-      metadata-files:
-        - _variables.yml
       template-partials:
         - typst-template.typ
         - typst-show.typ
