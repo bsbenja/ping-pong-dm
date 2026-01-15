@@ -53,7 +53,7 @@ format: _extensions-typst
 ```{=typst}
 #v(1em)
 ```
-::: {.block fill="rgb(\"#FFFFFF\")" inset="0.4em" width="60%" height="2.5em"}
+::: {.block fill="rgb(\"#FFFFFF\").transparentize(20%)" inset="0.4em" width="60%" height="2.5em"}
 ```{=typst}
 #stack(dir: ltr, spacing: 1fr,
   [#image("billede/icttf.png")],
