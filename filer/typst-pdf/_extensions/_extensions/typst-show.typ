@@ -1,6 +1,6 @@
 // Denne fil kalder skabelonfunktionen for Typst, det vil sige oversætter Pandoc metadata til funktionsargumenter
 
-// YAML - Defineres også i typst-template.typ samt filter.lua
+// YAML - Defineres i typst-template.typ, typst-show.typ samt filter.lua
 #show: _extensions.with(
  $if(title)$ title: [$title$], $endif$
  $if(date)$ date: "$date$", $endif$

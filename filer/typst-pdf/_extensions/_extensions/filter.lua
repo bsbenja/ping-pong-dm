@@ -1,6 +1,6 @@
 local utils = require 'pandoc.utils'
 
--- YAML - Defineres også i typst-show.typ samt filter.lua
+-- YAML - Defineres i typst-template.typ, typst-show.typ samt filter.lua
 function Pandoc(doc)
   local block = pandoc.RawBlock('typst', table.concat(
     {

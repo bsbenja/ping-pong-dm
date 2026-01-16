@@ -2,7 +2,7 @@
 
 #let _extensions(
 
-  // YAML - Defineres også i typst-show.typ samt filter.lua
+  // YAML - Defineres i typst-template.typ, typst-show.typ samt filter.lua
   title: none,
   date: none,
   lang: none,
