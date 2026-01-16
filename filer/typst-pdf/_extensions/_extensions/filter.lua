@@ -1,8 +1,8 @@
-local utils = require 'pandoc.utils'
 
 -- YAML - Defineres i typst-template.typ, typst-show.typ samt filter.lua
 function Pandoc(doc)
-  local block = pandoc.RawBlock('typst', table.concat(
+  local utils = require 'pandoc.utils'
+  local block = table.insert(doc.blocks, 1, pandoc.RawBlock('typst', table.concat(
     {
       '#let title = "' .. utils.stringify(doc.meta.title) .. '"',
       '#let date = "' .. utils.stringify(doc.meta.date) .. '"',
@@ -14,7 +14,6 @@ function Pandoc(doc)
       '#let hex_theme_2 = "' .. utils.stringify(doc.meta.hex_theme_2) .. '"',
       '#let hex_body_text = "' .. utils.stringify(doc.meta.hex_body_text) .. '"',
       '#let fontsize = "' .. utils.stringify(doc.meta.fontsize) .. '"',
-    }, "\n"))
-  table.insert(doc.blocks, 1, block)
+    }, "\n")))
   return doc
 end
