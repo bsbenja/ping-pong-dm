@@ -1,6 +1,6 @@
 // Denne fil kalder skabelonfunktionen for Typst, det vil sige oversætter Pandoc metadata til funktionsargumenter
 
-// YAML - Defineres også i typst-template.typ
+// YAML - Defineres også i typst-template.typ samt filter.lua
 #show: _extensions.with(
  $if(title)$ title: [$title$], $endif$
  $if(date)$ date: "$date$", $endif$
@@ -12,4 +12,5 @@
  $if(hex_theme_1)$ hex_theme_1: "$hex_theme_1$", $endif$
  $if(hex_theme_2)$ hex_theme_2: "$hex_theme_2$", $endif$
  $if(hex_body_text)$ hex_body_text: "$hex_body_text$", $endif$
+ $if(fontsize)$ fontsize: $fontsize$, $endif$
 )

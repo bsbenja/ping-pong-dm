@@ -2,7 +2,7 @@
 
 #let _extensions(
 
-  // YAML - Defineres også i typst-show.typ
+  // YAML - Defineres også i typst-show.typ samt filter.lua
   title: none,
   date: none,
   lang: none,
@@ -13,6 +13,7 @@
   hex_theme_1: none,
   hex_theme_2: none,
   hex_body_text: none,
+  fontsize: none,
 
   body
 ) = {
@@ -28,7 +29,7 @@
 
   // Angiver skrifttype og orddeling
   set text(
-    size: 16.6pt,
+    size: fontsize,
     font: "Arial",
     fill: rgb(hex_body_text),
     tracking: 0.04em,
