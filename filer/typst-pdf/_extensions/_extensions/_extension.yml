@@ -9,9 +9,9 @@ contributes:
       author_address: Nørre Boulevard 1 # ANGIV arrangørens adresse
       author_postal_code: 8000 # ANGIV arrangørens postnummer
       author_city: Aarhus C # ANGIV arrangørens by
-      hex_theme_1: '#ED1846' # ANGIV hex-farvekode for tema 1
-      hex_theme_2: '#211D71' # ANGIV hex-farvekode for tema 2
-      hex_body_text: 'FFFFFF' # ANGIV hex-farvekode for brødtekst
+      hex_theme_1: ED1846 # ANGIV hex-farvekode for tema 1
+      hex_theme_2: 211D71 # ANGIV hex-farvekode for tema 2
+      hex_body_text: FFFFFF # ANGIV hex-farvekode for brødtekst
 
       lang: da
       date-format: dddd [d. ] D. MMMM YYYY
