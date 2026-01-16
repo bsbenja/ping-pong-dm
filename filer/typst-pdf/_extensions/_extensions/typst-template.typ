@@ -5,15 +5,12 @@
   // YAML - Defineres i typst-template.typ, typst-show.typ samt filter.lua
   title: none,
   date: none,
-  lang: none,
-  author_name: none,
-  author_address: none,
-  author_postal_code: none,
-  author_city: none,
-  hex_theme_1: none,
-  hex_theme_2: none,
-  hex_body_text: none,
+  mainfont: none,
   fontsize: none,
+  lang: none,
+  var_organizer: none,
+  var_hex: none,
+  var_page: none,
 
   body
 ) = {
@@ -22,16 +19,16 @@
   set page(
     width: 820pt,
     height: 360pt,
-    margin: (y: 24*1.6pt, x: 90*1.2pt),
-    background: image("billede/_baggrund.png", width: 100%),
+    margin: (x: var_page.margin_x, y: var_page.margin_y),
+    background: image(var_page.background, width: 100%),
     footer: none,
   )
 
   // Angiver skrifttype og orddeling
   set text(
     size: fontsize,
-    font: "Arial",
-    fill: rgb(hex_body_text),
+    font: mainfont,
+    fill: rgb(var_hex.body_text),
     tracking: 0.04em,
     lang: lang,
     hyphenate: false,

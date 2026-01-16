@@ -2,15 +2,32 @@
 
 // YAML - Defineres i typst-template.typ, typst-show.typ samt filter.lua
 #show: _extensions.with(
- $if(title)$ title: [$title$], $endif$
- $if(date)$ date: "$date$", $endif$
- $if(lang)$ lang: "$lang$", $endif$
- $if(author_name)$ author_name: [$author_name$], $endif$
- $if(author_address)$ author_address: [$author_address$], $endif$
- $if(author_postal_code)$ author_postal_code: [$author_postal_code$], $endif$
- $if(author_city)$ author_city: [$author_city$"], $endif$
- $if(hex_theme_1)$ hex_theme_1: "$hex_theme_1$", $endif$
- $if(hex_theme_2)$ hex_theme_2: "$hex_theme_2$", $endif$
- $if(hex_body_text)$ hex_body_text: "$hex_body_text$", $endif$
- $if(fontsize)$ fontsize: $fontsize$, $endif$
+
+  $if(title)$ title: [$title$], $endif$
+  $if(date)$ date: "$date$", $endif$
+  $if(mainfont)$ mainfont: "$mainfont$", $endif$
+  $if(fontsize)$ fontsize: $fontsize$, $endif$
+  $if(lang)$ lang: "$lang$", $endif$
+
+  $if(var_organizer)$ var_organizer: (
+    name: [$var_organizer.name$],
+    address: [$var_organizer.address$],
+    postal_code: [$var_organizer.postal_code$],
+    city: [$var_organizer.city$],
+  ), $endif$
+  
+  $if(var_hex)$ var_hex: (
+    theme_1: "$var_hex.theme_1$",
+    theme_2: "$var_hex.theme_2$",
+    body_text: "$var_hex.body_text$",
+  ), $endif$
+
+  $if(var_page)$ var_page: (
+    width: $var_page.width$,
+    height: $var_page.height$,
+    margin_x: $var_page.margin_x$,
+    margin_y: $var_page.margin_y$,
+    background: "$var_page.background$",
+  ), $endif$
+
 )

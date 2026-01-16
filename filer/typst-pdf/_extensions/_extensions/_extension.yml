@@ -5,14 +5,23 @@ contributes:
     typst:
       title: DM i Ping Pong 2026 # ANGIV titel
       date: 05/16/2026 # ANGIV dato i formatet MM/DD/ÅÅÅÅ
-      author_name: Sisu/MBK # ANGIV arrangørens navn
-      author_address: Nørre Boulevard 1 # ANGIV arrangørens adresse
-      author_postal_code: 8000 # ANGIV arrangørens postnummer
-      author_city: Aarhus C # ANGIV arrangørens by
-      hex_theme_1: ED1846 # ANGIV hex-farvekode for tema 1
-      hex_theme_2: 211D71 # ANGIV hex-farvekode for tema 2
-      hex_body_text: FFFFFF # ANGIV hex-farvekode for brødtekst
+      mainfont: Arial # ANGIV skrifttype
       fontsize: 16.6pt # ANGIV skriftstørrelse
+      var_organizer:
+        name: Sisu/MBK # ANGIV arrangørens name
+        address: Nørre Boulevard 1 # ANGIV arrangørens address
+        postal_code: 8000 # ANGIV arrangørens postal_code
+        city: Aarhus C # ANGIV arrangørens by
+      var_hex:
+        theme_1: ED1846 # ANGIV hex-farvekode for tema 1
+        theme_2: 211D71 # ANGIV hex-farvekode for tema 2
+        body_text: FFFFFF # ANGIV hex-farvekode for brødtekst
+      var_page:
+        width: 820pt # ANGIV sidens bredde
+        height: 360pt # ANGIV sidens højde
+        margin_x: 108pt # ANGIV x-margen (90*1.2)
+        margin_y: 38.4pt # ANGIV y-margen (24*1.6)
+        background: billede/_baggrund.png # ANGIV sti til baggrundsbillede
 
       lang: da
       date-format: dddd [d. ] D. MMMM YYYY
