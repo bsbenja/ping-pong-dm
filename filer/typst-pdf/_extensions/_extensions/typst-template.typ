@@ -6,13 +6,13 @@
   title: none,
   date: none,
   lang: none,
-  author-name: none,
-  author-address: none,
-  author-postal-code: none,
-  author-city: none,
-  hex-theme-1: none,
-  hex-theme-2: none,
-  hex-body-text: none,
+  author_name: none,
+  author_address: none,
+  author_postal_code: none,
+  author_city: none,
+  hex_theme_1: none,
+  hex_theme_2: none,
+  hex_body_text: none,
 
   body
 ) = {
@@ -30,7 +30,7 @@
   set text(
     size: 16.6pt,
     font: "Arial",
-    fill: rgb(hex-body-text),
+    fill: rgb(hex_body_text),
     tracking: 0.04em,
     lang: lang,
     hyphenate: false,
