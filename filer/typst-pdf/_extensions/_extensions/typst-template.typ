@@ -17,8 +17,8 @@
 
   // Angiver sideopsætning
   set page(
-    width: 820pt,
-    height: 360pt,
+    width: var_page.width,
+    height: var_page.height,
     margin: (x: var_page.margin_x, y: var_page.margin_y),
     background: image(var_page.background, width: 100%),
     footer: none,
