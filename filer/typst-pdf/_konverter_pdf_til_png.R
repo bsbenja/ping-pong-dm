@@ -4,7 +4,7 @@
 library(pdftools)
 
 # Set working directory to this script's location
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+setwd(dirname(normalizePath(sys.frame(1)$ofile)))
 
 # Get all PDF files in the parent folder
 pdf_files <- list.files(pattern = "\\.pdf$", full.names = TRUE)

@@ -1,6 +1,6 @@
 # Krævet pakker --------------------------------------------------------------------------------------------------------
 
-#> setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# setwd(dirname(normalizePath(sys.frame(1)$ofile)))
 for (Packages_V in c(
   "readxl", "cellranger", "openxlsx", "writexl", "dplyr", "tidyr", "stringr",
   "formattable", "lubridate", "plotly", "ggplot2", "ggtext", "forcats",
