@@ -1,7 +1,7 @@
 
 -- YAML - Defineres i typst-template.typ, typst-show.typ samt filter.lua
-local utils = require 'pandoc.utils'
 function Pandoc(doc)
+  local utils = require 'pandoc.utils'
   table.insert(doc.blocks, 1, pandoc.RawBlock('typst', table.concat(
     {
 
