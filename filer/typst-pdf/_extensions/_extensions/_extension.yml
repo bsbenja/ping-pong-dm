@@ -2,6 +2,7 @@ contributes:
   formats:
     typst:
       title: DM i Ping Pong 2026 # ANGIV titel
+      subtitle: Danmarksmesterskaberne i klassisk bordtennis på lige vilkår # ANGIV undertitel
       date: 05/16/2026 # ANGIV dato i formatet MM/DD/ÅÅÅÅ
       var_organizer_name: Sisu/MBK # ANGIV arrangørens name
       var_organizer_address: Nørre Boulevard 1 # ANGIV arrangørens address

@@ -4,13 +4,13 @@ format: _extensions-typst
 
 ::: {.block fill="rgb(\"{{< meta var_hex_theme_2 >}}\").transparentize(20%)" inset="(top: 0.4em, x: 0.4em)"}
 ```{=typst}
-#text(size: 2em)[*#upper[#title]*]
+#text(size: 2em, weight: "bold")[#upper[#title]]
 ```
 :::
 
 ::: {.block fill="rgb(\"{{< meta var_hex_theme_2 >}}\").transparentize(20%)" inset="0.4em"}
 ```{=typst}
-#text(size: 0.9em)[#smallcaps[*Danmarksmesterskaberne i klassisk bordtennis på lige vilkår*]]
+#text(size: 0.9em, weight: "bold")[#smallcaps[#subtitle]]
 ```
 :::
 
@@ -18,36 +18,26 @@ format: _extensions-typst
 #v(1em)
 ```
 ::: {.block fill="rgb(\"{{< meta var_hex_theme_2 >}}\").transparentize(20%)" inset="0.4em"}
-```{=typst}
-*Discipliner*: Træbat & Sandpapir - åben single
-```
+**Discipliner**: Træbat & Sandpapir - åben single
 :::
 
 ::: {.block fill="rgb(\"{{< meta var_hex_theme_2 >}}\").transparentize(20%)" inset="0.4em"}
-```{=typst}
-*Fest*: Afterparty om aftenen - mere info følger
-```
+**Fest**: Afterparty om aftenen - mere info følger
 :::
 
 ::: {.block fill="rgb(\"{{< meta var_hex_theme_2 >}}\").transparentize(20%)" inset="0.4em"}
-```{=typst}
-*Præmier*: Attraktive præmier - detaljer offentliggøres
-```
+**Præmier**: Attraktive præmier - detaljer offentliggøres
 :::
 
 ```{=typst}
 #v(1em)
 ```
 ::: {.block fill="rgb(\"{{< meta var_hex_theme_1 >}}\").transparentize(20%)" inset="0.4em"}
-```{=typst}
-*Afvikles #date i #var_organizer_name, #var_organizer_city*
-```
+**Afvikles** {{< meta date >}} **i** {{< meta var_organizer_name >}}**,** {{< meta var_organizer_city >}}
 :::
 
 ::: {.block fill="rgb(\"{{< meta var_hex_theme_1 >}}\").transparentize(20%)" inset="(top: 0.2em, bottom: 0.4em, x: 0.4em)"}
-```{=typst}
-*Sæt X i kalenderen - tilmelding åbner senere*
-```
+**Sæt X i kalenderen - tilmelding åbner senere**
 :::
 
 ```{=typst}

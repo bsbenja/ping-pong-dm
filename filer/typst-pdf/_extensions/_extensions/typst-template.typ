@@ -1,6 +1,7 @@
 // YAML - Defineres også i typst-show.typ
 #let _extensions(
   title: none,
+  subtitle: none,
   date: none,
   lang: none,
   var_organizer_name: none,

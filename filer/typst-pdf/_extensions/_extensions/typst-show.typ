@@ -1,6 +1,7 @@
 // YAML - Defineres også i typst-template.typ
 #show: _extensions.with(
   $if(title)$ title: "$title$".replace("\\", ""), $endif$
+  $if(subtitle)$ subtitle: "$subtitle$".replace("\\", ""), $endif$
   $if(date)$ date: "$date$".replace("\\", ""), $endif$
   $if(lang)$ lang: "$lang$".replace("\\", ""), $endif$
   $if(var_organizer_name)$ var_organizer_name: "$var_organizer_name$".replace("\\", ""), $endif$
