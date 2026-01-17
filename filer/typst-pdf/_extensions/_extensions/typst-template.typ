@@ -1,4 +1,4 @@
-// YAML - Defineres i typst-template.typ, typst-show.typ samt filter.lua
+// YAML - Defineres også i typst-show.typ
 #let _extensions(
   title: none,
   date: none,

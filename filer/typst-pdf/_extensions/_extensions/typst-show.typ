@@ -1,4 +1,4 @@
-// YAML - Defineres i typst-template.typ, typst-show.typ samt filter.lua
+// YAML - Defineres også i typst-template.typ
 #show: _extensions.with(
   $if(title)$ title: "$title$".replace("\\", ""), $endif$
   $if(date)$ date: "$date$".replace("\\", ""), $endif$
