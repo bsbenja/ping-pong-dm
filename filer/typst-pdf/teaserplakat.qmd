@@ -56,9 +56,9 @@ format: _extensions-typst
 ::: {.block fill="rgb(\"{{< meta var_hex.body_text >}}\").transparentize(20%)" inset="0.4em" width="60%" height="2.5em"}
 ```{=typst}
 #stack(dir: ltr, spacing: 1fr,
-  [#image("billede/icttf.png")],
-  [#image("billede/bordtennis-danmark.png")],
-  [#image("billede/sisu-mbk.png")],
+  [#image("billede/logo/icttf.png")],
+  [#image("billede/logo/bordtennis-danmark.png")],
+  [#image("billede/logo/sisu-mbk.png")],
 )
 ```
 :::

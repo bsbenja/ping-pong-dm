@@ -21,7 +21,7 @@ contributes:
         height: 360pt # ANGIV sidens højde
         margin_x: 108pt # ANGIV x-margen (90pt*1.2)
         margin_y: 38.4pt # ANGIV y-margen (24pt*1.6)
-        background: billede/_baggrund.png # ANGIV sti til baggrundsbillede
+        background: billede/baggrund/wcpp-2020.png # ANGIV sti til baggrundsbillede
 
       lang: da
       date-format: dddd [d. ] D. MMMM YYYY
