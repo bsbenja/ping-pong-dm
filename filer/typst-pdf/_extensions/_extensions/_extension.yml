@@ -13,9 +13,9 @@ contributes:
         postal_code: 8000 # ANGIV arrangørens postal_code
         city: Aarhus C # ANGIV arrangørens by
       var_hex:
-        theme_1: ED1846 # ANGIV hex-farvekode for tema 1
-        theme_2: 211D71 # ANGIV hex-farvekode for tema 2
-        body_text: FFFFFF # ANGIV hex-farvekode for brødtekst
+        theme_1: '#ED1846' # ANGIV hex-farvekode for tema 1
+        theme_2: '#211D71' # ANGIV hex-farvekode for tema 2
+        body_text: '#FFFFFF' # ANGIV hex-farvekode for brødtekst
       var_page:
         width: 820pt # ANGIV sidens bredde
         height: 360pt # ANGIV sidens højde
