@@ -1,5 +1,3 @@
-# I denne fil defineres grundlæggende Pandoc metadata samt format
-
 contributes:
   formats:
     typst:
@@ -7,21 +5,18 @@ contributes:
       date: 05/16/2026 # ANGIV dato i formatet MM/DD/ÅÅÅÅ
       mainfont: Arial # ANGIV skrifttype
       fontsize: 16.6pt # ANGIV skriftstørrelse
-      var_organizer:
-        name: Sisu/MBK # ANGIV arrangørens name
-        address: Nørre Boulevard 1 # ANGIV arrangørens address
-        postal_code: 8000 # ANGIV arrangørens postal_code
-        city: Aarhus C # ANGIV arrangørens by
-      var_hex:
-        theme_1: '#ED1846' # ANGIV hex-farvekode for tema 1
-        theme_2: '#211D71' # ANGIV hex-farvekode for tema 2
-        body_text: '#FFFFFF' # ANGIV hex-farvekode for brødtekst
-      var_page:
-        width: 820pt # ANGIV sidens bredde
-        height: 360pt # ANGIV sidens højde
-        margin_x: 108pt # ANGIV x-margen (90pt*1.2)
-        margin_y: 38.4pt # ANGIV y-margen (24pt*1.6)
-        background: billede/baggrund/wcpp-2020.png # ANGIV sti som baggrundsbillede eller hex-farvekode som baggrundsfarve
+      var_organizer_name: Sisu/MBK # ANGIV arrangørens name
+      var_organizer_address: Nørre Boulevard 1 # ANGIV arrangørens address
+      var_organizer_postal_code: 8000 # ANGIV arrangørens postal_code
+      var_organizer_city: Aarhus C # ANGIV arrangørens by
+      var_hex_theme_1: '#ED1846' # ANGIV hex-farvekode for tema 1
+      var_hex_theme_2: '#211D71' # ANGIV hex-farvekode for tema 2
+      var_hex_body_text: '#FFFFFF' # ANGIV hex-farvekode for brødtekst
+      var_page_width: 820pt # ANGIV sidens bredde
+      var_page_height: 360pt # ANGIV sidens højde
+      var_page_margin_x: 108pt # ANGIV x-margen (90pt*1.2)
+      var_page_margin_y: 38.4pt # ANGIV y-margen (24pt*1.6)
+      var_page_background: billede/baggrund/wcpp-2020.png # ANGIV sti som baggrundsbillede eller hex-farvekode som baggrundsfarve
 
       lang: da
       date-format: dddd [d. ] D. MMMM YYYY
