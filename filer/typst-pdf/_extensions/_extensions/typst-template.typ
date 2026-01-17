@@ -2,8 +2,6 @@
 #let _extensions(
   title: none,
   date: none,
-  mainfont: none,
-  fontsize: none,
   lang: none,
   var_organizer_name: none,
   var_organizer_address: none,
@@ -17,6 +15,8 @@
   var_page_margin_x: none,
   var_page_margin_y: none,
   var_page_background: none,
+  var_text_font: none,
+  var_text_size: none,
 
   body
 ) = {
@@ -33,8 +33,8 @@
 
   // Angiver skrifttype og orddeling
   set text(
-    size: fontsize,
-    font: mainfont,
+    size: var_text_size,
+    font: var_text_font,
     fill: rgb(var_hex_body_text),
     tracking: 0.04em,
     lang: lang,

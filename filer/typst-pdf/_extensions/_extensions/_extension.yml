@@ -3,8 +3,6 @@ contributes:
     typst:
       title: DM i Ping Pong 2026 # ANGIV titel
       date: 05/16/2026 # ANGIV dato i formatet MM/DD/ÅÅÅÅ
-      mainfont: Arial # ANGIV skrifttype
-      fontsize: 16.6pt # ANGIV skriftstørrelse
       var_organizer_name: Sisu/MBK # ANGIV arrangørens name
       var_organizer_address: Nørre Boulevard 1 # ANGIV arrangørens address
       var_organizer_postal_code: 8000 # ANGIV arrangørens postal_code
@@ -17,6 +15,8 @@ contributes:
       var_page_margin_x: 108pt # ANGIV x-margen (90pt*1.2)
       var_page_margin_y: 38.4pt # ANGIV y-margen (24pt*1.6)
       var_page_background: billede/baggrund/wcpp-2020.png # ANGIV sti som baggrundsbillede eller hex-farvekode som baggrundsfarve
+      var_text_font: Arial # ANGIV skrifttype
+      var_text_size: 16.6pt # ANGIV skriftstørrelse
 
       lang: da
       date-format: dddd [d. ] D. MMMM YYYY
