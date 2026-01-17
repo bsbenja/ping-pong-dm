@@ -27,6 +27,7 @@
     height: $var_page.height$,
     margin_x: $var_page.margin_x$,
     margin_y: $var_page.margin_y$,
+    fill: "$var_page.fill$".replace("\\", ""),
     background: "$var_page.background$".replace("\\", ""),
   ), $endif$
 
