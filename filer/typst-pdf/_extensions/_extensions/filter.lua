@@ -29,7 +29,6 @@ function Pandoc(doc)
         'height: "' .. utils.stringify(doc.meta.var_page.height) .. '",',
         'margin_x: "' .. utils.stringify(doc.meta.var_page.margin_x) .. '",',
         'margin_y: "' .. utils.stringify(doc.meta.var_page.margin_y) .. '",',
-        'fill: "' .. utils.stringify(doc.meta.var_page.fill) .. '",',
         'background: "' .. utils.stringify(doc.meta.var_page.background) .. '",',
       ')',
 
