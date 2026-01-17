@@ -4,10 +4,10 @@
 #show: _extensions.with(
 
   $if(title)$ title: "$title$".replace("\\", ""), $endif$
-  $if(date)$ date: "$date$", $endif$
-  $if(mainfont)$ mainfont: "$mainfont$", $endif$
+  $if(date)$ date: "$date$".replace("\\", ""), $endif$
+  $if(mainfont)$ mainfont: "$mainfont$".replace("\\", ""), $endif$
   $if(fontsize)$ fontsize: $fontsize$, $endif$
-  $if(lang)$ lang: "$lang$", $endif$
+  $if(lang)$ lang: "$lang$".replace("\\", ""), $endif$
 
   $if(var_organizer)$ var_organizer: (
     name: "$var_organizer.name$".replace("\\", ""),
@@ -27,7 +27,7 @@
     height: $var_page.height$,
     margin_x: $var_page.margin_x$,
     margin_y: $var_page.margin_y$,
-    background: "$var_page.background$",
+    background: "$var_page.background$".replace("\\", ""),
   ), $endif$
 
 )
