@@ -1,5 +1,5 @@
 ---
-format: _extensions-typst
+format: qmd-convert-typst
 ---
 
 ::: {.block fill="rgb(\"{{< meta var_hex_theme_2 >}}\").transparentize(20%)" inset="(top: 0.4em, x: 0.4em)"}

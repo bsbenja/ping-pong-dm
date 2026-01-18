@@ -1,5 +1,5 @@
 // YAML - Defineres også i typst-show.typ
-#let _extensions(
+#let qmd-convert(
   title: none,
   subtitle: none,
   date: none,

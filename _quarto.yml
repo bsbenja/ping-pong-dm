@@ -11,7 +11,7 @@ project:
     - "indbydelse-tilmelding-2023.qmd" # "!indbydelse-tilmelding-2023.qmd"
     - "bi.qmd" # "!bi.qmd"
     - "bi2.qmd" # "!bi2.qmd"
-    - "!filer/typst-pdf/*.qmd" # Typst PDF skal køres manuelt
+    - "!filer/*.qmd" # Quarto-dokumenter i mappen filer skal køres manuelt
 
 website:
   site-url: "https://pingpong.quarto.pub/dm"
