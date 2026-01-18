@@ -1,4 +1,4 @@
-# Billettype -----------------------------------------------------------------------------------------------------------
+# Billettype ----
 
 tbl3_BilletKat_T  <- tbl1_Ordre_T %>%
   group_by(Billet_ID) %>%
@@ -18,7 +18,7 @@ tbl3_BilletKat_T  <- tbl1_Ordre_T %>%
     "Pris & maks." = BilletPris_DW,
     EventAar_ID)
 
-# Præmier --------------------------------------------------------------------------------------------------------------
+# Præmier ----
 
 tbl3_PraemiePenge_T <- tbl1_Ordre_T %>%
   filter(!is.na(DeltSlutspil_ID) & !is.na(DeltPlac_ID) & !is.na(DeltPraemie_RD)) %>%
@@ -103,7 +103,7 @@ tbl3_PraemiePenge_T <- tbl1_Ordre_T %>%
     Billettype_DW,
     EventAar_ID)
 
-# Yngste- og ældste deltager -------------------------------------------------------------------------------------------
+# Yngste- og ældste deltager ----
 
 tbl3_DeltYngstAeldst_T <- tbl1_Ordre_T %>%
   filter(
@@ -122,7 +122,7 @@ tbl3_DeltYngstAeldst_T <- tbl1_Ordre_T %>%
     "Født"   = Født,
     EventAar_ID)
 
-# Foreløbige deltagere -------------------------------------------------------------------------------------------------
+# Foreløbige deltagere ----
 
 tbl3_DeltFor_T <- tbl1_Ordre_T %>%
   group_by(EventAar_ID, Billet_ID) %>%
@@ -140,7 +140,7 @@ tbl3_DeltFor_T <- tbl1_Ordre_T %>%
     Billettype_DW,
     EventAar_ID)
 
-# Puljer ---------------------------------------------------------------------------------------------------------------
+# Puljer ----
 
 tbl3_DeltPuljer_T <- tbl1_Ordre_T %>%
   filter(grepl("Tilmeldt", OrdreStatusSimpelKat_RD) & grepl("Ping Pong", BilletKat_ID)) %>%
@@ -155,7 +155,7 @@ tbl3_DeltPuljer_T <- tbl1_Ordre_T %>%
     Billettype_DW,
     EventAar_ID)
 
-# Deltagere kun til festen inkl. afbud ---------------------------------------------------------------------------------
+# Deltagere kun til festen inkl. afbud ----
 
 tbl3_DeltAndet_T <- tbl1_Ordre_T %>%
   filter(
@@ -179,7 +179,7 @@ tbl3_DeltAndet_T <- tbl1_Ordre_T %>%
     OrdreStatusSimpelKat_RD,
     EventAar_ID)
 
-# Deltagere fordelt på klubber ----------------------------------------------------------------------------------------------
+# Deltagere fordelt på klubber ----
 
 tbl3_DeltKlub_T <- tbl1_Ordre_T %>%
   group_by(EventAar_ID) %>%
@@ -202,7 +202,7 @@ tbl3_DeltKlub_T <- tbl1_Ordre_T %>%
     Billettype_DW,
 		EventAar_ID)
 
-# Deltagere fordelt på Danmarkskort ------------------------------------------------------------------------------------
+# Deltagere fordelt på Danmarkskort ----
 
 tbl3_DeltBy_T <- tbl1_Ordre_T %>%
   group_by(EventAar_ID) %>%
@@ -226,7 +226,7 @@ tbl3_DeltBy_T <- tbl1_Ordre_T %>%
     Billettype_DW,
     EventAar_ID)
 
-# Deltagere fordelt på aldersgruppe ------------------------------------------------------------------------------------
+# Deltagere fordelt på aldersgruppe ----
 
 tbl3_DeltAlderKat_T <- tbl1_Ordre_T %>%
   group_by(EventAar_ID) %>%
@@ -247,7 +247,7 @@ tbl3_DeltAlderKat_T <- tbl1_Ordre_T %>%
     Billettype_DW,
 		EventAar_ID)
 
-# Deltagere fordelt på køn ---------------------------------------------------------------------------------------------
+# Deltagere fordelt på køn ----
 
 tbl3_DeltKoen_T <- tbl1_Ordre_T %>%
   group_by(EventAar_ID) %>%
@@ -269,7 +269,7 @@ tbl3_DeltKoen_T <- tbl1_Ordre_T %>%
     Billettype_DW,
 		EventAar_ID)
 
-# Deltagere fordelt på gentilmeldinger ---------------------------------------------------------------------------------
+# Deltagere fordelt på gentilmeldinger ----
 
 tbl3_DeltGenTil_T <- tbl1_Ordre_T %>%
   group_by(EventAar_ID) %>%
@@ -291,16 +291,16 @@ tbl3_DeltGenTil_T <- tbl1_Ordre_T %>%
     Billettype_DW,
 		EventAar_ID)
 
-# Deltagere fordelt på tilmeldingstype ---------------------------------------------------------------------------------
+# Deltagere fordelt på tilmeldingstype ----
 
 tbl3_DeltOrdreKat_T <- tbl1_Ordre_T %>%
   group_by(EventAar_ID) %>%
 	filter(!is.na(Deltager_ID)) %>%
 	distinct(Deltager_ID, .keep_all = T) %>%
 	arrange(EventAar_ID, OrdreStatusSimpelKat_RD, OrdreDatoTid_RD, DeltNavn_RD) %>%
-	mutate(OrdreKat_DW = paste0(
+	mutate(OrdreKat_ID = paste0(
 	  OrdreFoersteDato_DW_DMAA_DW, "<br>",
-    format(OrdreFoersteDatoTid_DW, "kl. %H:%M"), " ", OrdreKatIkon_RD)) %>%
+    format(OrdreFoersteDatoTid_DW, "kl. %H:%M"), " ", OrdreKatIkon_DW)) %>%
   group_by(EventAar_ID, OrdreStatusSimpelKat_RD) %>%
   mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
@@ -308,12 +308,12 @@ tbl3_DeltOrdreKat_T <- tbl1_Ordre_T %>%
     "#" = RaekkeNr_DW,
 		"&emsp;" = KlubLogo_DW,
 		"Navn" = DeltNavnBilletKat_DW,
-		"Ordredato" = OrdreKat_DW,
+		"Ordredato" = OrdreKat_ID,
 		OrdreStatusSimpelKat_RD,
     Billettype_DW,
 		EventAar_ID)
 
-# Resultater -----------------------------------------------------------------------------------------------------------
+# Resultater ----
 
 tbl3_Result_T <- tbl1_Ordre_T %>%
   filter((!is.na(DeltSlutspil_ID) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) | grepl("Aflyst", OrdreStatusSimpelKat_RD)) %>%
@@ -331,7 +331,7 @@ tbl3_Result_T <- tbl1_Ordre_T %>%
     Billettype_DW,
     EventAar_ID)
 
-# Resultater webscraped ------------------------------------------------------------------------------------------------
+# Resultater webscraped ----
 
 tbl3_ResultWeb_T <- rbind(data.frame(), data.frame(
   "Spiller" = read_html("https://bordtennisdanmark.dk/statistik/ping-pong-dm")

@@ -1,4 +1,4 @@
-# Krævet pakker --------------------------------------------------------------------------------------------------------
+# Krævet pakker ----
 
 # setwd(dirname(normalizePath(sys.frame(1)$ofile)))
 for (Packages_V in c(
@@ -11,7 +11,7 @@ for (Packages_V in c(
   suppressWarnings(suppressPackageStartupMessages(library(Packages_V, character.only = TRUE)))
 }
 
-# Opsætning generelt ---------------------------------------------------------------------------------------------------
+# Opsætning generelt ----
 
 Sys.setlocale("LC_ALL", "da-DK.UTF-8")
 format(Sys.Date(), "%A")
@@ -20,7 +20,7 @@ options(OutDec= ",")
 options(knitr.table.format = "html")
 options(knitr.kable.NA = "")
 
-# Opsætning ggplot2 ----------------------------------------------------------------------------------------------------
+# Opsætning ggplot2 ----
 
 theme_set(theme(
   legend.title     = element_blank(),
@@ -39,7 +39,7 @@ theme_set(theme(
   panel.grid.major = element_blank(),
   panel.grid.minor = element_blank()))
 
-# Opsætning DT ---------------------------------------------------------------------------------------------------------
+# Opsætning DT ----
 
 options(DT.options = list(
   searchHighlight = T,

@@ -509,10 +509,10 @@ cat(paste0(
 ```{r}
 #| label: fig-ordre-kat
 #| fig-cap: "Ordretype."
-#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(Deltager_ID)) %>% summarise(length(unique(OrdreKat_DW))))+1.5)/3.3
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(Deltager_ID)) %>% summarise(length(unique(OrdreKat_ID))))+1.5)/3.3
 DataAkt_T %>%
   filter(!is.na(Deltager_ID)) %>%
-  ggplot(mapping = aes(y = fct_rev(OrdreKat_DW), fill = BilletKat_DW)) +
+  ggplot(mapping = aes(y = fct_rev(OrdreKat_ID), fill = BilletKat_DW)) +
   geom_bar(width = 0.9, position = position_stack(reverse = TRUE)) +
   geom_text(aes(label = after_stat(count)), stat = "count", position = position_stack(reverse = TRUE),
             vjust = 0.4, hjust = 1, size = 5, color = "#FFFFFF", fontface = "bold") +

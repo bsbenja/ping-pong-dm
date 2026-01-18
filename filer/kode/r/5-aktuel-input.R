@@ -1,4 +1,4 @@
-# BilletFix eventordre -------------------------------------------------------------------------------------------------
+# BilletFix eventordre ----
 
 if(InputWebOrdreTF_V == T) {
   
@@ -66,7 +66,7 @@ if(InputWebOrdreTF_V == T) {
       summarise(label = str_c(label, collapse = "\n")), "\n\n"))
 } else if (InputWebOrdreTF_V == F) {"InputWebOrdreTF_V = F"}
 
-# PDF til PNG for indbydelsesplakat ------------------------------------------------------------------------------------
+# PDF til PNG for indbydelsesplakat ----
 
 if(InputPNGPlakatTF_V == T) {
   pdf_convert(
@@ -91,7 +91,7 @@ if(InputPNGPlakatTF_V == T) {
     paste0("filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "-indbydelsesplakat", ".png")))
 } else if (InputPNGPlakatTF_V == F) {"InputPNGPlakatTF_V = F"}
 
-# Webscraping af ratingliste -------------------------------------------------------------------------------------------
+# Webscraping af ratingliste ----
 
 if(InputWebRatingTF_V == T) {
   tbl5_webscraping_rating <- data.frame()
@@ -145,7 +145,7 @@ if(InputWebRatingTF_V == T) {
   shell.exec(normalizePath("filer/data/output/ping-pong-dm-rating.xlsx"))
 } else if(InputWebRatingTF_V == F) {"InputWebRatingTF_V = F"}
 
-# Webscraping af BTEX Ping Pong bat ------------------------------------------------------------------------------------
+# Webscraping af BTEX Ping Pong bat ----
 
 # DataWebBTEX_T <- data.frame()
 # link <- paste0("https://www.btex.dk/sanwei-wcpp-sandpapirsbat.html")
@@ -157,7 +157,7 @@ if(InputWebRatingTF_V == T) {
 #   "levering"     = read_html(link) %>% html_nodes("#product_addtocart_form .txt") %>% html_text(),
 #   stringsAsFactors = FALSE)) %>% mutate(pris = trimws(pris))
 
-# Danmarkskort med lokation --------------------------------------------------------------------------------------------
+# Danmarkskort med lokation ----
 
 ggplot() +
   annotation_borders(regions = "Denmark", colour = "black", fill = "#76D7C4") +
