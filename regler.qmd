@@ -11,7 +11,7 @@ editor_options:
 ---
 
 ::: {#fig-cover}
-![](filer/generelt/wcpp-finale-2020.png){width="40em"}
+![](filer/medie/billede/wcpp-finale-2020.png){width="40em"}
 
 Billede fra WCPP-finalen 2020.
 :::

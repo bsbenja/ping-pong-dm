@@ -15,7 +15,7 @@ contributes:
       var_page_height: 360pt # ANGIV sidens højde
       var_page_margin_x: 108pt # ANGIV x-margen (90pt*1.2)
       var_page_margin_y: 38.4pt # ANGIV y-margen (24pt*1.6)
-      var_page_background: billede/baggrund/wcpp-2020.png # ANGIV sti som baggrundsbillede eller hex-farvekode som baggrundsfarve
+      var_page_background: medie/billede/wcpp-finale-2020-nedtonet.png # ANGIV sti som baggrundsbillede eller hex-farvekode som baggrundsfarve
       var_text_font: Arial # ANGIV skrifttype
       var_text_size: 16.6pt # ANGIV skriftstørrelse
 

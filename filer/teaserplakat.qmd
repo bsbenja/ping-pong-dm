@@ -1,5 +1,5 @@
 ---
-format: qmd-convert-typst
+format: qmd-convert-typst # Se opsætning i _extensions
 ---
 
 ::: {.block fill="rgb(\"{{< meta var_hex_theme_2 >}}\").transparentize(20%)" inset="(top: 0.4em, x: 0.4em)"}
@@ -45,17 +45,20 @@ format: qmd-convert-typst
 ```{=typst}
 #v(1em)
 ```
-::: {.block fill="rgb(\"{{< meta var_hex_body_text >}}\").transparentize(20%)" inset="0.4em" width="60%" height="2.5em"}
+::: {.block fill="rgb(\"{{< meta var_hex_body_text >}}\").transparentize(20%)" inset="0.4em" width="100%" height="2.5em"}
 ```{=typst}
 #stack(dir: ltr, spacing: 1fr,
-  [#image("billede/logo/icttf.png")],
-  [#image("billede/logo/bordtennis-danmark.png")],
-  [#image("billede/logo/sisu-mbk.png")],
+  [#image("medie/billede/icttf.png")],
+  [#image("medie/billede/bordtennis-danmark.png")],
+  [#image("medie/billede/butterfly.png")],
+  [#image("medie/billede/sisu-mbk.png")],
+  [#image("medie/billede/bat-traebat-butterfly-maze-magic.png")],
+  [#image("medie/billede/bat-sandpapir-sanwei.png")],
 )
 ```
 :::
 
-::: {.block fill="rgb(\"{{< meta var_hex_body_text >}}\").transparentize(40%)" inset="0.2em" width="60%"}
+::: {.block fill="rgb(\"{{< meta var_hex_body_text >}}\").transparentize(40%)" inset="0.2em" width="100%"}
 ```{=typst}
 #text(size: 0.6em, style: "italic", fill: rgb("#000000"))[Godkendt af ICTTF#h(1fr)*Lokation*: #var_organizer_address, #var_organizer_postal_code #var_organizer_city]
 ```

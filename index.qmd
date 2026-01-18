@@ -53,7 +53,7 @@ cat(tbl2_EventAarAkt_T$InfoPlakatCTA_DW)
 
 -   `r paste(IkonLinkNy_V)` [**ICTTF**](https://icttf.co){target="_blank"}\
     *International Classic Table Tennis Federation (ICTTF) er det styrende organ for alle nationale Ping Pong medlemmer, hvis mission er at genintroducere det underholdende og gavnlige spil Ping Pong, også kendt som klassisk bordtennis, til det globale fællesskab.*\
-    ![](filer/generelt/icttf.png){width="4em"}
+    ![](filer/medie/billede/icttf.png){width="4em"}
 :::
 ::::::
 :::::::

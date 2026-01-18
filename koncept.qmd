@@ -22,7 +22,7 @@ editor_options:
 ---
 
 ::: {#fig-cover}
-![](filer/generelt/wcpp-finale-2019.png){width="40em"}
+![](filer/medie/billede/wcpp-finale-2019.png){width="40em"}
 
 Billede fra WCPP-finalen 2019.
 :::
@@ -127,7 +127,7 @@ Den lidt mere nørdet forklaring er, at Ping Pong spilles med bat uden svamp, so
 ::: {#fig-sandpapir-2020}
 ###### Siden 2020
 
-![](filer/generelt/sandpapirsbat-sanwei.png){width="15em"}
+![](filer/medie/billede/bat-sandpapir-sanwei.png){width="15em"}
 
 Sanwei WCPP Sandpapirsbat (sort sandpapir).
 :::
@@ -135,7 +135,7 @@ Sanwei WCPP Sandpapirsbat (sort sandpapir).
 ::: {#fig-sandpapir-2019}
 ###### 2019
 
-![](filer/generelt/sandpapirsbat-carlton.png){width="15em"}
+![](filer/medie/billede/bat-sandpapir-carlton.png){width="15em"}
 
 Carlton WCPP Sandpapirsbat (grå sandpapir).
 :::
@@ -143,7 +143,7 @@ Carlton WCPP Sandpapirsbat (grå sandpapir).
 ::: {#fig-sandpapir-2014-2018}
 ###### 2014-2018
 
-![](filer/generelt/sandpapirsbat-dunlop.png){width="15em"}
+![](filer/medie/billede/bat-sandpapir-dunlop.png){width="15em"}
 
 Dunlop WCPP Sandpapirsbat (blå sandpapir).
 :::

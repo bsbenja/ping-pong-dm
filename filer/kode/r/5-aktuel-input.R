@@ -137,12 +137,12 @@ if(InputWebRatingTF_V == T) {
   write_xlsx(
     setNames(
       list(tbl5_webscraping_rating), tbl2_EventAarAkt_T$EventAarRatingDato_RD_DMAA_DW),
-    path = normalizePath("filer/generelt/rating.xlsx"))
+    path = normalizePath("filer/data/output/rating.xlsx"))
   write_xlsx(
     setNames(
       list(tbl5_join_webscraping_rating), tbl2_EventAarAkt_T$EventAarRatingDato_RD_DMAA_DW),
-    path = normalizePath("filer/generelt/ping-pong-dm-rating.xlsx"))
-  shell.exec(normalizePath("filer/generelt/ping-pong-dm-rating.xlsx"))
+    path = normalizePath("filer/data/output/ping-pong-dm-rating.xlsx"))
+  shell.exec(normalizePath("filer/data/output/ping-pong-dm-rating.xlsx"))
 } else if(InputWebRatingTF_V == F) {"InputWebRatingTF_V = F"}
 
 # Webscraping af BTEX Ping Pong bat ------------------------------------------------------------------------------------
@@ -163,4 +163,4 @@ ggplot() +
   annotation_borders(regions = "Denmark", colour = "black", fill = "#76D7C4") +
   geom_point(aes(y = c(56.2), x = c(9.1)), size = 20, shape = 21, fill = "#943126") +
   theme_void()
-# ggsave(filename = "filer/generelt/lokation.png")
+# ggsave(filename = "filer/medie/billede/lokation.png")

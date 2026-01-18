@@ -653,7 +653,7 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
 
   # KlubLogo_DW
   mutate(KlubLogo_DW = ifelse(is.na(Klub_RD), NA_character_,
-    paste0("<img src=filer/klublogo/", fun_egen_sti(Klub_RD), ".png width=15>"))) %>%
+    paste0("<img src=filer/medie/billede/klublogo/", fun_egen_sti(Klub_RD), ".png width=15>"))) %>%
   mutate(across("KlubLogo_DW", \(x) as.character(x))) %>%
   select(-KlubLogo_DW, everything()) %>%
 
@@ -1269,7 +1269,7 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
   group_by(EventAar_RD) %>%
   mutate(InfoPlakatCTA_DW = case_when(
     InputInfo1234_V %in% c(1) ~ paste0(
-      "<img src=filer/generelt/forside.png style=width:30em;max-width:100%;border-radius:20px>"),
+      "<img src=filer/medie/billede/forside.png style=width:30em;max-width:100%;border-radius:20px>"),
     InputInfo1234_V %in% c(2) ~ paste0(
       "![](filer/event/", fun_egen_sti(EventAar_RD), "/", fun_egen_sti(EventAar_RD), "-teaserplakat", ".png){width=30em}",
       "<br>",

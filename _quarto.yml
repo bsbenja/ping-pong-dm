@@ -15,7 +15,7 @@ project:
 
 website:
   site-url: "https://pingpong.quarto.pub/dm"
-  favicon: "filer/generelt/ping-pong-dk.png"
+  favicon: "filer/medie/billede/ping-pong-dk.png"
   title: "Ping Pong DM - Uofficiel hjemmeside"
   google-analytics: "G-6903XX1GX6"
   page-navigation: true
@@ -23,7 +23,7 @@ website:
   sidebar:
     style: docked
     background: light
-    logo: "filer/generelt/ping-pong-dk.png"
+    logo: "filer/medie/billede/ping-pong-dk.png"
     title: false
     search: true
     border: true
@@ -50,7 +50,7 @@ website:
     border: true
     center:
       - text: |
-          <a style=font-weight:bold;font-size:18px;text-decoration:none href=index.qmd><img src=filer/generelt/ping-pong-dk.png style=height:18px>&nbsp;Ping Pong DM</a>
+          <a style=font-weight:bold;font-size:18px;text-decoration:none href=index.qmd><img src=filer/medie/billede/ping-pong-dk.png style=height:18px>&nbsp;Ping Pong DM</a>
           <br><br>
           <a href={{< var var.facebook_event_url >}} target=_blank><span class=bi-facebook style=color:#1877F2;font-size:18px></span></a>
           &nbsp;<a href=https://m.me/{{< var var.facebook_side_id >}} target=_blank><span class=bi-messenger style=color:#0695FF;font-size:18px></span></a>
