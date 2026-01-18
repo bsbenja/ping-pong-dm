@@ -1,4 +1,4 @@
-# Dim1_Kalender --------------------------------------------------------------------------------------------------------
+# Dim1_Kalender ----
 Dim1_Kalender <- tibble(Dato_DW = seq(
   from = as_date("1900-01-01"),
   to   = as_date(ceiling_date(Sys.Date(), unit = "year")-1+years(10)),
@@ -40,27 +40,126 @@ Dim1_Kalender <- tibble(Dato_DW = seq(
   
   arrange(Dato_DW)
 
-# Importer Dim og Fact fra Excel ---------------------------------------------------------------------------------------
-Fact_Ordre <- read_excel(path = InputData_V, sheet = "✍️ Fact_Ordre", skip = 2)
-Dim1_OrdreStatus <- read_excel(path = InputData_V, sheet = "✍️ Dim1_OrdreStatus", skip = 2)
-Dim1_Billet <- read_excel(path = InputData_V, sheet = "🎫 Dim1_Billet", skip = 2)
-Dim2_EventAar <- read_excel(path = InputData_V, sheet = "🎫 Dim2_EventAar", skip = 2)
+# Fact_Ordre ----
+Fact_Ordre <- read_excel(path = InputData_V, sheet = "✍️ Fact_Ordre", skip = 2) %>%
+  mutate(across(Deltager_ID, \(x) as.character(x))) %>%
+  mutate(across(DeltNavn_RD, \(x) as.character(x))) %>%
+  mutate(across(Klub_ID, \(x) as.character(x))) %>%
+  mutate(across(DeltKoen_ID, \(x) as.character(x))) %>%
+  mutate(across(OrdreDatoTid_RD, \(x) as_datetime(x))) %>%
+  mutate(across(Billet_ID, \(x) as.character(x))) %>%
+  mutate(across(OrdreStatusKat_ID, \(x) as.character(x))) %>%
+  mutate(across(DeltRang1_RD, \(x) as.integer(x))) %>%
+  mutate(across(DeltRating2_RD, \(x) as.integer(x))) %>%
+  mutate(across(DeltRang3_RD, \(x) as.integer(x))) %>%
+  mutate(across(DeltSlutspil_ID, \(x) as.character(x))) %>%
+  mutate(across(DeltPlac_ID, \(x) as.character(x))) %>%
+  mutate(across(DeltPraemie_RD, \(x) as.numeric(x))) %>%
+  arrange(desc(OrdreDatoTid_RD)) %>%
+  mutate(across(OrdreDatoTid_RD, \(x) as_date(x), .names = "OrdreDato_ID")) %>%
+  relocate(OrdreDato_ID, .before = OrdreDatoTid_RD)
+
+# Dim1_OrdreStatus ----
+Dim1_OrdreStatus <- read_excel(path = InputData_V, sheet = "✍️ Dim1_OrdreStatus", skip = 2) %>%
+  mutate(across(OrdreStatusKatNr_RD, \(x) as.integer(x))) %>%
+  mutate(across(OrdreStatusKat_ID, \(x) as.character(x))) %>%
+  mutate(across(OrdreStatusKatEmoji_RD, \(x) as.character(x))) %>%
+  mutate(across(OrdreStatusSimpelKat_RD, \(x) as.character(x))) %>%
+  mutate(across(OrdreStatusSimpelKatIkon_RD, \(x) as.character(x))) %>%
+  arrange(OrdreStatusKatNr_RD) %>%
+  mutate(across(OrdreStatusKat_ID, \(x) factor(x, levels = unique(x), ordered = TRUE), .names = "OrdreStatusKat_RD")) %>%
+  relocate(OrdreStatusKat_RD, .after = OrdreStatusKat_ID)
+
+# Dim1_Billet ----
+Dim1_Billet <- read_excel(path = InputData_V, sheet = "🎫 Dim1_Billet", skip = 2) %>%
+  mutate(across(BilletNr_RD, \(x) as.integer(x))) %>%
+  mutate(across(Billet_ID, \(x) as.character(x))) %>%
+  mutate(across(EventAar_ID, \(x) as.character(x))) %>%
+  mutate(across(BilletStartDatoTid_RD, \(x) as_datetime(x))) %>%
+  mutate(across(BilletSlutDatoTid_RD, \(x) as_datetime(x))) %>%
+  mutate(across(BilletKat_ID, \(x) as.character(x))) %>%
+  mutate(across(BilletDisciplin_ID, \(x) as.character(x))) %>%
+  mutate(across(BilletRaekke_ID, \(x) as.character(x))) %>%
+  mutate(across(BilletSpilFormat_ID, \(x) as.character(x))) %>%
+  mutate(across(BilletBeskr_RD, \(x) as.character(x))) %>%
+  mutate(across(BilletTilvalg_RD, \(x) as.character(x))) %>%
+  mutate(across(BilletPris_RD, \(x) as.numeric(x))) %>%
+  mutate(across(BilletPrisArr_RD, \(x) as.numeric(x))) %>%
+  mutate(across(BilletAntalMaks_RD, \(x) as.character(x))) %>%
+  mutate(across(BilletPuljeDelt_RD, \(x) as.character(x))) %>%
+  arrange(desc(BilletNr_RD))
+
+# Dim2_EventAar ----
+Dim2_EventAar <- read_excel(path = InputData_V, sheet = "🎫 Dim2_EventAar", skip = 2) %>%
+  mutate(across(EventAarNr_RD, \(x) as.integer(x))) %>%
+  mutate(across(EventAar_ID, \(x) as.character(x))) %>%
+  mutate(across(Event_ID, \(x) as.character(x))) %>%
+  mutate(across(EventAarFristDatoTid_RD, \(x) as_datetime(x))) %>%
+  mutate(across(EventAarAabningDatoTid_RD, \(x) as_datetime(x))) %>%
+  mutate(across(EventAarRatingDato_RD, \(x) as_date(x))) %>%
+  mutate(across(EventAarPraemieSpons_RD, \(x) as.integer(x))) %>%
+  mutate(across(EventAarSted_RD, \(x) as.character(x))) %>%
+  mutate(across(EventAarAdr_RD, \(x) as.character(x))) %>%
+  mutate(across(EventAarPostnr_RD, \(x) as.integer(x))) %>%
+  mutate(across(EventAarBy_RD, \(x) as.character(x))) %>%
+  mutate(across(EventAarFarve1_RD, \(x) as.character(x))) %>%
+  mutate(across(EventAarFarve2_RD, \(x) as.character(x))) %>%
+  mutate(across(EventAarStedURL_RD, \(x) as.character(x))) %>%
+  mutate(across(EventAarUUID_RD, \(x) as.character(x))) %>%
+  mutate(across(EventAarToken_RD, \(x) as.character(x))) %>%
+  arrange(EventAarNr_RD) %>%
+  mutate(across(EventAar_ID, \(x) factor(x, levels = unique(x), ordered = TRUE), .names = "EventAar_RD")) %>%
+  relocate(EventAar_RD, .after = EventAar_ID)
+
+# Dim3_Event ----
 Dim3_Event <- read_excel(path = InputData_V, sheet = "🎫 Dim3_Event", skip = 2)
+
+# Dim2_BilletKat ----
 Dim2_BilletKat <- read_excel(path = InputData_V, sheet = "🎫 Dim2_BilletKat", skip = 2)
+
+# Dim2_BilletDisciplin ----
 Dim2_BilletDisciplin <- read_excel(path = InputData_V, sheet = "🎫 Dim2_BilletDisciplin", skip = 2)
+
+# Dim2_BilletRække ----
 Dim2_BilletRække <- read_excel(path = InputData_V, sheet = "🎫 Dim2_BilletRække", skip = 2)
+
+# Dim2_BilletSpilformat ----
 Dim2_BilletSpilformat <- read_excel(path = InputData_V, sheet = "🎫 Dim2_BilletSpilformat", skip = 2)
+
+# Dim1_OrdreFoersteTid ----
 Dim1_OrdreFoersteTid <- read_excel(path = InputData_V, sheet = "🎫 Dim1_OrdreFoersteTid", skip = 2) %>%
-  mutate(across("OrdreFoersteTidKatMin_RD", \(x) as.character(x))) %>%
-  mutate(across("OrdreFoersteTidKatMaks_RD", \(x) as.character(x)))
+  mutate(across("OrdreFoersteTidKatMin_ID", \(x) as.character(x))) %>%
+  mutate(across("OrdreFoersteTidKatMaks_ID", \(x) as.character(x)))
+
+# Dim1_OrdreKat ----
 Dim1_OrdreKat <- read_excel(path = InputData_V, sheet = "🎫 Dim1_OrdreKat", skip = 2)
+
+# Dim1_Klub ----
 Dim1_Klub <- read_excel(path = InputData_V, sheet = "🛖 Dim1_Klub", skip = 2)
+
+# Dim2_KlubLandsdel ----
 Dim2_KlubLandsdel <- read_excel(path = InputData_V, sheet = "🛖 Dim2_KlubLandsdel", skip = 2)
+
+# Dim2_KlubRegion ----
 Dim2_KlubRegion <- read_excel(path = InputData_V, sheet = "🛖 Dim2_KlubRegion", skip = 2)
+
+# Dim1_DeltKoen ----
 Dim1_DeltKoen <- read_excel(path = InputData_V, sheet = "👤 Dim1_DeltKoen", skip = 2)
+
+# Dim1_DeltSlutspil ----
 Dim1_DeltSlutspil <- read_excel(path = InputData_V, sheet = "💪 Dim1_DeltSlutspil", skip = 2)
+
+# Dim1_DeltPlacering ----
 Dim1_DeltPlacering <- read_excel(path = InputData_V, sheet = "💪 Dim1_DeltPlacering", skip = 2)
+
+# Dim1_DeltRating ----
 Dim1_DeltRating <- read_excel(path = InputData_V, sheet = "💪 Dim1_DeltRating", skip = 2)
+
+# Dim1_DeltAlderKat ----
 Dim1_DeltAlderKat <- read_excel(path = InputData_V, sheet = "📅 Dim1_DeltAlderKat", skip = 2)
+
+# Dim1_DeltKat ----
 Dim1_DeltKat <- read_excel(path = InputData_V, sheet = "👤 Dim1_DeltKat", skip = 2)
+
+# Dim1_DeltGenKat ----
 Dim1_DeltGenKat <- read_excel(path = InputData_V, sheet = "🔃 Dim1_DeltGenKat", skip = 2)

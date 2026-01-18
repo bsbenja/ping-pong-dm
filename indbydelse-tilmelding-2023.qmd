@@ -6,17 +6,17 @@ source(file = "_input.R")
 ```{r}
 #| label: kildefil-filter
 InputEventAarAkt_V <- "Ping Pong DM 2023"
-DataAkt_T <- tbl1_Ordre_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
-tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
-DataBilletKatAkt_T <- tbl3_BilletKat_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
-DataPraemiePengeAkt_T <- tbl3_PraemiePenge_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataAkt_T <- tbl1_Ordre_T %>% filter(grepl(InputEventAarAkt_V, EventAar_ID))
+tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_ID))
+DataBilletKatAkt_T <- tbl3_BilletKat_T %>% filter(grepl(InputEventAarAkt_V, EventAar_ID))
+DataPraemiePengeAkt_T <- tbl3_PraemiePenge_T %>% filter(grepl(InputEventAarAkt_V, EventAar_ID))
 ```
 
 ---
 title: "<iconify-icon icon=mdi:tags></iconify-icon> <u>Indbydelse & tilmelding</u>"
 subtitle: |
   `r paste0(
-  "<b style=font-size:140%>", tbl2_EventAarAkt_T$EventAar_RD, "</b>",
+  "<b style=font-size:140%>", tbl2_EventAarAkt_T$EventAar_ID, "</b>",
   "<br>",
   "<i style=font-size:110%>",
   "<b>Afholdes ", tbl2_EventAarAkt_T$EventAarDato_DW, " i ", tbl2_EventAarAkt_T$EventAarStedURL_DW,
@@ -169,7 +169,7 @@ IkonRefusion_V, " <b>Refusion</b>: Tilmelding er ikke bindende, hvorfor evt. ref
 ```{r}
 #| layout-ncol: 3
 data.frame(
-  "1" = paste0("<img src=filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "/kontaktperson.png height=66 style=border-radius:10px>"),
+  "1" = paste0("<img src=filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/kontaktperson.png height=66 style=border-radius:10px>"),
   "2" = paste0(
   	IkonPerson_V, " Benjamin Sørensen",
   	"<br>",
@@ -186,7 +186,7 @@ data.frame(
   column_spec(1:2, extra_css = "border:hidden;")
 
 data.frame(
-  "1" = paste0("<img src=filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "/staevneleder.png height=66 style=border-radius:10px>"),
+  "1" = paste0("<img src=filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/staevneleder.png height=66 style=border-radius:10px>"),
   "2" = paste0(
   	IkonPerson_V, " Ole Munck Christensen",
   	"<br>",
@@ -203,7 +203,7 @@ data.frame(
   column_spec(1:2, extra_css = "border:hidden;")
 
 data.frame(
-  "1" = paste0("<img src=filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "/lokation.png height=66 style=border-radius:10px>"),
+  "1" = paste0("<img src=filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/lokation.png height=66 style=border-radius:10px>"),
   "2" = tbl2_EventAarAkt_T$EventAarStedAdrPostnrURL_DW,
   check.names = F) %>%
   kbl(col.names = NULL, align = "l", escape = F,
@@ -277,7 +277,7 @@ cat(tbl2_EventAarAkt_T$InfoTipRegler_DW)
 ::: {.g-col-12 .g-col-md-4}
 ```{r}
 #| output: asis
-cat(paste0("![](filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "/bat-bold.png){width=15em}"))
+cat(paste0("![](filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/bat-bold.png){width=15em}"))
 ```
 :::
 :::::
@@ -286,7 +286,7 @@ cat(paste0("![](filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "/b
 
 :::::: {.grid style="font-style:italic"}
 ::: {.g-col-12 .g-col-md-8}
-[**NYHED**]{.underline}**! 2 kvalifikationspladser til [VERDENSMESTERSKABERNE I PING PONG]{.underline} i Mexico City fra den 4. til 6. januar 2024 med en præmiesum på [\$36.000]{.underline} fordelt på SANDPAPIR, HARDBAT og TRÆBAT. Ekstra tilskud hertil på \$500 til 1. pladsen fra DM. Ny arrangør for VM i Ping Pong er International Classic Table Tennis Federation (ICTTF), som erstatter det ellers tidligere velkendte format fra Alexandra Palace i London arrangeret af Matchroom. Se mere om det nye VM-koncept i indbydelsen `r paste0("[HER](filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "/ping-pong-world-cup-indbydelse.pdf){target=_blank}")`**.
+[**NYHED**]{.underline}**! 2 kvalifikationspladser til [VERDENSMESTERSKABERNE I PING PONG]{.underline} i Mexico City fra den 4. til 6. januar 2024 med en præmiesum på [\$36.000]{.underline} fordelt på SANDPAPIR, HARDBAT og TRÆBAT. Ekstra tilskud hertil på \$500 til 1. pladsen fra DM. Ny arrangør for VM i Ping Pong er International Classic Table Tennis Federation (ICTTF), som erstatter det ellers tidligere velkendte format fra Alexandra Palace i London arrangeret af Matchroom. Se mere om det nye VM-koncept i indbydelsen `r paste0("[HER](filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/ping-pong-world-cup-indbydelse.pdf){target=_blank}")`**.
 
 -   Der er også en gave til den **yngste**- og **ældste** Ping Pong deltager for at hylde mangfoldigheden.
 -   Pokaler/diplomer uddeles til alle gave-/præmietagere.
@@ -296,7 +296,7 @@ cat(paste0("![](filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "/b
 ```{r}
 #| output: asis
 cat(paste0(
-"![](filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "//ping-pong-world-cup-logo.png){width=20em}"))
+"![](filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "//ping-pong-world-cup-logo.png){width=20em}"))
 ```
 :::
 
@@ -351,7 +351,7 @@ Aldersgrænsen for festen er 16 år (bytur 18 år). Hvis man er 16 eller 17 år,
 ```{r}
 #| output: asis
 cat(paste0(
-"![](filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "//fest-om-aftenen.png){width=20em}"))
+"![](filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "//fest-om-aftenen.png){width=20em}"))
 ```
 
 ::: {.callout-note style="font-style:italic"}
@@ -375,7 +375,7 @@ IkonOvernatning_V, " Se forslag til evt. overnatning under <q>Intro, tidsplan & 
 #| output: asis
 cat(paste0(
 "<p>",
-"<b style=font-size:140%>", tbl2_EventAarAkt_T$EventAar_RD, "</b>",
+"<b style=font-size:140%>", tbl2_EventAarAkt_T$EventAar_ID, "</b>",
 "<br>",
 "<i style=font-size:110%>",
 "<b>Afholdes ", tbl2_EventAarAkt_T$EventAarDato_DW, " i ", tbl2_EventAarAkt_T$EventAarStedURL_DW, "</b></i>",

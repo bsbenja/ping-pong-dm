@@ -5,7 +5,7 @@ source(file = "_input.R")
 
 ```{r}
 #| label: kildefil-filter
-tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_ID))
 ```
 
 ---
@@ -28,7 +28,7 @@ cat(tbl2_EventAarAkt_T$InfoPlakatCTA_DW)
 
 :::::: grid
 ::: {.g-col-12 .g-col-md-4}
-#### `r tbl2_EventAarAkt_T$EventAar_RD`
+#### `r tbl2_EventAarAkt_T$EventAar_ID`
 
 `r tbl2_EventAarAkt_T$InfoForside_DW`
 :::

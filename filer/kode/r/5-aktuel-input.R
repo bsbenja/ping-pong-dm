@@ -19,7 +19,7 @@ if(InputWebOrdreTF_V == T) {
       list5_eventordre$orders %>% sapply(., '[', "tickets") %>%
         sapply(., '[', seq(max(sapply(., length)))) %>%
         sapply(., '[', "full_name")))),
-  	BilletKat_RD = as.character(do.call(what = rbind, args = as.list(
+  	BilletKat_ID = as.character(do.call(what = rbind, args = as.list(
       list5_eventordre$orders %>% sapply(., '[', "tickets") %>%
         sapply(., '[', seq(max(sapply(., length)))) %>%
         sapply(., '[', "ticket_type_name")))),
@@ -34,10 +34,10 @@ if(InputWebOrdreTF_V == T) {
         OrdreStatusSimpelKat_RD    = sapply(list5_eventordre$orders, `[[`, c("state"))),
       na_matches = "never", by = "k_id") %>%
     mutate(across("OrdreDatoTid_RD", \(x) as_datetime(x) + hours(+2))) %>%
-    mutate(across(c("BilletKat_RD", "OrdreStatusSimpelKat_RD"), \(x) factor(x, ordered = T))) %>%
+    mutate(across(c("BilletKat_ID", "OrdreStatusSimpelKat_RD"), \(x) factor(x, ordered = T))) %>%
     mutate(across("BilletPris_RD", \(x) as.numeric(x))) %>%
     arrange(desc(OrdreDatoTid_RD)) %>%
-    select(k_navn, OrdreDatoTid_RD, BilletKat_RD, OrdreStatusSimpelKat_RD, BilletPris_RD)
+    select(k_navn, OrdreDatoTid_RD, BilletKat_ID, OrdreStatusSimpelKat_RD, BilletPris_RD)
   View(tbl5_eventordre)
   shell.exec(normalizePath(InputData_V))
   browseURL("https://pingpong.quarto.pub/dm/raekke-sandpapir-aaben-single.html")
@@ -50,9 +50,9 @@ if(InputWebOrdreTF_V == T) {
         "💰 Omsætning kr.", format(sum(BilletPris_RD), big.mark = "."), "(PAID)")), "\n",
     tbl5_eventordre %>%
       filter(grepl("PAID", OrdreStatusSimpelKat_RD)) %>%
-      group_by(BilletKat_RD) %>%
+      group_by(BilletKat_ID) %>%
       summarise(label = paste("kr.", format(sum(BilletPris_RD), big.mark = "."), "(PAID)")) %>%
-      mutate(label = paste(BilletKat_RD, label)) %>%
+      mutate(label = paste(BilletKat_ID, label)) %>%
       summarise(label = str_c(label, collapse = "\n")), "\n\n",
     tbl5_eventordre %>%
       count(OrdreStatusSimpelKat_RD) %>%
@@ -60,9 +60,9 @@ if(InputWebOrdreTF_V == T) {
       mutate(label = paste0("🎫 ", OrdreStatusSimpelKat_RD, " ", n, " (", pct, ")")) %>%
       summarise(label = str_c(label, collapse = "\n")), "\n\n",
     tbl5_eventordre %>%
-      count(OrdreStatusSimpelKat_RD, BilletKat_RD) %>%
+      count(OrdreStatusSimpelKat_RD, BilletKat_ID) %>%
       mutate(pct = percent(n/sum(n), digits = 0)) %>%
-      mutate(label = paste0(BilletKat_RD, " ", OrdreStatusSimpelKat_RD, " ", n, " (", pct, ")")) %>%
+      mutate(label = paste0(BilletKat_ID, " ", OrdreStatusSimpelKat_RD, " ", n, " (", pct, ")")) %>%
       summarise(label = str_c(label, collapse = "\n")), "\n\n"))
 } else if (InputWebOrdreTF_V == F) {"InputWebOrdreTF_V = F"}
 
@@ -71,24 +71,24 @@ if(InputWebOrdreTF_V == T) {
 if(InputPNGPlakatTF_V == T) {
   pdf_convert(
     pdf = paste0(
-      "filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "-teaserplakat", ".pdf"),
+      "filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "-teaserplakat", ".pdf"),
     format = "png",
     filenames = paste0(
-      "filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "-teaserplakat", ".png"),
+      "filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "-teaserplakat", ".png"),
     verbose = F,
     dpi = 300)
   pdf_convert(
     pdf = paste0(
-      "filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "-indbydelsesplakat", ".pdf"),
+      "filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "-indbydelsesplakat", ".pdf"),
     format = "png",
     filenames = paste0(
-      "filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "-indbydelsesplakat", ".png"),
+      "filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "-indbydelsesplakat", ".png"),
     verbose = F,
     dpi = 300)
   shell.exec(normalizePath(
-    paste0("filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "-teaserplakat", ".png")))
+    paste0("filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "-teaserplakat", ".png")))
   shell.exec(normalizePath(
-    paste0("filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "-indbydelsesplakat", ".png")))
+    paste0("filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "-indbydelsesplakat", ".png")))
 } else if (InputPNGPlakatTF_V == F) {"InputPNGPlakatTF_V = F"}
 
 # Webscraping af ratingliste -------------------------------------------------------------------------------------------
@@ -97,12 +97,12 @@ if(InputWebRatingTF_V == T) {
   tbl5_webscraping_rating <- data.frame()
   url1 <- ifelse(
     nrow(rbind(tbl5_webscraping_rating, data.frame(
-      "DeltID_RD" = read_html(
+      "Deltager_ID" = read_html(
         paste0("https://bordtennisportalen.dk/DBTU/Ranglister/Udskriv/?params=,59,4",
                tbl2_EventAarAkt_T$EventAarRatingDato_RD_Aar_DW, ",",
                format(tbl2_EventAarAkt_T$EventAarRatingDato_RD, "%m/%d/%Y"),
                ",,,,True,,,,,", "0", ",,,0,,,,,")) %>% html_nodes(".playerid") %>% html_text(),
-      stringsAsFactors = FALSE)) %>% filter(DeltID_RD != "Spiller-Id")) > 0,
+      stringsAsFactors = FALSE)) %>% filter(Deltager_ID != "Spiller-Id")) > 0,
     paste0("https://bordtennisportalen.dk/DBTU/Ranglister/Udskriv/?params=,59,4",
            tbl2_EventAarAkt_T$EventAarRatingDato_RD_Aar_DW, ",",
            format(tbl2_EventAarAkt_T$EventAarRatingDato_RD, "%m/%d/%Y")),
@@ -115,12 +115,12 @@ if(InputWebRatingTF_V == T) {
   
   tbl5_webscraping_rating <- rbind(tbl5_webscraping_rating, data.frame(
     "Plac"          = read_html(url2) %>% html_nodes(".rank")                        %>% html_text(),
-    "DeltID_RD" = read_html(url2) %>% html_nodes(".playerid")                        %>% html_text(),
+    "Deltager_ID" = read_html(url2) %>% html_nodes(".playerid")                        %>% html_text(),
     "Navn"          = read_html(url2) %>% html_nodes(".name")                        %>% html_text(),
     "Rating"        = read_html(url2) %>% html_nodes(".name+ .pointsw")              %>% html_text(),
     "Plus_minus"    = read_html(url2) %>% html_nodes(".pointsw:nth-child(5)")        %>% html_text(),
     "Kampe"         = read_html(url2) %>% html_nodes(".pointsw~ .pointsw+ .pointsw") %>% html_text(),
-    stringsAsFactors = FALSE)) %>% filter(DeltID_RD != "Spiller-Id") %>%
+    stringsAsFactors = FALSE)) %>% filter(Deltager_ID != "Spiller-Id") %>%
     mutate(across(c("Plac", "Rating", "Plus_minus", "Kampe"), \(x) as.numeric(x)))
   print(paste("Side", side))
   }
@@ -131,8 +131,8 @@ if(InputWebRatingTF_V == T) {
     arrange(desc(OrdreDatoTid_RD)) %>%
     left_join(
       y = tbl5_webscraping_rating,
-      na_matches = "never", by = "DeltID_RD") %>%
-    select(EventAar_RD, Plac, DeltID_RD, Navn, Klub, Rating, Plus_minus, Kampe)
+      na_matches = "never", by = "Deltager_ID") %>%
+    select(EventAar_ID, Plac, Deltager_ID, Navn, Klub, Rating, Plus_minus, Kampe)
   
   write_xlsx(
     setNames(

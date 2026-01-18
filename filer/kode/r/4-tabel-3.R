@@ -1,7 +1,7 @@
 # Billettype -----------------------------------------------------------------------------------------------------------
 
 tbl3_BilletKat_T  <- tbl1_Ordre_T %>%
-  group_by(Billet_RD) %>%
+  group_by(Billet_ID) %>%
   mutate(BilletKat_DW = paste0(
     "<b>", BilletKat_DW, "</b>",
     "<br>",
@@ -11,62 +11,62 @@ tbl3_BilletKat_T  <- tbl1_Ordre_T %>%
     "<br>", "<i style=font-size:80%>", "Maks.",
     format(BilletAntalMaks_RD, big.mark = "."), IkonPerson_V, "</i>")) %>%
   ungroup() %>%
-  arrange(BilletStartDatoTid_RD, desc(Billet_RD)) %>%
+  arrange(BilletStartDatoTid_RD, desc(Billet_ID)) %>%
   distinct(
     " "            = BilletKatIkon_RD,
     "Billettype"   = BilletKat_DW,
     "Pris & maks." = BilletPris_DW,
-    EventAar_RD)
+    EventAar_ID)
 
 # Præmier --------------------------------------------------------------------------------------------------------------
 
 tbl3_PraemiePenge_T <- tbl1_Ordre_T %>%
-  filter(!is.na(DeltSlutspil_RD) & !is.na(DeltPlac_RD) & !is.na(DeltPraemie_RD)) %>%
+  filter(!is.na(DeltSlutspil_ID) & !is.na(DeltPlac_ID) & !is.na(DeltPraemie_RD)) %>%
   
   mutate(PraemieRank_DW = "4") %>%
 
-  group_by(EventAar_RD) %>%
+  group_by(EventAar_ID) %>%
   bind_rows(summarise(., across(where(is.numeric), \(x) sum(x)), .groups = "keep")) %>% ungroup() %>%
   mutate(PraemieRank_DW = ifelse(!is.na(PraemieRank_DW), PraemieRank_DW, "1")) %>%
   ungroup() %>%
 
-  group_by(EventAar_RD, Billet_RD) %>%
+  group_by(EventAar_ID, Billet_ID) %>%
   bind_rows(summarise(., across(where(is.numeric), \(x) sum(x)), .groups = "keep")) %>% ungroup() %>%
   mutate(PraemieRank_DW = ifelse(!is.na(PraemieRank_DW), PraemieRank_DW, "2")) %>%
   ungroup() %>%
   
-  group_by(EventAar_RD, Billet_RD, DeltSlutspil_RD) %>%
+  group_by(EventAar_ID, Billet_ID, DeltSlutspil_ID) %>%
   bind_rows(summarise(., across(where(is.numeric), \(x) sum(x)), .groups = "keep")) %>% ungroup() %>%
   mutate(PraemieRank_DW = ifelse(!is.na(PraemieRank_DW), PraemieRank_DW, "3")) %>%
   ungroup() %>%
   
-  group_by(EventAar_RD) %>%
-  fill(EventAar_RD, EventAarPraemieSpons_RD, .direction = "updown") %>%
+  group_by(EventAar_ID) %>%
+  fill(EventAar_ID, EventAarPraemieSpons_RD, .direction = "updown") %>%
   ungroup() %>%
   
-  group_by(Billet_RD) %>%
+  group_by(Billet_ID) %>%
   fill(
-    Billet_RD,
-    BilletDisciplin_RD,
-    BilletRaekke_RD,
-    BilletSpilFormat_RD,
+    Billet_ID,
+    BilletDisciplin_ID,
+    BilletRaekke_ID,
+    BilletSpilFormat_ID,
     Billettype_DW,
     BilletKat_DW, .direction = "updown") %>%
   ungroup() %>%
   
-  mutate(across(c("BilletKat_DW", "DeltSlutspil_RD", "DeltPlac_RD"), \(x) as.character(x))) %>%
+  mutate(across(c("BilletKat_DW", "DeltSlutspil_ID", "DeltPlac_ID"), \(x) as.character(x))) %>%
   mutate(across("PraemieRank_DW", \(x) as.integer(x))) %>%
   mutate(DeltSlutspilPlac_DW = case_when(
     PraemieRank_DW == "1" ~ "Præmiesum",
     PraemieRank_DW == "2" ~ BilletKat_DW,
-    PraemieRank_DW == "3" ~ DeltSlutspil_RD,
-    PraemieRank_DW == "4" ~ DeltPlac_RD,
+    PraemieRank_DW == "3" ~ DeltSlutspil_ID,
+    PraemieRank_DW == "4" ~ DeltPlac_ID,
     TRUE ~ NA_character_)) %>%
   filter(!is.na(DeltSlutspilPlac_DW)) %>%
   
-  group_by(EventAar_RD) %>%
+  group_by(EventAar_ID) %>%
   filter(!(PraemieRank_DW == "2" & n_distinct(BilletKat_DW, na.rm = TRUE) == 1)) %>%
-  filter(!(PraemieRank_DW == "3" & n_distinct(DeltSlutspil_RD, na.rm = TRUE) == 1)) %>%
+  filter(!(PraemieRank_DW == "3" & n_distinct(DeltSlutspil_ID, na.rm = TRUE) == 1)) %>%
   ungroup() %>%
   
   mutate(DeltPraemieAkt_DW = paste("kr.", format(round(
@@ -77,21 +77,21 @@ tbl3_PraemiePenge_T <- tbl1_Ordre_T %>%
     0.001+DeltPraemiePot_DW), big.mark = "."))) %>%
   
   mutate(across(c(
-    BilletDisciplin_RD,
-    BilletRaekke_RD,
-    BilletSpilFormat_RD,
-    DeltSlutspil_RD,
+    BilletDisciplin_ID,
+    BilletRaekke_ID,
+    BilletSpilFormat_ID,
+    DeltSlutspil_ID,
     PraemieRank_DW,
-    DeltPlac_RD), ~ ifelse(!is.na(.x), .x, "1"))) %>%
+    DeltPlac_ID), ~ ifelse(!is.na(.x), .x, "1"))) %>%
   
   arrange(
-    desc(EventAar_RD),
-    BilletDisciplin_RD,
-    BilletRaekke_RD,
-    BilletSpilFormat_RD,
-    DeltSlutspil_RD,
+    desc(EventAar_ID),
+    BilletDisciplin_ID,
+    BilletRaekke_ID,
+    BilletSpilFormat_ID,
+    DeltSlutspil_ID,
     PraemieRank_DW,
-    DeltPlac_RD, na.last = TRUE) %>%
+    DeltPlac_ID, na.last = TRUE) %>%
   
   select(
     " " = DeltSlutspilPlac_DW,
@@ -101,35 +101,35 @@ tbl3_PraemiePenge_T <- tbl1_Ordre_T %>%
     PraemieRank_DW,
     EventAarPraemieSpons_RD,
     Billettype_DW,
-    EventAar_RD)
+    EventAar_ID)
 
 # Yngste- og ældste deltager -------------------------------------------------------------------------------------------
 
 tbl3_DeltYngstAeldst_T <- tbl1_Ordre_T %>%
   filter(
-    !is.na(DeltID_RD) &
+    !is.na(Deltager_ID) &
       grepl("Tilmeldt", OrdreStatusSimpelKat_RD) &
-      grepl("Ping Pong", BilletKat_RD)) %>%
-  group_by(EventAar_RD) %>%
+      grepl("Ping Pong", BilletKat_ID)) %>%
+  group_by(EventAar_ID) %>%
   filter(DeltFoedtDato_DW == max(DeltFoedtDato_DW) | DeltFoedtDato_DW == min(DeltFoedtDato_DW)) %>%
   ungroup() %>%
   mutate(Født  = DeltFoedtDato_DW_DMAA_DW) %>%
-	arrange(EventAar_RD, desc(DeltFoedtDato_DW), DeltNavn_RD) %>%
+	arrange(EventAar_ID, desc(DeltFoedtDato_DW), DeltNavn_RD) %>%
   distinct(
     " "      = DeltYngstAeldst_DW,
     "&emsp;" = KlubLogo_DW,
     "Navn"   = DeltNavnBilletKat_DW,
     "Født"   = Født,
-    EventAar_RD)
+    EventAar_ID)
 
 # Foreløbige deltagere -------------------------------------------------------------------------------------------------
 
 tbl3_DeltFor_T <- tbl1_Ordre_T %>%
-  group_by(EventAar_RD, Billet_RD) %>%
-  filter(grepl("Tilmeldt", OrdreStatusSimpelKat_RD) & grepl("Ping Pong", BilletKat_RD)) %>%
-  distinct(DeltID_RD, OrdreStatusSimpelKat_RD, .keep_all = T) %>%
-  arrange(EventAar_RD, OrdreStatusSimpelKat_RD, BilletKat_RD, desc(DeltFoedtDato_DW), DeltNavn_RD) %>%
-  group_by(EventAar_RD, Billet_RD, OrdreStatusSimpelKat_RD) %>%
+  group_by(EventAar_ID, Billet_ID) %>%
+  filter(grepl("Tilmeldt", OrdreStatusSimpelKat_RD) & grepl("Ping Pong", BilletKat_ID)) %>%
+  distinct(Deltager_ID, OrdreStatusSimpelKat_RD, .keep_all = T) %>%
+  arrange(EventAar_ID, OrdreStatusSimpelKat_RD, BilletKat_ID, desc(DeltFoedtDato_DW), DeltNavn_RD) %>%
+  group_by(EventAar_ID, Billet_ID, OrdreStatusSimpelKat_RD) %>%
   mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
   select(
@@ -138,13 +138,13 @@ tbl3_DeltFor_T <- tbl1_Ordre_T %>%
     "Navn" = DeltNavnBilletKat_DW,
     OrdreStatusSimpelKat_RD,
     Billettype_DW,
-    EventAar_RD)
+    EventAar_ID)
 
 # Puljer ---------------------------------------------------------------------------------------------------------------
 
 tbl3_DeltPuljer_T <- tbl1_Ordre_T %>%
-  filter(grepl("Tilmeldt", OrdreStatusSimpelKat_RD) & grepl("Ping Pong", BilletKat_RD)) %>%
-  arrange(EventAar_RD, Billet_RD, DeltSnakePuljeNr_DW, DeltSnakeSeedNr_DW) %>%
+  filter(grepl("Tilmeldt", OrdreStatusSimpelKat_RD) & grepl("Ping Pong", BilletKat_ID)) %>%
+  arrange(EventAar_ID, Billet_ID, DeltSnakePuljeNr_DW, DeltSnakeSeedNr_DW) %>%
   select(
     "#" = DeltSnakeSeedNr_DW,
     "&emsp;" = KlubLogo_DW,
@@ -153,23 +153,23 @@ tbl3_DeltPuljer_T <- tbl1_Ordre_T %>%
     DeltSnakeSeedLagNr_DW,
     DeltSnakePuljeNr_DW,
     Billettype_DW,
-    EventAar_RD)
+    EventAar_ID)
 
 # Deltagere kun til festen inkl. afbud ---------------------------------------------------------------------------------
 
 tbl3_DeltAndet_T <- tbl1_Ordre_T %>%
   filter(
-    !grepl("Ping Pong", BilletKat_RD)
+    !grepl("Ping Pong", BilletKat_ID)
     & DeltBilletSalgNr_DW == 1 | !grepl("Tilmeldt|Aflyst", OrdreStatusSimpelKat_RD)) %>%
-  group_by(EventAar_RD) %>%
-  distinct(DeltID_RD, OrdreStatusSimpelKat_RD, .keep_all = T) %>%
+  group_by(EventAar_ID) %>%
+  distinct(Deltager_ID, OrdreStatusSimpelKat_RD, .keep_all = T) %>%
   arrange(
-    EventAar_RD,
+    EventAar_ID,
     OrdreStatusSimpelKat_RD,
     desc(DeltBilletSalgNr_DW),
     desc(DeltFoedtDato_DW),
-    DeltID_RD) %>%
-  group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
+    Deltager_ID) %>%
+  group_by(EventAar_ID, OrdreStatusSimpelKat_RD) %>%
   mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
   select(
@@ -177,20 +177,20 @@ tbl3_DeltAndet_T <- tbl1_Ordre_T %>%
     "&emsp;" = KlubLogo_DW,
     "Navn" = DeltNavnBilletKat_DW,
     OrdreStatusSimpelKat_RD,
-    EventAar_RD)
+    EventAar_ID)
 
 # Deltagere fordelt på klubber ----------------------------------------------------------------------------------------------
 
 tbl3_DeltKlub_T <- tbl1_Ordre_T %>%
-  group_by(EventAar_RD) %>%
-	filter(!is.na(DeltID_RD)) %>%
-	add_count(Klub_RD) %>%
-	distinct(DeltID_RD, .keep_all = T) %>%
+  group_by(EventAar_ID) %>%
+	filter(!is.na(Deltager_ID)) %>%
+	add_count(Klub_ID) %>%
+	distinct(Deltager_ID, .keep_all = T) %>%
 	arrange(
-	  EventAar_RD, OrdreStatusSimpelKat_RD, KlubKat_DW, desc(n),
-	  Klub_RD, desc(DeltBilletSalgNr_DW), BilletKat_RD, DeltNavn_RD) %>%
+	  EventAar_ID, OrdreStatusSimpelKat_RD, KlubKat_DW, desc(n),
+	  Klub_ID, desc(DeltBilletSalgNr_DW), BilletKat_ID, DeltNavn_RD) %>%
   mutate(KlubKat_DW = paste0(KlubKat_DW, " ", KlubKatIkon_RD)) %>%
-  group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
+  group_by(EventAar_ID, OrdreStatusSimpelKat_RD) %>%
   mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
 	select(
@@ -200,21 +200,21 @@ tbl3_DeltKlub_T <- tbl1_Ordre_T %>%
 		"Klubtype" = KlubKat_DW,
 		OrdreStatusSimpelKat_RD,
     Billettype_DW,
-		EventAar_RD)
+		EventAar_ID)
 
 # Deltagere fordelt på Danmarkskort ------------------------------------------------------------------------------------
 
 tbl3_DeltBy_T <- tbl1_Ordre_T %>%
-  group_by(EventAar_RD) %>%
-  filter(!is.na(DeltID_RD)) %>%
-  distinct(DeltID_RD, .keep_all = T) %>%
+  group_by(EventAar_ID) %>%
+  filter(!is.na(Deltager_ID)) %>%
+  distinct(Deltager_ID, .keep_all = T) %>%
   arrange(
-    OrdreStatusSimpelKat_RD, KlubRegion_RD, desc(KlubPostnr_RD),
-    desc(DeltBilletSalgNr_DW), BilletKat_RD, DeltNavn_RD) %>%
-  mutate(KlubPostnrBy_DW = paste0(ifelse(grepl("Ingen klub|Udlandet", Klub_RD),
+    OrdreStatusSimpelKat_RD, KlubRegion_ID, desc(KlubPostnr_RD),
+    desc(DeltBilletSalgNr_DW), BilletKat_ID, DeltNavn_RD) %>%
+  mutate(KlubPostnrBy_DW = paste0(ifelse(grepl("Ingen klub|Udlandet", Klub_ID),
       paste0(KlubKat_DW, " ", KlubKatIkon_RD),
-      paste0(KlubRegion_RD, "<br>", KlubPostnrBy_DW, " ", KlubKatIkon_RD)))) %>%
-  group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
+      paste0(KlubRegion_ID, "<br>", KlubPostnrBy_DW, " ", KlubKatIkon_RD)))) %>%
+  group_by(EventAar_ID, OrdreStatusSimpelKat_RD) %>%
   mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
   select(
@@ -224,18 +224,18 @@ tbl3_DeltBy_T <- tbl1_Ordre_T %>%
     "Region" = KlubPostnrBy_DW,
     OrdreStatusSimpelKat_RD,
     Billettype_DW,
-    EventAar_RD)
+    EventAar_ID)
 
 # Deltagere fordelt på aldersgruppe ------------------------------------------------------------------------------------
 
 tbl3_DeltAlderKat_T <- tbl1_Ordre_T %>%
-  group_by(EventAar_RD) %>%
-	filter(!is.na(DeltID_RD)) %>%
-	distinct(DeltID_RD, .keep_all = T) %>%
+  group_by(EventAar_ID) %>%
+	filter(!is.na(Deltager_ID)) %>%
+	distinct(Deltager_ID, .keep_all = T) %>%
 	arrange(OrdreStatusSimpelKat_RD, desc(DeltFoedtDato_DW), DeltNavn_RD) %>%
   mutate(DeltAlderKat_RD = paste0(
     DeltFoedtDato_DW_DMAA_DW, "<br>", DeltAlderKat_RD, " ", IkonFødt_V)) %>%
-  group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
+  group_by(EventAar_ID, OrdreStatusSimpelKat_RD) %>%
   mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
 	select(
@@ -245,41 +245,41 @@ tbl3_DeltAlderKat_T <- tbl1_Ordre_T %>%
 		"Aldersgruppe" = DeltAlderKat_RD,
 		OrdreStatusSimpelKat_RD,
     Billettype_DW,
-		EventAar_RD)
+		EventAar_ID)
 
 # Deltagere fordelt på køn ---------------------------------------------------------------------------------------------
 
 tbl3_DeltKoen_T <- tbl1_Ordre_T %>%
-  group_by(EventAar_RD) %>%
-	filter(!is.na(DeltID_RD)) %>%
-	distinct(DeltID_RD, .keep_all = T) %>%
+  group_by(EventAar_ID) %>%
+	filter(!is.na(Deltager_ID)) %>%
+	distinct(Deltager_ID, .keep_all = T) %>%
 	arrange(
-	  EventAar_RD, OrdreStatusSimpelKat_RD, DeltKoen_RD,
-		desc(DeltBilletSalgNr_DW), BilletKat_RD, DeltNavnBilletKat_DW) %>%
-  mutate(DeltKoen_RD_ikon = paste0(DeltKoen_RD, " ", DeltKoenIkon_RD)) %>%
-  group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
+	  EventAar_ID, OrdreStatusSimpelKat_RD, DeltKoen_ID,
+		desc(DeltBilletSalgNr_DW), BilletKat_ID, DeltNavnBilletKat_DW) %>%
+  mutate(DeltKoen_ID_ikon = paste0(DeltKoen_ID, " ", DeltKoenIkon_RD)) %>%
+  group_by(EventAar_ID, OrdreStatusSimpelKat_RD) %>%
   mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
 	select(
     "#" = RaekkeNr_DW,
 		"&emsp;" = KlubLogo_DW,
 		"Navn" = DeltNavnBilletKat_DW,
-		"Køn" = DeltKoen_RD_ikon,
+		"Køn" = DeltKoen_ID_ikon,
 		OrdreStatusSimpelKat_RD,
     Billettype_DW,
-		EventAar_RD)
+		EventAar_ID)
 
 # Deltagere fordelt på gentilmeldinger ---------------------------------------------------------------------------------
 
 tbl3_DeltGenTil_T <- tbl1_Ordre_T %>%
-  group_by(EventAar_RD) %>%
-	filter(!is.na(DeltID_RD)) %>%
-  distinct(DeltID_RD, .keep_all = T) %>%
+  group_by(EventAar_ID) %>%
+	filter(!is.na(Deltager_ID)) %>%
+  distinct(Deltager_ID, .keep_all = T) %>%
 	arrange(
-	  EventAar_RD, OrdreStatusSimpelKat_RD, DeltGen_DW,
-		desc(DeltBilletSalgNr_DW), BilletKat_RD, DeltNavnBilletKat_DW) %>%
+	  EventAar_ID, OrdreStatusSimpelKat_RD, DeltGen_DW,
+		desc(DeltBilletSalgNr_DW), BilletKat_ID, DeltNavnBilletKat_DW) %>%
 	mutate(DeltGen_DW = paste0(DeltGenKat_DW, "<br>", DeltGen_DW, " ", DeltGenKatIkon_RD)) %>%
-  group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
+  group_by(EventAar_ID, OrdreStatusSimpelKat_RD) %>%
   mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
 	select(
@@ -289,19 +289,19 @@ tbl3_DeltGenTil_T <- tbl1_Ordre_T %>%
 		"Gentilmelding" = DeltGen_DW,
 		OrdreStatusSimpelKat_RD,
     Billettype_DW,
-		EventAar_RD)
+		EventAar_ID)
 
 # Deltagere fordelt på tilmeldingstype ---------------------------------------------------------------------------------
 
 tbl3_DeltOrdreKat_T <- tbl1_Ordre_T %>%
-  group_by(EventAar_RD) %>%
-	filter(!is.na(DeltID_RD)) %>%
-	distinct(DeltID_RD, .keep_all = T) %>%
-	arrange(EventAar_RD, OrdreStatusSimpelKat_RD, OrdreDatoTid_RD, DeltNavn_RD) %>%
+  group_by(EventAar_ID) %>%
+	filter(!is.na(Deltager_ID)) %>%
+	distinct(Deltager_ID, .keep_all = T) %>%
+	arrange(EventAar_ID, OrdreStatusSimpelKat_RD, OrdreDatoTid_RD, DeltNavn_RD) %>%
 	mutate(OrdreKat_DW = paste0(
 	  OrdreFoersteDato_DW_DMAA_DW, "<br>",
     format(OrdreFoersteDatoTid_DW, "kl. %H:%M"), " ", OrdreKatIkon_RD)) %>%
-  group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
+  group_by(EventAar_ID, OrdreStatusSimpelKat_RD) %>%
   mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
 	select(
@@ -311,25 +311,25 @@ tbl3_DeltOrdreKat_T <- tbl1_Ordre_T %>%
 		"Ordredato" = OrdreKat_DW,
 		OrdreStatusSimpelKat_RD,
     Billettype_DW,
-		EventAar_RD)
+		EventAar_ID)
 
 # Resultater -----------------------------------------------------------------------------------------------------------
 
 tbl3_Result_T <- tbl1_Ordre_T %>%
-  filter((!is.na(DeltSlutspil_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) | grepl("Aflyst", OrdreStatusSimpelKat_RD)) %>%
+  filter((!is.na(DeltSlutspil_ID) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) | grepl("Aflyst", OrdreStatusSimpelKat_RD)) %>%
   filter(EventAarStartDatoTid_DW <= Sys.Date()) %>%
-  arrange(desc(EventAarNr_RD), BilletDisciplin_RD, BilletRaekke_RD, DeltSlutspil_RD, DeltPlac_RD) %>%
+  arrange(desc(EventAarNr_RD), BilletDisciplin_ID, BilletRaekke_ID, DeltSlutspil_ID, DeltPlac_ID) %>%
   select(
     "År" = EventAarStartDato_DW_Aar_DW,
-    "#" = DeltPlac_RD,
+    "#" = DeltPlac_ID,
     "&emsp;" = KlubLogo_DW,
     "Navn" = DeltNavnKlub_DW,
-    DeltSlutspil_RD,
+    DeltSlutspil_ID,
     DeltPlacNr_RD,
     OrdreStatusSimpelKat_RD,
     EventAarSidst_DW,
     Billettype_DW,
-    EventAar_RD)
+    EventAar_ID)
 
 # Resultater webscraped ------------------------------------------------------------------------------------------------
 

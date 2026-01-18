@@ -35,15 +35,15 @@ Data_BI = transpose(tbl1_Ordre_T)
 ```{ojs}
 //| label: ojs-filter-transpose
 data_filter = Data_BI.filter(function(Data_BI) {
-  return EventAar_RD.includes(Data_BI.EventAar_RD)
+  return EventAar_ID.includes(Data_BI.EventAar_ID)
 })
 ```
 
 ```{ojs}
 //| label: ojs-panel-input
 //| panel: input
-viewof EventAar_RD = Inputs.checkbox(
-  Data_BI.map(d => d.EventAar_RD), {sort: true, unique: true,
+viewof EventAar_ID = Inputs.checkbox(
+  Data_BI.map(d => d.EventAar_ID), {sort: true, unique: true,
   label: ["🎫 Event & år"], value: ["Ping Pong DM 2023"]}
 )
 ```
@@ -81,12 +81,12 @@ Inputs.table(data_filter, {
   columns: [
     "KlubLogo_DW",
     "DeltNavnBilletKat_DW",
-    "EventAar_RD"
+    "EventAar_ID"
   ],
   header: {
     KlubLogo_DW: " ",
     DeltNavnBilletKat_DW: "Navn",
-    EventAar_RD: "EventAar"
+    EventAar_ID: "EventAar"
   }
 })
 ```
@@ -128,12 +128,12 @@ Inputs.table(data_filter, {
   columns: [
     "KlubLogo_DW",
     "DeltNavnBilletKat_DW",
-    "Klub_RD"
+    "Klub_ID"
   ],
   header: {
     KlubLogo_DW: " ",
     DeltNavnBilletKat_DW: "Navn",
-    Klub_RD: "Klub"
+    Klub_ID: "Klub"
   }
 })
 ```
@@ -208,7 +208,7 @@ Plot.plot({
   marks: [
     Plot.barX(data_filter,
     Plot.groupY({x: "count"},
-    {y: "Klub_RD", fill: "BilletKat_DW", sort: {y: "x", reverse: true}}
+    {y: "Klub_ID", fill: "BilletKat_DW", sort: {y: "x", reverse: true}}
     )
     )
   ]
@@ -222,12 +222,12 @@ Inputs.table(data_filter, {
   columns: [
     "KlubLogo_DW",
     "DeltNavnBilletKat_DW",
-    "Klub_RD"
+    "Klub_ID"
   ],
   header: {
     KlubLogo_DW: " ",
     DeltNavnBilletKat_DW: "Navn",
-    Klub_RD: "Klub"
+    Klub_ID: "Klub"
   }
 })
 ```
@@ -243,13 +243,13 @@ BilletDisciplinAkt_V  <- "Sandpapir"
 BilletSpilFormatAkt_V <- "Single"
 BilletRaekkeAkt_V     <- "Åben"
 
-DataAkt_T <- tbl1_Ordre_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
-tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataAkt_T <- tbl1_Ordre_T %>% filter(grepl(InputEventAarAkt_V, EventAar_ID))
+tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_ID))
 DataBilletAkt_T <- tbl2_Billet_T %>% filter(
-  grepl(InputEventAarAkt_V, EventAar_RD) &
-  grepl(BilletDisciplinAkt_V, BilletDisciplin_RD) &
-  grepl(BilletRaekkeAkt_V, BilletRaekke_RD) &
-  grepl(BilletSpilFormatAkt_V, BilletSpilFormat_RD))
+  grepl(InputEventAarAkt_V, EventAar_ID) &
+  grepl(BilletDisciplinAkt_V, BilletDisciplin_ID) &
+  grepl(BilletRaekkeAkt_V, BilletRaekke_ID) &
+  grepl(BilletSpilFormatAkt_V, BilletSpilFormat_ID))
 ```
 
 ```{r}
@@ -307,7 +307,7 @@ datatable(
 
 ```{r}
 tbl3_PraemiePenge_T %>%
-  filter(grepl(InputEventAarAkt_V, EventAar_RD)) %>%
+  filter(grepl(InputEventAarAkt_V, EventAar_ID)) %>%
   select(` `, Præmiepenge, Pct.) %>%
   datatable(
     style = "bulma",
@@ -319,7 +319,7 @@ tbl3_PraemiePenge_T %>%
 
 ```{r}
 tbl3_PraemiePenge_T %>%
-  filter(grepl(InputEventAarAkt_V, EventAar_RD)) %>%
+  filter(grepl(InputEventAarAkt_V, EventAar_ID)) %>%
   select(` `, Præmiepenge, Pct.) %>%
   datatable(
     style = "bulma",
@@ -331,27 +331,27 @@ tbl3_PraemiePenge_T %>%
 
 ```{r}
 DataKlubMangel_T <- tbl1_Ordre_T %>%
-	anti_join(y = DataAkt_T, by = "Klub_RD") %>%
-	group_by(EventAar_RD, Klub_RD) %>%
+	anti_join(y = DataAkt_T, by = "Klub_ID") %>%
+	group_by(EventAar_ID, Klub_ID) %>%
 	slice(which.max(OrdreDatoTid_RD)) %>%
-	group_by(EventAar_RD) %>%
+	group_by(EventAar_ID) %>%
 	arrange(
 	  OrdreStatusSimpelKat_RD,
-	  desc(EventAar_RD),
+	  desc(EventAar_ID),
 	  desc(EventAarStartDato_DW_Aar_DW),
-	  KlubRegion_RD,
-	  Klub_RD) %>%
-	group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
+	  KlubRegion_ID,
+	  Klub_ID) %>%
+	group_by(EventAar_ID, OrdreStatusSimpelKat_RD) %>%
 	mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
 	select(
 		"#" = RaekkeNr_DW,
 		" " = KlubLogo_DW,
-		"Klub" = Klub_RD,
-		"Region" = KlubRegion_RD,
+		"Klub" = Klub_ID,
+		"Region" = KlubRegion_ID,
 		"Sidst" = EventAarStartDato_DW_Aar_DW,
 		OrdreStatusSimpelKat_RD,
-		EventAar_RD)
+		EventAar_ID)
 
 if(nrow(DataKlubMangel_T) == 0) {
 	data.frame() %>% kbl()
@@ -370,17 +370,17 @@ if(nrow(DataKlubMangel_T) == 0) {
 }
 
 DataDeltMangel_T <- tbl1_Ordre_T %>%
-	anti_join(y = DataAkt_T, by = "DeltID_RD") %>%
-	group_by(EventAar_RD, DeltID_RD) %>%
+	anti_join(y = DataAkt_T, by = "Deltager_ID") %>%
+	group_by(EventAar_ID, Deltager_ID) %>%
 	slice(which.max(OrdreDatoTid_RD)) %>%
-	group_by(EventAar_RD) %>%
-	add_count(Klub_RD) %>%
+	group_by(EventAar_ID) %>%
+	add_count(Klub_ID) %>%
 	arrange(
 	  OrdreStatusSimpelKat_RD,
-	  desc(EventAar_RD),
+	  desc(EventAar_ID),
 	  desc(n),
-	  ifelse(grepl("Ingen klub|Udlandet", Klub_RD), 2, 1),
-	  Klub_RD, desc(EventAarStartDato_DW_Aar_DW),
+	  ifelse(grepl("Ingen klub|Udlandet", Klub_ID), 2, 1),
+	  Klub_ID, desc(EventAarStartDato_DW_Aar_DW),
 		desc(DeltBilletSalgNr_DW), BilletKat_DW, DeltNavn_RD) %>%
 	group_by(OrdreStatusSimpelKat_RD) %>%
 	mutate(RaekkeNr_DW = row_number()) %>%
@@ -390,7 +390,7 @@ DataDeltMangel_T <- tbl1_Ordre_T %>%
 		"Navn" = DeltNavnBilletKat_DW,
 		"Sidst" = EventAarStartDato_DW_Aar_DW,
 		OrdreStatusSimpelKat_RD,
-		EventAar_RD) %>%
+		EventAar_ID) %>%
   ungroup()
 
 if(nrow(DataDeltMangel_T) == 0) {

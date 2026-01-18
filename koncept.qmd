@@ -5,10 +5,10 @@ source(file = "_input.R")
 
 ```{r}
 #| label: kildefil-filter
-tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_ID))
 DataEventAarSidst_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAarSidst_DW))
 DataResultSandpapirAabenSingle_T <- tbl3_Result_T %>% filter(
-  (grepl("A-slutspil", DeltSlutspil_RD) &
+  (grepl("A-slutspil", DeltSlutspil_ID) &
   grepl("1", DeltPlacNr_RD) &
   grepl("Sandpapir - Åben - Single", Billettype_DW)) |
   grepl("Aflyst", OrdreStatusSimpelKat_RD))
