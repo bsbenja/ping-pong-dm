@@ -14,7 +14,7 @@
 #v(1em)
 ```
 ::: {.block fill="rgb(\"{{< meta var_hex_theme_2 >}}\").transparentize(20%)" inset="0.4em"}
-**Discipliner**: Træbat & Sandpapir - åben single
+**Discipliner**: Træbat & Sandpapir - bat udleveres
 :::
 
 ::: {.block fill="rgb(\"{{< meta var_hex_theme_2 >}}\").transparentize(20%)" inset="0.4em"}
