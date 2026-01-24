@@ -27,8 +27,8 @@
     width: var_page_width,
     height: var_page_height,
     margin: (x: var_page_margin_x, y: var_page_margin_y),
-    fill: if not var_page_background.contains("billede") {rgb(var_page_background)},
-    background: if var_page_background.contains("billede") {image(var_page_background, width: 100%)},
+    fill: if not var_page_background.contains(".") {rgb(var_page_background)},
+    background: if var_page_background.contains(".") {image(var_page_background, width: 100%)},
     footer: none,
   )
 
