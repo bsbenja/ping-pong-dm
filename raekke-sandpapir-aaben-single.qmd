@@ -235,9 +235,9 @@ if(InputInfo1234_V %in% c(1, 2, 3, 4)) {
 ```{r}
 #| label: fig-klubber
 #| fig-cap: "Klubber."
-#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(Deltager_ID) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(Klub_ID))))+1.5)/3.3
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(Klub_ID))))+1.5)/3.3
 DataAkt_T %>%
-	filter(!is.na(Deltager_ID) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
+	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
 	mutate(Klub_ID = paste0(Klub_ID, "&emsp;", KlubLogo_DW)) %>%
 	ggplot(mapping = aes(y = fct_rev(fct_infreq(Klub_ID)), fill = BilletKat_DW)) +
 	geom_bar(width = 0.9, position = position_stack(reverse = T)) +
@@ -294,9 +294,9 @@ cat(paste0(
 #| fig-cap: "Danmarkskort."
 #| fig-height: 5
 DataAkt_T %>%
-  filter(!is.na(Deltager_ID) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD) & !grepl("Ingen klub|Udlandet", Klub_ID)) %>%
+  filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD) & !grepl("Ingen klub|Udlandet", Klub_ID)) %>%
 	mutate(across("KlubPostnr_RD", \(x) as.integer(x))) %>%
-	distinct(Deltager_ID, .keep_all = T) %>%
+	distinct(DeltID_RD, .keep_all = T) %>%
 	mutate(KlubRegion_ID = case_when(
 		KlubRegion_ID == "Nordjylland" ~ "nordjylland",
 		KlubRegion_ID == "Midtjylland" ~ "midtjylland",
@@ -357,9 +357,9 @@ cat(paste0(
 ```{r}
 #| label: fig-aldersgrupper
 #| fig-cap: "Aldersgrupper."
-#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(Deltager_ID) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltAlderKat_RD))))+1.5)/3.3
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltAlderKat_RD))))+1.5)/3.3
 DataAkt_T %>%
-	filter(!is.na(Deltager_ID) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
+	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
 	ggplot(mapping = aes(y = fct_rev(DeltAlderKat_RD), fill = BilletKat_DW)) +
 	geom_bar(width = 0.9, position = position_stack(reverse = T)) +
 	geom_text(aes(label = after_stat(count)), stat = "count", position = position_stack(reverse = T),
@@ -411,9 +411,9 @@ cat(paste0(
 ```{r}
 #| label: fig-koen
 #| fig-cap: "Køn."
-#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(Deltager_ID) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltKoen_ID))))+1.5)/3.3
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltKoen_ID))))+1.5)/3.3
 DataAkt_T %>%
-	filter(!is.na(Deltager_ID) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
+	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
 	ggplot(mapping = aes(y = fct_rev(fct_infreq(DeltKoen_ID)), fill = BilletKat_DW)) +
 	geom_bar(width = 0.9, position = position_stack(reverse = T)) +
 	geom_text(aes(label = after_stat(count)), stat = "count", position = position_stack(reverse = T),
@@ -460,9 +460,9 @@ cat(paste0(
 ```{r}
 #| label: fig-gentilmeldinger
 #| fig-cap: "Gentilmeldinger."
-#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(Deltager_ID) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltGen_DW))))+1.5)/3.3
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltGen_DW))))+1.5)/3.3
 DataAkt_T %>%
-	filter(!is.na(Deltager_ID) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
+	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
 	ggplot(mapping = aes(y = fct_rev(DeltGen_DW), fill = BilletKat_DW)) +
 	geom_bar(width = 0.9, position = position_stack(reverse = T)) +
 	geom_text(aes(label = after_stat(count)), stat = "count", position = position_stack(reverse = T),
@@ -509,9 +509,9 @@ cat(paste0(
 ```{r}
 #| label: fig-ordre-kat
 #| fig-cap: "Ordretype."
-#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(Deltager_ID)) %>% summarise(length(unique(OrdreKat_ID))))+1.5)/3.3
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD)) %>% summarise(length(unique(OrdreKat_ID))))+1.5)/3.3
 DataAkt_T %>%
-  filter(!is.na(Deltager_ID)) %>%
+  filter(!is.na(DeltID_RD)) %>%
   ggplot(mapping = aes(y = fct_rev(OrdreKat_ID), fill = BilletKat_DW)) +
   geom_bar(width = 0.9, position = position_stack(reverse = TRUE)) +
   geom_text(aes(label = after_stat(count)), stat = "count", position = position_stack(reverse = TRUE),

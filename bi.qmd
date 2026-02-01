@@ -370,8 +370,8 @@ if(nrow(DataKlubMangel_T) == 0) {
 }
 
 DataDeltMangel_T <- tbl1_Ordre_T %>%
-	anti_join(y = DataAkt_T, by = "Deltager_ID") %>%
-	group_by(EventAar_ID, Deltager_ID) %>%
+	anti_join(y = DataAkt_T, by = "DeltID_RD") %>%
+	group_by(EventAar_ID, DeltID_RD) %>%
 	slice(which.max(OrdreDatoTid_RD)) %>%
 	group_by(EventAar_ID) %>%
 	add_count(Klub_ID) %>%

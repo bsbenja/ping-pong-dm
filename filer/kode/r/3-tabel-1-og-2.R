@@ -1,65 +1,36 @@
-# tbl1_Ordre_T ----
-
-# Left join alle dimensioner
+# tbl1_Ordre_T: Samler tabeller via left join ----
 tbl1_Ordre_T <- Fact_Ordre %>%
 
   # Left join Dim1_OrdreStatus
   left_join(y = Dim1_OrdreStatus, na_matches = "never", by = "OrdreStatusKat_ID") %>%
-  
-  # Left join Dim1_Billet
   left_join(y = Dim1_Billet, na_matches = "never", by = "Billet_ID") %>%
-  
-  # Left join Dim2_EventAar
   left_join(y = Dim2_EventAar, na_matches = "never", by = "EventAar_ID") %>%
-  
-  # Left join Dim3_Event
   left_join(y = Dim3_Event, na_matches = "never", by = "Event_ID") %>%
-  
-  # Left join Dim2_BilletKat
   left_join(y = Dim2_BilletKat, na_matches = "never", by = "BilletKat_ID") %>%
-  
-  # Left join Dim2_BilletDisciplin
   left_join(y = Dim2_BilletDisciplin, na_matches = "never", by = "BilletDisciplin_ID") %>%
-  
-  # Left join Dim2_BilletRække
   left_join(y = Dim2_BilletRække, na_matches = "never", by = "BilletRaekke_ID") %>%
-  
-  # Left join Dim2_BilletSpilformat
   left_join(y = Dim2_BilletSpilformat, na_matches = "never", by = "BilletSpilFormat_ID") %>%
-  
-  # Left join Dim1_Klub
   left_join(y = Dim1_Klub, na_matches = "never", by = "Klub_ID") %>%
-  
-  # Left join Dim2_KlubLandsdel
   left_join(y = Dim2_KlubLandsdel, na_matches = "never", join_by(
-      "KlubPostnr_RD" >= "KlubLandsdelPostnrMin_ID",
-      "KlubPostnr_RD" <= "KlubLandsdelPostnrMaks_ID")) %>%
-  
-  # Left join Dim2_KlubRegion
+      "KlubPostnr_RD" >= "KlubLandsdelPostnrMin_RD",
+      "KlubPostnr_RD" <= "KlubLandsdelPostnrMaks_RD")) %>%
+    
   left_join(y = Dim2_KlubRegion, na_matches = "never", by = "KlubRegion_ID") %>%
-  
-  # Left join Dim1_DeltKoen
   left_join(y = Dim1_DeltKoen, na_matches = "never", by = "DeltKoen_ID") %>%
-  
-  # Left join Dim1_DeltSlutspil
   left_join(y = Dim1_DeltSlutspil, na_matches = "never", by = "DeltSlutspil_ID") %>%
-  
-  # Left join Dim1_DeltPlacering
   left_join(y = Dim1_DeltPlacering, na_matches = "never", by = "DeltPlac_ID") %>%
-  
-  # Left join Dim1_DeltRating
   left_join(y = Dim1_DeltRating, na_matches = "never", join_by(
-      "DeltRating2_RD" >= "DeltRatingKatMin_ID",
-      "DeltRating2_RD" <= "DeltRatingKatMaks_ID")) %>%
+      "DeltRating2_RD" >= "DeltRatingKatMin_RD",
+      "DeltRating2_RD" <= "DeltRatingKatMaks_RD")) %>%
   
-  # Left join Dim1_DeltRating
-  group_by(EventAar_ID, Deltager_ID) %>%
+  # Left join Dim1_OrdreFoersteTid
+  group_by(EventAar_ID, DeltID_RD) %>%
   mutate(OrdreFoersteDatoTid_DW = min(OrdreDatoTid_RD)) %>%
   ungroup() %>%
-  mutate(OrdreFoersteTidJoin_DW = format(OrdreFoersteDatoTid_DW, format = "%H%M%S")) %>%
+  mutate(OrdreFoersteTid_DW = format(OrdreFoersteDatoTid_DW, format = "%H%M%S")) %>%
   left_join(y = Dim1_OrdreFoersteTid, na_matches = "never", join_by(
-      "OrdreFoersteTidJoin_DW" >= "OrdreFoersteTidKatMin_ID",
-      "OrdreFoersteTidJoin_DW" <= "OrdreFoersteTidKatMaks_ID")) %>%
+      "OrdreFoersteTid_DW" >= "OrdreFoersteTidKatMin_RD",
+      "OrdreFoersteTid_DW" <= "OrdreFoersteTidKatMaks_RD")) %>%
 
   # Left join Dim1_OrdreKat
   mutate(OrdreKat_ID = case_when(
@@ -72,351 +43,139 @@ tbl1_Ordre_T <- Fact_Ordre %>%
   group_by(EventAar_ID) %>%
   mutate(EventAarStartDatoTid_DW = min(BilletStartDatoTid_RD)) %>%
   ungroup() %>%
-  mutate(DeltFoedtDato_DW = case_when(
-    is.na(Deltager_ID) ~ as.character(EventAarStartDatoTid_DW),
-    substr(Deltager_ID, 5, 6) <= substr(EventAarStartDatoTid_DW, 3, 4) ~ paste0(
-      as.numeric(substr(EventAarStartDatoTid_DW, 1, 2)), substr(Deltager_ID, 5, 6), "-",
-      substr(Deltager_ID, 3, 4), "-",
-      substr(Deltager_ID, 1, 2)),
+  mutate(DeltFoedtDato_DW = as_date(case_when(
+    is.na(DeltID_RD) ~ as.character(EventAarStartDatoTid_DW),
+    substr(DeltID_RD, 5, 6) <= substr(EventAarStartDatoTid_DW, 3, 4) ~ paste0(
+      as.numeric(substr(EventAarStartDatoTid_DW, 1, 2)), substr(DeltID_RD, 5, 6), "-",
+      substr(DeltID_RD, 3, 4), "-",
+      substr(DeltID_RD, 1, 2)),
     TRUE ~ paste0(
-      as.numeric(substr(EventAarStartDatoTid_DW, 1, 2))-1, substr(Deltager_ID, 5, 6), "-",
-      substr(Deltager_ID, 3, 4), "-",
-      substr(Deltager_ID, 1, 2)))) %>%
+      as.numeric(substr(EventAarStartDatoTid_DW, 1, 2))-1, substr(DeltID_RD, 5, 6), "-",
+      substr(DeltID_RD, 3, 4), "-",
+      substr(DeltID_RD, 1, 2))))) %>%
   mutate(DeltAlder_DW = trunc((DeltFoedtDato_DW %--% EventAarStartDatoTid_DW) / years(1))) %>%
-  mutate(DeltAlderJoin_DW = sprintf("%02d", DeltAlder_DW)) %>%
   left_join(y = Dim1_DeltAlderKat, na_matches = "never", join_by(
-      "DeltAlderJoin_DW" >= "DeltAlderKatMin_ID",
-      "DeltAlderJoin_DW" <= "DeltAlderKatMaks_ID")) %>%
+      "DeltAlder_DW" >= "DeltAlderKatMin_RD",
+      "DeltAlder_DW" <= "DeltAlderKatMaks_RD")) %>%
   
   # Left join Dim1_DeltGenKat
   mutate(EventAarFra2021_DW = if_else(year(EventAarStartDatoTid_DW) >= 2021, TRUE, FALSE)) %>%
-  group_by(Deltager_ID, BilletKat_ID, EventAarFra2021_DW) %>%
+  group_by(DeltID_RD, BilletKat_ID, EventAarFra2021_DW) %>%
   arrange(OrdreDatoTid_RD, BilletKat_ID) %>%
   mutate(DeltGenNr_DW = ifelse(grepl("Tilmeldt", OrdreStatusSimpelKat_RD), 1, 0)) %>%
   mutate(DeltGenNr_DW = cumsum(DeltGenNr_DW)) %>%
   ungroup() %>%
-  mutate(DeltGenKat_DW = case_when(
+  mutate(DeltGenKat_ID = case_when(
     DeltGenNr_DW == 1 ~ "Debutant",
     DeltGenNr_DW >= 2 ~ "Gentilmelding",
     TRUE ~ "Ikke hidtil")) %>%
-  left_join(y = Dim1_DeltGenKat, na_matches = "never", by = "DeltGenKat_DW") %>%
+  left_join(y = Dim1_DeltGenKat, na_matches = "never", by = "DeltGenKat_ID") %>%
 
-  # Left join 
-  mutate(DeltKodeJoin_RD = str_sub(Deltager_ID, -4, -1)) %>%
+  # Left join Dim1_DeltKat
   left_join(y = Dim1_DeltKat, na_matches = "never", join_by(
-      "DeltKodeJoin_RD" >= "DeltKatMin_ID",
-      "DeltKodeJoin_RD" <= "DeltKatMaks_ID"))
-
-# Ordre
-tbl1_Ordre_T <- tbl1_Ordre_T %>%
+      "DeltKat_ID" >= "DeltKatMin_ID",
+      "DeltKat_ID" <= "DeltKatMaks_ID")) %>%
   
-  # OrdreDatoTid_RD
-  mutate(across("OrdreDatoTid_RD", \(x) as_datetime(x))) %>%
-  select(-OrdreDatoTid_RD, everything()) %>%
-  
-  # OrdreDato_DW
-  mutate(OrdreDato_DW = OrdreDatoTid_RD) %>%
-  mutate(across("OrdreDato_DW", \(x) as_date(x))) %>%
-  select(-OrdreDato_DW, everything()) %>%
-  
-  # Left join Dim1_Kalender
+  # Left join Dim1_Kalender med OrdreDato_DW
   left_join(
     y = Dim1_Kalender %>% rename_with(~ paste0("OrdreDato_DW_", .)),
     by = c("OrdreDato_DW" = "OrdreDato_DW_Dato_DW"),
     na_matches = "never") %>%
   
-  # OrdreFoersteDatoTid_DW
-  mutate(across("OrdreFoersteDatoTid_DW", \(x) as_datetime(x))) %>%
-  select(-OrdreFoersteDatoTid_DW, everything()) %>%
-  
-  # OrdreFoersteDato_DW
-  mutate(OrdreFoersteDato_DW = OrdreFoersteDatoTid_DW) %>%
-  mutate(across("OrdreFoersteDato_DW", \(x) as_date(x))) %>%
-  select(-OrdreFoersteDato_DW, everything()) %>%
-  
-  # Left join Dim1_Kalender
+  # Left join Dim1_Kalender med OrdreFoersteDato_DW
+  mutate(OrdreFoersteDato_DW = as_date(OrdreFoersteDatoTid_DW)) %>%
   left_join(
     y = Dim1_Kalender %>% rename_with(~ paste0("OrdreFoersteDato_DW_", .)),
     by = c("OrdreFoersteDato_DW" = "OrdreFoersteDato_DW_Dato_DW"),
     na_matches = "never") %>%
   
-  # OrdreFoersteTidJoin_DW
-  mutate(across("OrdreFoersteTidJoin_DW", \(x) as.character(x))) %>%
-  select(-OrdreFoersteTidJoin_DW, everything()) %>%
-  
-  # OrdreFoersteTidKatNr_RD
-  mutate(across("OrdreFoersteTidKatNr_RD", \(x) as.integer(x))) %>%
-  select(-OrdreFoersteTidKatNr_RD, everything()) %>%
-  
-  # OrdreFoersteTidKatMin_ID
-  mutate(across("OrdreFoersteTidKatMin_ID", \(x) as.character(x))) %>%
-  select(-OrdreFoersteTidKatMin_ID, everything()) %>%
-  
-  # OrdreFoersteTidKatMaks_ID
-  mutate(across("OrdreFoersteTidKatMaks_ID", \(x) as.character(x))) %>%
-  select(-OrdreFoersteTidKatMaks_ID, everything()) %>%
-  
-  # OrdreFoersteTidKat_RD
-  arrange(OrdreFoersteTidKat_RD) %>%
-  mutate(across("OrdreFoersteTidKat_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-OrdreFoersteTidKat_RD, everything()) %>%
-
-  # OrdreKatNr_DW
-  mutate(across("OrdreKatNr_DW", \(x) as.integer(x))) %>%
-  select(-OrdreKatNr_DW, everything()) %>%
-  
-  # OrdreKat_ID
-  arrange(OrdreKatNr_DW) %>%
-  mutate(across("OrdreKat_ID", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-OrdreKat_ID, everything()) %>%
-  
-  # OrdreKatEmoji_DW
-  arrange(OrdreKatNr_DW) %>%
-  mutate(across("OrdreKatEmoji_DW", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-OrdreKatEmoji_DW, everything()) %>%
-  
-  # OrdreKatIkon_DW
-  arrange(OrdreKatNr_DW) %>%
-  mutate(across("OrdreKatIkon_DW", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-OrdreKatIkon_DW, everything()) %>%
-
-  # OrdreStatusKatNr_RD
-  mutate(across("OrdreStatusKatNr_RD", \(x) as.integer(x))) %>%
-  select(-OrdreStatusKatNr_RD, everything()) %>%
-
-  # OrdreStatusKat_ID
-  arrange(OrdreStatusKatNr_RD) %>%
-  mutate(across("OrdreStatusKat_ID", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-OrdreStatusKat_ID, everything()) %>%
-  
-  # OrdreStatusKatEmoji_RD
-  arrange(OrdreStatusKatNr_RD) %>%
-  mutate(across("OrdreStatusKatEmoji_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-OrdreStatusKatEmoji_RD, everything()) %>%
-  
-  # OrdreStatusSimpelKat_RD
-  arrange(OrdreStatusKatNr_RD) %>%
-  mutate(across("OrdreStatusSimpelKat_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-OrdreStatusSimpelKat_RD, everything()) %>%
-  
-  # OrdreStatusSimpelKatIkon_RD
-  arrange(OrdreStatusKatNr_RD) %>%
-  mutate(across("OrdreStatusSimpelKatIkon_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-OrdreStatusSimpelKatIkon_RD, everything()) %>%
-
-  # OrdreStatusSimpelDeltKat_DW
-  group_by(EventAar_ID, Deltager_ID) %>%
-  mutate(OrdreStatusSimpelDeltKat_DW = ifelse(any(OrdreStatusSimpelKat_RD == "Tilmeldt"), "Tilmeldt", "<q>Totalafbud</q>")) %>%
-  ungroup() %>%
-  mutate(across("OrdreStatusSimpelDeltKat_DW", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-OrdreStatusSimpelDeltKat_DW, everything()) %>%
-
-  # OrdreUnik_DW
-  mutate(OrdreUnik_DW = 1) %>%
-  mutate(across("OrdreUnik_DW", \(x) as.integer(x))) %>%
-  select(-OrdreUnik_DW, everything())
-
-# Billet
-tbl1_Ordre_T <- tbl1_Ordre_T %>%
-  
-  # BilletNr_RD
-  mutate(across("BilletNr_RD", \(x) as.integer(x))) %>%
-  select(-BilletNr_RD, everything()) %>%
-
-  # Billet_ID
-  arrange(BilletNr_RD) %>%
-  mutate(across("Billet_ID", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-Billet_ID, everything()) %>%
-
-  # Billettype_DW
-  mutate(Billettype_DW = ifelse(
-    is.na(BilletDisciplin_ID) & is.na(BilletRaekke_ID) & is.na(BilletSpilFormat_ID),
-    BilletKat_ID,
-    paste(BilletDisciplin_ID, "-", BilletRaekke_ID, "-", BilletSpilFormat_ID))) %>%
-  mutate(across("Billettype_DW", \(x) as.character(x))) %>%
-  select(-Billettype_DW, everything()) %>%
-  
-  # BilletStartDatoTid_RD
-  mutate(across("BilletStartDatoTid_RD", \(x) as_datetime(x))) %>%
-  select(-BilletStartDatoTid_RD, everything()) %>%
-  
-  # BilletStartDato_DW
-  mutate(BilletStartDato_DW = BilletStartDatoTid_RD) %>%
-  mutate(across("BilletStartDato_DW", \(x) as_date(x))) %>%
-  select(-BilletStartDato_DW, everything()) %>%
-  
-  # Left join Dim1_Kalender
+  # Left join Dim1_Kalender med BilletStartDato_DW
   left_join(
     y = Dim1_Kalender %>% rename_with(~ paste0("BilletStartDato_DW_", .)),
     by = c("BilletStartDato_DW" = "BilletStartDato_DW_Dato_DW"),
     na_matches = "never") %>%
   
-  # BilletSlutDatoTid_RD
-  mutate(across("BilletSlutDatoTid_RD", \(x) as_datetime(x))) %>%
-  select(-BilletSlutDatoTid_RD, everything()) %>%
-  
-  # BilletSlutDato_DW
-  mutate(BilletSlutDato_DW = BilletSlutDatoTid_RD) %>%
-  mutate(across("BilletSlutDato_DW", \(x) as_date(x))) %>%
-  select(-BilletSlutDato_DW, everything()) %>%
-  
-  # Left join Dim1_Kalender
+  # Left join Dim1_Kalender med BilletSlutDato_DW
   left_join(
     y = Dim1_Kalender %>% rename_with(~ paste0("BilletSlutDato_DW_", .)),
     by = c("BilletSlutDato_DW" = "BilletSlutDato_DW_Dato_DW"),
     na_matches = "never") %>%
   
-  # BilletKatNr_RD
-  mutate(across("BilletKatNr_RD", \(x) as.integer(x))) %>%
-  select(-BilletKatNr_RD, everything()) %>%
+  # Left join Dim1_Kalender med EventAarFristDato_DW
+  left_join(
+    y = Dim1_Kalender %>% rename_with(~ paste0("EventAarFristDato_DW_", .)),
+    by = c("EventAarFristDato_DW" = "EventAarFristDato_DW_Dato_DW"),
+    na_matches = "never") %>%
   
-  # BilletKat_ID
-  arrange(BilletKatNr_RD) %>%
-  mutate(across("BilletKat_ID", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-BilletKat_ID, everything()) %>%
+  # Left join Dim1_Kalender med EventAarAabningDato_DW
+  left_join(
+    y = Dim1_Kalender %>% rename_with(~ paste0("EventAarAabningDato_DW_", .)),
+    by = c("EventAarAabningDato_DW" = "EventAarAabningDato_DW_Dato_DW"),
+    na_matches = "never") %>%
   
-  # BilletKatEmoji_RD
-  arrange(BilletKatNr_RD) %>%
-  mutate(across("BilletKatEmoji_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-BilletKatEmoji_RD, everything()) %>%
+  # Left join Dim1_Kalender med EventAarRatingDato_RD
+  left_join(
+    y = Dim1_Kalender %>% rename_with(~ paste0("EventAarRatingDato_RD_", .)),
+    by = c("EventAarRatingDato_RD" = "EventAarRatingDato_RD_Dato_DW"),
+    na_matches = "never") %>%
   
-  # BilletKatIkon_RD
-  arrange(BilletKatNr_RD) %>%
-  mutate(across("BilletKatIkon_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-BilletKatIkon_RD, everything()) %>%
+  # Left join Dim1_Kalender med EventAarStartDato_DW
+  mutate(EventAarStartDato_DW = as_date(EventAarStartDatoTid_DW)) %>%
+  left_join(
+    y = Dim1_Kalender %>% rename_with(~ paste0("EventAarStartDato_DW_", .)),
+    by = c("EventAarStartDato_DW" = "EventAarStartDato_DW_Dato_DW"),
+    na_matches = "never") %>%
   
-  # BilletKatFarve_DW
-  arrange(BilletKatNr_RD) %>%
-  mutate(BilletKatFarve_DW = sub(".*(#.{6})>.*", "\\1", BilletKatIkon_RD)) %>%
-  mutate(across("BilletKatFarve_DW", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-BilletKatFarve_DW, everything()) %>%
+  # Left join Dim1_Kalender med EventAarSlutDato_DW
+  group_by(EventAar_ID) %>%
+  mutate(EventAarSlutDatoTid_DW = max(BilletSlutDatoTid_RD)) %>%
+  ungroup() %>%
+  mutate(EventAarSlutDato_DW = as_date(EventAarSlutDatoTid_DW)) %>%
+  left_join(
+    y = Dim1_Kalender %>% rename_with(~ paste0("EventAarSlutDato_DW_", .)),
+    by = c("EventAarSlutDato_DW" = "EventAarSlutDato_DW_Dato_DW"),
+    na_matches = "never") %>%
   
-  # BilletDisciplinNr_RD
-  mutate(across("BilletDisciplinNr_RD", \(x) as.integer(x))) %>%
-  select(-BilletDisciplinNr_RD, everything()) %>%
-  
-  # BilletDisciplin_ID
-  arrange(BilletDisciplinNr_RD) %>%
-  mutate(across("BilletDisciplin_ID", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-BilletDisciplin_ID, everything()) %>%
-  
-  # BilletRaekkeNr_RD
-  mutate(across("BilletRaekkeNr_RD", \(x) as.integer(x))) %>%
-  select(-BilletRaekkeNr_RD, everything()) %>%
-  
-  # BilletRaekke_ID
-  arrange(BilletRaekkeNr_RD) %>%
-  mutate(across("BilletRaekke_ID", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-BilletRaekke_ID, everything()) %>%
-  
-  # BilletSpilFormatNr_RD
-  mutate(across("BilletSpilFormatNr_RD", \(x) as.integer(x))) %>%
-  select(-BilletSpilFormatNr_RD, everything()) %>%
-  
-  # BilletSpilFormat_ID
-  arrange(BilletSpilFormatNr_RD) %>%
-  mutate(across("BilletSpilFormat_ID", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-BilletSpilFormat_ID, everything()) %>%
-  
-  # BilletSpilFormatEmoji_RD
-  arrange(BilletSpilFormatNr_RD) %>%
-  mutate(across("BilletSpilFormatEmoji_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-BilletSpilFormatEmoji_RD, everything()) %>%
-  
-  # BilletSpilFormatIkon_RD
-  arrange(BilletSpilFormatNr_RD) %>%
-  mutate(across("BilletSpilFormatIkon_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-BilletSpilFormatIkon_RD, everything()) %>%
+  # Left join Dim1_Kalender med DeltFoedtDato_DW
+  left_join(
+    y = Dim1_Kalender %>% rename_with(~ paste0("DeltFoedtDato_DW_", .)),
+    by = c("DeltFoedtDato_DW" = "DeltFoedtDato_DW_Dato_DW"),
+    na_matches = "never")
+
+# tbl1_Ordre_T: Logik på tværs af tabeller ----
+tbl1_Ordre_T <- tbl1_Ordre_T %>%
+
+  # OrdreStatusSimpelDeltKat_DW
+  group_by(EventAar_ID, DeltID_RD) %>%
+  mutate(OrdreStatusSimpelDeltKat_DW = ifelse(any(OrdreStatusSimpelKat_RD == "Tilmeldt"), "Tilmeldt", "<q>Totalafbud</q>")) %>%
+  ungroup() %>%
+  mutate(across("OrdreStatusSimpelDeltKat_DW", \(x) factor(x, levels = unique(x), ordered = T))) %>%
+
+  # Billettype_DW
+  mutate(Billettype_DW = ifelse(
+    is.na(BilletDisciplin_RD) & is.na(BilletRaekke_RD) & is.na(BilletSpilFormat_RD),
+    BilletKat_ID,
+    paste(BilletDisciplin_RD, "-", BilletRaekke_RD, "-", BilletSpilFormat_RD))) %>%
 
   # BilletKat_DW
-  arrange(BilletDisciplin_ID, BilletRaekke_ID, BilletSpilFormat_ID) %>%
   mutate(BilletKat_DW = ifelse(
-    is.na(BilletDisciplin_ID) | is.na(BilletRaekke_ID) | is.na(BilletSpilFormat_ID), as.character(BilletKat_ID),
-    paste(BilletDisciplin_ID, BilletRaekke_ID))) %>%
-  mutate(across("BilletKat_DW", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-BilletKat_DW, everything()) %>%
-  
-  # BilletBeskr_RD
-  mutate(across("BilletBeskr_RD", \(x) as.character(x))) %>%
-  select(-BilletBeskr_RD, everything()) %>%
-  
-  # BilletTilvalg_RD
-  mutate(across("BilletTilvalg_RD", \(x) as.character(x))) %>%
-  select(-BilletTilvalg_RD, everything()) %>%
-  
-  # BilletPris_RD
-  mutate(across("BilletPris_RD", \(x) as.numeric(x))) %>%
-  select(-BilletPris_RD, everything()) %>%
-  
-  # BilletPrisArr_RD
-  mutate(across("BilletPrisArr_RD", \(x) as.numeric(x))) %>%
-  select(-BilletPrisArr_RD, everything()) %>%
-  
-  # BilletAntalMaks_RD
-  mutate(across("BilletAntalMaks_RD", \(x) as.integer(x))) %>%
-  select(-BilletAntalMaks_RD, everything()) %>%
-  
-  # BilletPuljeDelt_RD
-  mutate(across("BilletPuljeDelt_RD", \(x) as.integer(x))) %>%
-  select(-BilletPuljeDelt_RD, everything()) %>%
+    is.na(BilletDisciplin_RD) | is.na(BilletRaekke_RD) | is.na(BilletSpilFormat_RD), as.character(BilletKat_RD),
+    paste(BilletDisciplin_RD, BilletRaekke_RD))) %>%
+  mutate(across(BilletKat_DW, \(x) factor(
+    x, levels = unique(x[order(BilletDisciplin_RD, BilletRaekke_RD, BilletSpilFormat_RD)]), ordered = TRUE))) %>%
   
   # BilletPulje_DW
   add_count(EventAar_ID, OrdreStatusSimpelKat_RD, Billet_ID, name = "BilletPulje_DW") %>%
-  mutate(BilletPulje_DW = ceiling(BilletPulje_DW/BilletPuljeDelt_RD)) %>%
-  mutate(across("BilletPulje_DW", \(x) as.integer(x))) %>%
-  select(-BilletPulje_DW, everything()) %>%
+  mutate(BilletPulje_DW = as.integer(ceiling(BilletPulje_DW/BilletPuljeDelt_RD))) %>%
   
   # BilletPuljeStd_DW
-  mutate(BilletPuljeStd_DW = BilletPuljeDelt_RD*BilletPulje_DW) %>%
-  mutate(across("BilletPuljeStd_DW", \(x) as.integer(x))) %>%
-  select(-BilletPuljeStd_DW, everything()) %>%
+  mutate(BilletPuljeStd_DW = as.integer(BilletPuljeDelt_RD*BilletPulje_DW)) %>%
   
   # BilletDelt_DW
   add_count(EventAar_ID, OrdreStatusSimpelKat_RD, Billet_ID, name = "BilletDelt_DW") %>%
-  mutate(across("BilletDelt_DW", \(x) as.integer(x))) %>%
-  select(-BilletDelt_DW, everything()) %>%
   
   # BilletPuljeRest_DW
-  mutate(BilletPuljeRest_DW = BilletPuljeStd_DW-BilletDelt_DW) %>%
-  mutate(across("BilletPuljeRest_DW", \(x) as.integer(x))) %>%
-  select(-BilletPuljeRest_DW, everything()) %>%
-
-  # BilletPrisRes_DW
-  mutate(BilletPrisRes_DW = BilletPris_RD-BilletPrisArr_RD) %>%
-  mutate(across("BilletPrisRes_DW", \(x) as.integer(x))) %>%
-  select(-BilletPrisRes_DW, everything())
-
-# Event
-tbl1_Ordre_T <- tbl1_Ordre_T %>%
-  
-  # EventNr_RD
-  mutate(across("EventNr_RD", \(x) as.integer(x))) %>%
-  select(-EventNr_RD, everything()) %>%
-  
-  # Event_ID
-  arrange(EventNr_RD) %>%
-  mutate(across("Event_ID", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-Event_ID, everything()) %>%
-  
-  # EventSportsgren_RD
-  mutate(across("EventSportsgren_RD", \(x) as.character(x))) %>%
-  select(-EventSportsgren_RD, everything()) %>%
-  
-  # EventTurnering_RD
-  mutate(across("EventTurnering_RD", \(x) as.character(x))) %>%
-  select(-EventTurnering_RD, everything())
-
-# EventAar
-tbl1_Ordre_T <- tbl1_Ordre_T %>%
-  
-  # EventAarNr_RD
-  mutate(across("EventAarNr_RD", \(x) as.integer(x))) %>%
-  select(-EventAarNr_RD, everything()) %>%
-  
-  # EventAar_ID
-  arrange(EventAarNr_RD) %>%
-  mutate(across("EventAar_ID", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-EventAar_ID, everything()) %>%
+  mutate(BilletPuljeRest_DW = as.integer(BilletPuljeStd_DW-BilletDelt_DW)) %>%
   
   # EventAarSidst_DW
   mutate(EventAarSidst_DW = lead(EventAar_ID, order_by = EventAar_ID)) %>%
@@ -425,125 +184,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
   mutate(EventAarSidst_DW = ifelse(EventAar_ID != EventAarSidst_DW, EventAarSidst_DW, NA)) %>%
   fill(EventAarSidst_DW, .direction = "up") %>%
   ungroup %>%
-  select(-EventAarSidst_DW, everything()) %>%
-  
-  # EventAarFristDatoTid_RD
-  mutate(across("EventAarFristDatoTid_RD", \(x) as_datetime(x))) %>%
-  select(-EventAarFristDatoTid_RD, everything()) %>%
-
-  # EventAarFristDato_DW
-  mutate(EventAarFristDato_DW = EventAarFristDatoTid_RD) %>%
-  mutate(across("EventAarFristDato_DW", \(x) as_date(x))) %>%
-  select(-EventAarFristDato_DW, everything()) %>%
-  
-  # Left join Dim1_Kalender
-  left_join(
-    y = Dim1_Kalender %>% rename_with(~ paste0("EventAarFristDato_DW_", .)),
-    by = c("EventAarFristDato_DW" = "EventAarFristDato_DW_Dato_DW"),
-    na_matches = "never") %>%
-  
-  # EventAarAabningDatoTid_RD
-  mutate(across("EventAarAabningDatoTid_RD", \(x) as_datetime(x))) %>%
-  select(-EventAarAabningDatoTid_RD, everything()) %>%
-  
-  # EventAarAabningDato_DW
-  mutate(EventAarAabningDato_DW = EventAarAabningDatoTid_RD) %>%
-  mutate(across("EventAarAabningDato_DW", \(x) as_date(x))) %>%
-  select(-EventAarAabningDato_DW, everything()) %>%
-  
-  # Left join Dim1_Kalender
-  left_join(
-    y = Dim1_Kalender %>% rename_with(~ paste0("EventAarAabningDato_DW_", .)),
-    by = c("EventAarAabningDato_DW" = "EventAarAabningDato_DW_Dato_DW"),
-    na_matches = "never") %>%
-  
-  # EventAarRatingDato_RD
-  mutate(across("EventAarRatingDato_RD", \(x) as_date(x))) %>%
-  select(-EventAarRatingDato_RD, everything()) %>%
-  
-  # Left join Dim1_Kalender
-  left_join(
-    y = Dim1_Kalender %>% rename_with(~ paste0("EventAarRatingDato_RD_", .)),
-    by = c("EventAarRatingDato_RD" = "EventAarRatingDato_RD_Dato_DW"),
-    na_matches = "never") %>%
-  
-  # EventAarPraemieSpons_RD
-  mutate(across("EventAarPraemieSpons_RD", \(x) as.integer(x))) %>%
-  select(-EventAarPraemieSpons_RD, everything()) %>%
-  
-  # EventAarSted_RD
-  mutate(across("EventAarSted_RD", \(x) as.character(x))) %>%
-  select(-EventAarSted_RD, everything()) %>%
-  
-  # EventAarAdr_RD
-  mutate(across("EventAarAdr_RD", \(x) as.character(x))) %>%
-  select(-EventAarAdr_RD, everything()) %>%
-  
-  # EventAarPostnr_RD
-  mutate(across("EventAarPostnr_RD", \(x) as.integer(x))) %>%
-  select(-EventAarPostnr_RD, everything()) %>%
-  
-  # EventAarBy_RD
-  mutate(across("EventAarBy_RD", \(x) as.character(x))) %>%
-  select(-EventAarBy_RD, everything()) %>%
-  
-  # EventAarPostnrBy_RD
-  mutate(EventAarPostnrBy_RD = paste(EventAarPostnr_RD, EventAarBy_RD)) %>%
-  mutate(across("EventAarPostnrBy_RD", \(x) as.character(x))) %>%
-  select(-EventAarPostnrBy_RD, everything()) %>%
-  
-  # EventAarFarve1_RD
-  mutate(across("EventAarFarve1_RD", \(x) as.character(x))) %>%
-  select(-EventAarFarve1_RD, everything()) %>%
-  
-  # EventAarFarve2_RD
-  mutate(across("EventAarFarve2_RD", \(x) as.character(x))) %>%
-  select(-EventAarFarve2_RD, everything()) %>%
-  
-  # EventAarStedURL_RD
-  mutate(across("EventAarStedURL_RD", \(x) as.character(x))) %>%
-  select(-EventAarStedURL_RD, everything()) %>%
-  
-  # EventAarUUID_RD
-  mutate(across("EventAarUUID_RD", \(x) as.character(x))) %>%
-  select(-EventAarUUID_RD, everything()) %>%
-  
-  # EventAarToken_RD
-  mutate(across("EventAarToken_RD", \(x) as.character(x))) %>%
-  select(-EventAarToken_RD, everything()) %>%
-  
-  # EventAarStartDatoTid_DW
-  mutate(across("EventAarStartDatoTid_DW", \(x) as_datetime(x))) %>%
-  select(-EventAarStartDatoTid_DW, everything()) %>%
-  
-  # EventAarStartDato_DW
-  mutate(EventAarStartDato_DW = EventAarStartDatoTid_DW) %>%
-  mutate(across("EventAarStartDato_DW", \(x) as_date(x))) %>%
-  select(-EventAarStartDato_DW, everything()) %>%
-  
-  # Left join Dim1_Kalender
-  left_join(
-    y = Dim1_Kalender %>% rename_with(~ paste0("EventAarStartDato_DW_", .)),
-    by = c("EventAarStartDato_DW" = "EventAarStartDato_DW_Dato_DW"),
-    na_matches = "never") %>%
-
-  # EventAarSlutDatoTid_DW
-  group_by(EventAar_ID) %>%
-  mutate(EventAarSlutDatoTid_DW = max(BilletSlutDatoTid_RD)) %>%
-  ungroup() %>%
-  mutate(across("EventAarSlutDatoTid_DW", \(x) as_datetime(x))) %>%
-  select(-EventAarSlutDatoTid_DW, everything()) %>%
-  
-  # EventAarSlutDato_DW
-  mutate(EventAarSlutDato_DW = EventAarSlutDatoTid_DW) %>%
-  mutate(across("EventAarSlutDato_DW", \(x) as_date(x))) %>%
-  select(-EventAarSlutDato_DW, everything()) %>%
-  
-  # Left join Dim1_Kalender
-  left_join(
-    y = Dim1_Kalender %>% rename_with(~ paste0("EventAarSlutDato_DW_", .)),
-    by = c("EventAarSlutDato_DW" = "EventAarSlutDato_DW_Dato_DW"),
-    na_matches = "never") %>%
   
   # EventAarDato_DW
   group_by(EventAar_ID) %>%
@@ -551,164 +191,11 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
     EventAarStartDato_DW == EventAarSlutDato_DW ~ EventAarStartDato_DW_DMAA_DW,
     TRUE ~ paste(EventAarStartDato_DW_DMAA_DW, "til", EventAarSlutDato_DW_DMAA_DW))) %>%
   ungroup() %>%
-  mutate(across("EventAarDato_DW", \(x) as.character(x))) %>%
-  select(-EventAarDato_DW, everything()) %>%
-  
-  # EventAarStedURL_DW
-  mutate(EventAarStedURL_DW = paste0(
-    "<a href=", EventAarStedURL_RD, " target=_blank>", EventAarSted_RD, "</a>")) %>%
-  mutate(across("EventAarStedURL_DW", \(x) as.character(x))) %>%
-  select(-EventAarStedURL_DW, everything()) %>%
-
-  # EventAarStedAdrPostnrURL_DW
-  mutate(EventAarStedAdrPostnrURL_DW = paste0(
-    "<a href=",EventAarStedURL_RD, " target=_blank>",
-    EventAarSted_RD,
-    "<br>",
-    EventAarAdr_RD,
-    "<br>",
-    EventAarPostnrBy_RD,
-    "</a>")) %>%
-  mutate(across("EventAarStedAdrPostnrURL_DW", \(x) as.character(x))) %>%
-  select(-EventAarStedAdrPostnrURL_DW, everything()) %>%
-
-  # EventAarFra2021_DW
-  mutate(across("EventAarFra2021_DW", \(x) as.logical(x))) %>%
-  select(-EventAarFra2021_DW, everything())
-
-# Klub
-tbl1_Ordre_T <- tbl1_Ordre_T %>%
-
-  # KlubNr_RD
-  mutate(across("KlubNr_RD", \(x) as.integer(x))) %>%
-  select(-KlubNr_RD, everything()) %>%
-
-  # Klub_ID
-  arrange(KlubNr_RD) %>%
-  mutate(across("Klub_ID", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-Klub_ID, everything()) %>%
-
-  # KlubPostnr_RD
-  mutate(across("KlubPostnr_RD", \(x) as.character(x))) %>%
-  select(-KlubPostnr_RD, everything()) %>%
-
-  # KlubBy_RD
-  mutate(across("KlubBy_RD", \(x) as.character(x))) %>%
-  select(-KlubBy_RD, everything()) %>%
-
-  # KlubPostnrBy_DW
-  mutate(KlubPostnrBy_DW = ifelse(
-    grepl("Ingen klub|Udlandet", Klub_ID), as.character(Klub_ID), paste(KlubPostnr_RD, KlubBy_RD))) %>%
-  mutate(across("KlubPostnrBy_DW", \(x) as.character(x))) %>%
-  select(-KlubPostnrBy_DW, everything()) %>%
-
-  # KlubMail_RD
-  mutate(across("KlubMail_RD", \(x) as.character(x))) %>%
-  select(-KlubMail_RD, everything()) %>%
-
-  # KlubEmoji_RD
-  mutate(across("KlubEmoji_RD", \(x) as.character(x))) %>%
-  select(-KlubEmoji_RD, everything()) %>%
-
-  # KlubKatIkon_RD
-  mutate(across("KlubKatIkon_RD", \(x) as.character(x))) %>%
-  select(-KlubKatIkon_RD, everything()) %>%
-
-  # KlubLandsdelNr_RD
-  mutate(across("KlubLandsdelNr_RD", \(x) as.integer(x))) %>%
-  select(-KlubLandsdelNr_RD, everything()) %>%
-
-  # KlubLandsdelPostnrMin_ID
-  arrange(KlubLandsdelNr_RD) %>%
-  mutate(across("KlubLandsdelPostnrMin_ID", \(x) as.character(x))) %>%
-  select(-KlubLandsdelPostnrMin_ID, everything()) %>%
-
-  # KlubLandsdelPostnrMaks_ID
-  arrange(KlubLandsdelNr_RD) %>%
-  mutate(across("KlubLandsdelPostnrMaks_ID", \(x) as.integer(x))) %>%
-  select(-KlubLandsdelPostnrMaks_ID, everything()) %>%
-
-  # KlubLandsdel_RD
-  arrange(KlubLandsdelNr_RD) %>%
-  mutate(across("KlubLandsdel_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-KlubLandsdel_RD, everything()) %>%
-
-  # KlubRegionNr_RD
-  mutate(across("KlubRegionNr_RD", \(x) as.integer(x))) %>%
-  select(-KlubRegionNr_RD, everything()) %>%
-
-  # KlubRegion_ID
-  arrange(KlubRegionNr_RD) %>%
-  mutate(across("KlubRegion_ID", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-KlubRegion_ID, everything()) %>%
-
-  # KlubKat_DW
-  mutate(KlubKat_DW = case_when(
-    grepl("Ingen klub", Klub_ID) ~ "Ingen klub",
-    grepl("Udlandet", Klub_ID) ~ "Udlandet",
-    TRUE ~ "Klub")) %>%
-  arrange(KlubNr_RD) %>%
-  mutate(across("KlubKat_DW", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-KlubKat_DW, everything()) %>%
-
-  # KlubLogo_DW
-  mutate(KlubLogo_DW = ifelse(is.na(Klub_ID), NA_character_,
-    paste0("<img src=filer/medie/billede/klublogo/", fun_egen_sti(Klub_ID), ".png width=15>"))) %>%
-  mutate(across("KlubLogo_DW", \(x) as.character(x))) %>%
-  select(-KlubLogo_DW, everything()) %>%
 
   # KlubUnik_DW
   group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW, Klub_ID) %>%
   mutate(KlubUnik_DW = ifelse(row_number() == 1 & !grepl("Ingen klub|Udlandet", Klub_ID), 1, 0)) %>%
   ungroup() %>%
-  mutate(across("KlubUnik_DW", \(x) as.integer(x))) %>%
-  select(-KlubUnik_DW, everything())
-
-# Delt
-tbl1_Ordre_T <- tbl1_Ordre_T %>%
-
-  # Deltager_ID
-  mutate(across("Deltager_ID", \(x) as.character(x))) %>%
-  select(-Deltager_ID, everything()) %>%
-  
-  # DeltNavn_RD
-  mutate(across("DeltNavn_RD", \(x) as.character(x))) %>%
-  select(-DeltNavn_RD, everything()) %>%
-  
-  # DeltFoedtDato_DW
-  mutate(across("DeltFoedtDato_DW", \(x) as_date(x))) %>%
-  select(-DeltFoedtDato_DW, everything()) %>%
-  
-  # Left join Dim1_Kalender
-  left_join(
-    y = Dim1_Kalender %>% rename_with(~ paste0("DeltFoedtDato_DW_", .)),
-    by = c("DeltFoedtDato_DW" = "DeltFoedtDato_DW_Dato_DW"),
-    na_matches = "never") %>%
-  
-  # DeltAlder_DW
-  mutate(across("DeltAlder_DW", \(x) as.integer(x))) %>%
-  select(-DeltAlder_DW, everything()) %>%
-
-  # DeltAlderJoin_DW
-  mutate(across("DeltAlderJoin_DW", \(x) as.character(x))) %>%
-  select(-DeltAlderJoin_DW, everything()) %>%
-  
-  # DeltAlderKatNr_RD
-  mutate(across("DeltAlderKatNr_RD", \(x) as.integer(x))) %>%
-  select(-DeltAlderKatNr_RD, everything()) %>%
-  
-  # DeltAlderKatMin_ID
-  mutate(across("DeltAlderKatMin_ID", \(x) as.character(x))) %>%
-  select(-DeltAlderKatMin_ID, everything()) %>%
-  
-  # DeltAlderKatMaks_ID
-  mutate(across("DeltAlderKatMaks_ID", \(x) as.character(x))) %>%
-  select(-DeltAlderKatMaks_ID, everything()) %>%
-  
-  # DeltAlderKat_RD
-  arrange(DeltAlderKatNr_RD) %>%
-  mutate(across("DeltAlderKat_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-DeltAlderKat_RD, everything()) %>%
   
   # DeltYngstAeldst_DW
   group_by(EventAar_ID, OrdreStatusSimpelKat_RD, BilletKat_ID) %>%
@@ -718,105 +205,24 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
     TRUE ~ NA_character_)) %>%
   ungroup() %>%
   mutate(across("DeltYngstAeldst_DW", \(x) as.character(x))) %>%
-  select(-DeltYngstAeldst_DW, everything()) %>%
-  
-  # DeltKoenNr_RD
-  mutate(across("DeltKoenNr_RD", \(x) as.integer(x))) %>%
-  select(-DeltKoenNr_RD, everything()) %>%
-  
-  # DeltKoen_ID
-  arrange(DeltKoenNr_RD) %>%
-  mutate(across("DeltKoen_ID", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-DeltKoen_ID, everything()) %>%
-  
-  # DeltKoenEmoji_RD
-  arrange(DeltKoenNr_RD) %>%
-  mutate(across("DeltKoenEmoji_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-DeltKoenEmoji_RD, everything()) %>%
-  
-  # DeltKoenIkon_RD
-  arrange(DeltKoenNr_RD) %>%
-  mutate(across("DeltKoenIkon_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-DeltKoenIkon_RD, everything()) %>%
-  
-  # DeltRang1_RD
-  mutate(across("DeltRang1_RD", \(x) as.integer(x))) %>%
-  select(-DeltRang1_RD, everything()) %>%
-  
-  # DeltRating2_RD
-  mutate(across("DeltRating2_RD", \(x) as.integer(x))) %>%
-  select(-DeltRating2_RD, everything()) %>%
-
-  # DeltRang3_RD
-  mutate(across("DeltRang3_RD", \(x) as.integer(x))) %>%
-  select(-DeltRang3_RD, everything()) %>%
-  
-  # DeltRating_DW
-  mutate(DeltRating_DW = case_when(
-    !is.na(DeltRang1_RD)  ~ paste0("[", DeltRang1_RD, "] ", DeltRating2_RD),
-    is.na(DeltRating2_RD) ~ "-",
-    TRUE ~ as.character(DeltRating2_RD))) %>%
-  mutate(across("DeltRating_DW", \(x) as.character(x))) %>%
-  select(-DeltRating_DW, everything()) %>%
-  
-  # DeltRatingKatNr_RD
-  mutate(across("DeltRatingKatNr_RD", \(x) as.integer(x))) %>%
-  select(-DeltRatingKatNr_RD, everything()) %>%
-  
-  # DeltRatingKatMin_ID
-  mutate(across("DeltRatingKatMin_ID", \(x) as.character(x))) %>%
-  select(-DeltRatingKatMin_ID, everything()) %>%
-
-  # DeltRatingKatMaks_ID
-  mutate(across("DeltRatingKatMaks_ID", \(x) as.character(x))) %>%
-  select(-DeltRatingKatMaks_ID, everything()) %>%
-  
-  # DeltRatingKat_RD
-  arrange(DeltRatingKatNr_RD) %>%
-  mutate(across("DeltRatingKat_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-DeltRatingKat_RD, everything()) %>%
-  
-  # DeltSlutspilNr_RD
-  mutate(across("DeltSlutspilNr_RD", \(x) as.integer(x))) %>%
-  select(-DeltSlutspilNr_RD, everything()) %>%
-  
-  # DeltSlutspil_ID
-  arrange(DeltSlutspilNr_RD) %>%
-  mutate(across("DeltSlutspil_ID", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-DeltSlutspil_ID, everything()) %>%
-  
-  # DeltPlacNr_RD
-  mutate(across("DeltPlacNr_RD", \(x) as.integer(x))) %>%
-  select(-DeltPlacNr_RD, everything()) %>%
-  
-  # DeltPlac_ID
-  arrange(DeltPlacNr_RD) %>%
-  mutate(across("DeltPlac_ID", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-DeltPlac_ID, everything()) %>%
 
   # DeltAntalBillet_DW
   add_count(Billet_ID, OrdreStatusSimpelKat_RD, BilletKat_ID, name = "DeltAntalBillet_DW") %>%
   group_by(Billet_ID, BilletKat_ID, OrdreStatusSimpelKat_RD) %>%
-  mutate(DeltAntalBillet_DW = DeltAntalBillet_DW-sum(is.na(Deltager_ID))) %>%
+  mutate(DeltAntalBillet_DW = DeltAntalBillet_DW-sum(is.na(DeltID_RD))) %>%
   ungroup() %>%
   mutate(DeltAntalBillet_DW = case_when(
-    !is.na(Deltager_ID) ~ DeltAntalBillet_DW)) %>%
+    !is.na(DeltID_RD) ~ DeltAntalBillet_DW)) %>%
   group_by(Billet_ID) %>%
   fill(DeltAntalBillet_DW, .direction = "updown") %>%
   ungroup() %>%
   mutate(across("DeltAntalBillet_DW", \(x) as.integer(x))) %>%
-  select(-DeltAntalBillet_DW, everything()) %>%
-  
-  # DeltPraemie_RD
-  mutate(across("DeltPraemie_RD", \(x) as.numeric(x))) %>%
-  select(-DeltPraemie_RD, everything()) %>%
   
   # DeltPraemiePct_DW
   group_by(EventAar_ID) %>%
   mutate(DeltPraemiePct_DW = DeltPraemie_RD/sum(DeltPraemie_RD, na.rm = T)) %>%
   ungroup() %>%
   mutate(across("DeltPraemiePct_DW", \(x) as.numeric(x))) %>%
-  select(-DeltPraemiePct_DW, everything()) %>%
   
   # DeltPraemieAkt_DW
   group_by(EventAar_ID) %>%
@@ -825,8 +231,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
     EventAarPraemieSpons_RD == 1 ~ DeltPraemiePct_DW*sum(DeltPraemie_RD, na.rm = T),
     EventAarPraemieSpons_RD == 0 ~ DeltPraemiePct_DW*BilletPrisArr_RD*DeltAntalBillet_DW)) %>%
   ungroup() %>%
-  mutate(across("DeltPraemieAkt_DW", \(x) as.numeric(x))) %>%
-  select(-DeltPraemieAkt_DW, everything()) %>%
   
   # DeltPraemiePot_DW
   group_by(EventAar_ID) %>%
@@ -835,107 +239,50 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
     EventAarPraemieSpons_RD == 1 ~ DeltPraemiePct_DW*sum(DeltPraemie_RD, na.rm = T),
     EventAarPraemieSpons_RD == 0 ~ DeltPraemiePct_DW*BilletPrisArr_RD*BilletAntalMaks_RD)) %>%
   ungroup() %>%
-  mutate(across("DeltPraemiePot_DW", \(x) as.numeric(x))) %>%
-  select(-DeltPraemiePot_DW, everything()) %>%
   
   # DeltNavnKlub_DW
   mutate(DeltNavnKlub_DW = case_when(
     grepl("Aflyst", OrdreStatusSimpelKat_RD) ~ BilletBeskr_RD,
-    is.na(Deltager_ID) ~ NA_character_,
+    is.na(DeltID_RD) ~ NA_character_,
     grepl("Ingen klub|Udlandet", Klub_ID) ~ paste0(DeltNavn_RD),
     TRUE ~ paste0(DeltNavn_RD, ", <i>", Klub_ID, "</i>"))) %>%
-  mutate(across("DeltNavnKlub_DW", \(x) as.character(x))) %>%
-  select(-DeltNavnKlub_DW, everything()) %>%
   
   # DeltNavnBilletKat_DW
-  group_by(EventAar_ID, OrdreStatusSimpelKat_RD, Deltager_ID) %>%
+  group_by(EventAar_ID, OrdreStatusSimpelKat_RD, DeltID_RD) %>%
   arrange(BilletKat_ID, desc(OrdreFoersteDatoTid_DW)) %>%
   mutate(DeltNavnBilletKat_DW = case_when(
     grepl("Aflyst", OrdreStatusSimpelKat_RD) ~ BilletBeskr_RD,
-    is.na(Deltager_ID) ~ NA_character_,
+    is.na(DeltID_RD) ~ NA_character_,
     grepl("Ingen klub|Udlandet", Klub_ID) ~ paste0(DeltNavn_RD, " (", DeltAlder_DW, " år) ", str_c(
       BilletKatIkon_RD, collapse = "<wbr>")),
     TRUE ~ paste0(DeltNavnKlub_DW, " (", DeltAlder_DW, " år) ", str_c(
       BilletKatIkon_RD, collapse = "<wbr>")))) %>%
   ungroup() %>%
-  mutate(across("DeltNavnBilletKat_DW", \(x) as.character(x))) %>%
-  select(-DeltNavnBilletKat_DW, everything()) %>%
   
   # DeltBilletSalgNr_DW
-  add_count(EventAar_ID, OrdreStatusSimpelKat_RD, Deltager_ID, name = "DeltBilletSalgNr_DW") %>%
-  mutate(across("DeltBilletSalgNr_DW", \(x) as.integer(x))) %>%
-  select(-DeltBilletSalgNr_DW, everything()) %>%
+  add_count(EventAar_ID, OrdreStatusSimpelKat_RD, DeltID_RD, name = "DeltBilletSalgNr_DW") %>%
   
   # DeltBilletSalg_DW
-  arrange(DeltBilletSalgNr_DW) %>%
   mutate(DeltBilletSalg_DW = paste(DeltBilletSalgNr_DW, "stk. billetsalg")) %>%
-  mutate(across("DeltBilletSalg_DW", \(x) factor(x, ordered = T))) %>%
-  select(-DeltBilletSalg_DW, everything()) %>%
-  
-  # DeltGenNr_DW
-  mutate(across("DeltGenNr_DW", \(x) as.integer(x))) %>%
-  select(-DeltGenNr_DW, everything()) %>%
+  mutate(across(DeltBilletSalg_DW, \(x) factor(
+    x, levels = unique(x[order(DeltBilletSalgNr_DW)]), ordered = TRUE))) %>%
   
   # DeltGen_DW
-  arrange(DeltGenNr_DW) %>%
   mutate(DeltGen_DW = paste0(DeltGenNr_DW, ". gang")) %>%
-  mutate(across("DeltGen_DW", \(x) factor(x, ordered = T))) %>%
-  select(-DeltGen_DW, everything()) %>%
-  
-  # DeltGenKatNr_RD
-  mutate(across("DeltGenKatNr_RD", \(x) as.integer(x))) %>%
-  select(-DeltGenKatNr_RD, everything()) %>%
-  
-  # DeltGenKat_DW
-  arrange(DeltGenKatNr_RD) %>%
-  mutate(across("DeltGenKat_DW", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-DeltGenKat_DW, everything()) %>%
-  
-  # DeltGenKatEmoji_RD
-  arrange(DeltGenKatNr_RD) %>%
-  mutate(across("DeltGenKatEmoji_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-DeltGenKatEmoji_RD, everything()) %>%
-  
-  # DeltGenKatIkon_RD
-  arrange(DeltGenKatNr_RD) %>%
-  mutate(across("DeltGenKatIkon_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-DeltGenKatIkon_RD, everything()) %>%
-  
-  # DeltKodeJoin_RD
-  mutate(across("DeltKodeJoin_RD", \(x) as.character(x))) %>%
-  select(-DeltKodeJoin_RD, everything()) %>%
-  
-  # DeltKatNr_RD
-  mutate(across("DeltKatNr_RD", \(x) as.integer(x))) %>%
-  select(-DeltKatNr_RD, everything()) %>%
-  
-  # DeltKatMin_ID
-  mutate(across("DeltKatMin_ID", \(x) as.character(x))) %>%
-  select(-DeltKatMin_ID, everything()) %>%
-  
-  # DeltKatMaks_ID
-  mutate(across("DeltKatMaks_ID", \(x) as.character(x))) %>%
-  select(-DeltKatMaks_ID, everything()) %>%
-  
-  # DeltKat_RD
-  arrange(DeltKatNr_RD) %>%
-  mutate(across("DeltKat_RD", \(x) factor(x, levels = unique(x), ordered = T))) %>%
-  select(-DeltKat_RD, everything()) %>%
+  mutate(across(DeltGen_DW, \(x) factor(
+    x, levels = unique(x[order(DeltGenNr_DW)]), ordered = TRUE))) %>%
   
   # DeltSnakeSeedNr_DW
   group_by(EventAar_ID, OrdreStatusSimpelKat_RD, Billet_ID) %>%
-  arrange(DeltRang1_RD, desc(DeltRating2_RD), DeltRang3_RD, Deltager_ID) %>%
+  arrange(DeltRang1_RD, desc(DeltRating2_RD), DeltRang3_RD, DeltID_RD) %>%
   mutate(DeltSnakeSeedNr_DW = row_number()) %>%
   ungroup() %>%
-  mutate(across("DeltSnakeSeedNr_DW", \(x) as.integer(x))) %>%
-  select(-DeltSnakeSeedNr_DW, everything()) %>%
   
   # DeltSnakeSeedLagNr_DW
   group_by(EventAar_ID, OrdreStatusSimpelKat_RD, Billet_ID) %>%
   mutate(DeltSnakeSeedLagNr_DW = rep(1:unique(BilletPulje_DW),each = unique(BilletPulje_DW))[seq_len(n())]) %>%
   ungroup() %>%
   mutate(across("DeltSnakeSeedLagNr_DW", \(x) as.integer(x))) %>%
-  select(-DeltSnakeSeedLagNr_DW, everything()) %>%
   
   # DeltSnakePuljeNr_DW
   group_by(EventAar_ID, OrdreStatusSimpelKat_RD, Billet_ID, DeltSnakeSeedLagNr_DW) %>%
@@ -947,39 +294,34 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
     DeltSnakePuljeNr_DW + BilletPuljeRest_DW, DeltSnakePuljeNr_DW)) %>%
   ungroup() %>%
   mutate(across("DeltSnakePuljeNr_DW", \(x) as.integer(x))) %>%
-  select(-DeltSnakePuljeNr_DW, everything()) %>%
 
   # DeltUnik_DW
-  group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW, Deltager_ID) %>%
+  group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW, DeltID_RD) %>%
   arrange(OrdreStatusSimpelKat_RD, desc(DeltGen_DW)) %>%
   mutate(DeltUnik_DW = ifelse(row_number() == 1, 1, 0)) %>%
   ungroup() %>%
   mutate(across("DeltUnik_DW", \(x) as.integer(x))) %>%
-  select(-DeltUnik_DW, everything()) %>%
 
   # DeltKlubUnik_DW
-  group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW, Deltager_ID) %>%
+  group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW, DeltID_RD) %>%
   arrange(OrdreStatusSimpelKat_RD, KlubKat_DW) %>%
   mutate(DeltKlubUnik_DW = ifelse(grepl("Klub", KlubKat_DW), row_number() == 1, 0)) %>%
   mutate(across("DeltKlubUnik_DW", \(x) as.integer(x))) %>%
-  select(-DeltKlubUnik_DW, everything()) %>%
 
   # DeltPingPongUnik_DW
-  group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW, Deltager_ID) %>%
+  group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW, DeltID_RD) %>%
   arrange(OrdreStatusSimpelKat_RD, BilletKat_ID) %>%
   mutate(DeltPingPongUnik_DW = ifelse(grepl("Ping Pong", BilletKat_ID), row_number() == 1, 0)) %>%
   ungroup() %>%
   mutate(across("DeltPingPongUnik_DW", \(x) as.integer(x))) %>%
-  select(-DeltPingPongUnik_DW, everything()) %>%
 
   # DeltForskudt_DW
   group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW, DeltUnik_DW, OrdreDatoTid_RD) %>%
   mutate(DeltForskudt_DW = ifelse(OrdreDatoTid_RD != OrdreFoersteDatoTid_DW, 1, 0)) %>%
   ungroup() %>%
-  mutate(across("DeltForskudt_DW", \(x) as.integer(x))) %>%
-  select(-DeltForskudt_DW, everything())
+  mutate(across("DeltForskudt_DW", \(x) as.integer(x)))
 
-# Stat
+# tbl1_Ordre_T: Stat ----
 tbl1_Ordre_T <- tbl1_Ordre_T %>%
 
   # StatAlderForskelAntal_DW
@@ -987,8 +329,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
   mutate(StatAlderForskelAntal_DW = paste0(
     "<kbd>", "Aldersforskel ", "<b>", max(DeltAlder_DW)-min(DeltAlder_DW), "</b>", " år", "</kbd>")) %>%
   ungroup() %>%
-  mutate(across("StatAlderForskelAntal_DW", \(x) as.character(x))) %>%
-  select(-StatAlderForskelAntal_DW, everything()) %>%
   
   # StatOrdreAntal_DW
   add_count(EventAar_ID, OrdreStatusSimpelKat_RD, Billet_ID, name = "StatOrdreAntal_DW") %>%
@@ -999,8 +339,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
   arrange(OrdreStatusSimpelKat_RD, BilletDisciplin_ID, BilletRaekke_ID, BilletSpilFormat_ID) %>%
   mutate(StatOrdreAntal_DW = str_c(unique(StatOrdreAntal_DW), collapse = "&#8203;")) %>%
   ungroup() %>%
-  mutate(across("StatOrdreAntal_DW", \(x) as.character(x))) %>%
-  select(-StatOrdreAntal_DW, everything()) %>%
   
   # StatDeltAntal_DW
   group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW, DeltUnik_DW) %>%
@@ -1013,8 +351,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
   arrange(OrdreStatusSimpelDeltKat_DW) %>%
   mutate(StatDeltAntal_DW = str_c(unique(na.omit(StatDeltAntal_DW)), collapse = "&#8203;")) %>%
   ungroup() %>%
-  mutate(across("StatDeltAntal_DW", \(x) as.character(x))) %>%
-  select(-StatDeltAntal_DW, everything()) %>%
   
   # StatDeltKoenAntal_DW
   group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW, DeltUnik_DW, DeltKoen_ID) %>%
@@ -1027,22 +363,18 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
   arrange(DeltKoen_ID) %>%
   mutate(StatDeltKoenAntal_DW = str_c(unique(na.omit(StatDeltKoenAntal_DW)), collapse = "&#8203;")) %>%
   ungroup() %>%
-  mutate(across("StatDeltKoenAntal_DW", \(x) as.character(x))) %>%
-  select(-StatDeltKoenAntal_DW, everything()) %>%
   
   # StatDeltGenKatAntal_DW
-  group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW, DeltUnik_DW, DeltGenKat_DW) %>%
+  group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW, DeltUnik_DW, DeltGenKat_ID) %>%
   mutate(StatDeltGenKatAntal_DW = sum(DeltUnik_DW)) %>%
   group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW) %>%
   mutate(StatDeltGenKatAntal_DW = ifelse(StatDeltGenKatAntal_DW == 0, NA, paste0(
-    "<kbd>", "<b>", StatDeltGenKatAntal_DW, "</b>", " ", DeltGenKat_DW, " (",
+    "<kbd>", "<b>", StatDeltGenKatAntal_DW, "</b>", " ", DeltGenKat_ID, " (",
     percent(StatDeltGenKatAntal_DW/sum(ifelse(StatDeltGenKatAntal_DW == 0, 0, 1)), digits = 0), ") ",
-    DeltGenKatIkon_RD, "</kbd>"))) %>%
-  arrange(DeltGenKat_DW) %>%
+    DeltGenKatIkon_DW, "</kbd>"))) %>%
+  arrange(DeltGenKat_ID) %>%
   mutate(StatDeltGenKatAntal_DW = str_c(unique(na.omit(StatDeltGenKatAntal_DW)), collapse = "&#8203;")) %>%
   ungroup() %>%
-  mutate(across("StatDeltGenKatAntal_DW", \(x) as.character(x))) %>%
-  select(-StatDeltGenKatAntal_DW, everything()) %>%
   
   # StatDeltAlderKatAntal_DW
   group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW, DeltUnik_DW, DeltAlderKat_RD) %>%
@@ -1055,8 +387,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
   arrange(DeltAlderKat_RD) %>%
   mutate(StatDeltAlderKatAntal_DW = str_c(unique(na.omit(StatDeltAlderKatAntal_DW)), collapse = "&#8203;")) %>%
   ungroup() %>%
-  mutate(across("StatDeltAlderKatAntal_DW", \(x) as.character(x))) %>%
-  select(-StatDeltAlderKatAntal_DW, everything()) %>%
   
   # StatDeltAlderAntal_DW
   group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW) %>%
@@ -1072,8 +402,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
     "<kbd>", "Ældst ", "<b>", max(StatDeltAlderAntal_DW, na.rm = TRUE), "</b>", " år ",
     IkonFødt_V, "</kbd>")) %>%
   ungroup() %>%
-  mutate(across("StatDeltAlderAntal_DW", \(x) as.character(x))) %>%
-  select(-StatDeltAlderAntal_DW, everything()) %>%
   
   # StatDeltLandsdelAntal_DW
   group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW, DeltKlubUnik_DW, KlubLandsdel_RD) %>%
@@ -1086,8 +414,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
   arrange(KlubLandsdel_RD) %>%
   mutate(StatDeltLandsdelAntal_DW = str_c(unique(na.omit(StatDeltLandsdelAntal_DW)), collapse = "&#8203;")) %>%
   ungroup() %>%
-  mutate(across("StatDeltLandsdelAntal_DW", \(x) as.character(x))) %>%
-  select(-StatDeltLandsdelAntal_DW, everything()) %>%
   
   # StatDeltRegionAntal_DW
   group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW, DeltKlubUnik_DW, KlubRegion_ID) %>%
@@ -1100,8 +426,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
   arrange(KlubRegion_ID) %>%
   mutate(StatDeltRegionAntal_DW = str_c(unique(na.omit(StatDeltRegionAntal_DW)), collapse = "&#8203;")) %>%
   ungroup() %>%
-  mutate(across("StatDeltRegionAntal_DW", \(x) as.character(x))) %>%
-  select(-StatDeltRegionAntal_DW, everything()) %>%
   
   # StatDeltKlubKatAntal_DW
   group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW, DeltUnik_DW, KlubKat_DW) %>%
@@ -1114,8 +438,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
   arrange(KlubKat_DW) %>%
   mutate(StatDeltKlubKatAntal_DW = str_c(unique(na.omit(StatDeltKlubKatAntal_DW)), collapse = "&#8203;")) %>%
   ungroup() %>%
-  mutate(across("StatDeltKlubKatAntal_DW", \(x) as.character(x))) %>%
-  select(-StatDeltKlubKatAntal_DW, everything()) %>%
   
   # StatKlubAntal_DW
   group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW, KlubUnik_DW) %>%
@@ -1126,8 +448,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
     " ", ifelse(StatKlubAntal_DW == 1, "klub", "forskellige klubber"), " ", KlubKatIkon_RD, "</kbd>"))) %>%
   mutate(StatKlubAntal_DW = ifelse(all(is.na(StatKlubAntal_DW)), NA, unique(na.omit(StatKlubAntal_DW)))) %>%
   ungroup() %>%
-  mutate(across("StatKlubAntal_DW", \(x) as.character(x))) %>%
-  select(-StatKlubAntal_DW, everything()) %>%
 
   # StatBilletGnsAntal_DW
   group_by(EventAar_ID, OrdreStatusSimpelKat_RD) %>%
@@ -1136,8 +456,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
     " ", ifelse(round(sum(OrdreUnik_DW)/sum(DeltUnik_DW), 1) == 1,
     "billet pr. deltager", "billetter pr. deltager"), " ", IkonBillet_V, "</kbd>")) %>%
   ungroup() %>%
-  mutate(across("StatBilletGnsAntal_DW", \(x) as.character(x))) %>%
-  select(-StatBilletGnsAntal_DW, everything()) %>%
 
   # StatOrdreKatAntal_DW
   group_by(EventAar_ID, OrdreStatusSimpelKat_RD, OrdreUnik_DW, OrdreKat_ID) %>%
@@ -1150,8 +468,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
   arrange(OrdreKat_ID) %>%
   mutate(StatOrdreKatAntal_DW = str_c(unique(na.omit(StatOrdreKatAntal_DW)), collapse = "&#8203;")) %>%
   ungroup() %>%
-  mutate(across("StatOrdreKatAntal_DW", \(x) as.character(x))) %>%
-  select(-StatOrdreKatAntal_DW, everything()) %>%
   
   # StatDeltRatingKatAntal_DW
   group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW, DeltPingPongUnik_DW, DeltRatingKat_RD) %>%
@@ -1164,8 +480,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
   arrange(DeltRatingKat_RD) %>%
   mutate(StatDeltRatingKatAntal_DW = str_c(unique(na.omit(StatDeltRatingKatAntal_DW)), collapse = "&#8203;")) %>%
   ungroup() %>%
-  mutate(across("StatDeltRatingKatAntal_DW", \(x) as.character(x))) %>%
-  select(-StatDeltRatingKatAntal_DW, everything()) %>%
   
   # StatDeltRatingAntal_DW
   group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW) %>%
@@ -1181,8 +495,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
     "<kbd>", "Maks ", "<b>", max(StatDeltRatingAntal_DW, na.rm = TRUE), "</b>", " rating ",
     IkonPingPong_V, "</kbd>")) %>%
   ungroup() %>%
-  mutate(across("StatDeltRatingAntal_DW", \(x) as.character(x))) %>%
-  select(-StatDeltRatingAntal_DW, everything()) %>%
 
   # StatOekonomiAntal_DW
   group_by(EventAar_ID, OrdreStatusSimpelKat_RD) %>%
@@ -1193,26 +505,22 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
     IkonPenge_V, "</kbd>", "&#8203;",
     "<kbd>", "Over-/underskud arrangør kr. ", "<b>", format(round(sum(BilletPrisRes_DW), 0), big.mark = "."), "</b>", " ",
     IkonPenge_V, "</kbd>")) %>%
-  mutate(across("StatOekonomiAntal_DW", \(x) as.character(x))) %>%
-  select(-StatOekonomiAntal_DW, everything()) %>%
   
   # StatForskudtTilAntal_DW
   group_by(EventAar_ID, OrdreStatusSimpelDeltKat_DW) %>%
   mutate(StatForskudtTilAntal_DW = sum(DeltForskudt_DW)) %>%
   mutate(StatForskudtTilAntal_DW = paste0(
     "<kbd>", "<b>", StatForskudtTilAntal_DW, "</b>", " forskudt ", OrdreStatusSimpelKat_RD, " ", IkonBillet_V, "</kbd>")) %>%
-  ungroup() %>%
-  mutate(across("StatForskudtTilAntal_DW", \(x) as.character(x))) %>%
-  select(-StatForskudtTilAntal_DW, everything())
+  ungroup()
 
-# KPI
+# tbl1_Ordre_T: KPI ----
 tbl1_Ordre_T <- tbl1_Ordre_T %>%
   
   group_by(EventAar_ID) %>%
   mutate(KPIDeltAntal_DW = sum(DeltUnik_DW)) %>%
   ungroup()
 
-# Info
+# tbl1_Ordre_T: Info ----
 tbl1_Ordre_T <- tbl1_Ordre_T %>%
   
   # InfoNedtælling_DW
@@ -1263,7 +571,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
 	    }, 1000);
 	    </script>'))) %>%
   ungroup() %>%
-  select(-InfoNedtælling_DW, everything()) %>%
   
   # InfoPlakatCTA_DW
   group_by(EventAar_ID) %>%
@@ -1298,7 +605,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
       "</span>",
       "</p>"))) %>%
   ungroup() %>%
-  select(-InfoPlakatCTA_DW, everything()) %>%
   
   # InfoForside_DW
   group_by(EventAar_ID) %>%
@@ -1328,7 +634,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
       "</ul>")))) %>%
   mutate(InfoForside_DW = ifelse(all(is.na(InfoForside_DW)), NA, unique(na.omit(InfoForside_DW)))) %>%
   ungroup() %>%
-  select(-InfoForside_DW, everything()) %>%
   
   # InfoFacebook_DW
   group_by(EventAar_ID) %>%
@@ -1348,7 +653,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
       "(https://www.facebook.com/{{< var var.facebook_side_id >}}){target=_blank} ",
       "for at holde dig opdateret.</i>"))) %>%
   ungroup() %>%
-  select(-InfoFacebook_DW, everything()) %>%
   
   # InfoTipIndbydelse_DW
   group_by(EventAar_ID) %>%
@@ -1356,7 +660,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
     IkonBillet_V, "Indbydelse, tidsplan og praktisk info til ", EventAar_ID,
     " ses [<b>HER</b>](indbydelse-tilmelding-", EventAarStartDato_DW_Aar_DW, ".qmd).</i>")) %>%
   ungroup() %>%
-  select(-InfoTipIndbydelse_DW, everything()) %>%
   
   # InfoTipPraemierDeltagere_DW
   group_by(EventAar_ID) %>%
@@ -1369,7 +672,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
   mutate(InfoTipPraemierDeltagere_DW = ifelse(
     all(is.na(InfoTipPraemierDeltagere_DW)), NA, unique(na.omit(InfoTipPraemierDeltagere_DW)))) %>%
   ungroup() %>%
-  select(-InfoTipPraemierDeltagere_DW, everything()) %>%
   
   # InfoTipRegler_DW
   group_by(EventAar_ID) %>%
@@ -1380,7 +682,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
     "alle spiller på lige vilkår med sandpapirsbat, hvor der byttes bat mellem hvert sæt, og der kan",
     "tages <q>dobbeltpoint</q>. Se mere [<b>HER</b>](regler.qmd).")) %>%
   ungroup() %>%
-  select(-InfoTipRegler_DW, everything()) %>%
   
   # InfoTipVM_DW
   group_by(EventAar_ID) %>%
@@ -1389,7 +690,6 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
     "i London med en præmiesum på $100.000 og eksponeres på bl.a. Viaplay Sport og Sky Sports.",
     "Se mere [<b>HER</b>](wcpp.qmd).")) %>%
   ungroup() %>%
-  select(-InfoTipVM_DW, everything()) %>%
   
   # Sorter efter (1) EventAar_ID, (2) OrdreFoersteDatoTid_DW, (3) BilletKat_ID
   arrange(desc(EventAar_ID), desc(OrdreFoersteDatoTid_DW), BilletKat_ID)
@@ -1397,20 +697,32 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
 # tbl2_EventAar_T ----
 tbl2_EventAar_T <- tbl1_Ordre_T %>%
   mutate(across(where(~ is.factor(.)), as.character)) %>%
-  arrange(desc(EventAarNr_RD)) %>%
-  distinct(across(starts_with(c("EventAar", "Info", "KPI"))))
+  distinct(across(starts_with(c("EventAar", "Info", "KPI")))) %>%
+  arrange(desc(EventAarNr_RD))
 
 # tbl2_Billet_T ----
 tbl2_Billet_T <- tbl1_Ordre_T %>% filter(grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
   mutate(across(where(~ is.factor(.)), as.character)) %>%
-  arrange(desc(BilletNr_RD)) %>%
-  distinct(across(starts_with(c("EventAar_ID", "Billet", "Stat"))))
+  distinct(across(starts_with(c("EventAar_ID", "Billet", "Stat")))) %>%
+  arrange(desc(BilletNr_RD))
 
 # tbl2_EventAarAkt_T ----
-tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_ID))
+tbl2_EventAarAkt_T <- tbl2_EventAar_T %>%
+  filter(grepl(InputEventAarAkt_V, EventAar_ID))
 
-# Fjern Stat og Info fra tbl1_Ordre_T ----
-tbl1_Ordre_T <- tbl1_Ordre_T %>% select(-starts_with(c("Stat", "Info")))
+# tbl1_Ordre_T: Oprydning ----
+tbl1_Ordre_T <- tbl1_Ordre_T %>%
+  select(
+    starts_with("Ordre"),
+    starts_with("Event"),
+    starts_with("EventAar"),
+    starts_with("Billet"),
+    starts_with("Delt"),
+    starts_with("Klub"),
+    -starts_with(c("Stat", "Info", "KPI")),
+    -ends_with("_ID"),
+    everything()
+  )
 
 # Fjern Dim og Fact fra objekter ----
 rm(list = ls(pattern = "^(Dim|Fact)"))
