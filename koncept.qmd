@@ -5,10 +5,10 @@ source(file = "_input.R")
 
 ```{r}
 #| label: kildefil-filter
-tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_ID))
+tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataEventAarSidst_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAarSidst_DW))
 DataResultSandpapirAabenSingle_T <- tbl3_Result_T %>% filter(
-  (grepl("A-slutspil", DeltSlutspil_ID) &
+  (grepl("A-slutspil", DeltSlutspil_RD) &
   grepl("1", DeltPlacNr_RD) &
   grepl("Sandpapir - Åben - Single", Billettype_DW)) |
   grepl("Aflyst", OrdreStatusSimpelKat_RD))
@@ -52,13 +52,13 @@ Det bestræbes på, at det koster maks. kr. 150 at stille op til Ping Pong DM, o
 ::: {.g-col-12 .g-col-md-7}
 Turneringen afvikles som én åben singlerække på fair vis efter snake-system uden klubhensyn. Der spilles 6-mandspuljer, A-, B- og C-slutspil og afslutningsvist "Final 4" i A-slutspil som beskrevet herunder:
 
--   **6-mandspuljer**: Indledende puljespil foregår i primært 6-mandspuljer, som sikrer mange kampe til alle deltagere. Nr. 1-2 går videre til A-slutspil, nr. 3-4 går i B-slutspil, og de resterende går i C-slutspil[^2].
+- **6-mandspuljer**: Indledende puljespil foregår i primært 6-mandspuljer, som sikrer mange kampe til alle deltagere. Nr. 1-2 går videre til A-slutspil, nr. 3-4 går i B-slutspil, og de resterende går i C-slutspil[^2].
 
--   **A-slutspil**: A-slutspil afvikles som cup frem til og med kvartfinalerne.
+- **A-slutspil**: A-slutspil afvikles som cup frem til og med kvartfinalerne.
 
-    -   **"Final 4"**: Afslutningsvist afvikles "Final 4" for de sidste 4 spillere i A-slutspil, hvilket består af en finalepulje, hvor alle spiller mod alle. Der spilles her bedst af 5 sæt, 2 "dobbeltpoints" og én timeout pr. spiller i hver kamp[^3].
+  - **"Final 4"**: Afslutningsvist afvikles "Final 4" for de sidste 4 spillere i A-slutspil, hvilket består af en finalepulje, hvor alle spiller mod alle. Der spilles her bedst af 5 sæt, 2 "dobbeltpoints" og én timeout pr. spiller i hver kamp[^3].
 
--   **B- og C-slutspil**: B- og C-slutspil afvikles udelukkende som cup.
+- **B- og C-slutspil**: B- og C-slutspil afvikles udelukkende som cup.
 
 Puljerne dannes på fair vis efter snake-system uden klubhensyn efter følgende prioritering:
 
@@ -170,17 +170,17 @@ DataResultSandpapirAabenSingle_T %>%
 
 ## Videoer fra DM
 
--   [Video fra Ping Pong DM **2022**: "Final 4"](https://youtu.be/2LF1PVgdM-w){target="_blank"}
--   [Video fra Ping Pong DM **2022**: Preliminary matches + Playoffs](https://youtu.be/i7NUmq1R6VY){target="_blank"}
--   [Video fra Ping Pong DM **2021**: 9 min. sammenklip af finalekampen i "Final 4"](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/672876054123143){target="_blank"}
--   [Video fra Ping Pong DM **2018**: Finale](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/2533896386870286){target="_blank"}
--   [Video fra Ping Pong DM **2018**: Semifinale (2)](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/259264551753924){target="_blank"}
--   [Video fra Ping Pong DM **2018**: Seminfale (1), sæt 2 af 2](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/303186807322141){target="_blank"}
--   [Video fra Ping Pong DM **2018**: Seminfale (1), sæt 1 af 2](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/1569763316525030){target="_blank"}
--   [Video fra Ping Pong DM **2017**: Del 2 af 2](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/208760437117940){target="_blank"}
--   [Video fra Ping Pong DM **2016**: Finale og bronzekamp](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/144520200285594){target="_blank"}
--   [Video fra Ping Pong DM **2016**: Semifinaler](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/3001276553228375){target="_blank"}
--   [Video fra Ping Pong DM **2016**: Kvartfinaler](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/512649046032364){target="_blank"}
+- [Video fra Ping Pong DM **2022**: "Final 4"](https://youtu.be/2LF1PVgdM-w){target="_blank"}
+- [Video fra Ping Pong DM **2022**: Preliminary matches + Playoffs](https://youtu.be/i7NUmq1R6VY){target="_blank"}
+- [Video fra Ping Pong DM **2021**: 9 min. sammenklip af finalekampen i "Final 4"](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/672876054123143){target="_blank"}
+- [Video fra Ping Pong DM **2018**: Finale](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/2533896386870286){target="_blank"}
+- [Video fra Ping Pong DM **2018**: Semifinale (2)](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/259264551753924){target="_blank"}
+- [Video fra Ping Pong DM **2018**: Seminfale (1), sæt 2 af 2](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/303186807322141){target="_blank"}
+- [Video fra Ping Pong DM **2018**: Seminfale (1), sæt 1 af 2](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/1569763316525030){target="_blank"}
+- [Video fra Ping Pong DM **2017**: Del 2 af 2](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/208760437117940){target="_blank"}
+- [Video fra Ping Pong DM **2016**: Finale og bronzekamp](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/144520200285594){target="_blank"}
+- [Video fra Ping Pong DM **2016**: Semifinaler](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/3001276553228375){target="_blank"}
+- [Video fra Ping Pong DM **2016**: Kvartfinaler](https://www.facebook.com/{{< var var.facebook_side_id >}}/videos/512649046032364){target="_blank"}
 
 [^1]: **ALLE kan deltage**: Da turneringen er et dansk mesterskab, skal man enten være (1) dansk statsborger eller (2) have boet i Danmark i minimum de seneste fem år (skal kunne dokumenteres af spilleren). Er dette ikke opfyldt, vil det være muligt at deltage udelukkende i puljespillet, hvor ens resultater ikke tæller med i puljeregnskabet (tilmelding stadig påkrævet).
 

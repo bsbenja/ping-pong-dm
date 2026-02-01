@@ -9,49 +9,49 @@ source(file = "_input.R")
 BillettypeAkt_V <- "Sandpapir - Åben - Single"
 
 DataAkt_T <- tbl1_Ordre_T %>% filter(
-  grepl(InputEventAarAkt_V, EventAar_ID))
+  grepl(InputEventAarAkt_V, EventAar_RD))
 tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(
-  grepl(InputEventAarAkt_V, EventAar_ID))
+  grepl(InputEventAarAkt_V, EventAar_RD))
 DataEventAarSidst_T <- tbl2_EventAar_T %>% filter(
   grepl(InputEventAarAkt_V, EventAarSidst_DW))
 DataBilletAkt_T <- tbl2_Billet_T %>% filter(
-  grepl(InputEventAarAkt_V, EventAar_ID) &
+  grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BillettypeAkt_V, Billettype_DW))
 DataPraemiePengeAkt_T <- tbl3_PraemiePenge_T %>% filter(
-  grepl(InputEventAarAkt_V, EventAar_ID) &
+  grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BillettypeAkt_V, Billettype_DW))
 DataPraemieYngstAeldstAkt_T <- tbl3_DeltYngstAeldst_T %>% filter(
-  grepl(InputEventAarAkt_V, EventAar_ID))
+  grepl(InputEventAarAkt_V, EventAar_RD))
 DataDeltForAkt_T <- tbl3_DeltFor_T %>% filter(
-  grepl(InputEventAarAkt_V, EventAar_ID) &
+  grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BillettypeAkt_V, Billettype_DW))
 DataDeltPuljerAkt_T <- tbl3_DeltPuljer_T %>% filter(
-  grepl(InputEventAarAkt_V, EventAar_ID) &
+  grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BillettypeAkt_V, Billettype_DW))
 DataDeltAndetAkt_T <- tbl3_DeltAndet_T %>% filter(
-  grepl(InputEventAarAkt_V, EventAar_ID))
+  grepl(InputEventAarAkt_V, EventAar_RD))
 DataDeltKlubAkt_T <- tbl3_DeltKlub_T %>% filter(
-  grepl(InputEventAarAkt_V, EventAar_ID) &
+  grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BillettypeAkt_V, Billettype_DW))
 DataDeltByAkt_T <- tbl3_DeltBy_T %>% filter(
-  grepl(InputEventAarAkt_V, EventAar_ID) &
+  grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BillettypeAkt_V, Billettype_DW))
 DataDeltAlderKatAkt_T <- tbl3_DeltAlderKat_T %>% filter(
-  grepl(InputEventAarAkt_V, EventAar_ID) &
+  grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BillettypeAkt_V, Billettype_DW))
 DataDeltKoenAkt_T <- tbl3_DeltKoen_T %>% filter(
-  grepl(InputEventAarAkt_V, EventAar_ID) &
+  grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BillettypeAkt_V, Billettype_DW))
 DataDeltGenTilAkt_T <- tbl3_DeltGenTil_T %>% filter(
-  grepl(InputEventAarAkt_V, EventAar_ID) &
+  grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BillettypeAkt_V, Billettype_DW))
 DataDeltOrdreKatAkt_T <- tbl3_DeltOrdreKat_T %>% filter(
-  grepl(InputEventAarAkt_V, EventAar_ID) &
+  grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BillettypeAkt_V, Billettype_DW))
 DataResultSidst_T <- tbl3_Result_T %>% filter(
   grepl(InputEventAarAkt_V, EventAarSidst_DW) &
   grepl(BillettypeAkt_V, Billettype_DW) &
-  grepl("A-slutspil", DeltSlutspil_ID) &
+  grepl("A-slutspil", DeltSlutspil_RD) &
   grepl("[1-4]", DeltPlacNr_RD))
 ```
 
@@ -59,7 +59,7 @@ DataResultSidst_T <- tbl3_Result_T %>% filter(
 title: "<iconify-icon icon=mdi:table-tennis></iconify-icon> <u>Sandpapir Åben Single</u>"
 subtitle: |
   `r paste0(
-  "<b style=font-size:140%>", tbl2_EventAarAkt_T$EventAar_ID, "</b>",
+  "<b style=font-size:140%>", tbl2_EventAarAkt_T$EventAar_RD, "</b>",
   "<br>",
   "<i style=font-size:110%>",
   "<b>Afholdes ", tbl2_EventAarAkt_T$EventAarDato_DW, " i ", tbl2_EventAarAkt_T$EventAarStedURL_DW,
@@ -74,7 +74,7 @@ editor_options:
 ::: {.callout-note style="font-style:italic"}
 ## Sideinfo
 
-Præmier og deltagere opdateres løbende for `r tbl2_EventAarAkt_T$EventAar_ID` og er sidst opdateret `r format(floor_date(Sys.time(), "30 minutes"), "%d.%m.%Y kl. %H:%M.")`
+Præmier og deltagere opdateres løbende for `r tbl2_EventAarAkt_T$EventAar_RD` og er sidst opdateret `r format(floor_date(Sys.time(), "30 minutes"), "%d.%m.%Y kl. %H:%M.")`
 :::
 
 ::: {.callout-tip style="font-style:italic"}
@@ -176,7 +176,7 @@ if(InputInfo1234_V %in% c(1, 2, 4)) {
   DataDeltPuljerAkt_T %>%
     kbl(col.names = NA, align = "cclr", escape = F,
       caption = paste0(
-        IkonPingPong_V, " ", DataBilletAkt_T$BilletPuljeDelt_RD, "-mandspuljer til ", tbl2_EventAarAkt_T$EventAar_ID,
+        IkonPingPong_V, " ", DataBilletAkt_T$BilletPuljeDelt_RD, "-mandspuljer til ", tbl2_EventAarAkt_T$EventAar_RD,
         "<br>",
         "<i style=font-size:80%>",
         DataBilletAkt_T$BilletDelt_DW, " ", ifelse(DataBilletAkt_T$BilletDelt_DW == 1, "tilmelding", "tilmeldinger"),
@@ -235,11 +235,11 @@ if(InputInfo1234_V %in% c(1, 2, 3, 4)) {
 ```{r}
 #| label: fig-klubber
 #| fig-cap: "Klubber."
-#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(Klub_ID))))+1.5)/3.3
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(Delt_ID) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(Klub_RD))))+1.5)/3.3
 DataAkt_T %>%
-	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
-	mutate(Klub_ID = paste0(Klub_ID, "&emsp;", KlubLogo_DW)) %>%
-	ggplot(mapping = aes(y = fct_rev(fct_infreq(Klub_ID)), fill = BilletKat_DW)) +
+	filter(!is.na(Delt_ID) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
+	mutate(Klub_RD = paste0(Klub_RD, "&emsp;", KlubLogo_DW)) %>%
+	ggplot(mapping = aes(y = fct_rev(fct_infreq(Klub_RD)), fill = BilletKat_DW)) +
 	geom_bar(width = 0.9, position = position_stack(reverse = T)) +
 	geom_text(aes(label = after_stat(count)), stat = "count", position = position_stack(reverse = T),
 						vjust = 0.4, hjust = 1, size = 5, color = "#FFFFFF", fontface = "bold") +
@@ -294,15 +294,15 @@ cat(paste0(
 #| fig-cap: "Danmarkskort."
 #| fig-height: 5
 DataAkt_T %>%
-  filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD) & !grepl("Ingen klub|Udlandet", Klub_ID)) %>%
+  filter(!is.na(Delt_ID) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD) & !grepl("Ingen klub|Udlandet", Klub_RD)) %>%
 	mutate(across("KlubPostnr_RD", \(x) as.integer(x))) %>%
-	distinct(DeltID_RD, .keep_all = T) %>%
-	mutate(KlubRegion_ID = case_when(
-		KlubRegion_ID == "Nordjylland" ~ "nordjylland",
-		KlubRegion_ID == "Midtjylland" ~ "midtjylland",
-		KlubRegion_ID == "Syddanmark"  ~ "syddanmark",
-		KlubRegion_ID == "Sjælland"    ~ "sjaelland",
-		KlubRegion_ID == "Hovedstaden" ~ "hovedstaden")) %>%
+	distinct(Delt_ID, .keep_all = T) %>%
+	mutate(KlubRegion_RD = case_when(
+		KlubRegion_RD == "Nordjylland" ~ "nordjylland",
+		KlubRegion_RD == "Midtjylland" ~ "midtjylland",
+		KlubRegion_RD == "Syddanmark"  ~ "syddanmark",
+		KlubRegion_RD == "Sjælland"    ~ "sjaelland",
+		KlubRegion_RD == "Hovedstaden" ~ "hovedstaden")) %>%
 	count(KlubPostnr_RD, name = "Deltagerantal", .drop = FALSE) %>%
 	plotDK(
 		value        = "Deltagerantal",
@@ -357,9 +357,9 @@ cat(paste0(
 ```{r}
 #| label: fig-aldersgrupper
 #| fig-cap: "Aldersgrupper."
-#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltAlderKat_RD))))+1.5)/3.3
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(Delt_ID) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltAlderKat_RD))))+1.5)/3.3
 DataAkt_T %>%
-	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
+	filter(!is.na(Delt_ID) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
 	ggplot(mapping = aes(y = fct_rev(DeltAlderKat_RD), fill = BilletKat_DW)) +
 	geom_bar(width = 0.9, position = position_stack(reverse = T)) +
 	geom_text(aes(label = after_stat(count)), stat = "count", position = position_stack(reverse = T),
@@ -411,10 +411,10 @@ cat(paste0(
 ```{r}
 #| label: fig-koen
 #| fig-cap: "Køn."
-#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltKoen_ID))))+1.5)/3.3
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(Delt_ID) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltKoen_RD))))+1.5)/3.3
 DataAkt_T %>%
-	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
-	ggplot(mapping = aes(y = fct_rev(fct_infreq(DeltKoen_ID)), fill = BilletKat_DW)) +
+	filter(!is.na(Delt_ID) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
+	ggplot(mapping = aes(y = fct_rev(fct_infreq(DeltKoen_RD)), fill = BilletKat_DW)) +
 	geom_bar(width = 0.9, position = position_stack(reverse = T)) +
 	geom_text(aes(label = after_stat(count)), stat = "count", position = position_stack(reverse = T),
 						vjust = 0.4, hjust = 1, size = 5, color = "#FFFFFF", fontface = "bold") +
@@ -460,9 +460,9 @@ cat(paste0(
 ```{r}
 #| label: fig-gentilmeldinger
 #| fig-cap: "Gentilmeldinger."
-#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltGen_DW))))+1.5)/3.3
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(Delt_ID) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>% summarise(length(unique(DeltGen_DW))))+1.5)/3.3
 DataAkt_T %>%
-	filter(!is.na(DeltID_RD) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
+	filter(!is.na(Delt_ID) & grepl("Tilmeldt", OrdreStatusSimpelKat_RD)) %>%
 	ggplot(mapping = aes(y = fct_rev(DeltGen_DW), fill = BilletKat_DW)) +
 	geom_bar(width = 0.9, position = position_stack(reverse = T)) +
 	geom_text(aes(label = after_stat(count)), stat = "count", position = position_stack(reverse = T),
@@ -509,10 +509,10 @@ cat(paste0(
 ```{r}
 #| label: fig-ordre-kat
 #| fig-cap: "Ordretype."
-#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(DeltID_RD)) %>% summarise(length(unique(OrdreKat_ID))))+1.5)/3.3
+#| fig-height: !expr (as.numeric(DataAkt_T %>% filter(!is.na(Delt_ID)) %>% summarise(length(unique(OrdreKat_DW))))+1.5)/3.3
 DataAkt_T %>%
-  filter(!is.na(DeltID_RD)) %>%
-  ggplot(mapping = aes(y = fct_rev(OrdreKat_ID), fill = BilletKat_DW)) +
+  filter(!is.na(Delt_ID)) %>%
+  ggplot(mapping = aes(y = fct_rev(OrdreKat_DW), fill = BilletKat_DW)) +
   geom_bar(width = 0.9, position = position_stack(reverse = TRUE)) +
   geom_text(aes(label = after_stat(count)), stat = "count", position = position_stack(reverse = TRUE),
             vjust = 0.4, hjust = 1, size = 5, color = "#FFFFFF", fontface = "bold") +

@@ -97,12 +97,12 @@ if(InputWebRatingTF_V == T) {
   tbl5_webscraping_rating <- data.frame()
   url1 <- ifelse(
     nrow(rbind(tbl5_webscraping_rating, data.frame(
-      "DeltID_RD" = read_html(
+      "Delt_ID" = read_html(
         paste0("https://bordtennisportalen.dk/DBTU/Ranglister/Udskriv/?params=,59,4",
                tbl2_EventAarAkt_T$EventAarRatingDato_RD_Aar_DW, ",",
                format(tbl2_EventAarAkt_T$EventAarRatingDato_RD, "%m/%d/%Y"),
                ",,,,True,,,,,", "0", ",,,0,,,,,")) %>% html_nodes(".playerid") %>% html_text(),
-      stringsAsFactors = FALSE)) %>% filter(DeltID_RD != "Spiller-Id")) > 0,
+      stringsAsFactors = FALSE)) %>% filter(Delt_ID != "Spiller-Id")) > 0,
     paste0("https://bordtennisportalen.dk/DBTU/Ranglister/Udskriv/?params=,59,4",
            tbl2_EventAarAkt_T$EventAarRatingDato_RD_Aar_DW, ",",
            format(tbl2_EventAarAkt_T$EventAarRatingDato_RD, "%m/%d/%Y")),
@@ -115,12 +115,12 @@ if(InputWebRatingTF_V == T) {
   
   tbl5_webscraping_rating <- rbind(tbl5_webscraping_rating, data.frame(
     "Plac"          = read_html(url2) %>% html_nodes(".rank")                        %>% html_text(),
-    "DeltID_RD" = read_html(url2) %>% html_nodes(".playerid")                        %>% html_text(),
+    "Delt_ID" = read_html(url2) %>% html_nodes(".playerid")                        %>% html_text(),
     "Navn"          = read_html(url2) %>% html_nodes(".name")                        %>% html_text(),
     "Rating"        = read_html(url2) %>% html_nodes(".name+ .pointsw")              %>% html_text(),
     "Plus_minus"    = read_html(url2) %>% html_nodes(".pointsw:nth-child(5)")        %>% html_text(),
     "Kampe"         = read_html(url2) %>% html_nodes(".pointsw~ .pointsw+ .pointsw") %>% html_text(),
-    stringsAsFactors = FALSE)) %>% filter(DeltID_RD != "Spiller-Id") %>%
+    stringsAsFactors = FALSE)) %>% filter(Delt_ID != "Spiller-Id") %>%
     mutate(across(c("Plac", "Rating", "Plus_minus", "Kampe"), \(x) as.numeric(x)))
   print(paste("Side", side))
   }
@@ -131,8 +131,8 @@ if(InputWebRatingTF_V == T) {
     arrange(desc(OrdreDatoTid_RD)) %>%
     left_join(
       y = tbl5_webscraping_rating,
-      na_matches = "never", by = "DeltID_RD") %>%
-    select(EventAar_ID, Plac, DeltID_RD, Navn, Klub, Rating, Plus_minus, Kampe)
+      na_matches = "never", by = "Delt_ID") %>%
+    select(EventAar_ID, Plac, Delt_ID, Navn, Klub, Rating, Plus_minus, Kampe)
   
   write_xlsx(
     setNames(

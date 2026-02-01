@@ -5,7 +5,7 @@ source(file = "_input.R")
 
 ```{r}
 #| label: kildefil-filter
-tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_ID))
+tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 ```
 
 ---
@@ -28,7 +28,7 @@ cat(tbl2_EventAarAkt_T$InfoPlakatCTA_DW)
 
 :::::: grid
 ::: {.g-col-12 .g-col-md-4}
-#### `r tbl2_EventAarAkt_T$EventAar_ID`
+#### `r tbl2_EventAarAkt_T$EventAar_RD`
 
 `r tbl2_EventAarAkt_T$InfoForside_DW`
 :::
@@ -36,14 +36,14 @@ cat(tbl2_EventAarAkt_T$InfoPlakatCTA_DW)
 ::: {.g-col-12 .g-col-md-4}
 #### Generelt om Ping Pong
 
--   `r paste(IkonRegler_V)` [**Ping Pong regler**](regler.qmd)\
-    *I Ping Pong tages det bedste fra fortidens- og nutidens bordtennis og kan sammenlignes med ordsproget "gammel vin på nye flasker". Der er nogle få regler, der adskiller Ping Pong fra bordtennis, bl.a. spilles der til 15 point (14-14 er afgørende bold), alle spiller på lige vilkår med sandpapirsbat, hvor der byttes bat mellem hvert sæt, og der kan tages "dobbeltpoint".*
+- `r paste(IkonRegler_V)` [**Ping Pong regler**](regler.qmd)\
+  *I Ping Pong tages det bedste fra fortidens- og nutidens bordtennis og kan sammenlignes med ordsproget "gammel vin på nye flasker". Der er nogle få regler, der adskiller Ping Pong fra bordtennis, bl.a. spilles der til 15 point (14-14 er afgørende bold), alle spiller på lige vilkår med sandpapirsbat, hvor der byttes bat mellem hvert sæt, og der kan tages "dobbeltpoint".*
 
--   `r paste(IkonGlobus_V)` [**WCPP**](wcpp.qmd)\
-    *World Championship of Ping Pong (WCPP) afholdes sædvanligvis i London med en præmiesum på \$100.000 og eksponeres på bl.a. Viaplay Sport og Sky Sports.*
+- `r paste(IkonGlobus_V)` [**WCPP**](wcpp.qmd)\
+  *World Championship of Ping Pong (WCPP) afholdes sædvanligvis i London med en præmiesum på \$100.000 og eksponeres på bl.a. Viaplay Sport og Sky Sports.*
 
--   `r paste(IkonKoncept_V)` [**DM-koncept**](koncept.qmd)\
-    *DM-konceptet er en heldagsbegivenhed, der hylder fællesskabet og mangfoldigheden, hvor ALLE har mulighed for at deltage på lige vilkår i sandpapirsdisciplinen. Der er musik under hele turneringen samt socialt arrangement om aften/natten.*
+- `r paste(IkonKoncept_V)` [**DM-koncept**](koncept.qmd)\
+  *DM-konceptet er en heldagsbegivenhed, der hylder fællesskabet og mangfoldigheden, hvor ALLE har mulighed for at deltage på lige vilkår i sandpapirsdisciplinen. Der er musik under hele turneringen samt socialt arrangement om aften/natten.*
 :::
 
 ::: {.g-col-12 .g-col-md-4}
@@ -51,9 +51,9 @@ cat(tbl2_EventAarAkt_T$InfoPlakatCTA_DW)
 
 *Er du en Ping Pong entusiast eller bare nysgerrig på konceptet? Så tjek én eller flere af nedenstående links ud.*
 
--   `r paste(IkonLinkNy_V)` [**ICTTF**](https://icttf.co){target="_blank"}\
-    *International Classic Table Tennis Federation (ICTTF) er det styrende organ for alle nationale Ping Pong medlemmer, hvis mission er at genintroducere det underholdende og gavnlige spil Ping Pong, også kendt som klassisk bordtennis, til det globale fællesskab.*\
-    ![](filer/medie/billede/icttf.png){width="4em"}
+- `r paste(IkonLinkNy_V)` [**ICTTF**](https://icttf.co){target="_blank"}\
+  *International Classic Table Tennis Federation (ICTTF) er det styrende organ for alle nationale Ping Pong medlemmer, hvis mission er at genintroducere det underholdende og gavnlige spil Ping Pong, også kendt som klassisk bordtennis, til det globale fællesskab.*\
+  ![](filer/medie/billede/icttf.png){width="4em"}
 :::
 ::::::
 :::::::

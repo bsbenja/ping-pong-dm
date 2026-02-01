@@ -6,17 +6,17 @@ source(file = "_input.R")
 ```{r}
 #| label: kildefil-filter
 InputEventAarAkt_V <- "Ping Pong DM 2023"
-DataAkt_T <- tbl1_Ordre_T %>% filter(grepl(InputEventAarAkt_V, EventAar_ID))
-tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_ID))
-DataBilletKatAkt_T <- tbl3_BilletKat_T %>% filter(grepl(InputEventAarAkt_V, EventAar_ID))
-DataPraemiePengeAkt_T <- tbl3_PraemiePenge_T %>% filter(grepl(InputEventAarAkt_V, EventAar_ID))
+DataAkt_T <- tbl1_Ordre_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataBilletKatAkt_T <- tbl3_BilletKat_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+DataPraemiePengeAkt_T <- tbl3_PraemiePenge_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 ```
 
 ---
 title: "<iconify-icon icon=mdi:tags></iconify-icon> <u>Indbydelse & tilmelding</u>"
 subtitle: |
   `r paste0(
-  "<b style=font-size:140%>", tbl2_EventAarAkt_T$EventAar_ID, "</b>",
+  "<b style=font-size:140%>", tbl2_EventAarAkt_T$EventAar_RD, "</b>",
   "<br>",
   "<i style=font-size:110%>",
   "<b>Afholdes ", tbl2_EventAarAkt_T$EventAarDato_DW, " i ", tbl2_EventAarAkt_T$EventAarStedURL_DW,
@@ -164,12 +164,11 @@ IkonRefusion_V, " <b>Refusion</b>: Tilmelding er ikke bindende, hvorfor evt. ref
 ```
 :::
 
-<div>
-
+::: {}
 ```{r}
 #| layout-ncol: 3
 data.frame(
-  "1" = paste0("<img src=filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/kontaktperson.png height=66 style=border-radius:10px>"),
+  "1" = paste0("<img src=filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "/kontaktperson.png height=66 style=border-radius:10px>"),
   "2" = paste0(
   	IkonPerson_V, " Benjamin Sørensen",
   	"<br>",
@@ -186,7 +185,7 @@ data.frame(
   column_spec(1:2, extra_css = "border:hidden;")
 
 data.frame(
-  "1" = paste0("<img src=filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/staevneleder.png height=66 style=border-radius:10px>"),
+  "1" = paste0("<img src=filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "/staevneleder.png height=66 style=border-radius:10px>"),
   "2" = paste0(
   	IkonPerson_V, " Ole Munck Christensen",
   	"<br>",
@@ -203,7 +202,7 @@ data.frame(
   column_spec(1:2, extra_css = "border:hidden;")
 
 data.frame(
-  "1" = paste0("<img src=filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/lokation.png height=66 style=border-radius:10px>"),
+  "1" = paste0("<img src=filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "/lokation.png height=66 style=border-radius:10px>"),
   "2" = tbl2_EventAarAkt_T$EventAarStedAdrPostnrURL_DW,
   check.names = F) %>%
   kbl(col.names = NULL, align = "l", escape = F,
@@ -214,8 +213,7 @@ data.frame(
   column_spec(1, width_min = "5.5em") %>%
   column_spec(1:2, extra_css = "border:hidden;")
 ```
-
-</div>
+:::
 :::::::
 
 :::::::::::::: {style="border-left:solid 5px #398FCC;padding-left:20px"}
@@ -227,13 +225,13 @@ data.frame(
 ::: {.g-col-12 .g-col-md-7}
 Turneringen afvikles som én åben singlerække på fair vis efter snake-system uden klubhensyn. Der spilles 6-mandspuljer, A-/B-slutspil og afslutningsvist "Final 4" i A-slutspil som beskrevet herunder:
 
--   **6-mandspuljer**: Indledende puljespil foregår i primært 6-mandspuljer, som sikrer mange kampe til alle deltagere. Nr. 1-3 går videre til A-slutspil, og de resterende går i B-slutspil`r "^[<b>Puljeregnskab</b>: Puljeregnskabet gøres op efter efter de almindeligt gældende regler jf. BTDK's Stævne/Ratingreglement under <q>§ 08: Puljeregnskab</q> (side 4) <b>[HER](https://bordtennisdanmark.dk/wp-content/uploads/2021/08/staevne-rating_reglement_2019-2020_0.pdf){target=_blank}</b>:<br>Stk. 1. Vundet eller afbrudt kamp giver 2 matchpoint og en tabt kamp giver 1 matchpoint.<br>Stk. 2. Hvis to eller flere spillere ender på samme antal matchpoint, afgøres den indbyrdes placering ved at sammenregne indbyrdes matchpoint mellem disse spillere.<br>Stk. 3. Hvis det indbyrdes matchpointtal mellem berørte spillere stadig er lige, beregnes den indbyrdes sætkvotient (vundne sæt divideret med tabte sæt).<br>Stk. 4. Hvis den indbyrdes sætkvotient mellem de berørte spillere er lige, beregnes den indbyrdes boldkvotient (vundne bolde divideret med tabte bolde).<br>Stk. 5. Så snart en placering eller flere kan bestemmes ud fra punkt 2-4, fjernes den eller de spillere. De øvrige spilleres placering beregnes på ny fra punkt 2.<br>Stk. 6. Hvis den ovenstående beregning ikke kan afgøre to eller flere spilleres placering, trækkes der lod. Denne lodtrækning foretages automatisk af stævneafviklingsprogrammet TTC.]"`.
+- **6-mandspuljer**: Indledende puljespil foregår i primært 6-mandspuljer, som sikrer mange kampe til alle deltagere. Nr. 1-3 går videre til A-slutspil, og de resterende går i B-slutspil`r "^[<b>Puljeregnskab</b>: Puljeregnskabet gøres op efter efter de almindeligt gældende regler jf. BTDK's Stævne/Ratingreglement under <q>§ 08: Puljeregnskab</q> (side 4) <b>[HER](https://bordtennisdanmark.dk/wp-content/uploads/2021/08/staevne-rating_reglement_2019-2020_0.pdf){target=_blank}</b>:<br>Stk. 1. Vundet eller afbrudt kamp giver 2 matchpoint og en tabt kamp giver 1 matchpoint.<br>Stk. 2. Hvis to eller flere spillere ender på samme antal matchpoint, afgøres den indbyrdes placering ved at sammenregne indbyrdes matchpoint mellem disse spillere.<br>Stk. 3. Hvis det indbyrdes matchpointtal mellem berørte spillere stadig er lige, beregnes den indbyrdes sætkvotient (vundne sæt divideret med tabte sæt).<br>Stk. 4. Hvis den indbyrdes sætkvotient mellem de berørte spillere er lige, beregnes den indbyrdes boldkvotient (vundne bolde divideret med tabte bolde).<br>Stk. 5. Så snart en placering eller flere kan bestemmes ud fra punkt 2-4, fjernes den eller de spillere. De øvrige spilleres placering beregnes på ny fra punkt 2.<br>Stk. 6. Hvis den ovenstående beregning ikke kan afgøre to eller flere spilleres placering, trækkes der lod. Denne lodtrækning foretages automatisk af stævneafviklingsprogrammet TTC.]"`.
 
--   **A-slutspil**: A-slutspil afvikles som cup frem til og med kvartfinalerne.
+- **A-slutspil**: A-slutspil afvikles som cup frem til og med kvartfinalerne.
 
-    -   **"Final 4"**: Afslutningsvist afvikles "Final 4" for de sidste 4 spillere i A-slutspil, hvilket består af en finalepulje, hvor alle spiller mod alle. Der spilles her bedst af 5 sæt, 2 "dobbeltpoints" og én timeout pr. spiller i hver kamp`r "^[<b>Afviklingsform til <q>Final 4</q></b>: <q>Final 4</q> kommer til at bestå af følgende 4 runder:<br>Runde 1: Seedet 1 mod 4 og seedet 2 mod 3 (afvikles på to borde).<br>Runde 2: Seedet 1 mod 3 og seedet 2 mod 4 (afvikles på to borde).<br>Runde 3: Seedet 3 mod 4 (afvikles på ét bord).<br>Runde 4: Seedet 1 mod 2 (afvikles på ét bord).]"`.
+  - **"Final 4"**: Afslutningsvist afvikles "Final 4" for de sidste 4 spillere i A-slutspil, hvilket består af en finalepulje, hvor alle spiller mod alle. Der spilles her bedst af 5 sæt, 2 "dobbeltpoints" og én timeout pr. spiller i hver kamp`r "^[<b>Afviklingsform til <q>Final 4</q></b>: <q>Final 4</q> kommer til at bestå af følgende 4 runder:<br>Runde 1: Seedet 1 mod 4 og seedet 2 mod 3 (afvikles på to borde).<br>Runde 2: Seedet 1 mod 3 og seedet 2 mod 4 (afvikles på to borde).<br>Runde 3: Seedet 3 mod 4 (afvikles på ét bord).<br>Runde 4: Seedet 1 mod 2 (afvikles på ét bord).]"`.
 
--   **B-slutspil**: B-slutspil afvikles udelukkende som cup.
+- **B-slutspil**: B-slutspil afvikles udelukkende som cup.
 
 Puljerne dannes på fair vis efter snake-system uden klubhensyn efter følgende prioritering:
 
@@ -269,15 +267,15 @@ cat(tbl2_EventAarAkt_T$InfoTipRegler_DW)
 
 ::::: {.grid style="font-style:italic"}
 ::: {.g-col-12 .g-col-md-8}
--   **Bat**: Der spilles med "Sanwei WCPP Sandpapirsbat", som også blev benyttet ved sidste WCPP. Et stort tak skal lyde til Bordtennis Danmark (BTDK), da de støtter med 50 splinternye sandpapirsbat. Det er formentligt ikke alment kendt, men Ping Pong entusiaster vil kunne nikke genkendende til, at der er stor forskel på et nyt- og brugt sandpapirsbat, da et nyt sandpapirsbat qua sin ruhed kan genere mere skrue, hvilket er gavnligt i specielt det offensive spil. Evt. yderligere sandpapirsbat vil være lettere brugte. Til deltagerne i "Final 4" i A-slutspil udleveres 4 nye sandpapirsbat. Battet kan også købes hos BTEX til eget brug `r "<b>[HER](https://www.btex.dk/sanwei-wcpp-sandpapirsbat.html){target=_blank}</b>"`, dog udleveres bat af stævnearrangøren til opvarmning og kampe på selve stævnedagen.
+- **Bat**: Der spilles med "Sanwei WCPP Sandpapirsbat", som også blev benyttet ved sidste WCPP. Et stort tak skal lyde til Bordtennis Danmark (BTDK), da de støtter med 50 splinternye sandpapirsbat. Det er formentligt ikke alment kendt, men Ping Pong entusiaster vil kunne nikke genkendende til, at der er stor forskel på et nyt- og brugt sandpapirsbat, da et nyt sandpapirsbat qua sin ruhed kan genere mere skrue, hvilket er gavnligt i specielt det offensive spil. Evt. yderligere sandpapirsbat vil være lettere brugte. Til deltagerne i "Final 4" i A-slutspil udleveres 4 nye sandpapirsbat. Battet kan også købes hos BTEX til eget brug `r "<b>[HER](https://www.btex.dk/sanwei-wcpp-sandpapirsbat.html){target=_blank}</b>"`, dog udleveres bat af stævnearrangøren til opvarmning og kampe på selve stævnedagen.
 
--   **Bold**: Der spilles med hvide bordtennisbolde i form af Inzone Dura \*\* bolde i puljerne og Double Happiness \*\*\* bolde i slutspillet.
+- **Bold**: Der spilles med hvide bordtennisbolde i form af Inzone Dura \*\* bolde i puljerne og Double Happiness \*\*\* bolde i slutspillet.
 :::
 
 ::: {.g-col-12 .g-col-md-4}
 ```{r}
 #| output: asis
-cat(paste0("![](filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/bat-bold.png){width=15em}"))
+cat(paste0("![](filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "/bat-bold.png){width=15em}"))
 ```
 :::
 :::::
@@ -286,17 +284,17 @@ cat(paste0("![](filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/b
 
 :::::: {.grid style="font-style:italic"}
 ::: {.g-col-12 .g-col-md-8}
-[**NYHED**]{.underline}**! 2 kvalifikationspladser til [VERDENSMESTERSKABERNE I PING PONG]{.underline} i Mexico City fra den 4. til 6. januar 2024 med en præmiesum på [\$36.000]{.underline} fordelt på SANDPAPIR, HARDBAT og TRÆBAT. Ekstra tilskud hertil på \$500 til 1. pladsen fra DM. Ny arrangør for VM i Ping Pong er International Classic Table Tennis Federation (ICTTF), som erstatter det ellers tidligere velkendte format fra Alexandra Palace i London arrangeret af Matchroom. Se mere om det nye VM-koncept i indbydelsen `r paste0("[HER](filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/ping-pong-world-cup-indbydelse.pdf){target=_blank}")`**.
+[**NYHED**]{.underline}**! 2 kvalifikationspladser til [VERDENSMESTERSKABERNE I PING PONG]{.underline} i Mexico City fra den 4. til 6. januar 2024 med en præmiesum på [\$36.000]{.underline} fordelt på SANDPAPIR, HARDBAT og TRÆBAT. Ekstra tilskud hertil på \$500 til 1. pladsen fra DM. Ny arrangør for VM i Ping Pong er International Classic Table Tennis Federation (ICTTF), som erstatter det ellers tidligere velkendte format fra Alexandra Palace i London arrangeret af Matchroom. Se mere om det nye VM-koncept i indbydelsen `r paste0("[HER](filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "/ping-pong-world-cup-indbydelse.pdf){target=_blank}")`**.
 
--   Der er også en gave til den **yngste**- og **ældste** Ping Pong deltager for at hylde mangfoldigheden.
--   Pokaler/diplomer uddeles til alle gave-/præmietagere.
+- Der er også en gave til den **yngste**- og **ældste** Ping Pong deltager for at hylde mangfoldigheden.
+- Pokaler/diplomer uddeles til alle gave-/præmietagere.
 :::
 
 ::: {.g-col-12 .g-col-md-4}
 ```{r}
 #| output: asis
 cat(paste0(
-"![](filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "//ping-pong-world-cup-logo.png){width=20em}"))
+"![](filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "//ping-pong-world-cup-logo.png){width=20em}"))
 ```
 :::
 
@@ -339,11 +337,11 @@ Fra kl. 19 vil der være stor fest! Festen starter samme sted som turneringen af
 
 **Tidsplan for festen**:
 
--   Kl. 17:30 åbnes der op for klippekort, så der kan i princippet tyvstartes med de 5 øl eller sodavand til de sidste kampe i "Final 4".
--   Kl. 19-21 er der fællesspisning og hygge i Hørning Idrætscenter.
--   Vi går samlet ned på den lokale pub i Hørning, som hedder Miller's Pub, hvor man evt. kan købe en genstand eller to for egen regning.
--   Kl. 22 bliver vi afhentet i bus fra Miller's Pub, som kører ind mod Aarhus C.
--   Kl. 22:30 'starter' vi på Die Bierbar og får et JAGTTEN, hvilket er et knivskarpt tilbud til kun kr. 100 inden kl. 23. Dette er for egen regning, ligesom resten af aftenen. Se tilbuddet herunder.
+- Kl. 17:30 åbnes der op for klippekort, så der kan i princippet tyvstartes med de 5 øl eller sodavand til de sidste kampe i "Final 4".
+- Kl. 19-21 er der fællesspisning og hygge i Hørning Idrætscenter.
+- Vi går samlet ned på den lokale pub i Hørning, som hedder Miller's Pub, hvor man evt. kan købe en genstand eller to for egen regning.
+- Kl. 22 bliver vi afhentet i bus fra Miller's Pub, som kører ind mod Aarhus C.
+- Kl. 22:30 'starter' vi på Die Bierbar og får et JAGTTEN, hvilket er et knivskarpt tilbud til kun kr. 100 inden kl. 23. Dette er for egen regning, ligesom resten af aftenen. Se tilbuddet herunder.
 
 Aldersgrænsen for festen er 16 år (bytur 18 år). Hvis man er 16 eller 17 år, udleveres kun alkohol med en skriftlig tilladelse fra forældre/værge, som enten kan sendes til kontaktpersonen eller medbringes på selve dagen.
 :::
@@ -351,7 +349,7 @@ Aldersgrænsen for festen er 16 år (bytur 18 år). Hvis man er 16 eller 17 år,
 ```{r}
 #| output: asis
 cat(paste0(
-"![](filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "//fest-om-aftenen.png){width=20em}"))
+"![](filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_RD), "//fest-om-aftenen.png){width=20em}"))
 ```
 
 ::: {.callout-note style="font-style:italic"}
@@ -375,7 +373,7 @@ IkonOvernatning_V, " Se forslag til evt. overnatning under <q>Intro, tidsplan & 
 #| output: asis
 cat(paste0(
 "<p>",
-"<b style=font-size:140%>", tbl2_EventAarAkt_T$EventAar_ID, "</b>",
+"<b style=font-size:140%>", tbl2_EventAarAkt_T$EventAar_RD, "</b>",
 "<br>",
 "<i style=font-size:110%>",
 "<b>Afholdes ", tbl2_EventAarAkt_T$EventAarDato_DW, " i ", tbl2_EventAarAkt_T$EventAarStedURL_DW, "</b></i>",
@@ -389,15 +387,13 @@ IkonBillet_V, " <i>Der er let tilmelding og betaling med betalingskort her</i> "
 ```
 :::
 
-<div>
-
+::: {}
 ```{r}
 #| output: asis
 cat(paste0(
 "<div class=ticketbutler-iframe data-type=EVENT data-domain=billetfix.dk data-slug=dm-i-ping-pong-", tbl2_EventAarAkt_T$EventAarStartDatoTid_DW, "></div><script type=text/javascript src=https://unpkg.com/@ticketbutler/event-embedder@latest/dist/index.js></script>"))
 ```
-
-</div>
+:::
 
 ::: {style="font-size:80%;font-style:italic;text-align:center;color:#63696D"}
 ```{r}

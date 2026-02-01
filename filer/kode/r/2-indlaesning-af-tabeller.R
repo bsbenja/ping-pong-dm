@@ -40,7 +40,7 @@ Dim1_Kalender <- tibble(Dato_DW = seq(
 
 # Fact_Ordre ----
 Fact_Ordre <- read_excel(path = InputData_V, sheet = "✍️ Fact_Ordre", skip = 2) %>%
-  mutate(across(DeltID_RD, \(x) as.character(x))) %>%
+  mutate(across(Delt_ID, \(x) as.character(x))) %>%
   mutate(across(DeltNavn_RD, \(x) as.character(x))) %>%
   mutate(across(Klub_ID, \(x) as.character(x))) %>%
   mutate(across(DeltKoen_ID, \(x) as.character(x))) %>%
@@ -54,7 +54,7 @@ Fact_Ordre <- read_excel(path = InputData_V, sheet = "✍️ Fact_Ordre", skip =
   mutate(across(DeltPlac_ID, \(x) as.character(x))) %>%
   mutate(across(DeltPraemie_RD, \(x) as.numeric(x))) %>%
   mutate(OrdreDato_DW = as_date(OrdreDatoTid_RD)) %>%
-  mutate(DeltKat_ID = str_sub(DeltID_RD, -4, -1)) %>%
+  mutate(DeltKat_ID = str_sub(Delt_ID, -4, -1)) %>%
   mutate(DeltRating_DW = case_when(
     !is.na(DeltRang1_RD)  ~ paste0("[", DeltRang1_RD, "] ", DeltRating2_RD),
     is.na(DeltRating2_RD) ~ "-",

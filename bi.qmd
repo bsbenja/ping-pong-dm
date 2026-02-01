@@ -35,21 +35,21 @@ Data_BI = transpose(tbl1_Ordre_T)
 ```{ojs}
 //| label: ojs-filter-transpose
 data_filter = Data_BI.filter(function(Data_BI) {
-  return EventAar_ID.includes(Data_BI.EventAar_ID)
+  return EventAar_RD.includes(Data_BI.EventAar_RD)
 })
 ```
 
 ```{ojs}
 //| label: ojs-panel-input
 //| panel: input
-viewof EventAar_ID = Inputs.checkbox(
-  Data_BI.map(d => d.EventAar_ID), {sort: true, unique: true,
+viewof EventAar_RD = Inputs.checkbox(
+  Data_BI.map(d => d.EventAar_RD), {sort: true, unique: true,
   label: ["🎫 Event & år"], value: ["Ping Pong DM 2023"]}
 )
 ```
 
-::: {.grid style="text-align:center"}
-::: {.g-col-12 .g-col-md-6}
+::::::::::: {.grid style="text-align:center"}
+:::: {.g-col-12 .g-col-md-6}
 ::: panel-tabset
 ## Tilmeldinger pr. år
 
@@ -81,19 +81,19 @@ Inputs.table(data_filter, {
   columns: [
     "KlubLogo_DW",
     "DeltNavnBilletKat_DW",
-    "EventAar_ID"
+    "EventAar_RD"
   ],
   header: {
     KlubLogo_DW: " ",
     DeltNavnBilletKat_DW: "Navn",
-    EventAar_ID: "EventAar"
+    EventAar_RD: "EventAar"
   }
 })
 ```
 :::
-:::
+::::
 
-::: {.g-col-12 .g-col-md-6}
+:::: {.g-col-12 .g-col-md-6}
 ::: panel-tabset
 ## Deltagere
 
@@ -138,9 +138,9 @@ Inputs.table(data_filter, {
 })
 ```
 :::
-:::
+::::
 
-::: {.g-col-12 .g-col-md-6}
+:::: {.g-col-12 .g-col-md-6}
 ::: panel-tabset
 ## Gentilmeldinger
 
@@ -185,9 +185,9 @@ Inputs.table(data_filter, {
 })
 ```
 :::
-:::
+::::
 
-::: {.g-col-12 .g-col-md-6}
+:::: {.g-col-12 .g-col-md-6}
 ::: panel-tabset
 ## Klubber
 
@@ -232,8 +232,8 @@ Inputs.table(data_filter, {
 })
 ```
 :::
-:::
-:::
+::::
+:::::::::::
 
 # R-kode
 
@@ -243,10 +243,10 @@ BilletDisciplinAkt_V  <- "Sandpapir"
 BilletSpilFormatAkt_V <- "Single"
 BilletRaekkeAkt_V     <- "Åben"
 
-DataAkt_T <- tbl1_Ordre_T %>% filter(grepl(InputEventAarAkt_V, EventAar_ID))
-tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_ID))
+DataAkt_T <- tbl1_Ordre_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
+tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 DataBilletAkt_T <- tbl2_Billet_T %>% filter(
-  grepl(InputEventAarAkt_V, EventAar_ID) &
+  grepl(InputEventAarAkt_V, EventAar_RD) &
   grepl(BilletDisciplinAkt_V, BilletDisciplin_ID) &
   grepl(BilletRaekkeAkt_V, BilletRaekke_ID) &
   grepl(BilletSpilFormatAkt_V, BilletSpilFormat_ID))
@@ -307,7 +307,7 @@ datatable(
 
 ```{r}
 tbl3_PraemiePenge_T %>%
-  filter(grepl(InputEventAarAkt_V, EventAar_ID)) %>%
+  filter(grepl(InputEventAarAkt_V, EventAar_RD)) %>%
   select(` `, Præmiepenge, Pct.) %>%
   datatable(
     style = "bulma",
@@ -319,7 +319,7 @@ tbl3_PraemiePenge_T %>%
 
 ```{r}
 tbl3_PraemiePenge_T %>%
-  filter(grepl(InputEventAarAkt_V, EventAar_ID)) %>%
+  filter(grepl(InputEventAarAkt_V, EventAar_RD)) %>%
   select(` `, Præmiepenge, Pct.) %>%
   datatable(
     style = "bulma",
@@ -332,16 +332,16 @@ tbl3_PraemiePenge_T %>%
 ```{r}
 DataKlubMangel_T <- tbl1_Ordre_T %>%
 	anti_join(y = DataAkt_T, by = "Klub_ID") %>%
-	group_by(EventAar_ID, Klub_ID) %>%
+	group_by(EventAar_RD, Klub_ID) %>%
 	slice(which.max(OrdreDatoTid_RD)) %>%
-	group_by(EventAar_ID) %>%
+	group_by(EventAar_RD) %>%
 	arrange(
 	  OrdreStatusSimpelKat_RD,
-	  desc(EventAar_ID),
+	  desc(EventAar_RD),
 	  desc(EventAarStartDato_DW_Aar_DW),
 	  KlubRegion_ID,
 	  Klub_ID) %>%
-	group_by(EventAar_ID, OrdreStatusSimpelKat_RD) %>%
+	group_by(EventAar_RD, OrdreStatusSimpelKat_RD) %>%
 	mutate(RaekkeNr_DW = row_number()) %>%
   ungroup() %>%
 	select(
@@ -351,7 +351,7 @@ DataKlubMangel_T <- tbl1_Ordre_T %>%
 		"Region" = KlubRegion_ID,
 		"Sidst" = EventAarStartDato_DW_Aar_DW,
 		OrdreStatusSimpelKat_RD,
-		EventAar_ID)
+		EventAar_RD)
 
 if(nrow(DataKlubMangel_T) == 0) {
 	data.frame() %>% kbl()
@@ -370,14 +370,14 @@ if(nrow(DataKlubMangel_T) == 0) {
 }
 
 DataDeltMangel_T <- tbl1_Ordre_T %>%
-	anti_join(y = DataAkt_T, by = "DeltID_RD") %>%
-	group_by(EventAar_ID, DeltID_RD) %>%
+	anti_join(y = DataAkt_T, by = "Delt_ID") %>%
+	group_by(EventAar_RD, Delt_ID) %>%
 	slice(which.max(OrdreDatoTid_RD)) %>%
-	group_by(EventAar_ID) %>%
+	group_by(EventAar_RD) %>%
 	add_count(Klub_ID) %>%
 	arrange(
 	  OrdreStatusSimpelKat_RD,
-	  desc(EventAar_ID),
+	  desc(EventAar_RD),
 	  desc(n),
 	  ifelse(grepl("Ingen klub|Udlandet", Klub_ID), 2, 1),
 	  Klub_ID, desc(EventAarStartDato_DW_Aar_DW),
@@ -390,7 +390,7 @@ DataDeltMangel_T <- tbl1_Ordre_T %>%
 		"Navn" = DeltNavnBilletKat_DW,
 		"Sidst" = EventAarStartDato_DW_Aar_DW,
 		OrdreStatusSimpelKat_RD,
-		EventAar_ID) %>%
+		EventAar_RD) %>%
   ungroup()
 
 if(nrow(DataDeltMangel_T) == 0) {
@@ -429,8 +429,7 @@ NY HJEMMESIDE FOR DM I PING PONG: <https://pingpong.quarto.pub/dm/>
 
 # Sisu/MBK 2022
 
-[**Sisu/MBK**]{.underline}:**\
-**✅ Puljespil: 6-mandspuljer på maksimalt 18 borde. 2 puljer spilles på 3 borde. 30 kampe spilles på 3 borde = 10 kampe pr. bord (4 timer). Efterfølgende tages bordene gradvist ned.\
+[**Sisu/MBK**]{.underline}:\*\*\*\* ✅ Puljespil: 6-mandspuljer på maksimalt 18 borde. 2 puljer spilles på 3 borde. 30 kampe spilles på 3 borde = 10 kampe pr. bord (4 timer). Efterfølgende tages bordene gradvist ned.\
 ✅ Fest: Pizza = 70 kr. og 16 øl\*5 kr. = 80 kr. pr. mand (fri bar i 3 timer).\
 ✅ BilletFix: Sisu/MBK's kontonr. indsættes på BilletFix.
 
