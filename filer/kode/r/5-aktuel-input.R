@@ -66,31 +66,6 @@ if(InputWebOrdreTF_V == T) {
       summarise(label = str_c(label, collapse = "\n")), "\n\n"))
 } else if (InputWebOrdreTF_V == F) {"InputWebOrdreTF_V = F"}
 
-# PDF til PNG for indbydelsesplakat ----
-
-if(InputPNGPlakatTF_V == T) {
-  pdf_convert(
-    pdf = paste0(
-      "filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "-teaserplakat", ".pdf"),
-    format = "png",
-    filenames = paste0(
-      "filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "-teaserplakat", ".png"),
-    verbose = F,
-    dpi = 300)
-  pdf_convert(
-    pdf = paste0(
-      "filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "-indbydelsesplakat", ".pdf"),
-    format = "png",
-    filenames = paste0(
-      "filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "-indbydelsesplakat", ".png"),
-    verbose = F,
-    dpi = 300)
-  shell.exec(normalizePath(
-    paste0("filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "-teaserplakat", ".png")))
-  shell.exec(normalizePath(
-    paste0("filer/event/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "/", fun_egen_sti(tbl2_EventAarAkt_T$EventAar_ID), "-indbydelsesplakat", ".png")))
-} else if (InputPNGPlakatTF_V == F) {"InputPNGPlakatTF_V = F"}
-
 # Webscraping af ratingliste ----
 
 if(InputWebRatingTF_V == T) {

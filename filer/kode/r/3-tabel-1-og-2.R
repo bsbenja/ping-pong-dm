@@ -1,45 +1,45 @@
 # tbl1_Ordre_T: Samler tabeller via left join ----
-tbl1_Ordre_T <- Fact_Ordre %>%
+tbl1_Ordre_T <- fact_Ordre %>%
 
-  # Left join Dim1_OrdreStatus
-  left_join(y = Dim1_OrdreStatus, na_matches = "never", by = "OrdreStatusKat_ID") %>%
-  left_join(y = Dim1_Billet, na_matches = "never", by = "Billet_ID") %>%
-  left_join(y = Dim2_EventAar, na_matches = "never", by = "EventAar_ID") %>%
-  left_join(y = Dim3_Event, na_matches = "never", by = "Event_ID") %>%
-  left_join(y = Dim2_BilletKat, na_matches = "never", by = "BilletKat_ID") %>%
-  left_join(y = Dim2_BilletDisciplin, na_matches = "never", by = "BilletDisciplin_ID") %>%
-  left_join(y = Dim2_BilletRække, na_matches = "never", by = "BilletRaekke_ID") %>%
-  left_join(y = Dim2_BilletSpilformat, na_matches = "never", by = "BilletSpilFormat_ID") %>%
-  left_join(y = Dim1_Klub, na_matches = "never", by = "Klub_ID") %>%
-  left_join(y = Dim2_KlubLandsdel, na_matches = "never", join_by(
+  # Left join dim1_OrdreStatus
+  left_join(y = dim1_OrdreStatus, na_matches = "never", by = "OrdreStatusKat_ID") %>%
+  left_join(y = dim1_Billet, na_matches = "never", by = "Billet_ID") %>%
+  left_join(y = dim2_EventAar, na_matches = "never", by = "EventAar_ID") %>%
+  left_join(y = dim3_Event, na_matches = "never", by = "Event_ID") %>%
+  left_join(y = dim2_BilletKat, na_matches = "never", by = "BilletKat_ID") %>%
+  left_join(y = dim2_BilletDisciplin, na_matches = "never", by = "BilletDisciplin_ID") %>%
+  left_join(y = dim2_BilletRække, na_matches = "never", by = "BilletRaekke_ID") %>%
+  left_join(y = dim2_BilletSpilformat, na_matches = "never", by = "BilletSpilFormat_ID") %>%
+  left_join(y = dim1_Klub, na_matches = "never", by = "Klub_ID") %>%
+  left_join(y = dim2_KlubLandsdel, na_matches = "never", join_by(
       "KlubPostnr_RD" >= "KlubLandsdelPostnrMin_RD",
       "KlubPostnr_RD" <= "KlubLandsdelPostnrMaks_RD")) %>%
     
-  left_join(y = Dim2_KlubRegion, na_matches = "never", by = "KlubRegion_ID") %>%
-  left_join(y = Dim1_DeltKoen, na_matches = "never", by = "DeltKoen_ID") %>%
-  left_join(y = Dim1_DeltSlutspil, na_matches = "never", by = "DeltSlutspil_ID") %>%
-  left_join(y = Dim1_DeltPlacering, na_matches = "never", by = "DeltPlac_ID") %>%
-  left_join(y = Dim1_DeltRating, na_matches = "never", join_by(
+  left_join(y = dim2_KlubRegion, na_matches = "never", by = "KlubRegion_ID") %>%
+  left_join(y = dim1_DeltKoen, na_matches = "never", by = "DeltKoen_ID") %>%
+  left_join(y = dim1_DeltSlutspil, na_matches = "never", by = "DeltSlutspil_ID") %>%
+  left_join(y = dim1_DeltPlacering, na_matches = "never", by = "DeltPlac_ID") %>%
+  left_join(y = dim1_DeltRating, na_matches = "never", join_by(
       "DeltRating2_RD" >= "DeltRatingKatMin_RD",
       "DeltRating2_RD" <= "DeltRatingKatMaks_RD")) %>%
   
-  # Left join Dim1_OrdreFoersteTid
+  # Left join dim1_OrdreFoersteTid
   group_by(EventAar_ID, Delt_ID) %>%
   mutate(OrdreFoersteDatoTid_DW = min(OrdreDatoTid_RD)) %>%
   ungroup() %>%
   mutate(OrdreFoersteTid_DW = format(OrdreFoersteDatoTid_DW, format = "%H%M%S")) %>%
-  left_join(y = Dim1_OrdreFoersteTid, na_matches = "never", join_by(
+  left_join(y = dim1_OrdreFoersteTid, na_matches = "never", join_by(
       "OrdreFoersteTid_DW" >= "OrdreFoersteTidKatMin_RD",
       "OrdreFoersteTid_DW" <= "OrdreFoersteTidKatMaks_RD")) %>%
 
-  # Left join Dim1_OrdreKat
+  # Left join dim1_OrdreKat
   mutate(OrdreKat_ID = case_when(
     grepl("Tilmeldt", OrdreStatusSimpelKat_RD) & OrdreFoersteDatoTid_DW <= EventAarFristDatoTid_RD ~ "Ordinær",
     grepl("Tilmeldt", OrdreStatusSimpelKat_RD) & OrdreFoersteDatoTid_DW >  EventAarFristDatoTid_RD ~ "Drive-in",
     grepl("Afbud",    OrdreStatusSimpelKat_RD) ~ "Afbud")) %>%
-  left_join(y = Dim1_OrdreKat, na_matches = "never", by = "OrdreKat_ID") %>%
+  left_join(y = dim1_OrdreKat, na_matches = "never", by = "OrdreKat_ID") %>%
   
-  # Left join Dim1_DeltAlderKat
+  # Left join dim1_DeltAlderKat
   group_by(EventAar_ID) %>%
   mutate(EventAarStartDatoTid_DW = min(BilletStartDatoTid_RD)) %>%
   ungroup() %>%
@@ -54,11 +54,11 @@ tbl1_Ordre_T <- Fact_Ordre %>%
       substr(Delt_ID, 3, 4), "-",
       substr(Delt_ID, 1, 2))))) %>%
   mutate(DeltAlder_DW = trunc((DeltFoedtDato_DW %--% EventAarStartDatoTid_DW) / years(1))) %>%
-  left_join(y = Dim1_DeltAlderKat, na_matches = "never", join_by(
+  left_join(y = dim1_DeltAlderKat, na_matches = "never", join_by(
       "DeltAlder_DW" >= "DeltAlderKatMin_RD",
       "DeltAlder_DW" <= "DeltAlderKatMaks_RD")) %>%
   
-  # Left join Dim1_DeltGenKat
+  # Left join dim1_DeltGenKat
   mutate(EventAarFra2021_DW = if_else(year(EventAarStartDatoTid_DW) >= 2021, TRUE, FALSE)) %>%
   group_by(Delt_ID, BilletKat_ID, EventAarFra2021_DW) %>%
   arrange(OrdreDatoTid_RD, BilletKat_ID) %>%
@@ -69,76 +69,76 @@ tbl1_Ordre_T <- Fact_Ordre %>%
     DeltGenNr_DW == 1 ~ "Debutant",
     DeltGenNr_DW >= 2 ~ "Gentilmelding",
     TRUE ~ "Ikke hidtil")) %>%
-  left_join(y = Dim1_DeltGenKat, na_matches = "never", by = "DeltGenKat_ID") %>%
+  left_join(y = dim1_DeltGenKat, na_matches = "never", by = "DeltGenKat_ID") %>%
 
-  # Left join Dim1_DeltKat
-  left_join(y = Dim1_DeltKat, na_matches = "never", join_by(
+  # Left join dim1_DeltKat
+  left_join(y = dim1_DeltKat, na_matches = "never", join_by(
       "DeltKat_ID" >= "DeltKatMin_ID",
       "DeltKat_ID" <= "DeltKatMaks_ID")) %>%
   
-  # Left join Dim1_Kalender med OrdreDato_DW
+  # Left join dim1_Kalender med OrdreDato_DW
   left_join(
-    y = Dim1_Kalender %>% rename_with(~ paste0("OrdreDato_DW_", .)),
+    y = dim1_Kalender %>% rename_with(~ paste0("OrdreDato_DW_", .)),
     by = c("OrdreDato_DW" = "OrdreDato_DW_Dato_DW"),
     na_matches = "never") %>%
   
-  # Left join Dim1_Kalender med OrdreFoersteDato_DW
+  # Left join dim1_Kalender med OrdreFoersteDato_DW
   mutate(OrdreFoersteDato_DW = as_date(OrdreFoersteDatoTid_DW)) %>%
   left_join(
-    y = Dim1_Kalender %>% rename_with(~ paste0("OrdreFoersteDato_DW_", .)),
+    y = dim1_Kalender %>% rename_with(~ paste0("OrdreFoersteDato_DW_", .)),
     by = c("OrdreFoersteDato_DW" = "OrdreFoersteDato_DW_Dato_DW"),
     na_matches = "never") %>%
   
-  # Left join Dim1_Kalender med BilletStartDato_DW
+  # Left join dim1_Kalender med BilletStartDato_DW
   left_join(
-    y = Dim1_Kalender %>% rename_with(~ paste0("BilletStartDato_DW_", .)),
+    y = dim1_Kalender %>% rename_with(~ paste0("BilletStartDato_DW_", .)),
     by = c("BilletStartDato_DW" = "BilletStartDato_DW_Dato_DW"),
     na_matches = "never") %>%
   
-  # Left join Dim1_Kalender med BilletSlutDato_DW
+  # Left join dim1_Kalender med BilletSlutDato_DW
   left_join(
-    y = Dim1_Kalender %>% rename_with(~ paste0("BilletSlutDato_DW_", .)),
+    y = dim1_Kalender %>% rename_with(~ paste0("BilletSlutDato_DW_", .)),
     by = c("BilletSlutDato_DW" = "BilletSlutDato_DW_Dato_DW"),
     na_matches = "never") %>%
   
-  # Left join Dim1_Kalender med EventAarFristDato_DW
+  # Left join dim1_Kalender med EventAarFristDato_DW
   left_join(
-    y = Dim1_Kalender %>% rename_with(~ paste0("EventAarFristDato_DW_", .)),
+    y = dim1_Kalender %>% rename_with(~ paste0("EventAarFristDato_DW_", .)),
     by = c("EventAarFristDato_DW" = "EventAarFristDato_DW_Dato_DW"),
     na_matches = "never") %>%
   
-  # Left join Dim1_Kalender med EventAarAabningDato_DW
+  # Left join dim1_Kalender med EventAarAabningDato_DW
   left_join(
-    y = Dim1_Kalender %>% rename_with(~ paste0("EventAarAabningDato_DW_", .)),
+    y = dim1_Kalender %>% rename_with(~ paste0("EventAarAabningDato_DW_", .)),
     by = c("EventAarAabningDato_DW" = "EventAarAabningDato_DW_Dato_DW"),
     na_matches = "never") %>%
   
-  # Left join Dim1_Kalender med EventAarRatingDato_RD
+  # Left join dim1_Kalender med EventAarRatingDato_RD
   left_join(
-    y = Dim1_Kalender %>% rename_with(~ paste0("EventAarRatingDato_RD_", .)),
+    y = dim1_Kalender %>% rename_with(~ paste0("EventAarRatingDato_RD_", .)),
     by = c("EventAarRatingDato_RD" = "EventAarRatingDato_RD_Dato_DW"),
     na_matches = "never") %>%
   
-  # Left join Dim1_Kalender med EventAarStartDato_DW
+  # Left join dim1_Kalender med EventAarStartDato_DW
   mutate(EventAarStartDato_DW = as_date(EventAarStartDatoTid_DW)) %>%
   left_join(
-    y = Dim1_Kalender %>% rename_with(~ paste0("EventAarStartDato_DW_", .)),
+    y = dim1_Kalender %>% rename_with(~ paste0("EventAarStartDato_DW_", .)),
     by = c("EventAarStartDato_DW" = "EventAarStartDato_DW_Dato_DW"),
     na_matches = "never") %>%
   
-  # Left join Dim1_Kalender med EventAarSlutDato_DW
+  # Left join dim1_Kalender med EventAarSlutDato_DW
   group_by(EventAar_ID) %>%
   mutate(EventAarSlutDatoTid_DW = max(BilletSlutDatoTid_RD)) %>%
   ungroup() %>%
   mutate(EventAarSlutDato_DW = as_date(EventAarSlutDatoTid_DW)) %>%
   left_join(
-    y = Dim1_Kalender %>% rename_with(~ paste0("EventAarSlutDato_DW_", .)),
+    y = dim1_Kalender %>% rename_with(~ paste0("EventAarSlutDato_DW_", .)),
     by = c("EventAarSlutDato_DW" = "EventAarSlutDato_DW_Dato_DW"),
     na_matches = "never") %>%
   
-  # Left join Dim1_Kalender med DeltFoedtDato_DW
+  # Left join dim1_Kalender med DeltFoedtDato_DW
   left_join(
-    y = Dim1_Kalender %>% rename_with(~ paste0("DeltFoedtDato_DW_", .)),
+    y = dim1_Kalender %>% rename_with(~ paste0("DeltFoedtDato_DW_", .)),
     by = c("DeltFoedtDato_DW" = "DeltFoedtDato_DW_Dato_DW"),
     na_matches = "never")
 
@@ -728,7 +728,8 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
     starts_with("EventAar"),
     starts_with("Billet"),
     starts_with("Delt"),
-    starts_with("Klub"))
+    starts_with("Klub")) %>%
+  relocate(contains("dato_DW_"), .after = last_col())
 
 # Fjern Dim og Fact fra objekter ----
-rm(list = ls(pattern = "^(Dim|Fact)"))
+rm(list = ls(pattern = "^(dim|fact)"))
