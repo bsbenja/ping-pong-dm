@@ -5,9 +5,12 @@ source(file = "_input.R")
 
 ---
 title: "<iconify-icon icon=mdi:chart-box></iconify-icon> <u>Dashboard</u>"
-subtitle: "<a href=index.qmd>Ping Pong DM</a>"
+subtitle: "<a href=index.qmd><b><img src=filer/medie/billede/ping-pong-dk.png style=height:18px>&nbsp;Ping Pong DM</b></a>"
+author: '<i>Sidst opdateret `r format(floor_date(Sys.time(), "30 minutes"), "%d-%m-%Y kl. %H:%M")`</i>'
 format:
   dashboard:
+    theme:
+      light: [flatly, filer/kode/scss/tema.scss, filer/kode/scss/tema-lys.scss]
     embed-resources: true
     scrolling: true
     expandable: false
