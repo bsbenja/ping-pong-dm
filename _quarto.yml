@@ -1,50 +1,50 @@
 project:
   type: website
   render:
-    - "*.qmd"
-    - "index.qmd" # "!index.qmd"
-    - "raekke-sandpapir-aaben-single.qmd" # "!raekke-sandpapir-aaben-single.qmd"
-    - "dashboard.qmd" # "!dashboard.qmd"
-    - "regler.qmd" # "!regler.qmd"
-    - "wcpp.qmd" # "!wcpp.qmd"
-    - "koncept.qmd" # "!koncept.qmd"
-    - "indbydelse-tilmelding-2023.qmd" # "!indbydelse-tilmelding-2023.qmd"
-    - "bi.qmd" # "!bi.qmd"
-    - "bi2.qmd" # "!bi2.qmd"
-    - "!filer/**/*.qmd" # Quarto-dokumenter i mappen filer skal køres manuelt
+    - '*.qmd'
+    - 'index.qmd' # '!index.qmd'
+    - 'raekke-sandpapir-aaben-single.qmd' # '!raekke-sandpapir-aaben-single.qmd'
+    - 'dashboard.qmd' # '!dashboard.qmd'
+    - 'regler.qmd' # '!regler.qmd'
+    - 'wcpp.qmd' # '!wcpp.qmd'
+    - 'koncept.qmd' # '!koncept.qmd'
+    - 'indbydelse-tilmelding-2023.qmd' # '!indbydelse-tilmelding-2023.qmd'
+    - 'bi.qmd' # '!bi.qmd'
+    - 'bi2.qmd' # '!bi2.qmd'
+    - '!filer/**/*.qmd' # Quarto-dokumenter i mappen filer skal køres manuelt
 
 website:
-  site-url: "https://pingpong.quarto.pub/dm"
-  favicon: "filer/medie/billede/ping-pong-dk.png"
-  title: "Ping Pong DM - Uofficiel hjemmeside"
-  google-analytics: "G-6903XX1GX6"
+  site-url: 'https://pingpong.quarto.pub/dm'
+  favicon: 'filer/medie/billede/ping-pong-dk.png'
+  title: 'Ping Pong DM - Uofficiel hjemmeside'
+  google-analytics: 'G-6903XX1GX6'
   page-navigation: true
   back-to-top-navigation: false
   sidebar:
     style: docked
     background: light
-    logo: "filer/medie/billede/ping-pong-dk.png"
+    logo: 'filer/medie/billede/ping-pong-dk.png'
     title: false
     search: true
     border: true
     contents:
-      - href: "index.qmd"
-      - text: "---"
-      - section: "<b>Ping Pong DM 2025</b>"
+      - href: 'index.qmd'
+      - text: '---'
+      - section: '<b>Ping Pong DM 2025</b>'
         contents:
-        # - href: "indbydelse-tilmelding-2023.qmd"
-        - href: "raekke-sandpapir-aaben-single.qmd"
-        - href: "dashboard.qmd"
-      - text: "---"
-      - section: "<b>Generelt om Ping Pong</b>"
+        - href: 'raekke-sandpapir-aaben-single.qmd'
+        - href: 'dashboard.qmd'
+          text: '<iconify-icon icon=mdi:chart-box></iconify-icon> <u>Dashboard</u>'
+      - text: '---'
+      - section: '<b>Generelt om Ping Pong</b>'
         contents:
-        - href: "regler.qmd"
-        - href: "wcpp.qmd"
-        - href: "koncept.qmd"
-      - text: "---"
-      - section: "<b>Eksterne links</b>"
+        - href: 'regler.qmd'
+        - href: 'wcpp.qmd'
+        - href: 'koncept.qmd'
+      - text: '---'
+      - section: '<b>Eksterne links</b>'
         contents:
-        - text: "<a href=https://icttf.co target=_blank><iconify-icon icon=mdi:open-in-new></iconify-icon> <u>ICTTF</u></a>"
+        - text: '<a href=https://icttf.co target=_blank><iconify-icon icon=mdi:open-in-new></iconify-icon> <u>ICTTF</u></a>'
   page-footer:
     background: light
     border: true

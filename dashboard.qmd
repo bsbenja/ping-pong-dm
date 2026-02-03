@@ -4,8 +4,7 @@ source(file = "_input.R")
 ```
 
 ---
-title: "<iconify-icon icon=mdi:chart-box></iconify-icon> <u>Dashboard</u>"
-subtitle: "<a href=index.qmd><b><img src=filer/medie/billede/ping-pong-dk.png style=height:18px>&nbsp;Ping Pong DM</b></a>"
+title: '<a href=index.qmd>< Ping Pong DM dashboard</a>'
 author: '<i>Sidst opdateret `r format(floor_date(Sys.time(), "30 minutes"), "%d-%m-%Y kl. %H:%M")`</i>'
 format:
   dashboard:
