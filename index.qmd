@@ -1,68 +1,36 @@
 ```{r}
 #| label: kildefil
-source(file = "_input.R")
+#source(file = "_input.R")
+source(file = "filer/kode/r/_variables.R")
 ```
 
 ```{r}
 #| label: kildefil-filter
+#| eval: false
 tbl2_EventAarAkt_T <- tbl2_EventAar_T %>% filter(grepl(InputEventAarAkt_V, EventAar_RD))
 ```
 
 ---
 title: "<iconify-icon icon=mdi:home></iconify-icon> <u>Forside</u>"
 subtitle: |
-  <b style=font-size:140%>Ping Pong DM - Uofficiel hjemmeside</b><br><i style=font-size:80>Velkommen til den uofficielle hjemmeside for Danske Mesterskaber i Ping Pong. Ping Pong er bordtennis på <b><u>lige vilkår</u></b> med sandpapirsbat, som er <b><u>åben for ALLE</u></b> til en <b><u>overkommelig pris</u></b>. Se mere ved at navigere rundt her på hjemmesiden. Fra mobil gøres dette via topmenuen.</i>
+  <b style=font-size:140%>Ping Pong DM - Uofficiel hjemmeside</b><br><i style=font-size:80>Velkommen til den uofficielle hjemmeside for Danske Mesterskaber i Ping Pong. Ping Pong er klassisk bordtennis på <b><u>lige vilkår</u></b>, som er <b><u>åben for ALLE</u></b> til en <b><u>overkommelig pris</u></b>, hvor der spilles med sandpapirsbat, træbat eller hardbat. Se mere ved at navigere rundt her på hjemmesiden. Fra mobil gøres dette via topmenuen.</i>
 editor_options: 
   chunk_output_type: console
 ---
 
+::: {.callout-note .vis-kun-mobil style="font-style:italic" icon="false"}
+## `r paste(IkonPilOpVenstre_V, "Tip på mobil/tablet")`
+
+Menu tilgås i toppen til venstre fra mobil/tablet.
+:::
+
 ```{r}
 #| label: info-nedtaelling-plakat
 #| output: asis
+#| eval: false
 cat(knitr::raw_html(tbl2_EventAarAkt_T$InfoNedtælling_DW))
 cat(tbl2_EventAarAkt_T$InfoPlakatCTA_DW)
 ```
-
-::::::: callout-tip
-## Sider
-
-:::::: grid
-::: {.g-col-12 .g-col-md-4}
-#### `r tbl2_EventAarAkt_T$EventAar_RD`
-
-`r tbl2_EventAarAkt_T$InfoForside_DW`
-:::
-
-::: {.g-col-12 .g-col-md-4}
-#### Generelt om Ping Pong
-
-- `r paste(IkonRegler_V)` [**Ping Pong regler**](regler.qmd)\
-  *I Ping Pong tages det bedste fra fortidens- og nutidens bordtennis og kan sammenlignes med ordsproget "gammel vin på nye flasker". Der er nogle få regler, der adskiller Ping Pong fra bordtennis, bl.a. spilles der til 15 point (14-14 er afgørende bold), alle spiller på lige vilkår med sandpapirsbat, hvor der byttes bat mellem hvert sæt, og der kan tages "dobbeltpoint".*
-
-- `r paste(IkonGlobus_V)` [**WCPP**](wcpp.qmd)\
-  *World Championship of Ping Pong (WCPP) afholdes sædvanligvis i London med en præmiesum på \$100.000 og eksponeres på bl.a. Viaplay Sport og Sky Sports.*
-
-- `r paste(IkonKoncept_V)` [**DM-koncept**](koncept.qmd)\
-  *DM-konceptet er en heldagsbegivenhed, der hylder fællesskabet og mangfoldigheden, hvor ALLE har mulighed for at deltage på lige vilkår i sandpapirsdisciplinen. Der er musik under hele turneringen samt socialt arrangement om aften/natten.*
-:::
-
-::: {.g-col-12 .g-col-md-4}
-#### Eksterne links
-
-*Er du en Ping Pong entusiast eller bare nysgerrig på konceptet? Så tjek én eller flere af nedenstående links ud.*
-
-- `r paste(IkonLinkNy_V)` [**ICTTF**](https://icttf.co){target="_blank"}\
-  *International Classic Table Tennis Federation (ICTTF) er det styrende organ for alle nationale Ping Pong medlemmer, hvis mission er at genintroducere det underholdende og gavnlige spil Ping Pong, også kendt som klassisk bordtennis, til det globale fællesskab.*\
-  ![](filer/medie/billede/icttf.png){width="4em"}
-:::
-::::::
-:::::::
-
-::: {.callout-note style="font-style:italic" icon="false"}
-## `r paste(IkonFacebook_V, "Facebook")`
-
-`r tbl2_EventAarAkt_T$InfoFacebook_DW`
-:::
 
 ```{r}
 #| label: facebook
@@ -75,12 +43,6 @@ cat('
 ::: {.callout-tip style="font-style:italic"}
 ## Tip
 
-`r IkonBogmærke_V` **Bogmærk** [denne side](index.qmd) for nem og hurtig adgang."\
+`r IkonBogmærke_V` **Bogmærk** denne side for nem og hurtig adgang.\
 Genvejstast: {{< kbd Ctrl + d >}} PC `r IkonWindows_V` ∙ {{< kbd ⌘ + d >}} Mac `r IkonMac_V`
-:::
-
-::: {.callout-note .vis-kun-mobil style="font-style:italic" icon="false"}
-## `r paste(IkonPilOpVenstre_V, "Tip på mobil/tablet")`
-
-Menu tilgås i toppen til venstre fra mobil/tablet.
 :::

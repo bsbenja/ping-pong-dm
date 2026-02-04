@@ -3,14 +3,14 @@ project:
   render:
     - '*.qmd'
     - 'index.qmd' # '!index.qmd'
-    - 'raekke-sandpapir-aaben-single.qmd' # '!raekke-sandpapir-aaben-single.qmd'
     - 'dashboard.qmd' # '!dashboard.qmd'
-    - 'regler.qmd' # '!regler.qmd'
-    - 'wcpp.qmd' # '!wcpp.qmd'
-    - 'koncept.qmd' # '!koncept.qmd'
-    - 'indbydelse-tilmelding-2023.qmd' # '!indbydelse-tilmelding-2023.qmd'
-    - 'bi.qmd' # '!bi.qmd'
-    - 'bi2.qmd' # '!bi2.qmd'
+    - '!raekke-sandpapir-aaben-single.qmd' # '!raekke-sandpapir-aaben-single.qmd'
+    - '!regler.qmd' # '!regler.qmd'
+    - '!wcpp.qmd' # '!wcpp.qmd'
+    - '!koncept.qmd' # '!koncept.qmd'
+    - '!indbydelse-tilmelding-2023.qmd' # '!indbydelse-tilmelding-2023.qmd'
+    - '!bi.qmd' # '!bi.qmd'
+    - '!bi2.qmd' # '!bi2.qmd'
     - '!filer/**/*.qmd' # Quarto-dokumenter i mappen filer skal køres manuelt
 
 website:
@@ -29,22 +29,9 @@ website:
     border: true
     contents:
       - href: 'index.qmd'
-      - text: '---'
-      - section: '<b>Ping Pong DM 2025</b>'
-        contents:
-        - href: 'raekke-sandpapir-aaben-single.qmd'
-        - href: 'dashboard.qmd'
-          text: '<iconify-icon icon=mdi:chart-box></iconify-icon> <u>Dashboard</u>'
-      - text: '---'
-      - section: '<b>Generelt om Ping Pong</b>'
-        contents:
-        - href: 'regler.qmd'
-        - href: 'wcpp.qmd'
-        - href: 'koncept.qmd'
-      - text: '---'
-      - section: '<b>Eksterne links</b>'
-        contents:
-        - text: '<a href=https://icttf.co target=_blank><iconify-icon icon=mdi:open-in-new></iconify-icon> <u>ICTTF</u></a>'
+      - href: 'dashboard.qmd'
+        text: '<iconify-icon icon=mdi:chart-box></iconify-icon> <u>Dashboard</u>'
+      - text: '<a href=https://bordtennisdanmark.dk/velkommen/proev-ping-pong/ping-pong-regler/ target=_blank><iconify-icon icon=mdi:open-in-new></iconify-icon> <u>Ping Pong regler</u></a>'
   page-footer:
     background: light
     border: true
