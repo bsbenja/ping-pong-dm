@@ -6,7 +6,7 @@ source(file = "_input.R")
 ---
 title: '<a href=index.qmd><span class=bi-arrow-left-circle-fill></span></a>'
 subtitle: '<b>Ping Pong DM Dashboard</b>'
-author: '<i>Sidst opdateret 03-02-2026 kl. 17:00</i>'
+author: '<i>Sidst opdateret `r format(floor_date(Sys.time(), "30 minutes"), "%d-%m-%Y kl. %H:%M")`</i>'
 format:
   dashboard:
     theme:

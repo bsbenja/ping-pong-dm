@@ -39,7 +39,7 @@ website:
       - text: |
           <a style=font-weight:bold;font-size:18px;text-decoration:none href=index.qmd><img src=filer/medie/billede/ping-pong-dk.png style=height:18px>&nbsp;Ping Pong DM</a>
           <br><br>
-          <a href={{< var var.facebook_event_url >}} target=_blank><span class=bi-facebook style=color:#1877F2;font-size:18px></span></a>
+          <a href=https://www.facebook.com/{{< var var.facebook_side_id >}} target=_blank><span class=bi-facebook style=color:#1877F2;font-size:18px></span></a>
           &nbsp;<a href=https://m.me/{{< var var.facebook_side_id >}} target=_blank><span class=bi-messenger style=color:#0695FF;font-size:18px></span></a>
           &nbsp;<a href=https://github.com/bsbenja/ping-pong-dm target=_blank><span class=bi-github style=color:#9F7BE1;font-size:18px></span></a>
 
