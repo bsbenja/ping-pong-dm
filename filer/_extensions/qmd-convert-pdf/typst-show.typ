@@ -1,5 +1,5 @@
 // YAML - Defineres også i typst-template.typ
-#show: qmd-convert.with(
+#show: qmd-convert-pdf.with(
   $if(title)$ title: "$title$".replace("\\", ""), $endif$
   $if(subtitle)$ subtitle: "$subtitle$".replace("\\", ""), $endif$
   $if(date)$ date: "$date$".replace("\\", ""), $endif$

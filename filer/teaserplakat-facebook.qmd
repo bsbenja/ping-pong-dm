@@ -16,7 +16,7 @@ var_page_margin_y: '38.4pt' # ANGIV y-margen (24pt*1.6)
 var_page_background: 'medie/billede/wcpp-finale-2020-nedtonet.png' # ANGIV sti eller hex-farvekode som baggrund
 var_text_font: 'Arial' # ANGIV skrifttype
 var_text_size: '16.6pt' # ANGIV skriftstørrelse
-format: qmd-convert-typst # Se opsætning i mappen _extensions
+format: qmd-convert-pdf-typst # Se opsætning i mappen _extensions
 ---
 
 {{< include kode/qmd/teaserplakat.qmd >}}
