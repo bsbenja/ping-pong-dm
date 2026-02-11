@@ -1,5 +1,5 @@
 // YAML - Defineres også i typst-show.typ
-#let qmd-convert-pdf(
+#let qmd-convert(
   title: none,
   subtitle: none,
   date: none,
