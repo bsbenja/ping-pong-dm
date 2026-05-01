@@ -18,4 +18,5 @@
   $if(var_page_background)$ var_page_background: "$var_page_background$".replace("\\", ""), $endif$
   $if(var_text_font)$ var_text_font: "$var_text_font$".replace("\\", ""), $endif$
   $if(var_text_size)$ var_text_size: $var_text_size$, $endif$
+  $if(var_content_align)$ var_content_align: $var_content_align$, $endif$
 )

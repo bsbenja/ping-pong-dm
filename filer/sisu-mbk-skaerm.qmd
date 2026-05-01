@@ -9,18 +9,18 @@ var_organizer_city: 'Aarhus C' # ANGIV arrangørens by
 var_hex_theme_1: '#ED1846' # ANGIV hex-farvekode for tema 1
 var_hex_theme_2: '#211D71' # ANGIV hex-farvekode for tema 2
 var_hex_body_text: '#FFFFFF' # ANGIV hex-farvekode for brødtekst
-var_page_width: '820pt' # ANGIV sidens bredde
-var_page_height: '360pt' # ANGIV sidens højde
+var_page_width: '68cm' # ANGIV sidens bredde
+var_page_height: '120cm' # ANGIV sidens højde
 var_page_margin_x: '108pt' # ANGIV x-margen (90pt*1.2)
-var_page_margin_y: '38.4pt' # ANGIV y-margen (24pt*1.6)
-var_page_background: 'medie/billede/wcpp-finale-2020-nedtonet.png' # ANGIV sti eller hex-farvekode som baggrund
+var_page_margin_y: '108pt' # ANGIV y-margen (24pt*1.6)
+var_page_background: 'medie/billede/wcpp-finale-2020-nedtonet-sisu-mbk-skaerm.png' # ANGIV sti eller hex-farvekode som baggrund
 var_text_font: 'Arial' # ANGIV skrifttype
-var_text_size: '16.6pt' # ANGIV skriftstørrelse
-var_content_align: 'right' # ANGIV justering af indhold (left/center/right)
+var_text_size: '73pt' # ANGIV skriftstørrelse
+var_content_align: 'center' # ANGIV justering af indhold (left/center/right)
 format: qmd-convert-typst # Se opsætning i mappen _extensions
 ---
 
-::: {.block fill="rgb(\"{{< meta var_hex_theme_2 >}}\").transparentize(20%)" inset="(top: 0.4em, x: 0.4em)"}
+::: {.block fill="rgb(\"{{< meta var_hex_theme_2 >}}\").transparentize(20%)" inset="0.4em"}
 ```{=typst}
 #text(size: 2em, weight: "bold")[#upper[#title]]
 ```
@@ -33,14 +33,14 @@ format: qmd-convert-typst # Se opsætning i mappen _extensions
 :::
 
 ```{=typst}
-#v(1em)
+#v(3em)
 ```
 ::: {.block fill="rgb(\"{{< meta var_hex_theme_2 >}}\").transparentize(20%)" inset="0.4em"}
-**Discipliner**: Træbat & Sandpapir - bat udleveres
+**Discipliner**: Træbat & Sandpapir
 :::
 
 ::: {.block fill="rgb(\"{{< meta var_hex_theme_2 >}}\").transparentize(20%)" inset="0.4em"}
-**Fest**: Afterparty om aftenen - mere info følger
+**Fest**: Afterparty om aftenen
 :::
 
 ::: {.block fill="rgb(\"{{< meta var_hex_theme_2 >}}\").transparentize(20%)" inset="0.4em"}
@@ -48,28 +48,33 @@ format: qmd-convert-typst # Se opsætning i mappen _extensions
 :::
 
 ```{=typst}
-#v(1em)
+#v(3em)
 ```
 ::: {.block fill="rgb(\"{{< meta var_hex_theme_1 >}}\").transparentize(20%)" inset="0.4em"}
 ```{=typst}
-*Afvikles #date i #var_organizer_name, #var_organizer_city*
+*Afvikles #date*\
+*i #var_organizer_name, #var_organizer_city*
 ```
-:::
-
-::: {.block fill="rgb(\"{{< meta var_hex_theme_1 >}}\").transparentize(20%)" inset="(top: 0.2em, bottom: 0.4em, x: 0.4em)"}
-**Sæt X i kalenderen - tilmelding åbner senere**
 :::
 
 ```{=typst}
-#v(1em)
+#v(1fr)
 ```
+::: {.block fill="rgb(\"{{< meta var_hex_body_text >}}\").transparentize(40%)" inset="0.4em" width="100%" height="2.5em"}
+```{=typst}
+#stack(dir: ltr, spacing: 1fr,
+  [#image("medie/billede/sisu-mbk.png")],
+  [#image("medie/billede/prime-office.png")],
+  [#image("medie/billede/butterfly.png")],
+)
+```
+:::
+
 ::: {.block fill="rgb(\"{{< meta var_hex_body_text >}}\").transparentize(40%)" inset="0.4em" width="100%" height="2.5em"}
 ```{=typst}
 #stack(dir: ltr, spacing: 1fr,
   [#image("medie/billede/icttf.png")],
   [#image("medie/billede/bordtennis-danmark.png")],
-  [#image("medie/billede/butterfly.png")],
-  [#image("medie/billede/sisu-mbk.png")],
   [#image("medie/billede/bat-traebat-butterfly-maze-magic.png")],
   [#image("medie/billede/bat-sandpapir-sanwei.png")],
   [#image("medie/billede/flag-danmark.png")],

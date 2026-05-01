@@ -18,6 +18,7 @@
   var_page_background: none,
   var_text_font: none,
   var_text_size: none,
+  var_content_align: none,
 
   body
 ) = {
@@ -57,7 +58,7 @@
   )
 
   // Justering af indhold
-  set align(right)
+  set align(var_content_align)
   
   // body
   body
