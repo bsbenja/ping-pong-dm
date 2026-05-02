@@ -13,7 +13,7 @@ var_page_width: '68cm' # ANGIV sidens bredde
 var_page_height: '120cm' # ANGIV sidens højde
 var_page_margin_x: '108pt' # ANGIV x-margen (90pt*1.2)
 var_page_margin_y: '108pt' # ANGIV y-margen (24pt*1.6)
-var_page_background: 'medie/billede/wcpp-finale-2020-nedtonet-sisu-mbk-skaerm.png' # ANGIV sti eller hex-farvekode som baggrund
+var_page_background: 'medie/billede/wcpp-finale-2020-nedtonet-sisu-mbk-infoskaerm.png' # ANGIV sti eller hex-farvekode som baggrund
 var_text_font: 'Arial' # ANGIV skrifttype
 var_text_size: '73pt' # ANGIV skriftstørrelse
 var_content_align: 'center' # ANGIV justering af indhold (left/center/right)
