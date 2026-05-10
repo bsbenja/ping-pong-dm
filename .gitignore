@@ -1,9 +1,10 @@
+_site/
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
 .git/
 .vscode/
-_site/
 .quarto/
+/.quarto/
 **/*.quarto_ipynb

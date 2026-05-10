@@ -5,7 +5,7 @@
 InputWebOrdreTF_V  <- F # T/F for hentning af eventordre
 InputWebRatingTF_V <- F # T/F for webscraping af rating
 InputInfo1234_V    <- 4 # Tilmelding angives som (1) lukket, (2) teaser, (3) åben og (4) endelig
-InputEventAarAkt_V <- "Ping Pong DM 2025" # Event og år
+InputEventAarAkt_V <- "Ping Pong DM 2026" # Event og år
 InputData_V        <- "filer/data/input/ping-pong-dm-tilmelding.xlsx" # Sti til Excel-fil
 
 # Kildefiler

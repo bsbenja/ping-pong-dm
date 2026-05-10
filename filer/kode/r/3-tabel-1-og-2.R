@@ -281,7 +281,11 @@ tbl1_Ordre_T <- tbl1_Ordre_T %>%
   
   # DeltSnakeSeedLagNr_DW
   group_by(EventAar_ID, OrdreStatusSimpelKat_RD, Billet_ID) %>%
-  mutate(DeltSnakeSeedLagNr_DW = rep(1:unique(BilletPulje_DW), each = unique(BilletPulje_DW))[seq_len(n())]) %>%
+  mutate(DeltSnakeSeedLagNr_DW = {
+    pulje <- first(BilletPulje_DW)
+    if (is.na(pulje)) NA_integer_
+    else rep(seq_len(pulje), length.out = n())
+  }) %>%
   ungroup() %>%
   mutate(across("DeltSnakeSeedLagNr_DW", \(x) as.integer(x))) %>%
   
