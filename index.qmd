@@ -1,7 +1,7 @@
 ```{r}
 #| label: kildefil
 #source(file = "_input.R")
-source(file = "filer/kode/r/_variables.R")
+source(file = "filer/kode/R/_variables.R")
 ```
 
 ```{r}
